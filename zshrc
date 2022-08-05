@@ -104,6 +104,7 @@ restart(){ if [[ $# -eq 0 ]]; then down; else dc rm -fs "$@"; fi && up "$@" }
 alias ct='sudo ctop'
 alias pull='dc pull'
 update(){ dc pull "$@" && up "$@" }
+dnv(){ sudo docker network ls --format '{''{.ID}}' | xargs sudo docker network inspect | jq -r '.[] | select(.IPAM.Config[]) | .Name+" "*(20-(.Name|length)) + " " + .IPAM.Config[].Subnet + " "*5 + .Labels."com.docker.compose.project"'; }
 
 alias -s yml=vim
 alias -s yaml=vim
