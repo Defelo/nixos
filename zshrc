@@ -96,7 +96,7 @@ alias sftpx='sftp -o UserKnownHostsFile=/dev/null'
 alias tt='~/scripts/timetracker.sh'
 
 alias dk='sudo docker'
-alias dc='sudo docker-compose'
+alias dc='sudo docker compose'
 alias logs='dc logs -f --tail=1000'
 up(){ dc up -d "$@" && dc logs -f "$@" }
 alias down='dc down'
