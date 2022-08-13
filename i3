@@ -128,6 +128,7 @@ set $workspace9 "9 "
 set $workspace10 "10 "
 set $workspace42 "42 "
 set $workspace1337 "1337"
+set $workspace_obsidian "+ "
 
 # assign windows to workspaces
 assign [class="Transmission-gtk"] $workspace0
@@ -150,6 +151,7 @@ assign [class="TelegramDesktop"] $workspace9
 assign [class="vlc"] $workspace10
 assign [class="minecraft-launcher"] $workspace42
 assign [class="Minecraft"] $workspace42
+assign [class="obsidian"] $workspace_obsidian
 
 for_window [class="Spotify"] move to workspace $workspace10
 
@@ -169,6 +171,7 @@ workspace $workspace9 output eDP1
 workspace $workspace10 output eDP1
 workspace $workspace42 output eDP1
 workspace $workspace1337 output eDP1
+workspace $workspace_obsidian output DP1
 
 # switch to workspace
 bindsym $mod+asciicircum workspace $workspace0
@@ -184,6 +187,7 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 bindsym $mod+ssharp workspace $workspace42
 bindsym $mod+acute workspace $workspace1337
+bindsym $mod+plus workspace $workspace_obsidian
 
 # move focused container to workspace
 bindsym $mod+Shift+asciicircum move container to workspace $workspace0
@@ -199,6 +203,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 bindsym $mod+Shift+ssharp move container to workspace $workspace42
 bindsym $mod+Shift+acute move container to workspace $workspace1337
+bindsym $mod+Shift+plus move container to workspace $workspace_obsidian
 
 # move focused workspace to monitor
 bindsym $mod+Ctrl+j move workspace to output DP1
@@ -391,5 +396,6 @@ exec thunderbird
 exec discord-canary
 exec element-desktop
 exec Telegram
+exec obsidian
 #exec vlc
 exec i3-msg "workspace $workspace2; exec st zsh"
