@@ -15,3 +15,7 @@ fi
 {{#if dotter.packages.fonts}}
 fc-cache -vf ~/.fonts
 {{/if}}
+
+{{#if dotter.packages.vim}}
+nvim --headless +PlugClean +PlugUpdate +PlugInstall +qall
+{{/if}}
