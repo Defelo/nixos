@@ -1,0 +1,45 @@
+includes = []
+
+packages = [
+    "vim", "tmux", "zsh", "p10k", "profile", "scripts", "vifm", "pbincli", "ssh",
+]
+
+[files]
+
+[variables]
+enc = false
+
+# zsh
+[variables.zsh]
+temptex = false
+
+# vim
+[variables.vim.plugins]
+airline = true
+nginx = true
+vimtex = false
+vim-nix = false
+vim-svelte = false
+
+# st
+[variables.st]
+fontsize = 10
+alpha = 0.80
+
+# profile
+[variables.profile]
+auto_start = ""
+
+# i3
+[variables.i3]
+clipman = true
+autotiling = false
+
+# polybar
+[variables.polybar.modules]
+screenshot = false
+rofi = false
+updates = true
+
+[variables.polybar.battery]
+full-at = 95
