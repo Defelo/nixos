@@ -1,13 +1,48 @@
 #!/bin/bash
 
-if ! [[ $# =~ ^1|2$ ]] || ! [[ "$2" =~ ^(|start|stop|list|show|edit)$ ]]; then
-    echo "Usage: $0 <name> [start|stop|list|show|edit]"
+export GIT_DIR=$HOME/.timetracker/.git
+export GIT_WORK_TREE=$HOME/.timetracker
+
+_usage() {
+    echo "Usage: tt <name> [start|stop|list|show|edit|config|delete|save]"
+    echo "       tt list"
+    echo "       tt git [<args>]"
     exit 1
+}
+
+if [[ "$1" = git ]]; then
+    shift
+    exec git "$@"
+elif [[ "$1" = list ]]; then
+    [[ $# = 1 ]] || _usage
+    for file in $(cd $GIT_WORK_TREE; ls); do
+        echo $file
+    done
+    exit
+elif ! [[ $# =~ ^1|2$ ]] || ! [[ "$2" =~ ^(|start|stop|list|show|edit|config|delete|save)$ ]]; then
+    _usage
 fi
 
+if ! git status &> /dev/null; then
+    git init
+fi
+
+NAME="$1"
 FILE="$HOME/.timetracker/$1"
-mkdir -p $(dirname "$FILE")
-[[ -e "$FILE" ]] || touch "$FILE"
+CONF="$HOME/.timetracker/.$1.yml"
+if [[ "$2" != delete ]]; then
+    mkdir -p $(dirname "$FILE")
+    [[ -e "$FILE" ]] || touch "$FILE"
+    [[ -e "$CONF" ]] || cat << EOF > "$CONF"
+regular: 0  # per week
+start: 0
+bonus: []  # hours
+EOF
+
+    PER_WEEK=$(yq -r .regular "$CONF")
+    START=$(yq -r .start "$CONF")
+    BONUS=$(yq -r '.bonus+[0]|add*60*60' "$CONF")
+fi
 
 _fmt_ts() {
     date -d @$1 +"%a %d %b %Y %T"
@@ -30,6 +65,11 @@ _running() {
     grep -E '^([0-9]+)$' "$FILE"
 }
 
+_regular() {
+    t=$(($(_now)-$START))
+    echo $(jq -n "$PER_WEEK*$t/(24*7)|round-($BONUS)")
+}
+
 start() {
     if x=$(_running); then
         echo "Already running (started at $(_fmt_ts $x))"
@@ -47,6 +87,7 @@ stop() {
     now=$(_now)
     sed -i -E "s/^([0-9]+)$/\1 $now/" "$FILE"
     echo "Stopped at $(_fmt_ts $now) ($(_fmt_delta $((now-x))))"
+    save
 }
 
 list() {
@@ -79,6 +120,7 @@ list() {
     done < "$FILE"
     [[ -n "$last" ]] && echo "=> $(_fmt_delta $w)"
     echo -e "\nTOTAL: $(_fmt_delta $s) $r"
+    echo "Overtime: $(_fmt_delta $((s-$(_regular))))"
 }
 
 show() {
@@ -91,24 +133,54 @@ show() {
         fi
         sum=$((sum+end-begin))
     done < "$FILE"
-    echo "$(_fmt_delta $sum) $r"
+    echo "TOTAL: $(_fmt_delta $sum) $r"
+    echo "Overtime: $(_fmt_delta $((sum-$(_regular))))"
 }
 
 interactive() {
     _running>/dev/null || start
+    x=$(_running)
     f=1
     trap f=0 SIGINT
+    first=1
     while [[ $f = 1 ]]; do
-        printf "\r%s" "$(show) (Ctrl+C to stop) "
+        printf "${new}Current: $(_fmt_delta $(($(_now)-x)))\n$(show) (Ctrl+C to stop) "
         sleep 1
+        if [[ $first = 1 ]]; then
+            new=$(tput dl1 cuu1 dl1 cuu1 dl1 hpa 0)
+            first=0
+        fi
     done
     trap - SIGINT
-    printf "\r"
+    printf "$new"
     stop
 }
 
 edit() {
     ${EDITOR:-vi} "$FILE"
+    save
 }
 
-${2:-interactive}
+config() {
+    ${EDITOR:-vi} "$CONF"
+    save
+}
+
+delete() {
+    for file in "$FILE" "$CONF"; do
+        [[ -e "$file" ]] && rm -i "$file" || echo "$file does not exist"
+    done
+    save
+}
+
+save() {
+    git add "$FILE" "$CONF"
+    if ! git diff --staged --exit-code --quiet; then
+        git commit -m "Update $NAME"
+        git push
+    fi
+}
+
+cmd=${2:-interactive}
+shift 2
+"$cmd" "$@"
