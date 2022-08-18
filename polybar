@@ -199,7 +199,7 @@ format-underline = ${color.acolor}
 
 [module/updates]
 type = custom/script
-exec = "x=$(pacman -Qu | egrep -v '\[ignored\]$' | wc -l);y=;pacman -Quq | grep -q '^(linux|linux-lts)$' && y=; polybar-msg action updates module_$([[ "$x" = 0 ]] && echo hide || echo show) > /dev/null; echo $y $x"
+exec = "x=$(pacman -Qu | egrep -v '\[ignored\]$' | wc -l);y=;pacman -Quq | grep -Eq '^(linux|linux-lts)$' && y=; polybar-msg action updates module_$([[ "$x" = 0 ]] && echo hide || echo show) > /dev/null; echo $y $x"
 format-underline = ${color.acolor}
 interval=10
 
