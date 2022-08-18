@@ -8,10 +8,8 @@ s.connect(f"/run/user/{os.getuid()}/yubikey-touch-detector.socket")
 
 
 def update(touch):
-    if touch:
-        print("", flush=True)
-    else:
-        print(flush=True)
+    print(""*touch, flush=True)
+    os.system(f"polybar-msg action yk module_{['hide','show'][touch]} > /dev/null")
 
 update(False)
 while True:

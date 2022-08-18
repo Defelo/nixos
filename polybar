@@ -52,6 +52,7 @@ blue-gray = #546e7a
 ;==========================================================
 
 [bar/main]
+enable-ipc = true
 monitor = ${env:MONITOR:}
 width = 100%
 height = 20
@@ -97,7 +98,7 @@ scroll-down = i3wm-wsnext
 ;modules-left = arch workspaces 
 ;modules-right = mpd pkg volume battery network date powermenu
 modules-left = workspaces window scratch
-modules-right = {{#if polybar.modules.screenshot}}screenshot{{/if}} {{#if polybar.modules.rofi}}rofi{{/if}} yk {{#if polybar.modules.updates}}updates{{/if}} mem swap cpu dunst volume webcam battery {{#if enc}}btpower{{/if}} network date
+modules-right = {{#if polybar.modules.screenshot}}screenshot{{/if}} {{#if polybar.modules.rofi}}rofi{{/if}} yk {{#if polybar.modules.restart}}restart{{/if}} {{#if polybar.modules.updates}}updates{{/if}} mem swap cpu dunst volume webcam battery {{#if enc}}btpower{{/if}} network date
  
 ;== Modules ========================================================
 
@@ -198,14 +199,14 @@ format-underline = ${color.acolor}
 
 [module/updates]
 type = custom/script
-exec = "x=$(pacman -Qu | egrep -v '\[ignored\]$' | wc -l);y=;pacman -Quq | grep -q '^linux$' && y=; [[ "$x" = 0 ]] && echo %{u#000}%{-u} || echo $y $x"
+exec = "x=$(pacman -Qu | egrep -v '\[ignored\]$' | wc -l);y=;pacman -Quq | grep -q '^(linux|linux-lts)$' && y=; polybar-msg action updates module_$([[ "$x" = 0 ]] && echo hide || echo show) > /dev/null; echo $y $x"
 format-underline = ${color.acolor}
 interval=10
 
 [module/restart]
 type = custom/script
-exec = "[[ $(uname -r | tr . -) = $(pacman -Q linux | cut -d' ' -f2 | tr . -) ]] && echo %{u#000}%{-u} || echo "
-interval=300
+exec = "polybar-msg action restart module_$([[ -d /usr/lib/modules/$(uname -r) ]] && echo hide || echo show) > /dev/null; echo "
+interval=10
 
 [module/dunst]
 type = custom/script

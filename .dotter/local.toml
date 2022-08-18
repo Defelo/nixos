@@ -31,7 +31,7 @@ vim-svelte = true
 # st
 [variables.st]
 fontsize = 10
-alpha = 0.80
+alpha = 0.90
 
 # profile
 [variables.profile]
@@ -47,6 +47,7 @@ autotiling = false
 screenshot = false
 rofi = false
 updates = true
+restart = true
 
 [variables.polybar.battery]
 full-at = 95
