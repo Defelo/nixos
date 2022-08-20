@@ -81,7 +81,6 @@ alias volume='pactl set-sink-volume @DEFAULT_SINK@'
 alias :q='exit'
 alias :e='vim'
 alias gource='gource -s 0.4 -i 0 -a 0.5 --highlight-users --file-extensions --hide mouse,filenames --key --stop-at-end'
-alias mnt='source ~/scripts/mount.sh'
 alias bt='bluetoothctl'
 alias cal='cal -m'
 alias vlc='vlc -I ncurses'
@@ -93,7 +92,11 @@ alias flake8='flake8 --count --statistics --show-source'
 alias mitm='REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt proxychains -q'
 alias sshx='ssh -o UserKnownHostsFile=/dev/null'
 alias sftpx='sftp -o UserKnownHostsFile=/dev/null'
+
+{{#if dotter.packages.scripts}}
 alias tt='~/scripts/timetracker.sh'
+alias mnt='source ~/scripts/mount.sh'
+{{/if}}
 
 alias dk='sudo docker'
 alias dc='sudo docker compose'
