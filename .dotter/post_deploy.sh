@@ -19,3 +19,5 @@ fc-cache -vf ~/.fonts
 {{#if dotter.packages.vim}}
 nvim --headless +PlugClean +PlugUpdate +PlugInstall +qall
 {{/if}}
+
+rm /tmp/dotter_temp
