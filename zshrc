@@ -86,7 +86,6 @@ alias cal='cal -m'
 alias vlc='vlc -I ncurses'
 alias redis='redis-cli -u redis://10.42.2.6'
 alias py='python'
-alias dotter='./dotter -vy'
 alias diff='git diff --no-index'
 alias flake8='flake8 --count --statistics --show-source'
 alias mitm='REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt proxychains -q'
@@ -115,6 +114,8 @@ alias -s txt=vim
 alias -s md=vim
 
 [[ -f ~/.zshrc.enc ]] && . ~/.zshrc.enc
+
+dotter() { (cd ~/.dotfiles/ && ./dotter -vy "$@") && . ~/.zshrc }
 
 bsetup() {
     f="$1"
