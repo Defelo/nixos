@@ -4,7 +4,7 @@ export GIT_DIR=$HOME/.timetracker/.git
 export GIT_WORK_TREE=$HOME/.timetracker
 
 _usage() {
-    echo "Usage: tt <name> [start|stop|list|show|edit|config|delete|save]"
+    echo "Usage: tt <name> [start|stop|list|show|edit|config|delete|save] [<args>]"
     echo "       tt list"
     echo "       tt git [<args>]"
     exit 1
@@ -19,7 +19,7 @@ elif [[ "$1" = list ]]; then
         echo $file
     done
     exit
-elif ! [[ $# =~ ^1|2$ ]] || ! [[ "$2" =~ ^(|start|stop|list|show|edit|config|delete|save)$ ]]; then
+elif [[ $# -lt 1 ]] || ! [[ "$2" =~ ^(|start|stop|list|show|edit|config|delete|save)$ ]]; then
     _usage
 fi
 
@@ -91,13 +91,17 @@ stop() {
 }
 
 list() {
+    cnt=${1:-all}
     last=""
     w=0
     s=0
     r=""
-    l=$(($(wc -l < "$FILE" | wc -c)-1))
+    lines=$(wc -l < "$FILE")
+    l=${#lines}
     i=1
     while read begin end; do
+        [[ "$cnt" = all ]] || [[ $i -gt $(($lines - $cnt)) ]]
+        out=$?
         ln=$(printf "%0${l}d" $i)
         i=$((i+1))
         if [[ -z "$end" ]]; then
@@ -109,12 +113,12 @@ list() {
         fi
         week=$(_week $begin)
         if [[ "$last" != "$week" ]]; then
-            [[ -n "$last" ]] && echo "=> $(_fmt_delta $w)"
-            echo -e "\n$week"
+            [[ $out = 0 ]] && [[ -n "$last" ]] && echo "=> $(_fmt_delta $w)"
+            [[ $out = 0 ]] && echo -e "\n$week"
             w=0
         fi
         last="$week"
-        echo "#$ln $(_fmt_ts $begin) - $end_fmt ($(_fmt_delta $((end-begin))))"
+        [[ $out = 0 ]] && echo "#$ln $(_fmt_ts $begin) - $end_fmt ($(_fmt_delta $((end-begin))))"
         w=$((w+end-begin))
         s=$((s+end-begin))
     done < "$FILE"
