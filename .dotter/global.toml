@@ -88,3 +88,4 @@ xournalpp = "~/.config/xournalpp"
 
 [ssh.files]
 ssh = { target = "~/.ssh/config", type = "symbolic", if = "enc" }
+authorized_keys = "~/.ssh/authorized_keys"
