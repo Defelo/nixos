@@ -65,9 +65,13 @@ _running() {
     grep -E '^([0-9]+)$' "$FILE"
 }
 
-_regular() {
+_overtime() {
+    [[ $PER_WEEK -gt 0 ]] || return
+
     t=$(($(_now)-$START))
-    echo $(jq -n "$PER_WEEK*$t/(24*7)|round-($BONUS)")
+    regular=$(jq -n "$PER_WEEK*$t/(24*7)|round-($BONUS)")
+    until=$(jq -n "$START+($1+($BONUS))/$PER_WEEK*24*7|round")
+    echo "Overtime: $(_fmt_delta $(($1-$regular))) (until $(_fmt_ts $until))"
 }
 
 start() {
@@ -124,7 +128,7 @@ list() {
     done < "$FILE"
     [[ -n "$last" ]] && echo "=> $(_fmt_delta $w)"
     echo -e "\nTOTAL: $(_fmt_delta $s) $r"
-    echo "Overtime: $(_fmt_delta $((s-$(_regular))))"
+    _overtime $s
 }
 
 show() {
@@ -138,7 +142,7 @@ show() {
         sum=$((sum+end-begin))
     done < "$FILE"
     echo "TOTAL: $(_fmt_delta $sum) $r"
-    echo "Overtime: $(_fmt_delta $((sum-$(_regular))))"
+    _overtime $sum
 }
 
 interactive() {
