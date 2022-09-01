@@ -41,7 +41,7 @@ EOF
 
     PER_WEEK=$(yq -r .regular "$CONF")
     START=$(yq -r .start "$CONF")
-    BONUS=$(yq -r '.bonus+[0]|add*60*60' "$CONF")
+    BONUS=$(yq -r '.bonus+[0]|add*60*60|round' "$CONF")
 fi
 
 _fmt_ts() {
