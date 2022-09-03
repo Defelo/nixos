@@ -92,6 +92,7 @@ alias mitm='REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt proxychains -q
 alias sshx='ssh -o UserKnownHostsFile=/dev/null'
 alias sftpx='sftp -o UserKnownHostsFile=/dev/null'
 alias rs='rsync -a --delete --partial --info=stats1,progress2 --modify-window=1'
+alias lsblk='lsblk -M'
 
 {{#if dotter.packages.scripts}}
 alias tt='~/scripts/timetracker.sh'
