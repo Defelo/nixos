@@ -193,13 +193,13 @@ format-foreground = ${color.fg-alt}
 
 [module/scratch]
 type = custom/script
-exec = "cnt=$(i3-msg -t get_tree | grep -o '\"scratchpad_state\":\"fresh\"' | wc -l);[ $cnt = 0 ] && echo %{u#000}%{-u} || echo +${cnt}"
+exec = "cnt=$(i3-msg -t get_tree | grep -o '"scratchpad_state":"fresh"' | wc -l);[ $cnt = 0 ] && echo %{u#000}%{-u} || echo +${cnt}"
 interval=1
 format-underline = ${color.acolor}
 
 [module/updates]
 type = custom/script
-exec = "x=$(pacman -Qu | egrep -v '\[ignored\]$' | wc -l);y=;pacman -Quq | grep -Eq '^(linux|linux-lts)$' && y=; polybar-msg action updates module_$([[ "$x" = 0 ]] && echo hide || echo show) > /dev/null; echo $y $x"
+exec = "x=$(pacman -Qu | grep -E -v '\[ignored\]$' | wc -l);y=;pacman -Quq | grep -Eq '^(linux|linux-lts)$' && y=; polybar-msg action updates module_$([[ "$x" = 0 ]] && echo hide || echo show) > /dev/null; echo $y $x"
 format-underline = ${color.acolor}
 interval=10
 
