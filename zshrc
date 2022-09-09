@@ -107,7 +107,7 @@ alias down='dc down'
 restart(){ if [[ $# -eq 0 ]]; then down; else dc rm -fs "$@"; fi && up "$@" }
 alias ct='sudo ctop'
 alias pull='dc pull --ignore-pull-failures'
-update(){ dc pull "$@" && up "$@" }
+update(){ dc pull --ignore-pull-failures "$@" && up "$@" }
 dnv(){ sudo docker network ls --format '{''{.ID}}' | xargs sudo docker network inspect | jq -r '.[] | select(.IPAM.Config[]) | .Name+" "*(20-(.Name|length)) + " " + .IPAM.Config[].Subnet + " "*5 + .Labels."com.docker.compose.project"'; }
 
 alias -s yml=vim
