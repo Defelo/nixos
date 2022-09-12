@@ -16,6 +16,10 @@ fi
 fc-cache -vf ~/.fonts
 {{/if}}
 
+{{#if dotter.packages.i3}}
+i3-msg reload
+{{/if}}
+
 {{#if dotter.packages.vim}}
 nvim --headless +PlugClean! +PlugUpdate! +PlugInstall! +qall
 {{/if}}

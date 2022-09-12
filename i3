@@ -146,6 +146,7 @@ assign [class="java-lang-Thread"] $workspace3
 assign [class="thunderbird"] $workspace7
 assign [class="discord"] $workspace8
 assign [class="Element"] $workspace8
+assign [class="Cinny"] $workspace8
 assign [class="Slack"] $workspace8
 assign [class="TelegramDesktop"] $workspace9
 assign [class="vlc"] $workspace10
@@ -394,7 +395,8 @@ exec --no-startup-id ~/scripts/setup.sh
 exec brave
 exec thunderbird
 exec discord-canary
-exec element-desktop
+#exec element-desktop
+exec cinny
 exec Telegram
 exec obsidian
 #exec vlc
