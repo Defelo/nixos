@@ -395,8 +395,8 @@ exec --no-startup-id ~/scripts/setup.sh
 exec brave
 exec thunderbird
 exec discord-canary
-#exec element-desktop
-exec cinny
+exec element-desktop
+#exec cinny
 exec Telegram
 exec obsidian
 #exec vlc
