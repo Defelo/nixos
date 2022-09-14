@@ -94,6 +94,7 @@ alias sshx='ssh -o UserKnownHostsFile=/dev/null'
 alias sftpx='sftp -o UserKnownHostsFile=/dev/null'
 alias rs='rsync -a --delete --partial --info=stats1,progress2 --modify-window=1'
 alias lsblk='lsblk -M'
+alias bat='bat --theme Nord --style full'
 
 {{#if dotter.packages.scripts}}
 alias tt='~/scripts/timetracker.sh'
