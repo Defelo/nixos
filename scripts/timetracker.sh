@@ -37,11 +37,13 @@ if [[ "$2" != delete ]]; then
 regular: 0  # per week
 start: 0
 bonus: []  # hours
+salary: 0  # €/month
 EOF
 
     PER_WEEK=$(yq -r .regular "$CONF")
     START=$(yq -r .start "$CONF")
     BONUS=$(yq -r '.bonus+[0]|add*60*60|round' "$CONF")
+    SALARY=$(yq -r .salary "$CONF")
 fi
 
 _fmt_ts() {
@@ -71,7 +73,8 @@ _overtime() {
     t=$(($(_now)-$START))
     regular=$(jq -n "$PER_WEEK*$t/(24*7)|round-($BONUS)")
     until=$(jq -n "$START+($1+($BONUS))/$PER_WEEK*24*7|round")
-    echo "Overtime: $(_fmt_delta $(($1-$regular))) (until $(_fmt_ts $until))"
+    money=$(jq -n "$SALARY*($1-$regular)/3600/$PER_WEEK/52*12*100|round/100")
+    echo "Overtime: $(_fmt_delta $(($1-$regular))) (until $(_fmt_ts $until); ${money}€)"
 }
 
 start() {
