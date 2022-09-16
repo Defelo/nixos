@@ -1554,7 +1554,9 @@
   function prompt_dotfiles() {
     (
       cd ~/.dotfiles
-      [[ $(($(date +%s) - $(stat -c %Y .git/FETCH_HEAD))) -ge 60 ]] && git fetch &
+      if ! [[ -f .git/FETCH_HEAD ]] || [[ $(($(date +%s) - $(stat -c %Y .git/FETCH_HEAD))) -ge 60 ]]; then
+          git fetch -q &
+      fi
       git diff --quiet develop origin/develop
     ) || p10k segment -i '⭐'
   }
