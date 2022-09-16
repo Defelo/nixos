@@ -120,6 +120,7 @@ alias -s md=vim
 [[ -f ~/.zshrc.enc ]] && . ~/.zshrc.enc
 
 dotter() { (cd ~/.dotfiles/ && ./dotter -vy "$@") && . ~/.zshrc }
+dtu() { (cd ~/.dotfiles/ && git pull --rebase --autostash) && dotter }
 
 bsetup() {
     f="$1"
