@@ -74,7 +74,7 @@ alias cov='pipenv run coverage && rm coverage.xml'
 alias g++c='g++ -O2 -Wall -Wextra'
 alias g++debug='g++c -fsanitize=undefined,address -D_GLIBCXX_DEBUG -g'
 {{#if (command_success "type exa")}}
-alias ls='exa -g --git'
+alias ls='exa -g --git --group-directories-first'
 {{/if}}
 alias blk='black -l 120 .'
 alias tre='ls -alT'
