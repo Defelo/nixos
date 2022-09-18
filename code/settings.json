@@ -1,0 +1,12 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "files.autoSave": "afterDelay",
+    "python.autoComplete.extraPaths": [],
+    "editor.lineNumbers": "on",
+    "vim.commandLineModeKeyBindings": [],
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "files.associations": {
+        "*.toml": "toml"
+    },
+    "vim.useSystemClipboard": true
+}
