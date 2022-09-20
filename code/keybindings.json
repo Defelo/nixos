@@ -22,5 +22,9 @@
     {
         "key": "shift+escape",
         "command": "workbench.action.closePanel"
+    },
+    {
+        "key": "ctrl+f10",
+        "command": "workbench.action.tasks.restartTask"
     }
 ]

@@ -8,5 +8,6 @@
     "files.associations": {
         "*.toml": "toml"
     },
-    "vim.useSystemClipboard": true
+    "vim.useSystemClipboard": true,
+    "task.quickOpen.skip": true
 }
