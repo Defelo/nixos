@@ -4,6 +4,5 @@
 /scripts/wtr2.sh filter=git-crypt diff=git-crypt
 /scripts/type_password.sh filter=git-crypt diff=git-crypt
 /scripts/btc.sh filter=git-crypt diff=git-crypt
-/scripts/btpower.sh filter=git-crypt diff=git-crypt
 /ssh filter=git-crypt diff=git-crypt
 /redshift filter=git-crypt diff=git-crypt
