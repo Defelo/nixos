@@ -143,6 +143,7 @@ assign [class="jetbrains-rubymine"] $workspace3
 assign [class="jetbrains-phpstorm"] $workspace3
 assign [class="jetbrains-webstorm"] $workspace3
 assign [class="java-lang-Thread"] $workspace3
+assign [class="VSCodium"] $workspace3
 assign [class="thunderbird"] $workspace7
 assign [class="discord"] $workspace8
 assign [class="Element"] $workspace8
