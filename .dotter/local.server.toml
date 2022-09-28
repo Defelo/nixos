@@ -1,7 +1,7 @@
 includes = []
 
 packages = [
-    "vim", "tmux", "zsh", "p10k", "profile", "vifm", "pbincli", "ssh",
+    "vim", "tmux", "zsh", "p10k", "profile", "vifm", "pbincli", "ssh", "git",
 ]
 
 [files]
@@ -44,3 +44,6 @@ restart = true
 
 [variables.polybar.battery]
 full-at = 95
+
+[variables.git]
+delta = false
