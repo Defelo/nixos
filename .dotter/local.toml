@@ -8,7 +8,7 @@ packages = [
     "x11", "icons", "wallpapers", "i3", "compton", "polybar", "rofi", "fonts", "dunst", "redshift",
 
     # applications
-    "xournalpp", "code",
+    "xournalpp", "code", "alacritty",
 ]
 
 [files]

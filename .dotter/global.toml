@@ -93,3 +93,6 @@ authorized_keys = "~/.ssh/authorized_keys"
 [code.files]
 "code/settings.json" = "~/.config/VSCodium/User/settings.json"
 "code/keybindings.json" = "~/.config/VSCodium/User/keybindings.json"
+
+[alacritty.files]
+"alacritty.yml" = "~/.config/alacritty/alacritty.yml"
