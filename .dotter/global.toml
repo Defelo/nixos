@@ -97,5 +97,8 @@ authorized_keys = "~/.ssh/authorized_keys"
 [alacritty.files]
 "alacritty.yml" = "~/.config/alacritty/alacritty.yml"
 
+[helix.files]
+"helix.toml" = "~/.config/helix/config.toml"
+
 [git.files]
 git = "~/.gitconfig"

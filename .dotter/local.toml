@@ -2,7 +2,7 @@ includes = []
 
 packages = [
     # cli
-    "vim", "tmux", "zsh", "p10k", "profile", "scripts", "vifm", "pbincli", "ssh", "git",
+    "vim", "tmux", "zsh", "p10k", "profile", "scripts", "vifm", "pbincli", "ssh", "helix", "git",
 
     # gui
     "x11", "icons", "wallpapers", "i3", "compton", "polybar", "rofi", "fonts", "dunst", "redshift",

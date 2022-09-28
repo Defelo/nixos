@@ -1,0 +1,37 @@
+theme = "dark_plus"
+
+[editor]
+line-number = "relative"
+mouse = false
+cursorline = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "position-percentage", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+
+[editor.lsp]
+display-messages = true
+
+[editor.indent-guides]
+render = true
+
+[keys.normal]
+"0" = "goto_line_start"
+"$" = "goto_line_end"
+"G" = "goto_last_line"
+
+[keys.select]
+"0" = "goto_line_start"
+"$" = "goto_line_end"
+"G" = "goto_last_line"
+

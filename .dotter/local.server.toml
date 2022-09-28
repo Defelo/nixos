@@ -1,7 +1,7 @@
 includes = []
 
 packages = [
-    "vim", "tmux", "zsh", "p10k", "profile", "vifm", "pbincli", "ssh", "git",
+    "vim", "tmux", "zsh", "p10k", "profile", "vifm", "pbincli", "ssh", "helix", "git",
 ]
 
 [files]
