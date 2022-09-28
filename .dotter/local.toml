@@ -54,3 +54,7 @@ full-at = 95
 
 [variables.git]
 delta = false
+
+[variables.alacritty]
+font.size = 9.5
+opacity = 0.8
