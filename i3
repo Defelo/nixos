@@ -47,7 +47,7 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec st zsh
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -401,4 +401,4 @@ exec element-desktop
 exec Telegram
 exec obsidian
 #exec vlc
-exec i3-msg "workspace $workspace2; exec st zsh"
+exec i3-msg "workspace $workspace2; exec alacritty"
