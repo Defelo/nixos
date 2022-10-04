@@ -8,6 +8,7 @@ packages = [
 
 [variables]
 enc = false
+terminal = "alacritty"
 
 # zsh
 [variables.zsh]

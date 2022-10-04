@@ -47,7 +47,7 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec {{terminal}}
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -292,8 +292,8 @@ bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+y exec "~/scripts/lock.sh -n -p"
 #bindsym $mod+Ctrl+Shift+s exec "sudo systemctl suspend"
-bindsym $mod+p exec "st python"
-bindsym $mod+i exec "st irb"
+bindsym $mod+p exec "{{terminal}} -e python"
+bindsym $mod+i exec "{{terminal}} -e irb"
 #bindsym $mod+g exec "firefox ecosia.org"
 #bindsym $mod+t exec thunderbird
 #bindsym $mod+Shift+f exec "firefox"
@@ -304,10 +304,10 @@ bindsym $mod+Ctrl+e exec nemo
  
  
 {{#if enc}}
-bindsym $mod+Shift+w exec st ~/scripts/wtr.sh
-bindsym $mod+Ctrl+w exec st ~/scripts/wtr2.sh
+bindsym $mod+Shift+w exec {{terminal}} -e ~/scripts/wtr.sh
+bindsym $mod+Ctrl+w exec {{terminal}} -e ~/scripts/wtr2.sh
 {{/if}}
-bindsym $mod+Shift+p exec st pulsemixer
+bindsym $mod+Shift+p exec {{terminal}} -e pulsemixer
 
 
 # Pulse Audio controls
@@ -363,7 +363,7 @@ bindsym $mod+KP_Divide exec bash $HOME/discord_ban.sh
 bindsym $mod+comma exec $HOME/scripts/emoji_menu.sh
 
 # mic_over_mumble
-bindsym $mod+Shift+M exec st $HOME/scripts/mic.sh
+bindsym $mod+Shift+M exec {{terminal}} -e $HOME/scripts/mic.sh
 
 
 # Make the currently focused window a scratchpad
@@ -401,4 +401,4 @@ exec element-desktop
 exec Telegram
 exec obsidian
 #exec vlc
-exec i3-msg "workspace $workspace2; exec alacritty"
+exec i3-msg "workspace $workspace2; exec {{terminal}}"
