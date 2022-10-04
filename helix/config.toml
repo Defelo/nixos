@@ -29,6 +29,8 @@ render = true
 "0" = "goto_line_start"
 "$" = "goto_line_end"
 "G" = "goto_last_line"
+"F10" = ":sh just run"
+"S-F10" = ":sh alacritty -e just run"
 
 [keys.select]
 "0" = "goto_line_start"

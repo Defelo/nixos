@@ -1,3 +1,10 @@
 [[language]]
 name = "bash"
 file-types = ["sh", "bash", "zsh", ".bash_login", ".bash_logout", ".bash_profile", ".bashrc", ".profile", ".zshenv", ".zlogin", ".zlogout", ".zprofile", ".zshrc", "APKBUILD", "PKGBUILD", "eclass", "ebuild", "bazelrc", ".env"]
+
+
+[[language]]
+name = "rust"
+
+[language.config.checkOnSave]
+command = "clippy"
