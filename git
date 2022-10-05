@@ -10,6 +10,7 @@
 	gpgSign = yes
 [alias]
 	l = log --graph
+	p = pull --prune --rebase --autostash
 
 {{#if git.delta}}
 # https://github.com/dandavison/delta
