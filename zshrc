@@ -48,6 +48,7 @@ add_path(){ export PATH="$1:$PATH"; }
 add_path ~/.gem/ruby/2.6.0/bin/
 add_path ~/.dotnet/tools
 add_path ~/.local/bin
+add_path ~/.cargo/bin
 add_path ./node_modules/.bin
 
 alias .='source'
