@@ -102,3 +102,6 @@ helix = "~/.config/helix"
 
 [git.files]
 git = "~/.gitconfig"
+
+[lvim.files]
+lvim = "~/.config/lvim"
