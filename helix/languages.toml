@@ -5,6 +5,9 @@ file-types = ["sh", "bash", "zsh", ".bash_login", ".bash_logout", ".bash_profile
 
 [[language]]
 name = "rust"
+config = { checkOnSave = { command = "clippy" } }
 
-[language.config.checkOnSave]
-command = "clippy"
+
+[[language]]
+name = "dockerfile"
+indent = { tab-width = 4, unit = "    " }
