@@ -106,7 +106,7 @@ lvim.builtin.which_key.mappings["T"] = {
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
-lvim.builtin.which_key.mappings["d"] = { '<cmd>lua _G.toggle_diagnostics()<cr>', "Toggle Diagnostics" }
+lvim.builtin.which_key.mappings["D"] = { '<cmd>lua _G.toggle_diagnostics()<cr>', "Toggle Diagnostics" }
 lvim.builtin.which_key.mappings["h"] = { '<cmd>let @/=""<cr>', "No Highlight" }
 lvim.builtin.which_key.mappings["t"] = { '<cmd>2ToggleTerm direction=horizontal<cr>', "Open Terminal" }
 lvim.builtin.which_key.mappings["j"] = {
