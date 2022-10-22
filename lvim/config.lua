@@ -171,6 +171,9 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
+
+
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
@@ -247,6 +250,29 @@ lvim.plugins = {
       }
     end,
   },
+  {
+    "simrat39/rust-tools.nvim",
+    config = function()
+      local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/extension/'
+      local codelldb_path = extension_path .. 'adapter/codelldb'
+      local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+      local rt = require("rust-tools")
+      rt.setup({
+        -- dap = {
+        --   adapter = {
+        --     type = "executable",
+        --     command = "lldb-vscode",
+        --     name = "rt_lldb",
+        --   },
+        -- },
+        dap = {
+          adapter = require('rust-tools.dap').get_codelldb_adapter(
+            codelldb_path, liblldb_path)
+        }
+      })
+      rt.inlay_hints.enable()
+    end
+  }
 }
 
 require('leap').add_default_mappings()

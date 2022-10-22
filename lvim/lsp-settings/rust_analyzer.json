@@ -1,3 +1,14 @@
 {
-  "rust-analyzer.checkOnSave.command": "clippy"
+  "rust-analyzer": {
+    "checkOnSave": {
+      "command": "clippy"
+    },
+    "imports": {
+      "granularity": {
+        "enfoce": true
+      },
+      "prefix": "self"
+    },
+    "inlayHints": {}
+  }
 }
