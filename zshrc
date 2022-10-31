@@ -34,6 +34,8 @@ compinit
 # End of lines added by compinstall
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+source ~/.zsh/_fly
+
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^ ' autosuggest-accept
 
