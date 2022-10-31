@@ -73,9 +73,6 @@ lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["<S-x>"] = ":BufferKill<CR>"
 lvim.keys.normal_mode["U"] = "<C-r>"
 
-lvim.keys.normal_mode["<C-k>"] = "gk"
-lvim.keys.normal_mode["<C-j>"] = "gj"
-
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
