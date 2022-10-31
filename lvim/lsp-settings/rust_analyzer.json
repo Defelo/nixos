@@ -8,7 +8,6 @@
         "enfoce": true
       },
       "prefix": "self"
-    },
-    "inlayHints": {}
+    }
   }
 }
