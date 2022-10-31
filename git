@@ -30,3 +30,16 @@
 [diff]
     colorMoved = default
 {{/if}}
+
+{{#if git.difftastic}}
+[diff]
+    tool = difftastic
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+    difftool = true
+[alias]
+    dft = difftool
+{{/if}}

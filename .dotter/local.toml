@@ -54,7 +54,8 @@ restart = true
 full-at = 95
 
 [variables.git]
-delta = true
+delta = false
+difftastic = true
 
 [variables.alacritty]
 font.size = 9.5
