@@ -230,6 +230,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyz
 
 -- Additional Plugins
 lvim.plugins = {
+  { "xuhdev/vim-latex-live-preview" },
   { "lukas-reineke/indent-blankline.nvim" },
   { "tomasiser/vim-code-dark" },
   { "folke/tokyonight.nvim" },
