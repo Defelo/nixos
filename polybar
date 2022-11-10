@@ -97,8 +97,8 @@ scroll-down = i3wm-wsnext
 ;modules-left = arch workspaces term files browser settings
 ;modules-left = arch workspaces 
 ;modules-right = mpd pkg volume battery network date powermenu
-modules-left = workspaces window scratch
-modules-right = {{#if polybar.modules.screenshot}}screenshot{{/if}} {{#if polybar.modules.rofi}}rofi{{/if}} yk {{#if polybar.modules.restart}}restart{{/if}} {{#if polybar.modules.updates}}updates{{/if}} mem swap cpu dunst volume webcam battery {{#if enc}}btpower{{/if}} network date
+modules-left = workspaces scratch
+modules-right = mem swap dunst battery network date
  
 ;== Modules ========================================================
 
@@ -115,7 +115,7 @@ modules-right = {{#if polybar.modules.screenshot}}screenshot{{/if}} {{#if polyba
 
 [module/workspaces]
 type = internal/i3
-pin-workspaces = true
+pin-workspaces = false
 enable-click = true
 enable-scroll = true
 wrapping-scroll = false

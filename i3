@@ -160,20 +160,20 @@ for_window [class="Spotify"] move to workspace $workspace10
 for_window [class="Rofi"] floating enable
 
 # assign workspaces to screens
-workspace $workspace0 output DP1
-workspace $workspace1 output eDP1
-workspace $workspace2 output eDP1
-workspace $workspace3 output eDP1
-workspace $workspace4 output eDP1
-workspace $workspace5 output eDP1
-workspace $workspace6 output eDP1
-workspace $workspace7 output eDP1
-workspace $workspace8 output eDP1
-workspace $workspace9 output eDP1
-workspace $workspace10 output eDP1
-workspace $workspace42 output eDP1
-workspace $workspace1337 output eDP1
-workspace $workspace_obsidian output DP1
+workspace $workspace0 output VIRTUAL1
+workspace $workspace1 output VIRTUAL2
+workspace $workspace2 output VIRTUAL2
+workspace $workspace3 output VIRTUAL2
+workspace $workspace4 output VIRTUAL2
+workspace $workspace5 output VIRTUAL2
+workspace $workspace6 output VIRTUAL2
+workspace $workspace7 output VIRTUAL2
+workspace $workspace8 output VIRTUAL2
+workspace $workspace9 output VIRTUAL2
+workspace $workspace10 output VIRTUAL2
+workspace $workspace42 output VIRTUAL2
+workspace $workspace1337 output VIRTUAL2
+workspace $workspace_obsidian output VIRTUAL3
 
 # switch to workspace
 bindsym $mod+asciicircum workspace $workspace0
@@ -208,8 +208,9 @@ bindsym $mod+Shift+acute move container to workspace $workspace1337
 bindsym $mod+Shift+plus move container to workspace $workspace_obsidian
 
 # move focused workspace to monitor
-bindsym $mod+Ctrl+j move workspace to output DP1
-bindsym $mod+Ctrl+k move workspace to output eDP1
+bindsym $mod+Ctrl+h move workspace to output VIRTUAL1
+bindsym $mod+Ctrl+j move workspace to output VIRTUAL3
+bindsym $mod+Ctrl+k move workspace to output VIRTUAL2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -267,8 +268,8 @@ bindsym $mod+r mode "resize"
 #        }
 #}
 
-exec --no-startup-id "xrandr --output DP1 --left-of eDP1"
-exec --no-startup-id "xrandr --output eDP1 --primary"
+# exec --no-startup-id "xrandr --output DP1 --left-of eDP1"
+# exec --no-startup-id "xrandr --output eDP1 --primary"
 
 {{#if dotter.packages.polybar}}
 #exec_always --no-startup-id "pkill -9 polybar; polybar main"
