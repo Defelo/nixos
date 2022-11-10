@@ -12,14 +12,21 @@ create_mode() {
     echo $modeline | cut -d' ' -f1
 }
 
+add_mode() {
+    while ! (xrandr | grep -q "$1"); do
+        sleep .1
+    done
+    xrandr --addmode "$1" "$2"
+}
+
 setup() {
     beamer=$(create_mode $BEAMER_WIDTH $BEAMER_HEIGHT 60)
     side=$(create_mode $((PRIMARY_WIDTH - BEAMER_WIDTH)) $PRIMARY_HEIGHT 60)
     bottom=$(create_mode $BEAMER_WIDTH $((PRIMARY_HEIGHT - BEAMER_HEIGHT)) 60)
-    xrandr --addmode HDMI1 $beamer
-    xrandr --addmode VIRTUAL1 $beamer
-    xrandr --addmode VIRTUAL2 $side
-    xrandr --addmode VIRTUAL3 $bottom
+    add_mode HDMI1 $beamer
+    add_mode VIRTUAL1 $beamer
+    add_mode VIRTUAL2 $side
+    add_mode VIRTUAL3 $bottom
 
     xrandr --output HDMI1 --off
     xrandr --output VIRTUAL1 --mode $beamer --pos 0x0 --rotate normal
