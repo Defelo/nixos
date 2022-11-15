@@ -126,6 +126,8 @@ alias -s md=vim
 dotter() { (cd ~/.dotfiles/ && ./dotter -vy "$@") && . ~/.zshrc }
 dtu() { (cd ~/.dotfiles/ && git pull --rebase --autostash) && dotter }
 
+jupyter_export(){ base=$(basename "$1" .ipynb); jupyter nbconvert "$1" --to pdf --output "${base}.pdf"; }
+
 bsetup() {
     f="$1"
     if ! id=$(borg config "$f" id 2> /dev/null); then
