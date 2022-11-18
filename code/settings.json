@@ -20,5 +20,6 @@
             "before": ["<C-r>"],
             "command": ["redo"]
         }
-    ]
+    ],
+    "jupyter.askForKernelRestart": false
 }

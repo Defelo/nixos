@@ -34,7 +34,7 @@ compinit
 # End of lines added by compinstall
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-source ~/.zsh/_fly
+[[ -f ~/.zsh/_fly ]] && source ~/.zsh/_fly
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^ ' autosuggest-accept
@@ -72,6 +72,7 @@ alias back='cd $OLDPWD'
 alias f='cd $(pwd -P)'
 alias curl='curl -L'
 alias cif='curl ifconfig.co'
+alias ciff='curl httpbin.org/ip'
 alias cf='ping 1.1.1.1'
 alias cov='pipenv run coverage && rm coverage.xml'
 alias g++c='g++ -O2 -Wall -Wextra'
@@ -125,6 +126,8 @@ alias -s md=vim
 
 dotter() { (cd ~/.dotfiles/ && ./dotter -vy "$@") && . ~/.zshrc }
 dtu() { (cd ~/.dotfiles/ && git pull --rebase --autostash) && dotter }
+
+jupyter_export(){ base=$(basename "$1" .ipynb); jupyter nbconvert "$1" --to pdf --output "${base}.pdf"; }
 
 bsetup() {
     f="$1"
