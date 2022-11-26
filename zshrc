@@ -116,6 +116,8 @@ alias ct='sudo ctop'
 alias pull='dc pull --ignore-pull-failures'
 update(){ dc pull --ignore-pull-failures "$@" && dc build --pull "$@" && up "$@" }
 dnv(){ sudo docker network ls --format '{''{.ID}}' | xargs sudo docker network inspect | jq -r '.[] | select(.IPAM.Config[]) | .Name+" "*(20-(.Name|length)) + " " + .IPAM.Config[].Subnet + " "*5 + .Labels."com.docker.compose.project"'; }
+alias j='just'
+alias fly='fly -t ci.defelo.de'
 
 alias -s yml=vim
 alias -s yaml=vim
