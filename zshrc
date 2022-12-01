@@ -61,7 +61,11 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias rm='rm -f'
 alias vi='vim'
+{{#if zsh.neofetch}}
 alias c='printf "\033c";neofetch'
+{{else}}
+alias c='clear'
+{{/if}}
 alias h='cd;c'
 alias l='ls -aal'
 alias dog='highlight -O ansi --force'
@@ -317,7 +321,7 @@ export VISUAL=nvim
 export COLORTERM=truecolor
 
 title Terminal
-{{#if (command_success "type neofetch")}}
+{{#if zsh.neofetch}}
 neofetch
 {{/if}}
 

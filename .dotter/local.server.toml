@@ -13,6 +13,7 @@ terminal = "alacritty"
 # zsh
 [variables.zsh]
 temptex = false
+neofetch = true
 
 # vim
 [variables.vim.plugins]
