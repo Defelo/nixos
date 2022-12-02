@@ -1,4 +1,5 @@
 {
+    "editor.wordWrap": "on",
     "workbench.startupEditor": "newUntitledFile",
     "files.autoSave": "afterDelay",
     "python.autoComplete.extraPaths": [],
