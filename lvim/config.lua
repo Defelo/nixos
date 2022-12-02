@@ -112,11 +112,11 @@ lvim.builtin.which_key.mappings["h"] = { '<cmd>let @/=""<cr>', "No Highlight" }
 lvim.builtin.which_key.mappings["t"] = { '<cmd>2ToggleTerm direction=horizontal<cr>', "Open Terminal" }
 lvim.builtin.which_key.mappings["j"] = {
   name = "+just",
-  r = { '<cmd>1TermExec direction=horizontal go_back=0 cmd="just run"<cr>', "just run" },
-  t = { '<cmd>1TermExec direction=horizontal go_back=0 cmd="just test"<cr>', "just test" },
-  T = { '<cmd>1TermExec direction=horizontal go_back=0 cmd="just coverage"<cr>', "just coverage" },
-  c = { '<cmd>1TermExec direction=horizontal go_back=0 cmd="just check"<cr>', "just check" },
-  p = { '<cmd>1TermExec direction=horizontal go_back=0 cmd="just pre-commit"<cr>', "just pre-commit" },
+  r = { '<cmd>w<cr><cmd>1TermExec direction=horizontal go_back=0 cmd="just run"<cr>', "just run" },
+  t = { '<cmd>w<cr><cmd>1TermExec direction=horizontal go_back=0 cmd="just test"<cr>', "just test" },
+  T = { '<cmd>w<cr><cmd>1TermExec direction=horizontal go_back=0 cmd="just coverage"<cr>', "just coverage" },
+  c = { '<cmd>w<cr><cmd>1TermExec direction=horizontal go_back=0 cmd="just check"<cr>', "just check" },
+  p = { '<cmd>w<cr><cmd>1TermExec direction=horizontal go_back=0 cmd="just pre-commit"<cr>', "just pre-commit" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -298,6 +298,8 @@ function _G.toggle_diagnostics()
     vim.diagnostic.show()
   end
 end
+
+vim.g.livepreview_cursorhold_recompile = 0
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

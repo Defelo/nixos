@@ -1,4 +1,5 @@
 {
+    "editor.wordWrap": "on",
     "workbench.startupEditor": "newUntitledFile",
     "files.autoSave": "afterDelay",
     "python.autoComplete.extraPaths": [],
@@ -11,15 +12,5 @@
     "vim.useSystemClipboard": true,
     "task.quickOpen.skip": true,
     "explorer.confirmDragAndDrop": false,
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["u"],
-            "command": ["undo"]
-        },
-        {
-            "before": ["<C-r>"],
-            "command": ["redo"]
-        }
-    ],
     "jupyter.askForKernelRestart": false
 }
