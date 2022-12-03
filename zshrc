@@ -128,7 +128,16 @@ alias -s yaml=vim
 alias -s txt=vim
 alias -s md=vim
 
+
 [[ -f ~/.zshrc.enc ]] && . ~/.zshrc.enc
+
+skg() {
+    f=$(mktemp -u)
+    ssh-keygen -t ed25519 -C "" -P "" -f $f
+    cat $f
+    cat $f.pub
+    rm $f $f.pub
+}
 
 dotter() { (cd ~/.dotfiles/ && ./dotter -vy "$@") && . ~/.zshrc }
 dtu() { (cd ~/.dotfiles/ && git pull --rebase --autostash) && dotter }
