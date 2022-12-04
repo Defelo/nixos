@@ -314,3 +314,5 @@ vim.g.livepreview_cursorhold_recompile = 0
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
+
+vim.cmd('autocmd BufRead,BufNewFile live.py nnoremap <buffer> <cr> <cmd>w<cr><cmd>1TermExec direction=horizontal go_back=0 cmd="just live"<cr>')
