@@ -15,9 +15,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+# boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
+# boot.initrd.luks.yubikeySupport = true;
   boot.initrd.luks.devices.root = {
     device = "/dev/disk/by-label/crypt";
     preLVM = true;
+#   yubikey = {
+#     slot = 2;
+#     twoFactor = true;
+#     storage.device = "/dev/vda1";
+#     storage.fsType = "vfat";
+#     storage.path = "/crypt-storage/default";
+#   };
   };
 
   networking.hostName = "nixos"; # Define your hostname.
