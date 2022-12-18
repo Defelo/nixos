@@ -119,5 +119,19 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   security.sudo.wheelNeedsPassword = false;
+
+  services.pcscd.enable = true;
+
+  programs.ssh.startAgent = false;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+    enableSSHSupport = true;
+  };
+  environment.shellInit = ''
+    gpg-connect-agent updatestartuptty /bye > /dev/null
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    export GPG_TTY=$(tty)
+  '';
 }
 
