@@ -11,9 +11,16 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.timeout = 1;
-  boot.loader.systemd-boot.enable = true;
+# boot.initrd.systemd.enable = true;
+# boot.loader.systemd-boot.enable = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.timeout = 2;
   boot.loader.efi.canTouchEfiVariables = true;
+
+# boot.plymouth.enable = true;
+# boot.plymouth.theme = "breeze";
 
 # boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
 # boot.initrd.luks.yubikeySupport = true;
