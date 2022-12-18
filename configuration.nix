@@ -15,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-uuid/720c4149-ece3-439e-8581-8460cc8c6a5d";
+    device = "/dev/disk/by-label/crypt";
     preLVM = true;
   };
 
