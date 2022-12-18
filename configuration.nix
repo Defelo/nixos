@@ -39,6 +39,8 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  services.getty.autologinUser = "user";
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
