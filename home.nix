@@ -9,6 +9,11 @@
     exa
     neovim
     meslo-lgs-nf
+    htop
+    duf
+    ncdu
+    brave
+    arandr
   ];
 
   programs.zsh = {
