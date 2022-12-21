@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.username = "user";
@@ -35,6 +35,25 @@
     enable = true;
     userName = "Defelo";
     userEmail = "elodef42@gmail.com";
+  };
+
+  programs.alacritty = {
+    enable = true;
+  };
+
+  xsession = {
+    enable = true;
+    scriptPath = ".hm-xsession";
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+      config = rec {
+        modifier = "Mod4";
+	keybindings = lib.mkOptionDefault {
+	  "${modifier}+Return" = "exec alacritty";
+	};
+      };
+    };
   };
 
   home.stateVersion = "22.11";

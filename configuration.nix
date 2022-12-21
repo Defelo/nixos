@@ -56,16 +56,34 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  services.getty.autologinUser = "user";
+  # services.getty.autologinUser = "user";
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
-
-  
+  services.xserver.desktopManager = {
+    xterm.enable = false;
+    session = [
+      {
+        name = "home-manager";
+        start = ''
+          ${pkgs.runtimeShell} $HOME/.hm-xsession &
+          waitPID=$!
+        '';
+      }
+    ];
+  };
+  services.xserver.displayManager = {
+    lightdm.enable = true;
+    defaultSession = "home-manager";
+    autoLogin = {
+      enable = true;
+      user = "user";
+    };
+  };
 
   # Configure keymap in X11
-  # services.xserver.layout = "us";
+  services.xserver.layout = "de";
   # services.xserver.xkbOptions = {
   #   "eurosign:e";
   #   "caps:escape" # map caps to escape.
