@@ -85,19 +85,18 @@
   users.users.user = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-#     firefox
-#     thunderbird
-    ];
   };
   users.defaultUserShell = pkgs.zsh;
+
+  home-manager.users.user = {
+    imports = [./home.nix];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    duf
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
