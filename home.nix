@@ -36,8 +36,6 @@
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
       bindkey '^ ' autosuggest-accept
 
-      export GPG_TTY=$(tty)
-
       ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [
@@ -86,8 +84,6 @@
     scriptPath = ".hm-xsession";
     initExtra = ''
       xrandr --output Virtual-1 --mode 1920x1080 --rate 60
-      gpg-connect-agent updatestartuptty /bye > /dev/null
-      export GPG_TTY=$(tty)
     '';
     windowManager.i3 = {
       enable = true;
@@ -118,6 +114,12 @@
     gtk.enable = true;
     name = "breeze_cursors";
     size = 16;
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+    enableSshSupport = true;
   };
 
   home.stateVersion = "22.11";
