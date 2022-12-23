@@ -35,6 +35,8 @@
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
       bindkey '^ ' autosuggest-accept
 
+      export GPG_TTY=$(tty)
+
       ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [
@@ -81,6 +83,11 @@
   xsession = {
     enable = true;
     scriptPath = ".hm-xsession";
+    initExtra = ''
+      xrandr --output Virtual-1 --mode 1920x1080 --rate 60
+      gpg-connect-agent updatestartuptty /bye > /dev/null
+      export GPG_TTY=$(tty)
+    '';
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
