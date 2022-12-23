@@ -41,19 +41,18 @@
 
       ${pkgs.neofetch}/bin/neofetch
     '';
-    plugins = [
-      {
-        name = "powerlevel10k";
-	src = pkgs.zsh-powerlevel10k;
-	file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
+    plugins = [{
+      name = "powerlevel10k";
+      src = pkgs.zsh-powerlevel10k;
+      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    }];
     shellAliases = {
       "ls" = "exa";
       "l" = "ls -al";
       "vim" = "nvim";
       "vi" = "nvim";
-      "rebuild" = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
+      "rebuild" =
+        "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
     };
   };
 
@@ -70,15 +69,19 @@
     };
   };
 
-  programs.alacritty = {
-    enable = true;
-  };
+  programs.alacritty = { enable = true; };
 
   programs.gpg = {
     enable = true;
     publicKeys = [
-      { source = ./keys/defelo.pub; trust = 5; }
-      { source = ./keys/private.pub; trust = 5; }
+      {
+        source = ./keys/defelo.pub;
+        trust = 5;
+      }
+      {
+        source = ./keys/private.pub;
+        trust = 5;
+      }
     ];
   };
 
@@ -93,10 +96,10 @@
       package = pkgs.i3-gaps;
       config = rec {
         modifier = "Mod4";
-	keybindings = lib.mkOptionDefault {
-	  "${modifier}+Return" = "exec alacritty";
-	  "${modifier}+Tab" = "workspace back_and_forth";
-	};
+        keybindings = lib.mkOptionDefault {
+          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+Tab" = "workspace back_and_forth";
+        };
       };
     };
   };
