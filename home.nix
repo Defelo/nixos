@@ -16,6 +16,7 @@
     arandr
     git
     git-crypt
+    neofetch
   ];
 
   programs.zsh = {
