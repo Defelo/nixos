@@ -20,6 +20,7 @@
             useUserPackages = true;
           };
         }
+        { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
       ];
     };
 
