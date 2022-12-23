@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     python311
+    rustup
     exa
     neovim
     meslo-lgs-nf
@@ -19,6 +20,8 @@
     neofetch
     lxappearance
   ];
+
+  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
 
   programs.zsh = {
     enable = true;
