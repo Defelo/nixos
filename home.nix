@@ -55,6 +55,7 @@
       "vi" = "nvim";
       "rebuild" =
         "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
+      "conf" = "hx ~/nixos";
     };
   };
 
