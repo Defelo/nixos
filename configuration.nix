@@ -170,6 +170,8 @@
     export GPG_TTY=$(tty)
   '';
 
+  programs.dconf.enable = true;
+
   nix = {
     gc = {
       automatic = true;

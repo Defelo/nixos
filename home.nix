@@ -17,6 +17,7 @@
     git
     git-crypt
     neofetch
+    lxappearance
   ];
 
   programs.zsh = {
@@ -95,9 +96,28 @@
         modifier = "Mod4";
 	keybindings = lib.mkOptionDefault {
 	  "${modifier}+Return" = "exec alacritty";
+	  "${modifier}+Tab" = "workspace back_and_forth";
 	};
       };
     };
+  };
+
+  gtk = {
+    enable = true;
+    theme.name = "Adapta-Nokto";
+    theme.package = pkgs.adapta-gtk-theme;
+    iconTheme.name = "breeze-dark";
+    iconTheme.package = pkgs.breeze-icons;
+    font.name = "Cantarell";
+    font.size = 12;
+    font.package = pkgs.cantarell-fonts;
+  };
+
+  home.pointerCursor = {
+    package = pkgs.breeze-gtk;
+    gtk.enable = true;
+    name = "breeze_cursors";
+    size = 16;
   };
 
   home.stateVersion = "22.11";
