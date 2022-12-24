@@ -21,9 +21,38 @@
     lxappearance
     feh
     gnome.eog
+    gnumake
+    gcc
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
+
+  home.file = {
+    lvim = {
+      source = ./lunarvim/lunarvim;
+      target = ".local/share/lunarvim/lvim";
+    };
+    lvim_config = {
+      source = ./lunarvim/config;
+      target = ".config/lvim";
+      recursive = true;
+    };
+    lvim_bin = {
+      text = ''
+        #!/usr/bin/env bash
+
+        export LUNARVIM_RUNTIME_DIR=~/.local/share/lunarvim
+        export LUNARVIM_CONFIG_DIR=~/.config/lvim
+        export LUNARVIM_CACHE_DIR=~/.cache/lvim
+
+        export LUNARVIM_BASE_DIR=~/.local/share/lunarvim/lvim
+
+        exec -a lvim ${pkgs.neovim}/bin/nvim -u "$LUNARVIM_BASE_DIR/init.lua" "$@"
+      '';
+      target = ".local/bin/lvim";
+      executable = true;
+    };
+  };
 
   programs.zsh = {
     enable = true;
@@ -54,7 +83,7 @@
       "vim" = "nvim";
       "vi" = "nvim";
       "rebuild" =
-        "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
+        "sudo nixos-rebuild switch --flake ~/nixos\\?submodules=1 && source ~/.zshrc";
       "conf" = "hx ~/nixos";
     };
   };
