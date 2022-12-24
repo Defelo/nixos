@@ -5,7 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -104,7 +105,7 @@
   };
   users.defaultUserShell = pkgs.zsh;
 
-  home-manager.users.user = { imports = [ ./home.nix ]; };
+  home-manager.users.user = { imports = [ ./home ]; };
 
   environment.variables = {
     EDITOR = "nvim";
