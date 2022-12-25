@@ -30,7 +30,8 @@
       "vim" = "nvim";
       "vi" = "nvim";
       "rebuild" = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
-      "conf" = "vim ~/nixos/configuration.nix";
+      "update" = "nix flake update --commit-lock-file ~/nixos && rebuild";
+      "conf" = "vim ~/nixos/flake.nix";
     };
   };
 }
