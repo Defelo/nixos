@@ -17,6 +17,23 @@
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
       bindkey '^ ' autosuggest-accept
 
+      bindkey "^R" history-incremental-search-backward
+      bindkey "^S" history-incremental-search-forward
+
+      setopt autopushd
+
+      d() { dirs -v | tac }
+
+      mkcd() { mkdir -p "$1"; cd "$1" }
+
+      temp() { cd $(mktemp -d) }
+      deltemp() {
+        d=$(pwd)
+        [[ $(echo $d | cut -d/ -f2) != "tmp" ]] && return
+        cd
+        rm -r /tmp/$(echo $d | cut -d/ -f3)
+      }
+
       ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [{
