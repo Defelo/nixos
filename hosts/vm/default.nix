@@ -12,6 +12,7 @@ nixpkgs.lib.nixosSystem {
     ./users.nix
     ./services.nix
     ./x11.nix
+    ./zram.nix
 
     home-manager.nixosModules.home-manager
     {
