@@ -1,7 +1,10 @@
-{ pkgs, lib, ... }:
-
-let mod = "Mod4"; in
 {
+  pkgs,
+  lib,
+  ...
+}: let
+  mod = "Mod4";
+in {
   enable = true;
   package = pkgs.i3-gaps;
   config = {

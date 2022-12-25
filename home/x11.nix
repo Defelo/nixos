@@ -1,6 +1,8 @@
-{ pkgs, lib, ... } @ inputs:
-
 {
+  pkgs,
+  lib,
+  ...
+} @ inputs: {
   xsession = {
     enable = true;
     scriptPath = ".xinitrc";

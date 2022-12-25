@@ -11,7 +11,9 @@
     };
   };
 
-  outputs = inputs: {
+  outputs = {nixpkgs, ...} @ inputs: {
     nixosConfigurations.nixos = import ./hosts/vm inputs;
+
+    formatter."x86_64-linux" = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }

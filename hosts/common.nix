@@ -1,6 +1,8 @@
-{ nixpkgs, pkgs, ... }:
-
 {
+  nixpkgs,
+  pkgs,
+  ...
+}: {
   boot.tmpOnTmpfs = true;
 
   time.timeZone = "Europe/Berlin";
@@ -20,10 +22,10 @@
     wget
   ];
 
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = ["/share/zsh"];
 
   nix = {
-    nixPath = [ "nixpkgs=${nixpkgs}" ];
+    nixPath = ["nixpkgs=${nixpkgs}"];
     gc = {
       automatic = true;
       dates = "daily";
@@ -31,7 +33,7 @@
     };
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
     };
   };
 

@@ -1,14 +1,14 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.helix = {
     enable = true;
-    languages = [{
-      name = "nix";
-      auto-format = true;
-      language-server = { command = "${pkgs.nil}/bin/nil"; };
-      formatter = { command = "${pkgs.nixfmt}/bin/nixfmt"; };
-    }];
+    languages = [
+      {
+        name = "nix";
+        auto-format = true;
+        language-server = {command = "${pkgs.nil}/bin/nil";};
+        formatter = {command = "${pkgs.nixfmt}/bin/nixfmt";};
+      }
+    ];
     settings = {
       theme = "dark_plus";
       editor = {
@@ -20,10 +20,10 @@
           normal = "block";
           select = "underline";
         };
-        file-picker = { hidden = false; };
+        file-picker = {hidden = false;};
         statusline = {
-          left = [ "mode" "spinner" ];
-          center = [ "file-name" ];
+          left = ["mode" "spinner"];
+          center = ["file-name"];
           right = [
             "diagnostics"
             "selections"
@@ -35,8 +35,8 @@
           ];
           separator = "|";
         };
-        lsp = { display-messages = true; };
-        indent-guides = { render = true; };
+        lsp = {display-messages = true;};
+        indent-guides = {render = true;};
       };
       keys = {
         normal = {

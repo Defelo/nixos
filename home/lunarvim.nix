@@ -1,6 +1,8 @@
-{ pkgs, lunarvim, ... }:
-
 {
+  pkgs,
+  lunarvim,
+  ...
+}: {
   home.packages = with pkgs; [
     ripgrep
     gnumake

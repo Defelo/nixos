@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   # services.printing.enable = true;
 
   # programs.mtr.enable = true;

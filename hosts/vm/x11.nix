@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   services.xserver = {
     enable = true;
 
@@ -14,8 +16,9 @@
   services.greetd = {
     enable = true;
     settings = {
-      default_session.command = let shell = config.users.defaultUserShell; in
-        "${pkgs.greetd.greetd}/bin/agreety --cmd ${shell}${shell.shellPath}";
+      default_session.command = let
+        shell = config.users.defaultUserShell;
+      in "${pkgs.greetd.greetd}/bin/agreety --cmd ${shell}${shell.shellPath}";
       initial_session = {
         user = "user";
         command = "startx";

@@ -1,5 +1,8 @@
-{ nixpkgs, home-manager, ... } @ inputs:
-
+{
+  nixpkgs,
+  home-manager,
+  ...
+} @ inputs:
 nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   specialArgs = inputs;

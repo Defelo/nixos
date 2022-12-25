@@ -1,17 +1,16 @@
-{ ... }:
-
-let user = "user"; in
-{
+{...}: let
+  user = "user";
+in {
   users.users = {
     ${user} = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" ];
+      extraGroups = ["wheel" "docker"];
     };
   };
 
   home-manager.users = {
     ${user} = {
-      imports = [ ../../home ];
+      imports = [../../home];
     };
   };
 
