@@ -27,8 +27,8 @@
     shellAliases = {
       "ls" = "${pkgs.exa}/bin/exa";
       "l" = "ls -al";
-      # "vim" = "nvim";
-      # "vi" = "nvim";
+      "vim" = "nvim";
+      "vi" = "nvim";
       "rebuild" =
         "sudo nixos-rebuild switch --flake ~/nixos\\?submodules=1 && source ~/.zshrc";
       "conf" = "vim ~/nixos/configuration.nix";

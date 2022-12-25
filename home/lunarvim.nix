@@ -27,4 +27,8 @@
       executable = true;
     };
   };
+
+  home.shellAliases = {
+    "nvim" = "~/.local/bin/lvim";
+  };
 }
