@@ -7,22 +7,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
-
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-          };
-        }
-        { nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; }
-      ];
-    };
-
+  outputs = inputs: {
+    nixosConfigurations.nixos = import ./hosts/vm inputs;
   };
 }
