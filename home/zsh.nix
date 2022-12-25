@@ -35,7 +35,7 @@
       }
 
       _update() {
-        if ! nix flake update 1>&2 2>&1 | grep -q updating; then
+        if ! nix flake update --commit-lock-file ~/nixos 1>&2 2>&1 | grep -q updating; then
           echo up to date
           return 1
         fi
