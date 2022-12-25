@@ -18,6 +18,8 @@
     wget
   ];
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
   nix = {
     nixPath = [ "nixpkgs=${nixpkgs}" ];
     gc = {
