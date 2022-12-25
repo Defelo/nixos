@@ -11,6 +11,7 @@
     ./helix.nix
     ./theme.nix
     ./x11.nix
+    ./rofi.nix
   ];
 
   home.username = "user";
