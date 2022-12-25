@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    ripgrep
+    gnumake
+    gcc
+  ];
+
   home.file = {
     lvim = {
       source = builtins.fetchGit {

@@ -5,10 +5,10 @@
     # programming
     python311
     rustup
+    gcc
     git
     git-crypt
-    gnumake
-    gcc
+    just
 
     # editors
     neovim
@@ -21,10 +21,8 @@
 
     # system
     arandr
-    lxappearance
 
     # utils
-    exa
     htop
     duf
     ncdu
