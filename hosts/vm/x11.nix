@@ -1,35 +1,28 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
 
-  services.xserver.desktopManager = {
-    xterm.enable = false;
-    session = [{
-      name = "home-manager";
-      start = ''
-        ${pkgs.runtimeShell} $HOME/.hm-xsession &
-        waitPID=$!
-      '';
-    }];
+    displayManager.startx.enable = true;
+
+    layout = "de";
+
+    # libinput.enable = true;
   };
-  services.xserver.displayManager = {
-    lightdm.enable = true;
-    defaultSession = "home-manager";
-    autoLogin = {
-      enable = true;
-      user = "user";
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session.command = let shell = config.users.defaultUserShell; in
+        "${pkgs.greetd.greetd}/bin/agreety --cmd ${shell}${shell.shellPath}";
+      initial_session = {
+        user = "user";
+        command = "startx";
+      };
     };
   };
 
-  services.xserver.layout = "de";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
-
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # services.xserver.libinput.enable = true;
 }

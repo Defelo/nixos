@@ -3,7 +3,7 @@
 {
   xsession = {
     enable = true;
-    scriptPath = ".hm-xsession";
+    scriptPath = ".xinitrc";
     initExtra = ''
       xrandr --output Virtual-1 --mode 1920x1080 --rate 60
       ${pkgs.feh}/bin/feh --bg-scale ${../wallpaper.png}

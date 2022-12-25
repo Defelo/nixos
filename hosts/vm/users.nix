@@ -15,7 +15,7 @@ let user = "user"; in
     };
   };
 
-  services.getty.autologinUser = user;
+  # services.getty.autologinUser = user;
 
   security.sudo.wheelNeedsPassword = false;
 }
