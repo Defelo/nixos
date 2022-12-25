@@ -34,6 +34,13 @@
         rm -r /tmp/$(echo $d | cut -d/ -f3)
       }
 
+      _update() {
+        if ! nix flake update 1>&2 2>&1 | grep -q updating; then
+          echo up to date
+          return 1
+        fi
+      }
+
       ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [{
@@ -42,12 +49,13 @@
       file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     }];
     shellAliases = {
+      "." = "source";
       "ls" = "${pkgs.exa}/bin/exa";
       "l" = "ls -al";
       "vim" = "nvim";
       "vi" = "nvim";
       "rebuild" = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
-      "update" = "nix flake update --commit-lock-file ~/nixos && rebuild";
+      "update" = "_update && rebuild || true";
       "conf" = "vim ~/nixos/flake.nix";
     };
   };
