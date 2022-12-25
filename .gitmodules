@@ -1,4 +1,0 @@
-[submodule "lunarvim/lunarvim"]
-	path = lunarvim/lunarvim
-	url = https://github.com/lunarvim/lunarvim.git
-	branch = release-1.2/neovim-0.8

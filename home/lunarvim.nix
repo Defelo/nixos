@@ -3,7 +3,11 @@
 {
   home.file = {
     lvim = {
-      source = ../lunarvim/lunarvim;
+      source = builtins.fetchGit {
+        url = "https://github.com/lunarvim/lunarvim.git";
+        ref = "release-1.2/neovim-0.8";
+        rev = "8f4a7bdeb177bed5458ab9cc213519faa8a11859";
+      };
       target = ".local/share/lunarvim/lvim";
     };
     lvim_config = {

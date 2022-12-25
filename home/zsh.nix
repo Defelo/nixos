@@ -29,8 +29,7 @@
       "l" = "ls -al";
       "vim" = "nvim";
       "vi" = "nvim";
-      "rebuild" =
-        "sudo nixos-rebuild switch --flake ~/nixos\\?submodules=1 && source ~/.zshrc";
+      "rebuild" = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
       "conf" = "vim ~/nixos/configuration.nix";
     };
   };
