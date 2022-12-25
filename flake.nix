@@ -5,6 +5,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lunarvim = {
+      url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
+      flake = false;
+    };
   };
 
   outputs = inputs: {

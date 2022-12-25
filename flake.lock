@@ -21,6 +21,23 @@
         "type": "github"
       }
     },
+    "lunarvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668975487,
+        "narHash": "sha256-HHfqFi6SHmbKjvmkI5uDvDccN4uyKsjSVEdaZJ2s7xc=",
+        "owner": "lunarvim",
+        "repo": "lunarvim",
+        "rev": "8f4a7bdeb177bed5458ab9cc213519faa8a11859",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lunarvim",
+        "ref": "release-1.2/neovim-0.8",
+        "repo": "lunarvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1671722432,
@@ -40,6 +57,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "lunarvim": "lunarvim",
         "nixpkgs": "nixpkgs"
       }
     },

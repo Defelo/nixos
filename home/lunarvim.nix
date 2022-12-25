@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lunarvim, ... }:
 
 {
   home.packages = with pkgs; [
@@ -9,11 +9,7 @@
 
   home.file = {
     lvim = {
-      source = builtins.fetchGit {
-        url = "https://github.com/lunarvim/lunarvim.git";
-        ref = "release-1.2/neovim-0.8";
-        rev = "8f4a7bdeb177bed5458ab9cc213519faa8a11859";
-      };
+      source = lunarvim;
       target = ".local/share/lunarvim/lvim";
     };
     lvim_config = {
