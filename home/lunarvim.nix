@@ -7,6 +7,7 @@
     ripgrep
     gnumake
     gcc
+    xclip
   ];
 
   home.file = {
