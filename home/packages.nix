@@ -18,6 +18,14 @@
     # browsers
     brave
 
+    # communication
+    discord-canary
+    element-desktop
+    thunderbird
+    tdesktop
+    signal-desktop
+    slack
+
     # fonts
     meslo-lgs-nf
 
@@ -31,5 +39,8 @@
     neofetch
     feh
     gnome.eog
+
+    xournalpp
+    obsidian
   ];
 }

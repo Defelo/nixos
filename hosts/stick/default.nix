@@ -3,8 +3,9 @@
   home-manager,
   ...
 } @ inputs:
-nixpkgs.lib.nixosSystem {
+nixpkgs.lib.nixosSystem rec {
   system = "x86_64-linux";
+  pkgs = import ../unfree.nix {inherit nixpkgs system;};
   specialArgs = inputs;
   modules = [
     ../common.nix
