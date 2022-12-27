@@ -9,6 +9,7 @@
     displayManager.startx.enable = true;
 
     layout = "de";
+    xkbVariant = "nodeadkeys";
 
     libinput = {
       enable = true;
