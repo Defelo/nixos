@@ -14,6 +14,7 @@
     ./theme.nix
     ./x11.nix
     ./rofi.nix
+    ./picom.nix
   ];
 
   home.username = "user";
