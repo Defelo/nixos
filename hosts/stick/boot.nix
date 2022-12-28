@@ -6,6 +6,8 @@
   boot.loader.timeout = 2;
   boot.loader.efi.canTouchEfiVariables = false;
 
+  boot.kernel.sysctl."kernel.sysrq" = 1;
+
   # boot.plymouth.enable = true;
   # boot.plymouth.theme = "breeze";
 
