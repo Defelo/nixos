@@ -16,6 +16,7 @@ nixpkgs.lib.nixosSystem rec {
     ./users.nix
     ./services.nix
     ./x11.nix
+    ./xbanish.nix
     ./zram.nix
 
     home-manager.nixosModules.home-manager

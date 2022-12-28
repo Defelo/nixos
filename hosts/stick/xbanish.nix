@@ -1,0 +1,5 @@
+{...}: {
+  services.xbanish = {
+    enable = true;
+  };
+}
