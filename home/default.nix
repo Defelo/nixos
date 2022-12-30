@@ -15,6 +15,7 @@
     ./x11.nix
     ./rofi.nix
     ./picom.nix
+    ./syncthing.nix
   ];
 
   home.username = "user";
