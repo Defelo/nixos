@@ -24,11 +24,6 @@ in {
   config = {
     modifier = mod;
     keybindings = lib.mkOptionDefault {
-      "${mod}+Return" = "exec alacritty";
-      "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
-
-      "${mod}+Tab" = "workspace back_and_forth";
-
       "${mod}+h" = "focus left";
       "${mod}+j" = "focus down";
       "${mod}+k" = "focus up";
@@ -38,6 +33,14 @@ in {
       "${mod}+Shift+j" = "move down";
       "${mod}+Shift+k" = "move up";
       "${mod}+Shift+l" = "move right";
+
+      "${mod}+a" = "focus parent";
+      "${mod}+c" = "focus child";
+
+      "${mod}+n" = "split h";
+      "${mod}+v" = "split v";
+
+      "${mod}+Tab" = "workspace back_and_forth";
 
       "${mod}+asciicircum" = "workspace ${ws0}";
       "${mod}+1" = "workspace ${ws1}";
@@ -68,6 +71,27 @@ in {
       "${mod}+Shift+ssharp" = "move container to workspace ${ws42}";
       "${mod}+Shift+acute" = "move container to workspace ${ws1337}";
       "${mod}+Shift+plus" = "move container to workspace ${ws_obsidian}";
+
+      "${mod}+Return" = "exec alacritty";
+      "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
+
+      "${mod}+Shift+y" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pt ''";
+
+      "XF86MonBrightnessUp" = "exec light -A 5";
+      "XF86MonBrightnessDown" = "exec light -U 5";
+      "Shift+XF86MonBrightnessUp" = "exec light -A 1";
+      "Shift+XF86MonBrightnessDown" = "exec light -U 1";
+
+      "Print" = "exec flameshot gui";
+
+      "${mod}+KP_Add" = "exec dunstctl set-paused toggle";
+      "Pause" = "exec dunstctl close";
+      "Shift+Pause" = "exec dunstctl close-all";
+      "Ctrl+Break" = "exec dunstctl history-pop";
+      "Mod1+Pause" = "exec dunstctl context";
+
+      "${mod}+Shift+minus" = "move scratchpad";
+      "${mod}+minus" = "scratchpad show";
     };
     modes = {
       resize = {
@@ -97,16 +121,63 @@ in {
       ${ws1337} = [];
       ${ws_obsidian} = [{class = "^obsidian$";}];
     };
+    bars = [];
+    colors = let
+      bg-color = "#222d32";
+      inactive-bg-color = "#2f343f";
+      text-color = "#f3f4f5";
+      inactive-text-color = "#676E7D";
+      urgent-bg-color = "#E53935";
+    in {
+      focused = {
+        border = bg-color;
+        childBorder = bg-color;
+        background = bg-color;
+        text = text-color;
+        indicator = bg-color;
+      };
+      unfocused = {
+        border = inactive-bg-color;
+        childBorder = inactive-bg-color;
+        background = inactive-bg-color;
+        text = inactive-text-color;
+        indicator = bg-color;
+      };
+      focusedInactive = {
+        border = inactive-bg-color;
+        childBorder = inactive-bg-color;
+        background = inactive-bg-color;
+        text = inactive-text-color;
+        indicator = bg-color;
+      };
+      urgent = {
+        border = urgent-bg-color;
+        childBorder = urgent-bg-color;
+        background = urgent-bg-color;
+        text = text-color;
+        indicator = bg-color;
+      };
+    };
+    floating = {
+      titlebar = false;
+      criteria = [
+        {class = "^Rofi$";}
+      ];
+    };
+    focus = {
+      followMouse = true;
+      mouseWarping = true;
+    };
+    fonts = {
+      names = ["monospace"];
+      size = 10.0;
+    };
     window = {
       hideEdgeBorders = "both";
       commands = [
         {
           command = "border none";
           criteria.class = ".*";
-        }
-        {
-          command = "floating enable";
-          criteria.class = "^Rofi$";
         }
       ];
     };
