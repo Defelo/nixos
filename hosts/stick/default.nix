@@ -18,6 +18,7 @@ nixpkgs.lib.nixosSystem rec {
     ./x11.nix
     ./xbanish.nix
     ./zram.nix
+    ./backlight.nix
 
     home-manager.nixosModules.home-manager
     {

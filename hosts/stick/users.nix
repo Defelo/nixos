@@ -4,7 +4,7 @@ in {
   users.users = {
     ${user} = {
       isNormalUser = true;
-      extraGroups = ["wheel" "docker" "networkmanager"];
+      extraGroups = ["wheel" "docker" "networkmanager" "video"];
     };
   };
 
