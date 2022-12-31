@@ -17,6 +17,7 @@
     ./picom.nix
     ./syncthing.nix
     ./flameshot.nix
+    ./dunst.nix
   ];
 
   home.username = "user";
