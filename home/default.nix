@@ -16,6 +16,7 @@
     ./rofi.nix
     ./picom.nix
     ./syncthing.nix
+    ./flameshot.nix
   ];
 
   home.username = "user";
