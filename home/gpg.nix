@@ -1,13 +1,13 @@
 {...}: {
   programs.gpg = {
     enable = true;
-    publicKeys = [
+    publicKeys = with import ../secrets.nix; [
       {
-        source = ../keys/defelo.pub;
+        text = gpg.defelo;
         trust = 5;
       }
       {
-        source = ../keys/private.pub;
+        text = gpg.private;
         trust = 5;
       }
     ];
