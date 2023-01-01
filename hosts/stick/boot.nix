@@ -14,12 +14,12 @@
   boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
   boot.initrd.luks.yubikeySupport = true;
   boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-uuid/db14ee0a-e88f-4291-a30a-a8280a078133";
+    device = "/dev/disk/by-uuid/5b3c0b4f-803a-41c5-8283-0cd88face4da";
     preLVM = true;
     yubikey = {
       slot = 2;
       twoFactor = true;
-      storage.device = "/dev/disk/by-uuid/E8CB-4865";
+      storage.device = "/dev/disk/by-uuid/5D1A-6283";
       storage.fsType = "vfat";
       storage.path = "/crypt-storage/default";
     };
