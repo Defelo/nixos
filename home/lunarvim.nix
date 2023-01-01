@@ -8,6 +8,7 @@
     gnumake
     gcc
     xclip
+    alejandra
   ];
 
   home.file = {
