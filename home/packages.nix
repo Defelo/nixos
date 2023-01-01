@@ -34,6 +34,7 @@
 
     # system
     arandr
+    wireguard-tools
     pulsemixer
     pavucontrol
     playerctl
