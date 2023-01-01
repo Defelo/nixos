@@ -18,6 +18,7 @@
     ./syncthing.nix
     ./flameshot.nix
     ./dunst.nix
+    ./polybar.nix
   ];
 
   home.username = "user";

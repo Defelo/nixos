@@ -21,6 +21,7 @@ nixpkgs.lib.nixosSystem rec {
     ./backlight.nix
     ./audio.nix
     ./bluetooth.nix
+    ./power.nix
 
     home-manager.nixosModules.home-manager
     {

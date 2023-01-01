@@ -24,4 +24,6 @@
       storage.path = "/crypt-storage/default";
     };
   };
+
+  boot.blacklistedKernelModules = ["uvcvideo"];
 }

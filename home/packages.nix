@@ -28,6 +28,9 @@
 
     # fonts
     meslo-lgs-nf
+    fantasque-sans-mono
+    material-icons
+    font-awesome_5
 
     # system
     arandr
@@ -42,6 +45,7 @@
     neofetch
     feh
     gnome.eog
+    speedtest-cli
 
     xournalpp
     obsidian
