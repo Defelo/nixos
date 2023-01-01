@@ -16,5 +16,9 @@ in {
 
   # services.getty.autologinUser = user;
 
-  security.sudo.wheelNeedsPassword = false;
+  # security.sudo.wheelNeedsPassword = false;
+  security.pam.yubico = {
+    enable = true;
+    mode = "challenge-response";
+  };
 }
