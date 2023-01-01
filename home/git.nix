@@ -8,5 +8,12 @@
       key = "E7FE2087E4380E64";
       signByDefault = true;
     };
+    aliases = {
+      l = "log --graph";
+      p = "pull --prune --rebase --autostash";
+    };
+    extraConfig = {
+      diff.submodule = "log";
+    };
   };
 }
