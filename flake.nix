@@ -9,6 +9,10 @@
       url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
       flake = false;
     };
+    cheatsheets = {
+      url = "github:cheat/cheatsheets";
+      flake = false;
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: {

@@ -19,6 +19,7 @@
     ./flameshot.nix
     ./dunst.nix
     ./polybar.nix
+    ./cheat.nix
   ];
 
   home.username = "user";

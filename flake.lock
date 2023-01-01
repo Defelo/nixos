@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "cheatsheets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671300617,
+        "narHash": "sha256-Afv0rPlYTCsyWvYx8UObKs6Me8IOH5Cv5u4fO38J8ns=",
+        "owner": "cheat",
+        "repo": "cheatsheets",
+        "rev": "36bdb99dcfadde210503d8c2dcf94b34ee950e1d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cheat",
+        "repo": "cheatsheets",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -56,6 +72,7 @@
     },
     "root": {
       "inputs": {
+        "cheatsheets": "cheatsheets",
         "home-manager": "home-manager",
         "lunarvim": "lunarvim",
         "nixpkgs": "nixpkgs"
