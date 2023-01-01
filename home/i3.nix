@@ -77,6 +77,19 @@ in {
 
       "${mod}+Shift+y" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pt ''";
 
+      "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
+      "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
+      "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+
+      "XF86AudioPlay" = "exec playerctl play-pause";
+      "Next" = "exec playerctl play-pause";
+      "XF86AudioStop" = "exec playerctl stop";
+      "Prior" = "exec playerctl stop";
+      "XF86AudioNext" = "exec playerctl next";
+      "End" = "exec playerctl next";
+      "XF86AudioPrev" = "exec playerctl previous";
+      "Home" = "exec playerctl previous";
+
       "XF86MonBrightnessUp" = "exec light -A 5";
       "XF86MonBrightnessDown" = "exec light -U 5";
       "Shift+XF86MonBrightnessUp" = "exec light -A 1";

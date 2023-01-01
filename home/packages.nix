@@ -31,6 +31,9 @@
 
     # system
     arandr
+    pulsemixer
+    pavucontrol
+    playerctl
 
     # utils
     htop
