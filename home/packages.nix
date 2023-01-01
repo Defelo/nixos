@@ -47,6 +47,8 @@
     feh
     gnome.eog
     speedtest-cli
+    jq
+    yq
 
     xournalpp
     obsidian

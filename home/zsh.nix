@@ -18,6 +18,8 @@
       bindkey "^R" history-incremental-search-backward
       bindkey "^S" history-incremental-search-forward
 
+      zstyle ':completion:*' menu select
+
       setopt autopushd
 
       d() { dirs -v | tac }
@@ -30,6 +32,21 @@
         [[ $(echo $d | cut -d/ -f2) != "tmp" ]] && return
         cd
         rm -r /tmp/$(echo $d | cut -d/ -f3)
+      }
+
+      clip() { xclip -selection clipboard }
+
+      skg() {
+          f=$(mktemp -u)
+          ssh-keygen -t ed25519 -C "" -P "" -f $f
+          cat $f
+          cat $f.pub
+          rm $f $f.pub
+      }
+
+      wgpeer() {
+          key=$(wg genkey)
+          echo "# Private Key: $key\n[Peer]\nPublicKey = $(wg pubkey <<< $key)\nPresharedKey = $(wg genpsk)\nAllowedIPs = "
       }
 
       _update() {
@@ -50,13 +67,33 @@
     ];
     shellAliases = {
       "." = "source";
-      "ls" = "${pkgs.exa}/bin/exa";
-      "l" = "ls -al";
-      "vim" = "nvim";
-      "vi" = "nvim";
-      "rebuild" = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
-      "update" = "_update && rebuild || true";
-      "conf" = "vim ~/nixos/flake.nix";
+      ls = "${pkgs.exa}/bin/exa -g --git --group-directories-first";
+      l = "ls -aal";
+      tre = "ls -alT";
+      vim = "nvim";
+      vi = "nvim";
+      c = ''printf "\033c"; ${pkgs.neofetch}/bin/neofetch'';
+      h = "cd;c";
+      grep = "grep --color=auto";
+      f = "cd $(pwd -P)";
+      curl = "curl -L";
+      cif = "curl ifconfig.co";
+      ciff = "curl httpbin.org/ip";
+      cf = "ping 1.1.1.1";
+      bt = "bluetoothctl";
+      cal = "cal -m";
+      vlc = "vlc -I ncurses";
+      py = "python";
+      diff = "git diff --no-index";
+      sshx = "ssh -o UserKnownHostsFile=/dev/null";
+      sftpx = "sftp -o UserKnownHostsFile=/dev/null";
+      lsblk = "lsblk -M";
+      j = "just";
+      mnt = "source ${../scripts/mount.sh}";
+      tt = "${../scripts/timetracker.sh}";
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
+      update = "_update && rebuild || true";
+      conf = "vim ~/nixos/flake.nix";
     };
   };
 }
