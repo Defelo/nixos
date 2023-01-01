@@ -20,6 +20,7 @@
     ./dunst.nix
     ./polybar.nix
     ./cheat.nix
+    ./pass.nix
   ];
 
   home.username = "user";
