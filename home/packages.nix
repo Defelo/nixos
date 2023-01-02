@@ -48,6 +48,8 @@
     speedtest-cli
     jq
     yq
+    file
+    unp
 
     xournalpp
     obsidian
