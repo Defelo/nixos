@@ -4,12 +4,13 @@
   };
   powerManagement.powertop.enable = true;
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
+    # lidSwitch = "suspend-then-hibernate";
+    lidSwitch = "suspend";
     extraConfig = ''
       HandlePowerKey=hibernate
     '';
   };
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-  '';
+  # systemd.sleep.extraConfig = ''
+  #   HibernateDelaySec=30m
+  # '';
 }
