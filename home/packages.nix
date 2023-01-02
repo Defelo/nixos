@@ -21,7 +21,6 @@
     # communication
     discord-canary
     element-desktop
-    thunderbird
     tdesktop
     signal-desktop
     slack

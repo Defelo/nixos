@@ -20,6 +20,7 @@
     ./dunst.nix
     ./polybar.nix
     ./cheat.nix
+    ./email.nix
     ./pass.nix
   ];
 
