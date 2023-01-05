@@ -10,6 +10,8 @@
     crypt = "/dev/disk/by-uuid/acabf7fe-1a29-47cd-8e10-9b8f88f936d4";
   };
 
+  ykfde = false;
+
   hardware-configuration = {
     config,
     lib,
