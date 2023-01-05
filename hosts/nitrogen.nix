@@ -1,7 +1,7 @@
 {...}: rec {
   system = "x86_64-linux";
   hostname = "nitrogen";
-  user = "user";
+  user = "felix";
   home = "/home/${user}";
 
   partitions = {
