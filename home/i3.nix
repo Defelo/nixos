@@ -77,6 +77,8 @@ in {
 
       "${mod}+Shift+y" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pt ''";
 
+      "${mod}+Ctrl+M" = "exec ${../scripts/rofipass.sh}";
+
       "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
       "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
       "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
