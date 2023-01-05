@@ -37,6 +37,8 @@
     pulsemixer
     pavucontrol
     playerctl
+    wirelesstools
+    iw
 
     # utils
     htop
@@ -50,6 +52,8 @@
     yq
     file
     unp
+    pwgen
+    dig
 
     xournalpp
     obsidian
