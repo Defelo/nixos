@@ -7,6 +7,7 @@
   imports = [
     ./alacritty.nix
     ./cheat.nix
+    ./direnv.nix
     ./dunst.nix
     ./email.nix
     ./flameshot.nix
