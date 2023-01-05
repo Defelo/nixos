@@ -5,24 +5,25 @@
   ...
 }: {
   imports = [
-    ./packages.nix
-    ./lunarvim.nix
-    ./zsh.nix
-    ./git.nix
     ./alacritty.nix
+    ./cheat.nix
+    ./dunst.nix
+    ./email.nix
+    ./flameshot.nix
+    ./git.nix
     ./gpg.nix
     ./helix.nix
+    ./lunarvim.nix
+    ./packages.nix
+    ./pass.nix
+    ./picom.nix
+    ./polybar.nix
+    ./rofi.nix
+    ./ssh.nix
+    ./syncthing.nix
     ./theme.nix
     ./x11.nix
-    ./rofi.nix
-    ./picom.nix
-    ./syncthing.nix
-    ./flameshot.nix
-    ./dunst.nix
-    ./polybar.nix
-    ./cheat.nix
-    ./email.nix
-    ./pass.nix
+    ./zsh.nix
   ];
 
   home.username = conf.user;

@@ -1,6 +1,7 @@
 {...}: rec {
   system = "x86_64-linux";
   hostname = "nitrogen";
+  uid = 1001;
   user = "felix";
   home = "/home/${user}";
 

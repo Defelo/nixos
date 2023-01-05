@@ -17,5 +17,6 @@
     enable = true;
     pinentryFlavor = "gtk2";
     enableSshSupport = true;
+    enableExtraSocket = true;
   };
 }
