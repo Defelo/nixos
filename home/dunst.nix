@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   services.dunst = {
     enable = true;
     settings = {
@@ -42,7 +42,7 @@
         sticky_history = true;
         history_length = 10000;
 
-        dmenu = "rofi -dmenu";
+        dmenu = "${pkgs.rofi}/bin/rofi -dmenu";
         browser = "xdg-open";
         always_run_script = true;
         title = "Dunst";
