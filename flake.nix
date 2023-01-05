@@ -15,11 +15,16 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
-    nixosConfigurations.nixos = import ./hosts/vm inputs;
-    nixosConfigurations.nixos-stick = import ./hosts/stick inputs;
-    nixosConfigurations.nitrogen = import ./hosts/nitrogen inputs;
-
-    formatter."x86_64-linux" = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+  outputs = {...} @ inputs: {
+    nixosConfigurations = let
+      hosts = [./hosts/nitrogen.nix];
+    in
+      builtins.listToAttrs (map (host: let
+          conf = import host inputs;
+        in {
+          name = conf.hostname;
+          value = import ./system (inputs // {inherit conf;});
+        })
+        hosts);
   };
 }

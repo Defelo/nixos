@@ -1,20 +1,27 @@
 {
+  conf,
   nixpkgs,
   home-manager,
   ...
 } @ inputs:
-nixpkgs.lib.nixosSystem {
-  system = "x86_64-linux";
+nixpkgs.lib.nixosSystem rec {
+  inherit (conf) system;
+  pkgs = import ./unfree.nix {inherit nixpkgs system;};
   specialArgs = inputs;
   modules = [
-    ../common.nix
-    ./hardware-configuration.nix
+    ./common.nix
+    conf.hardware-configuration
 
+    ./audio.nix
+    ./backlight.nix
+    ./bluetooth.nix
     ./boot.nix
     ./networking.nix
-    ./users.nix
+    ./power.nix
     ./services.nix
+    ./users.nix
     ./x11.nix
+    ./xbanish.nix
     ./zram.nix
 
     home-manager.nixosModules.home-manager

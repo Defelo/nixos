@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  networking.hostName = "nixos-stick";
+  networking.hostName = "nitrogen";
 
   networking.networkmanager = {
     enable = true;
@@ -18,5 +18,5 @@
         text = value;
         mode = "0400";
       })
-    (import ../../secrets.nix).nm.connections;
+    (import ../secrets.nix).nm.connections;
 }

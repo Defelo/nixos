@@ -1,4 +1,5 @@
 {
+  conf,
   config,
   pkgs,
   ...
@@ -27,7 +28,7 @@
         shell = config.users.defaultUserShell;
       in "${pkgs.greetd.greetd}/bin/agreety --cmd ${shell}${shell.shellPath}";
       initial_session = {
-        user = "user";
+        user = conf.user;
         command = "startx";
       };
     };
