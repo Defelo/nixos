@@ -35,6 +35,16 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
     };
+    registry = {
+      nixpkgs = {
+        from = {
+          id = "nixpkgs";
+          type = "indirect";
+        };
+        exact = true;
+        flake = nixpkgs;
+      };
+    };
   };
 
   system.stateVersion = "22.11";
