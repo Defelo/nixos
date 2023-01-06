@@ -36,6 +36,17 @@
       fsType = "vfat";
     };
 
+    fileSystems."/mnt/arch" = {
+      device = "/dev/mapper/arch";
+      fsType = "ext4";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/disk/by-uuid/189f0f8c-336a-4029-9a46-f894f0022b58";
+        keyFile = "/mnt-root/root/.arch.key";
+        label = "arch";
+      };
+    };
+
     swapDevices = [
       {
         device = "/dev/nixos/swap";
