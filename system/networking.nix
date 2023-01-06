@@ -7,9 +7,15 @@
     ethernet.macAddress = "random";
   };
 
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowPing = false;
+    allowedTCPPorts = [
+      22000 # syncthing
+    ];
+    allowedUDPPorts = [];
+    trustedInterfaces = ["docker0"];
+  };
 
   environment.etc = with pkgs.lib.attrsets;
     mapAttrs'
