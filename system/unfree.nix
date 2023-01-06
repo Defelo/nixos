@@ -7,7 +7,10 @@ import nixpkgs {
   config.allowUnfreePredicate = pkg:
     builtins.elem (nixpkgs.lib.getName pkg) [
       "discord-canary"
-      "slack"
       "obsidian"
+      "slack"
+      "steam"
+      "steam-original"
+      "steam-run"
     ];
 }
