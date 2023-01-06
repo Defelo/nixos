@@ -57,5 +57,6 @@
 
     xournalpp
     obsidian
+    vlc
   ];
 }
