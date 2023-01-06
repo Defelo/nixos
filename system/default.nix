@@ -16,6 +16,7 @@ nixpkgs.lib.nixosSystem rec {
     ./backlight.nix
     ./bluetooth.nix
     ./boot.nix
+    ./fonts.nix
     ./networking.nix
     ./power.nix
     ./services.nix
