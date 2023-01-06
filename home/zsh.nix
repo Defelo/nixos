@@ -94,6 +94,7 @@
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
       update = "_update && rebuild || true";
       conf = "vim ~/nixos/flake.nix";
+      repl = "nix repl -f '<nixpkgs>'";
     };
   };
 }
