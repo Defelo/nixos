@@ -20,6 +20,7 @@
     ./pass.nix
     ./picom.nix
     ./polybar.nix
+    ./redshift.nix
     ./rofi.nix
     ./ssh.nix
     ./syncthing.nix
