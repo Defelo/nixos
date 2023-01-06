@@ -49,11 +49,19 @@
           echo "# Private Key: $key\n[Peer]\nPublicKey = $(wg pubkey <<< $key)\nPresharedKey = $(wg genpsk)\nAllowedIPs = "
       }
 
-      _update() {
-        if ! nix flake update --commit-lock-file ~/nixos 1>&2 2>&1 | grep -q updating; then
-          echo up to date
+      _rebuild() {
+        current=$(realpath /run/current-system)
+        new=$(nix build --print-out-paths --no-link ~/nixos#nixosConfigurations.$(cat /proc/sys/kernel/hostname).config.system.build.toplevel)
+        if [[ "$new" = "$current" ]]; then
+          echo "up to date"
           return 1
         fi
+        ${pkgs.nvd}/bin/nvd diff $current $new
+        sudo nixos-rebuild switch --flake ~/nixos
+      }
+
+      _update() {
+        nix flake update --commit-lock-file ~/nixos && _rebuild
       }
 
       ${pkgs.neofetch}/bin/neofetch
@@ -88,11 +96,12 @@
       sshx = "ssh -o UserKnownHostsFile=/dev/null";
       sftpx = "sftp -o UserKnownHostsFile=/dev/null";
       lsblk = "lsblk -M";
+      type = "which";
       j = "just";
       mnt = "source ${../scripts/mount.sh}";
       tt = "${../scripts/timetracker.sh}";
-      rebuild = "sudo nixos-rebuild switch --flake ~/nixos && source ~/.zshrc";
-      update = "_update && rebuild || true";
+      rebuild = "_rebuild && source ~/.zshrc";
+      update = "_update && source ~/.zshrc";
       conf = "vim ~/nixos/flake.nix";
       repl = "nix repl -f '<nixpkgs>'";
     };
