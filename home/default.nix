@@ -10,6 +10,7 @@
     ./direnv.nix
     ./dunst.nix
     ./email.nix
+    ./fcitx5.nix
     ./flameshot.nix
     ./git.nix
     ./gpg.nix
