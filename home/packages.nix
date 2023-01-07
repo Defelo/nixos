@@ -65,5 +65,7 @@
     xournalpp
     obsidian
     vlc
+    texlive.combined.scheme-full
+    okular
   ];
 }
