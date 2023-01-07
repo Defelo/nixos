@@ -32,12 +32,6 @@
     signal-desktop
     slack
 
-    # fonts
-    meslo-lgs-nf
-    fantasque-sans-mono
-    material-icons
-    font-awesome_5
-
     # system
     arandr
     wireguard-tools
