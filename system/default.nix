@@ -20,7 +20,7 @@ nixpkgs.lib.nixosSystem rec {
     ./networking.nix
     ./power.nix
     ./services.nix
-    ./steam.nix
+    # ./steam.nix
     ./users.nix
     ./x11.nix
     ./xbanish.nix
