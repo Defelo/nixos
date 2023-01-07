@@ -25,6 +25,7 @@
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix
+    ./vscodium.nix
     ./x11.nix
     ./zsh.nix
   ];
