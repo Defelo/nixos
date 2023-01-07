@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  conf,
+  ...
+}: {
   gtk = {
     enable = true;
     theme.name = "Adapta-Nokto";
@@ -8,6 +12,7 @@
     font.name = "Cantarell";
     font.size = 12;
     font.package = pkgs.cantarell-fonts;
+    gtk3.bookmarks = map (f: "file://${f}") ((import ../secrets.nix).gtk.bookmarks conf.home);
   };
 
   home.pointerCursor = {
