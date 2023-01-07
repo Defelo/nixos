@@ -5,7 +5,14 @@
 }: {
   home.packages = with pkgs; [
     # programming
-    python311
+    (python310.withPackages (pkgs:
+      with pkgs; [
+        numpy
+        pandas
+        matplotlib
+        scipy
+        jupyterlab
+      ]))
     rustup
     gcc
     git
