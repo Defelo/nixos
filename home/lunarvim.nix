@@ -41,4 +41,8 @@
   home.shellAliases = {
     "nvim" = "~/.local/bin/lvim";
   };
+  home.sessionVariables = {
+    EDITOR = "lvim";
+    VISUAL = "lvim";
+  };
 }
