@@ -198,7 +198,7 @@
       };
       "module/battery" = {
         type = "internal/battery";
-        full-at = 95;
+        full-at = 100;
         time-format = "%H:%M";
         battery = "BAT0";
         adapter = "AC";
