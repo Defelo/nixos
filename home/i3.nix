@@ -78,6 +78,8 @@ in {
       "${mod}+Shift+y" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pt ''";
 
       "${mod}+Ctrl+M" = "exec ${../scripts/rofipass.sh}";
+      "${mod}+P" = "exec alacritty -e python";
+      "${mod}+Shift+P" = "exec alacritty -e pulsemixer";
 
       "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
       "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
