@@ -8,7 +8,14 @@
     gnumake
     gcc
     xclip
-    alejandra
+
+    # language servers
+    pyright # python
+    rust-analyzer # rust
+    rnix-lsp # nix
+
+    # formatters
+    alejandra # nix
   ];
 
   home.file = {
