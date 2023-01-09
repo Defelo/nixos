@@ -1,5 +1,6 @@
 {
   conf,
+  config,
   lib,
   ...
 }: {
@@ -12,6 +13,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernel.sysctl."kernel.sysrq" = 1;
+
+  boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
 
   # boot.plymouth.enable = true;
   # boot.plymouth.theme = "breeze";
@@ -30,5 +33,5 @@
     };
   };
 
-  boot.blacklistedKernelModules = ["uvcvideo"];
+  boot.blacklistedKernelModules = ["uvcvideo" "rtw88_8821ce"];
 }
