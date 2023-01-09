@@ -57,7 +57,7 @@
           return 1
         fi
         ${pkgs.nvd}/bin/nvd diff $current $new
-        sudo nixos-rebuild switch --flake ~/nixos
+        sudo nixos-rebuild "''${1:-switch}" --flake ~/nixos
       }
 
       _update() {
@@ -110,6 +110,8 @@
       mnt = "source ${../scripts/mount.sh}";
       tt = "${../scripts/timetracker.sh}";
       rebuild = "_rebuild && source ~/.zshrc";
+      rebuild-test = "_rebuild test && source ~/.zshrc";
+      rebuild-boot = "_rebuild boot && source ~/.zshrc";
       update = "_update && source ~/.zshrc";
       conf = "vim ~/nixos/flake.nix";
       repl = "nix repl -f '<nixpkgs>'";
