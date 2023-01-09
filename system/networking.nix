@@ -5,6 +5,24 @@
     enable = true;
     wifi.macAddress = "random";
     ethernet.macAddress = "random";
+    dispatcherScripts = [
+      {
+        type = "basic";
+        source = with (import ../secrets.nix).nm; let
+          nmcli = "${pkgs.networkmanager}/bin/nmcli";
+          is_trusted = builtins.concatStringsSep " || " (map (x: ''[[ "$CONNECTION_UUID" = "${x}" ]]'') trusted);
+        in
+          pkgs.writeText "trusted-networks" ''
+            if ${is_trusted}; then
+              if [[ "$2" = "up" ]]; then
+                ${nmcli} c up "${vpn.default}";
+              else
+                ${nmcli} c up "${vpn.full}";
+              fi
+            fi
+          '';
+      }
+    ];
   };
 
   networking.firewall = {
