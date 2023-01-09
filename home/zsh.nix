@@ -64,6 +64,15 @@
         nix flake update --commit-lock-file ~/nixos && _rebuild
       }
 
+      t() {
+        p="$1"
+        if [[ "$1" = "-p" ]]; then
+          p="$2"
+          shift 2
+        fi
+        nix shell "nixpkgs#$p" -c "$@"
+      }
+
       ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [
