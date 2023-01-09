@@ -56,7 +56,6 @@
     pwgen
     dig
 
-    xournalpp
     obsidian
     vlc
     texlive.combined.scheme-full

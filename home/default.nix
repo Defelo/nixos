@@ -28,6 +28,7 @@
     ./vifm.nix
     ./vscodium.nix
     ./x11.nix
+    ./xournalpp.nix
     ./zsh.nix
   ];
 
