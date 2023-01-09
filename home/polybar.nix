@@ -89,6 +89,7 @@
         modules-left = modules ["workspaces" "window" "scratch"];
         modules-center = modules [];
         modules-right = modules [
+          "screenshot"
           "mem"
           "swap"
           "cpu"
@@ -155,6 +156,11 @@
       #     exec = "${pkgs.python311}/bin/python ${script}";
       #     tail = true;
       #   };
+      "module/screenshot" = {
+        type = "custom/text";
+        content = "";
+        click-left = "${pkgs.flameshot}/bin/flameshot gui -c";
+      };
       "module/mem" = {
         type = "internal/memory";
         interval = 2;
