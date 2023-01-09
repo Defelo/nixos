@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./alacritty.nix
+    ./calendar.nix
     ./cheat.nix
     ./direnv.nix
     ./dunst.nix
