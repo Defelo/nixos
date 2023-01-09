@@ -7,7 +7,7 @@
     enable = true;
     scriptPath = ".xinitrc";
     initExtra = ''
-      ${pkgs.feh}/bin/feh --bg-scale ${../wallpaper.png}
+      ${pkgs.feh}/bin/feh --bg-scale ${../wallpapers/nix-snowflake-dark.png}
       ${pkgs.xss-lock}/bin/xss-lock --transfer-sleep-lock -- ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pt "" &
       PATH=${pkgs.xfce.xfce4-clipman-plugin}/bin:$PATH xfce4-clipman &
       setxkbmap de nodeadkeys
