@@ -20,7 +20,6 @@
   ws_obsidian = "+ ";
 in {
   enable = true;
-  package = pkgs.i3-gaps;
   config = {
     modifier = mod;
     keybindings = lib.mkOptionDefault {
