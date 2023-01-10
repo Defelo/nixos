@@ -1,5 +1,8 @@
-{...}: rec {
+{nixpkgs, ...}: let
   system = "x86_64-linux";
+  pkgs = import nixpkgs {inherit system;};
+in rec {
+  inherit system;
   hostname = "nitrogen";
   uid = 1000;
   user = "felix";
@@ -11,6 +14,8 @@
   };
 
   ykfde = false;
+
+  lock-command = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 4 pixel";
 
   hardware-configuration = {
     config,

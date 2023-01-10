@@ -1,5 +1,5 @@
 {
-  pkgs,
+  conf,
   lib,
   ...
 }: let
@@ -74,7 +74,7 @@ in {
       "${mod}+Return" = "exec alacritty";
       "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
 
-      "${mod}+Shift+y" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pt ''";
+      "${mod}+Shift+y" = "exec ${conf.lock-command}";
 
       "${mod}+Ctrl+M" = "exec ${../scripts/rofipass.sh}";
       "${mod}+P" = "exec alacritty -e python";

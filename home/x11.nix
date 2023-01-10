@@ -1,6 +1,6 @@
 {
+  conf,
   pkgs,
-  lib,
   ...
 } @ inputs: {
   xsession = {
@@ -16,7 +16,7 @@
       ${pkgs.feh}/bin/feh --bg-scale ${../wallpapers/nix-snowflake-dark.png}
 
       # lock screen on suspend/hibernate
-      ${pkgs.xss-lock}/bin/xss-lock --transfer-sleep-lock -- ${pkgs.i3lock-fancy}/bin/i3lock-fancy -pt "" &
+      ${pkgs.xss-lock}/bin/xss-lock --transfer-sleep-lock -- ${conf.lock-command} &
 
       # start clipman
       PATH=${pkgs.xfce.xfce4-clipman-plugin}/bin:$PATH xfce4-clipman &

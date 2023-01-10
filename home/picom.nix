@@ -18,6 +18,7 @@
         Element = 90;
         TelegramDesktop = 95;
         obsidian = 95;
+        i3lock = 100;
       };
     in
       pkgs.lib.attrsets.mapAttrsToList (key: value: "${toString value}:class_g = '${key}'") rules;
