@@ -13,7 +13,6 @@
         scipy
         jupyterlab
       ]))
-    rustup
     gcc
     git
     git-crypt

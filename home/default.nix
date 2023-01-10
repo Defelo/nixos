@@ -23,6 +23,7 @@
     ./polybar.nix
     ./redshift.nix
     ./rofi.nix
+    ./rust.nix
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix
