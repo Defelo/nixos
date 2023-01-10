@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services.picom = {
     enable = true;
-    backend = "xr_glx_hybrid";
+    backend = "egl";
     extraArgs = ["--transparent-clipping"];
     fade = true;
     fadeDelta = 4;
