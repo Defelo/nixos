@@ -94,6 +94,7 @@
           "swap"
           "cpu"
           "dunst"
+          "light"
           "volume"
           "webcam"
           "battery"
@@ -183,6 +184,13 @@
         interval = 1;
         format-underline = acolor;
         click-left = "dunstctl set-paused toggle";
+      };
+      "module/light" = {
+        type = "custom/script";
+        exec = ''echo $(${pkgs.light}/bin/light -G | cut -d. -f1)%'';
+        interval = 1;
+        format = " <label>";
+        format-underline = acolor;
       };
       "module/volume" = {
         type = "internal/pulseaudio";
