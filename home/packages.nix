@@ -55,6 +55,7 @@
     pwgen
     dig
     gh
+    imagemagick
 
     obsidian
     vlc
