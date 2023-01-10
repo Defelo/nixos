@@ -55,6 +55,7 @@
     unp
     pwgen
     dig
+    gh
 
     obsidian
     vlc
