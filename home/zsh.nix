@@ -66,6 +66,7 @@
 
       t() {
         p="$1"
+        if [[ "$1" = "sudo" ]]; then p="$2"; fi
         if [[ "$1" = "-p" ]]; then
           p="$2"
           shift 2
