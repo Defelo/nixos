@@ -5,6 +5,7 @@
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       eamodio.gitlens
+      james-yu.latex-workshop
       kamadorueda.alejandra
       ms-python.python
       ms-toolsai.jupyter
