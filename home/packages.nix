@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  _pkgs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -56,6 +57,7 @@
     dig
     gh
     imagemagick
+    _pkgs.icat
 
     obsidian
     vlc
