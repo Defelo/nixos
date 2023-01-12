@@ -19,6 +19,8 @@
         horizontalScrolling = false;
       };
     };
+
+    videoDrivers = ["intel" "amdgpu" "radeon" "nouveau" "modesetting" "fbdev"];
   };
 
   services.greetd = {
