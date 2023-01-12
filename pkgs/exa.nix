@@ -1,4 +1,5 @@
 {
+  exa,
   lib,
   gitSupport ? true,
   stdenv,
@@ -18,12 +19,7 @@ rustPlatform.buildRustPackage rec {
   pname = "exa";
   version = "0.10.1";
 
-  src = fetchFromGitHub {
-    owner = "ogham";
-    repo = pname;
-    rev = "e385cd58da9d2e86425250b108e87e4a69904f5c";
-    sha256 = "sha256-lB6i4HlxZhhaDGZ5l4iT0DlG5HciVL8ARC82hJww8k0=";
-  };
+  src = exa;
 
   # Cargo.lock is outdated
   # cargoPatches = [./update-cargo-lock.diff];

@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "exa": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658161502,
+        "narHash": "sha256-lB6i4HlxZhhaDGZ5l4iT0DlG5HciVL8ARC82hJww8k0=",
+        "owner": "ogham",
+        "repo": "exa",
+        "rev": "e385cd58da9d2e86425250b108e87e4a69904f5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ogham",
+        "repo": "exa",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -49,6 +65,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "icat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673327607,
+        "narHash": "sha256-b/2mRzCTyGkz2I1U+leUhspvW77VcHN7Awp+BVdVNRM=",
+        "owner": "atextor",
+        "repo": "icat",
+        "rev": "9b5aa622fdfbfbd37a97c9b8d3258100e1d26cd6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "atextor",
+        "repo": "icat",
         "type": "github"
       }
     },
@@ -88,8 +120,10 @@
     "root": {
       "inputs": {
         "cheatsheets": "cheatsheets",
+        "exa": "exa",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "icat": "icat",
         "lunarvim": "lunarvim",
         "nixpkgs": "nixpkgs"
       }

@@ -14,6 +14,14 @@
       url = "github:cheat/cheatsheets";
       flake = false;
     };
+    icat = {
+      url = "github:atextor/icat";
+      flake = false;
+    };
+    exa = {
+      url = "github:ogham/exa";
+      flake = false;
+    };
   };
 
   outputs = {
