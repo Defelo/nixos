@@ -5,6 +5,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
     lunarvim = {
       url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
       flake = false;
@@ -15,16 +16,26 @@
     };
   };
 
-  outputs = {...} @ inputs: {
-    nixosConfigurations = let
-      hosts = [./hosts/nitrogen.nix];
-    in
-      builtins.listToAttrs (map (host: let
-          conf = import host inputs;
-        in {
-          name = conf.hostname;
-          value = import ./system (inputs // {inherit conf;});
-        })
-        hosts);
-  };
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    ...
+  } @ inputs:
+    (flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs {inherit system;};
+    in {
+      packages.pkgs = import ./pkgs (inputs // {inherit pkgs;});
+    }))
+    // {
+      nixosConfigurations = let
+        hosts = [./hosts/nitrogen.nix];
+      in
+        builtins.listToAttrs (map (host: let
+            conf = import host inputs;
+          in {
+            name = conf.hostname;
+            value = import ./system (inputs // {inherit conf;});
+          })
+          hosts);
+    };
 }

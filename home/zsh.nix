@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  _pkgs,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -85,7 +89,7 @@
     ];
     shellAliases = {
       "." = "source";
-      ls = "${pkgs.exa}/bin/exa -g --git --group-directories-first";
+      ls = "${_pkgs.exa}/bin/exa -g --git --group-directories-first";
       l = "ls -aal";
       tre = "ls -alT";
       vim = "nvim";
