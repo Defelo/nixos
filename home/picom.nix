@@ -12,12 +12,12 @@
     inactiveOpacity = 0.9;
     opacityRules = let
       rules = {
-        Alacritty = 95;
+        Alacritty = 90;
         thunderbird = 90;
         discord = 90;
         Element = 90;
-        TelegramDesktop = 95;
-        obsidian = 95;
+        TelegramDesktop = 90;
+        obsidian = 90;
         i3lock = 100;
       };
     in
