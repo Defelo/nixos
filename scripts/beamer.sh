@@ -76,6 +76,8 @@ setup() {
 
     xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x1 --rotate normal
     xrandr --output HDMI1 --mode $beamer --pos 0x0 --rotate normal
+
+    feh --bg-fill ~/nixos/wallpapers/nix-simple-geometric.png
 }
 
 teardown() {
@@ -92,6 +94,8 @@ teardown() {
     i3-msg restart
     systemctl --user restart dunst
     systemctl --user restart polybar
+
+    feh --bg-fill ~/nixos/wallpapers/default.png
 }
 
 check() {

@@ -13,7 +13,7 @@
       xset s noblank
 
       # set wallpaper
-      ${pkgs.feh}/bin/feh --bg-scale ${../wallpapers/nix-snowflake-dark.png}
+      ${pkgs.feh}/bin/feh --bg-scale ${../wallpapers/default.png}
 
       # lock screen on suspend/hibernate
       ${pkgs.xss-lock}/bin/xss-lock --transfer-sleep-lock -- ${conf.lock-command} &
