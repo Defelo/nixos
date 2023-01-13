@@ -78,6 +78,8 @@ setup() {
     xrandr --output HDMI1 --mode $beamer --pos 0x0 --rotate normal
 
     feh --bg-fill ~/nixos/wallpapers/nix-simple-geometric.png
+
+    dunstctl set-paused true
 }
 
 teardown() {
