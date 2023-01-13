@@ -114,6 +114,7 @@
       j = "just";
       mnt = "source ${../scripts/mount.sh}";
       tt = "${../scripts/timetracker.sh}";
+      beamer = "${../scripts/beamer.sh}";
       rebuild = "_rebuild && source ~/.zshrc";
       rebuild-test = "_rebuild test && source ~/.zshrc";
       rebuild-boot = "_rebuild boot && source ~/.zshrc";
