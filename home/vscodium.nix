@@ -30,6 +30,7 @@
       "task.quickOpen.skip" = true;
       "explorer.confirmDragAndDrop" = false;
       "jupyter.askForKernelRestart" = false;
+      "notebook.output.textLineLimit" = 50;
     };
     keybindings = [
       {
