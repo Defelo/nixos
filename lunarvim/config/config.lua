@@ -256,29 +256,29 @@ lvim.plugins = {
       }
     end,
   },
-  {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/extension/'
-      local codelldb_path = extension_path .. 'adapter/codelldb'
-      local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
-      local rt = require("rust-tools")
-      rt.setup({
-        -- dap = {
-        --   adapter = {
-        --     type = "executable",
-        --     command = "lldb-vscode",
-        --     name = "rt_lldb",
-        --   },
-        -- },
-        dap = {
-          adapter = require('rust-tools.dap').get_codelldb_adapter(
-            codelldb_path, liblldb_path)
-        }
-      })
-      rt.inlay_hints.enable()
-    end
-  }
+  -- {
+  --   "simrat39/rust-tools.nvim",
+  --   config = function()
+  --     local extension_path = vim.env.HOME .. '/.local/share/nvim/mason/packages/codelldb/extension/'
+  --     local codelldb_path = extension_path .. 'adapter/codelldb'
+  --     local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+  --     local rt = require("rust-tools")
+  --     rt.setup({
+  --       -- dap = {
+  --       --   adapter = {
+  --       --     type = "executable",
+  --       --     command = "lldb-vscode",
+  --       --     name = "rt_lldb",
+  --       --   },
+  --       -- },
+  --       dap = {
+  --         adapter = require('rust-tools.dap').get_codelldb_adapter(
+  --           codelldb_path, liblldb_path)
+  --       }
+  --     })
+  --     rt.inlay_hints.enable()
+  --   end
+  -- }
 }
 
 require('leap').add_default_mappings()
