@@ -125,7 +125,24 @@
         "home-manager": "home-manager",
         "icat": "icat",
         "lunarvim": "lunarvim",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "termshot": "termshot"
+      }
+    },
+    "termshot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673445801,
+        "narHash": "sha256-CVNCTQc6LRug+LYrk1Znqll1L/vKbsu0x1GKNQloE1E=",
+        "owner": "homeport",
+        "repo": "termshot",
+        "rev": "3fec75db41287fbc5bba5e17f15572525639a99c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "homeport",
+        "repo": "termshot",
+        "type": "github"
       }
     },
     "utils": {

@@ -22,6 +22,10 @@
       url = "github:ogham/exa";
       flake = false;
     };
+    termshot = {
+      url = "github:homeport/termshot";
+      flake = false;
+    };
   };
 
   outputs = {

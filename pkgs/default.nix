@@ -3,4 +3,5 @@
 in {
   exa = import ./exa.nix inp;
   icat = import ./icat.nix inp;
+  termshot = import ./termshot.nix inp;
 }

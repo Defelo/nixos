@@ -58,6 +58,7 @@
     gh
     imagemagick
     _pkgs.icat
+    _pkgs.termshot
 
     obsidian
     vlc
