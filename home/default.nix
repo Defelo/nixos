@@ -21,6 +21,7 @@
     ./packages.nix
     ./pass.nix
     ./picom.nix
+    ./playerctld.nix
     ./polybar.nix
     ./redshift.nix
     ./rofi.nix
