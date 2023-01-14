@@ -32,10 +32,6 @@
       storage.path = "/crypt-storage/default";
     };
   };
-  boot.initrd.luks.devices.root2 = {
-    device = conf.partitions.crypt2;
-    preLVM = true;
-  };
 
   boot.blacklistedKernelModules = ["uvcvideo" "rtw88_8821ce"];
 }

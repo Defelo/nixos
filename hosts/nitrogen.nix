@@ -10,8 +10,7 @@ in rec {
 
   partitions = {
     boot = "/dev/disk/by-uuid/3476-D46E";
-    crypt = "/dev/disk/by-uuid/acabf7fe-1a29-47cd-8e10-9b8f88f936d4";
-    crypt2 = "/dev/disk/by-uuid/e17a10b8-36d5-4e7a-8435-8aa77f6db009";
+    crypt = "/dev/disk/by-uuid/bcedff9c-e5a0-4a07-84b2-1fa454aeab7f";
   };
 
   ykfde = false;
