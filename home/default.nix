@@ -31,6 +31,7 @@
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix
+    ./tmux.nix
     ./vifm.nix
     ./vscodium.nix
     ./x11.nix
