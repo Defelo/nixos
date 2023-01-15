@@ -52,6 +52,7 @@
     jq
     yq
     file
+    zip
     unp
     pwgen
     dig
