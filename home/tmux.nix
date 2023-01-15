@@ -5,7 +5,7 @@
     baseIndex = 1;
     clock24 = true;
     customPaneNavigationAndResize = true;
-    escapeTime = 1000;
+    escapeTime = 0;
     keyMode = "vi";
     prefix = "M-Space";
     resizeAmount = 5;
