@@ -60,6 +60,9 @@
     imagemagick
     _pkgs.icat
     _pkgs.termshot
+    exiftool
+    xxd
+    gnome.file-roller
 
     obsidian
     vlc
