@@ -13,6 +13,7 @@
     ./email.nix
     ./fcitx5.nix
     ./flameshot.nix
+    ./fzf.nix
     ./git.nix
     ./gpg.nix
     ./helix.nix

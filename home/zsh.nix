@@ -19,9 +19,6 @@
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
       bindkey '^ ' autosuggest-accept
 
-      bindkey "^R" history-incremental-search-backward
-      bindkey "^S" history-incremental-search-forward
-
       zstyle ':completion:*' menu select
 
       setopt autopushd
