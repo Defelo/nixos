@@ -17,6 +17,7 @@
     ./gpg.nix
     ./helix.nix
     ./lunarvim.nix
+    ./nix-index.nix
     ./onboard.nix
     ./packages.nix
     ./pass.nix
