@@ -17,6 +17,7 @@
     ./git.nix
     ./gpg.nix
     ./helix.nix
+    ./libreoffice.nix
     ./lunarvim.nix
     ./nix-index.nix
     ./onboard.nix
