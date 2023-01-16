@@ -3,6 +3,15 @@
     enable = true;
     languages = [
       {
+        name = "python";
+        auto-format = true;
+        language-server = {
+          command = "${pkgs.pyright}/bin/pyright-langserver";
+          args = ["--stdio"];
+        };
+        config = {};
+      }
+      {
         name = "nix";
         auto-format = true;
         language-server = {command = "${pkgs.nil}/bin/nil";};
