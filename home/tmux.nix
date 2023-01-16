@@ -10,12 +10,14 @@
     prefix = "M-Space";
     resizeAmount = 5;
     secureSocket = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     plugins = with pkgs.tmuxPlugins; [
       tmux-fzf
       onedark-theme
     ];
     extraConfig = ''
+      set -ag terminal-overrides ",xterm-256color:RGB"
+
       # switch panes using Ctrl+vimarrow without prefix
       bind -n C-h select-pane -L
       bind -n C-l select-pane -R

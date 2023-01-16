@@ -2,7 +2,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      # env.TERM = "xterm-256color";
+      env.TERM = "xterm-256color";
       window = {
         # opacity = 0.8;
         title = "Alacritty";
