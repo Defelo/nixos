@@ -25,9 +25,9 @@
     ./picom.nix
     ./playerctld.nix
     ./polybar.nix
+    ./programming
     ./redshift.nix
     ./rofi.nix
-    ./rust.nix
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix

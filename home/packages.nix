@@ -6,14 +6,6 @@
 }: {
   home.packages = with pkgs; [
     # programming
-    (python310.withPackages (pkgs:
-      with pkgs; [
-        numpy
-        pandas
-        matplotlib
-        scipy
-        jupyterlab
-      ]))
     gcc
     git
     git-crypt
