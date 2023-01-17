@@ -15,7 +15,15 @@
         name = "nix";
         auto-format = true;
         language-server.command = "${pkgs.nil}/bin/nil";
-        formatter = {command = "${pkgs.nixfmt}/bin/nixfmt";};
+        formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+      }
+      {
+        name = "bash";
+        auto-format = true;
+        language-server = {
+          command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
+          args = ["start"];
+        };
       }
     ];
     settings = {
