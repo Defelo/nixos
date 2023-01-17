@@ -38,6 +38,8 @@
 
         export LUNARVIM_BASE_DIR=~/.local/share/lunarvim/lvim
 
+        export TERM=alacritty
+
         exec -a lvim ${pkgs.neovim}/bin/nvim -u "$LUNARVIM_BASE_DIR/init.lua" "$@"
       '';
       target = ".local/bin/lvim";
