@@ -21,5 +21,6 @@
         propagatedBuildInputs = [tomli pastel];
         doCheck = false;
       })
+    pandoc
   ];
 }
