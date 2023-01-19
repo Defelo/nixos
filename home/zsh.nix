@@ -85,6 +85,11 @@
 
       cshot() { TERMSHOT_FLAGS="-c" shot "$@"; }
 
+      jupyter_export(){
+        base=$(basename "$1" .ipynb)
+        jupyter nbconvert "$1" --to pdf --output "''${base}.pdf"
+      }
+
       ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [
