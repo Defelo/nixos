@@ -21,6 +21,9 @@
       # start clipman
       PATH=${pkgs.xfce.xfce4-clipman-plugin}/bin:$PATH xfce4-clipman &
 
+      # start onboard
+      ${pkgs.onboard}/bin/onboard &
+
       # fix keyboard layout
       setxkbmap de nodeadkeys
 
