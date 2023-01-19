@@ -6,6 +6,7 @@
         pandas
         matplotlib
         scipy
+        scikit-learn
         jupyterlab
       ]))
     poetry
