@@ -66,6 +66,9 @@
           "$" = "goto_line_end";
           "G" = "goto_last_line";
         };
+        insert = {
+          "C-space" = "completion";
+        };
       };
     };
   };
