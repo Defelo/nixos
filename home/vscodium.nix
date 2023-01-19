@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-fork,
+  ...
+}: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -9,7 +13,7 @@
       eamodio.gitlens
       james-yu.latex-workshop
       kamadorueda.alejandra
-      ms-python.python
+      pkgs-fork.vscode-extensions.ms-python.python
       ms-toolsai.jupyter
       ms-toolsai.jupyter-keymap
       ms-toolsai.jupyter-renderers

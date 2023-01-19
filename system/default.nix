@@ -1,12 +1,22 @@
 {
   conf,
   nixpkgs,
+  nixpkgs-fork,
   home-manager,
   ...
 } @ inputs: let
   inherit (conf) system;
   pkgs = import ./unfree.nix {inherit nixpkgs system;};
-  specialArgs = inputs // {_pkgs = import ../pkgs (inputs // {inherit pkgs;});};
+  pkgs-fork = import ./unfree.nix {
+    inherit system;
+    nixpkgs = nixpkgs-fork;
+  };
+  specialArgs =
+    inputs
+    // {
+      inherit pkgs-fork;
+      _pkgs = import ../pkgs (inputs // {inherit pkgs pkgs-fork;});
+    };
 in
   nixpkgs.lib.nixosSystem rec {
     inherit system pkgs specialArgs;
