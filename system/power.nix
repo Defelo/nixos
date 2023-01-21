@@ -3,6 +3,7 @@
     enable = true;
   };
   powerManagement.powertop.enable = true;
+  services.tlp.enable = true;
   services.logind = {
     # lidSwitch = "suspend-then-hibernate";
     lidSwitch = "suspend";
