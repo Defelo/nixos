@@ -73,7 +73,7 @@
           p="$2"
           shift 2
         fi
-        nix shell "nixpkgs#$p" -c "$@"
+        NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "nixpkgs#$p" -c "$@"
       }
 
       shot() {
