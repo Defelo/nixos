@@ -1,4 +1,5 @@
 {
+  conf,
   pkgs,
   _pkgs,
   ...
@@ -88,6 +89,14 @@
       jupyter_export(){
         base=$(basename "$1" .ipynb)
         jupyter nbconvert "$1" --to pdf --output "''${base}.pdf"
+      }
+
+      backup() {
+        BORG_REPO="${conf.borg.repo}" \
+        BORG_PASSCOMMAND="sudo -u $(whoami) ${conf.borg.passcommand}" \
+        HEALTHCHECK="${conf.borg.healthcheck}" \
+        EXCLUDE_SYNCTHING="${toString conf.borg.exclude-syncthing}" \
+        ${../scripts/backup.sh}
       }
 
       ${pkgs.neofetch}/bin/neofetch

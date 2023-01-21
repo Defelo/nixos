@@ -55,6 +55,7 @@
     exiftool
     xxd
     gnome.file-roller
+    borgbackup
 
     obsidian
     vlc
