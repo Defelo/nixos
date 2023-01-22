@@ -9,6 +9,10 @@
           command = "${pkgs.pyright}/bin/pyright-langserver";
           args = ["--stdio"];
         };
+        formatter = {
+          command = "${pkgs.black}/bin/black";
+          args = ["-q" "-l" "120" "-"];
+        };
         config = {};
       }
       {
