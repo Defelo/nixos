@@ -10,8 +10,8 @@
           args = ["--stdio"];
         };
         formatter = {
-          command = "${pkgs.black}/bin/black";
-          args = ["-q" "-l" "120" "-"];
+          command = "/bin/sh";
+          args = ["-c" "${pkgs.isort}/bin/isort - | ${pkgs.black}/bin/black -q -l 120 -"];
         };
         config = {};
       }
