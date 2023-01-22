@@ -139,11 +139,11 @@
     },
     "nixpkgs-fork": {
       "locked": {
-        "lastModified": 1674132287,
-        "narHash": "sha256-tuEhLgSvpk2j1tUdrvkB1/08+KdsWjeEirZq6Ra73fg=",
+        "lastModified": 1674415478,
+        "narHash": "sha256-VXwg4wWBjjRmbQaMdA2tjwD4o41HL3hmZFBMtRQouc8=",
         "owner": "Defelo",
         "repo": "nixpkgs",
-        "rev": "f9d3db1bdd0e9dd453d258f042c164da94c513ff",
+        "rev": "743d63d56b7cc4bb9a597620fd359a58085d2b34",
         "type": "github"
       },
       "original": {
