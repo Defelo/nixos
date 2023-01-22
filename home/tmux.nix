@@ -18,11 +18,11 @@
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
 
-      # switch panes using Ctrl+vimarrow without prefix
-      bind -n C-h select-pane -L
-      bind -n C-l select-pane -R
-      bind -n C-k select-pane -U
-      bind -n C-j select-pane -D
+      # switch panes using Alt+vimarrow without prefix
+      bind -n M-h select-pane -L
+      bind -n M-l select-pane -R
+      bind -n M-k select-pane -U
+      bind -n M-j select-pane -D
 
       # switch windows using Alt+Number without prefix
       bind -n M-1 select-window -t1
