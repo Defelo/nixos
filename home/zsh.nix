@@ -33,7 +33,7 @@
         d=$(pwd)
         [[ $(echo $d | cut -d/ -f2) != "tmp" ]] && return
         cd
-        rm -r /tmp/$(echo $d | cut -d/ -f3)
+        rm -rf /tmp/$(echo $d | cut -d/ -f3)
       }
 
       clip() { xclip -selection clipboard }
