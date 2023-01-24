@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-fork,
+  ...
+}: {
   home.packages = with pkgs; [
     (python310.withPackages (p:
       with p; [
@@ -9,7 +13,7 @@
         scikit-learn
         jupyterlab
       ]))
-    poetry
+    pkgs-fork.poetry
     (with python310.pkgs;
       buildPythonApplication rec {
         pname = "poethepoet";
