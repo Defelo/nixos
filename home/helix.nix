@@ -11,7 +11,7 @@
         };
         formatter = {
           command = "/bin/sh";
-          args = ["-c" "${pkgs.isort}/bin/isort - | ${pkgs.black}/bin/black -q -l 120 -"];
+          args = ["-c" "${pkgs.isort}/bin/isort - | ${pkgs.black}/bin/black -q -l 120 -C -"];
         };
         config = {};
       }
