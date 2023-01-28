@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-fork,
+  pkgs-small,
   ...
 }: {
   programs.vscode = {
@@ -13,7 +13,7 @@
       eamodio.gitlens
       james-yu.latex-workshop
       kamadorueda.alejandra
-      pkgs-fork.vscode-extensions.ms-python.python
+      pkgs-small.vscode-extensions.ms-python.python
       ms-toolsai.jupyter
       ms-toolsai.jupyter-keymap
       ms-toolsai.jupyter-renderers

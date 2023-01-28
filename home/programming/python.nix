@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-fork,
+  pkgs-small,
   ...
 }: {
   home.packages = with pkgs; [
@@ -13,7 +13,7 @@
         scikit-learn
         jupyterlab
       ]))
-    pkgs-fork.poetry
+    pkgs-small.poetry
     (with python310.pkgs;
       buildPythonApplication rec {
         pname = "poethepoet";

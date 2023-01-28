@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-small,
+  ...
+}: {
   home.packages = with pkgs;
     [
-      libreoffice
+      pkgs-small.libreoffice
       hunspell
     ]
     ++ (with pkgs.hunspellDicts; [
