@@ -99,6 +99,21 @@
         ${../scripts/backup.sh}
       }
 
+      latex_preview() {
+        dir=$(mktemp -d)
+        pdflatex -output-directory="$dir" "$1" || return $?
+        (
+          ${pkgs.inotify-tools}/bin/inotifywait -m -e modify "$1" | \
+            while read; do
+              pdflatex -halt-on-error -output-directory="$dir" "$1"
+            done
+        ) &
+        pid=$!
+        ${pkgs.okular}/bin/okular "$dir"/*.pdf
+        kill $pid
+        rm -rf "$dir"
+      }
+
       ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [
