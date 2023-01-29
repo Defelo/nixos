@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    (python310.withPackages (p:
+    (python311.withPackages (p:
       with p; [
         numpy
         pandas
@@ -10,7 +10,7 @@
         jupyterlab
       ]))
     poetry
-    (with python310.pkgs;
+    (with python311.pkgs;
       buildPythonApplication rec {
         pname = "poethepoet";
         version = "0.18.1";
