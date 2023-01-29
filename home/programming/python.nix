@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-small,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     (python310.withPackages (p:
       with p; [
@@ -13,7 +9,7 @@
         scikit-learn
         jupyterlab
       ]))
-    pkgs-small.poetry
+    poetry
     (with python310.pkgs;
       buildPythonApplication rec {
         pname = "poethepoet";
