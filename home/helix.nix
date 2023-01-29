@@ -22,6 +22,11 @@
         formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
       }
       {
+        name = "latex";
+        auto-format = true;
+        language-server.command = "${pkgs.texlab}/bin/texlab";
+      }
+      {
         name = "bash";
         auto-format = true;
         language-server = {
