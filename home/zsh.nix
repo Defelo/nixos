@@ -99,6 +99,14 @@
         ${../scripts/backup.sh}
       }
 
+      latex() {
+        dir=$(mktemp -d)
+        pdflatex -output-directory="$dir" "$1" || return $?
+        pdflatex -output-directory="$dir" "$1" || return $?
+        mv "$dir"/*.pdf .
+        rm -rf "$dir"
+      }
+
       latex_preview() {
         dir=$(mktemp -d)
         pdflatex -output-directory="$dir" "$1" || return $?
