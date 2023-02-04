@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [rustup];
+{
+  pkgs,
+  _pkgs,
+  ...
+}: {
+  home.packages = with pkgs; [rustup _pkgs.sea-orm-cli];
   home.file.cargo = {
     text = ''
       [target.x86_64-unknown-linux-gnu]
