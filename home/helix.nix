@@ -19,7 +19,7 @@
         name = "nix";
         auto-format = true;
         language-server.command = "${pkgs.nil}/bin/nil";
-        formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+        formatter.command = "${pkgs.alejandra}/bin/alejandra";
       }
       {
         name = "latex";
