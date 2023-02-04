@@ -45,5 +45,10 @@
 
   home.sessionPath = ["$HOME/.local/bin" "$HOME/.cargo/bin"];
 
+  home.sessionVariables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
+
   home.stateVersion = "22.11";
 }
