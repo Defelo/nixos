@@ -3,6 +3,10 @@
     enable = true;
     languages = [
       {
+        name = "rust";
+        config.checkOnSave.command = "clippy";
+      }
+      {
         name = "python";
         auto-format = true;
         language-server = {
