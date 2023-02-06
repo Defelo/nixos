@@ -2,6 +2,7 @@
   conf,
   lib,
   pkgs,
+  hyprland,
   ...
 }: {
   imports = [
@@ -17,6 +18,7 @@
     ./git.nix
     ./gpg.nix
     ./helix.nix
+    ./hyprland.nix
     ./libreoffice.nix
     ./lunarvim.nix
     ./nix-index.nix
