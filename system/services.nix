@@ -9,7 +9,12 @@
 
   # services.openssh.enable = true;
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      features.buildkit = true;
+    };
+  };
 
   services.pcscd.enable = true;
 
