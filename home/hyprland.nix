@@ -24,6 +24,11 @@
         }
       }
 
+      general {
+        gaps_in=0
+        gaps_out=0
+      }
+
       bind=SUPER+SHIFT,Q,killactive,
       bind=SUPER+SHIFT,E,exit,
       bind=SUPER+SHIFT,Space,togglefloating,
