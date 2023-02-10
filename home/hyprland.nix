@@ -53,16 +53,16 @@
       bind=SUPER,9,workspace,9
       bind=SUPER,0,workspace,10
 
-      bind=SUPER+SHIFT,exclam,movetoworkspace,1
-      bind=SUPER+SHIFT,quotedbl,movetoworkspace,2
-      bind=SUPER+SHIFT,section,movetoworkspace,3
-      bind=SUPER+SHIFT,dollar,movetoworkspace,4
-      bind=SUPER+SHIFT,percent,movetoworkspace,5
-      bind=SUPER+SHIFT,ampersand,movetoworkspace,6
-      bind=SUPER+SHIFT,slash,movetoworkspace,7
-      bind=SUPER+SHIFT,parenleft,movetoworkspace,8
-      bind=SUPER+SHIFT,parenright,movetoworkspace,9
-      bind=SUPER+SHIFT,equal,movetoworkspace,10
+      bind=SUPER+SHIFT,1,movetoworkspacesilent,1
+      bind=SUPER+SHIFT,2,movetoworkspacesilent,2
+      bind=SUPER+SHIFT,3,movetoworkspacesilent,3
+      bind=SUPER+SHIFT,4,movetoworkspacesilent,4
+      bind=SUPER+SHIFT,5,movetoworkspacesilent,5
+      bind=SUPER+SHIFT,6,movetoworkspacesilent,6
+      bind=SUPER+SHIFT,7,movetoworkspacesilent,7
+      bind=SUPER+SHIFT,8,movetoworkspacesilent,8
+      bind=SUPER+SHIFT,9,movetoworkspacesilent,9
+      bind=SUPER+SHIFT,0,movetoworkspacesilent,10
 
       bind=SUPER,Return,exec,alacritty
       bind=SUPER,d,exec,${pkgs.rofi-wayland}/bin/rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons
