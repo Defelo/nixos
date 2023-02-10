@@ -27,6 +27,8 @@
       general {
         gaps_in=0
         gaps_out=0
+        col.active_border=0xff222d32
+        col.inactive_border=0xff2f343f
       }
 
       bind=SUPER+SHIFT,Q,killactive,
