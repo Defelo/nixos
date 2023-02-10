@@ -40,6 +40,10 @@
 
       bind=SUPER,f,fullscreen,0
 
+      bind=SUPER,w,togglegroup,
+      bind=SUPER,n,changegroupactive,b
+      bind=SUPER,o,changegroupactive,f
+
       bind=SUPER,Tab,workspace,previous
 
       bind=SUPER,1,workspace,1
