@@ -121,8 +121,6 @@
         kill $pid
         rm -rf "$dir"
       }
-
-      ${pkgs.neofetch}/bin/neofetch
     '';
     plugins = [
       {
@@ -138,7 +136,7 @@
       tre = "ls -alT";
       vim = "nvim";
       vi = "nvim";
-      c = ''printf "\033c"; ${pkgs.neofetch}/bin/neofetch'';
+      c = "clear";
       h = "cd;c";
       grep = "grep --color=auto";
       f = "cd $(pwd -P)";
