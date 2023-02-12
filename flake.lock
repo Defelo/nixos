@@ -137,38 +137,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-fork": {
-      "locked": {
-        "lastModified": 1674598054,
-        "narHash": "sha256-5Vxr7moHMhsXqXjlrCAXS+ZaeCUJ/ZsUrHve3IYDTvc=",
-        "owner": "Defelo",
-        "repo": "nixpkgs",
-        "rev": "cdf76a0906135bd15eb9325059843aa471cc5b10",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Defelo",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-small": {
-      "locked": {
-        "lastModified": 1676037601,
-        "narHash": "sha256-I+sNMIVnmarjnPnjp7xupQXzbUroNc3EWQkGPFv4w4M=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f8e875671f248c21a49a7f914117c28135d4c588",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "cheatsheets": "cheatsheets",
@@ -179,8 +147,6 @@
         "lunarvim": "lunarvim",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-fork": "nixpkgs-fork",
-        "nixpkgs-small": "nixpkgs-small",
         "termshot": "termshot"
       }
     },
