@@ -29,7 +29,7 @@
 
       mkcd() { mkdir -p "$1"; cd "$1" }
 
-      temp() { cd $(mktemp -d) }
+      temp() { (d=$(mktemp -d); cd "$d"; zsh && rm -rf "$d") }
       deltemp() {
         d=$(pwd)
         [[ $(echo $d | cut -d/ -f2) != "tmp" ]] && return
