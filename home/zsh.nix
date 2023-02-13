@@ -122,6 +122,15 @@
         kill $pid
         rm -rf "$dir"
       }
+
+      conf() {
+        tmux new -d -s nixos -c ~/nixos hx flake.nix
+        if [[ -n "$TMUX" ]]; then
+          tmux switch-client -t nixos
+        else
+          tmux a -t nixos
+        fi
+      }
     '';
     plugins = [
       {
@@ -162,7 +171,7 @@
       rebuild-test = "_rebuild test && source ~/.zshrc";
       rebuild-boot = "_rebuild boot && source ~/.zshrc";
       update = "_update && source ~/.zshrc";
-      conf = "vim ~/nixos/flake.nix";
+      # conf = "vim ~/nixos/flake.nix";
       repl = "nix repl -f '<nixpkgs>'";
     };
   };

@@ -79,6 +79,7 @@ in {
       "${mod}+Ctrl+M" = "exec ${../scripts/rofipass.sh}";
       "${mod}+P" = "exec alacritty -e python";
       "${mod}+Shift+P" = "exec alacritty -e pulsemixer";
+      "${mod}+numbersign" = "exec alacritty -e tmux new -A -s nixos -c ~/nixos hx flake.nix";
 
       "${mod}+odiaeresis" = "exec systemctl --user status picom && systemctl --user stop picom || systemctl --user start picom";
 
