@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     rustup
     rust-analyzer
+    bacon
     cargo-expand
     cargo-edit
     _pkgs.sea-orm-cli
