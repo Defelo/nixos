@@ -3,7 +3,13 @@
   _pkgs,
   ...
 }: {
-  home.packages = with pkgs; [rustup _pkgs.sea-orm-cli];
+  home.packages = with pkgs; [
+    rustup
+    rust-analyzer
+    cargo-expand
+    cargo-edit
+    _pkgs.sea-orm-cli
+  ];
   home.file.cargo = {
     text = ''
       [target.x86_64-unknown-linux-gnu]

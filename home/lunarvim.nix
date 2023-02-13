@@ -11,7 +11,6 @@
 
     # language servers
     pyright # python
-    rust-analyzer # rust
     rnix-lsp # nix
 
     # formatters
