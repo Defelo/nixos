@@ -12,24 +12,12 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lunarvim = {
-      url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
-      flake = false;
-    };
+    # lunarvim = {
+    #   url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
+    #   flake = false;
+    # };
     cheatsheets = {
       url = "github:cheat/cheatsheets";
-      flake = false;
-    };
-    icat = {
-      url = "github:atextor/icat";
-      flake = false;
-    };
-    exa = {
-      url = "github:ogham/exa";
-      flake = false;
-    };
-    termshot = {
-      url = "github:homeport/termshot";
       flake = false;
     };
   };

@@ -16,22 +16,6 @@
         "type": "github"
       }
     },
-    "exa": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1658161502,
-        "narHash": "sha256-lB6i4HlxZhhaDGZ5l4iT0DlG5HciVL8ARC82hJww8k0=",
-        "owner": "ogham",
-        "repo": "exa",
-        "rev": "e385cd58da9d2e86425250b108e87e4a69904f5c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ogham",
-        "repo": "exa",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1676283394,
@@ -65,39 +49,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "icat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1673327607,
-        "narHash": "sha256-b/2mRzCTyGkz2I1U+leUhspvW77VcHN7Awp+BVdVNRM=",
-        "owner": "atextor",
-        "repo": "icat",
-        "rev": "9b5aa622fdfbfbd37a97c9b8d3258100e1d26cd6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "atextor",
-        "repo": "icat",
-        "type": "github"
-      }
-    },
-    "lunarvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1668975487,
-        "narHash": "sha256-HHfqFi6SHmbKjvmkI5uDvDccN4uyKsjSVEdaZJ2s7xc=",
-        "owner": "lunarvim",
-        "repo": "lunarvim",
-        "rev": "8f4a7bdeb177bed5458ab9cc213519faa8a11859",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lunarvim",
-        "ref": "release-1.2/neovim-0.8",
-        "repo": "lunarvim",
         "type": "github"
       }
     },
@@ -140,30 +91,10 @@
     "root": {
       "inputs": {
         "cheatsheets": "cheatsheets",
-        "exa": "exa",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "icat": "icat",
-        "lunarvim": "lunarvim",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs",
-        "termshot": "termshot"
-      }
-    },
-    "termshot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1675951380,
-        "narHash": "sha256-fQPDGHM1vjWs070e9rZBSlduryDY2jO02joaU0/lBjs=",
-        "owner": "homeport",
-        "repo": "termshot",
-        "rev": "fb83973dd14219b42ea81053633cd2bd1c8b763f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "homeport",
-        "repo": "termshot",
-        "type": "github"
+        "nixpkgs": "nixpkgs"
       }
     },
     "utils": {

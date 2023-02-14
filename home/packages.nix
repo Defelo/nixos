@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     # programming
     gcc
+    gnumake
     git
     git-crypt
     just
@@ -56,6 +57,8 @@
     xxd
     gnome.file-roller
     borgbackup
+    xclip
+    ripgrep
 
     obsidian
     vlc
