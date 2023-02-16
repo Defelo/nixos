@@ -124,7 +124,7 @@
       }
 
       conf() {
-        tmux new -d -s nixos -c ~/nixos hx flake.nix
+        tmux new -d -s nixos -c ~/nixos hx flake.nix && tmux split -h -t nixos -c ~/nixos -d -l '30%'
         if [[ -n "$TMUX" ]]; then
           tmux switch-client -t nixos
         else
