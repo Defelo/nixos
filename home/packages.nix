@@ -64,5 +64,6 @@
     vlc
     texlive.combined.scheme-full
     okular
+    anki-bin
   ];
 }
