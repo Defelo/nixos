@@ -37,6 +37,7 @@
     ./vscodium.nix
     ./x11.nix
     ./xournalpp.nix
+    ./yubikey.nix
     ./zsh.nix
   ];
 

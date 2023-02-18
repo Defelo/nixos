@@ -89,6 +89,7 @@
         modules-left = modules ["workspaces" "window" "scratch"];
         modules-center = modules [];
         modules-right = modules [
+          "yk"
           "screenshot"
           "mem"
           "swap"
@@ -140,23 +141,22 @@
         interval = 1;
         format-underline = acolor;
       };
-      # "module/yk" =
-      #   let
-      #     script = builtins.toFile "yktd.py" ''
-      #       import socket, os
-      #       s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-      #       s.connect(f"/run/user/{os.getuid()}/yubikey-touch-detector.socket")
-      #       def update(touch):
-      #         print(""*touch, flush=True)
-      #         os.system(f"polybar-msg action yk module_{['hide','show'][touch]} > /dev/null")
-      #       update(False)
-      #       while True: update(s.recv(5).decode().endswith("1"))
-      #     ''; in
-      #   {
-      #     type = "custom/script";
-      #     exec = "${pkgs.python311}/bin/python ${script}";
-      #     tail = true;
-      #   };
+      "module/yk" = let
+        script = builtins.toFile "yktd.py" ''
+          import socket, os
+          s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+          s.connect(f"/run/user/{os.getuid()}/yubikey-touch-detector.socket")
+          def update(touch):
+            print(""*touch, flush=True)
+            os.system(f"polybar-msg action yk module_{['hide','show'][touch]} > /dev/null")
+          update(False)
+          while True: update(s.recv(5).decode().endswith("1"))
+        '';
+      in {
+        type = "custom/script";
+        exec = "${pkgs.python311}/bin/python ${script}";
+        tail = true;
+      };
       "module/screenshot" = {
         type = "custom/text";
         content = "";
