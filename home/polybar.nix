@@ -206,7 +206,7 @@
       "module/webcam" = {
         type = "custom/script";
         exec = ''"lsmod | grep -q uvcvideo && echo "" || echo %{u#000}%{-u}%{F#999}"'';
-        click-left = ''"alacritty -e sudo modprobe $(lsmod | grep -q uvcvideo && echo -r) uvcvideo"'';
+        click-left = ''"alacritty -e /run/wrappers/bin/sudo modprobe $(lsmod | grep -q uvcvideo && echo -r) uvcvideo"'';
         format-underline = acolor;
         interval = 10;
       };
