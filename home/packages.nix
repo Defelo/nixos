@@ -65,5 +65,6 @@
     texlive.combined.scheme-full
     okular
     anki-bin
+    spotify
   ];
 }

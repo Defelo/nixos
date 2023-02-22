@@ -12,5 +12,6 @@ import nixpkgs {
       "steam"
       "steam-original"
       "steam-run"
+      "spotify"
     ];
 }
