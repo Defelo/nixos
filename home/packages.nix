@@ -59,6 +59,7 @@
     borgbackup
     xclip
     ripgrep
+    xdotool
 
     obsidian
     vlc
