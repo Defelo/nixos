@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   programs.helix = {
     enable = true;
     languages = [
@@ -10,7 +14,7 @@
         name = "python";
         auto-format = true;
         language-server = {
-          command = "${pkgs.pyright}/bin/pyright-langserver";
+          command = "${pkgs-stable.pyright}/bin/pyright-langserver";
           args = ["--stdio"];
         };
         formatter = {

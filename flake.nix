@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
     # nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     # nixpkgs-fork.url = "github:Defelo/nixpkgs/nixos-unstable";
     home-manager = {

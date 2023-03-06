@@ -1,6 +1,7 @@
 {
   conf,
   nixpkgs,
+  nixpkgs-stable,
   # nixpkgs-small,
   # nixpkgs-fork,
   home-manager,
@@ -8,6 +9,10 @@
 } @ inputs: let
   inherit (conf) system;
   pkgs = import ./unfree.nix {inherit nixpkgs system;};
+  pkgs-stable = import ./unfree.nix {
+    inherit system;
+    nixpkgs = nixpkgs-stable;
+  };
   # pkgs-small = import ./unfree.nix {
   #   inherit system;
   #   nixpkgs = nixpkgs-small;
@@ -19,10 +24,11 @@
   specialArgs =
     inputs
     // {
+      inherit pkgs-stable;
       # inherit pkgs-small pkgs-fork;
       _pkgs = import ../pkgs (inputs
         // {
-          inherit pkgs;
+          inherit pkgs pkgs-stable;
           # inherit pkgs-small;
           # inherit pkgs-fork;
         });
