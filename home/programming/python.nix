@@ -11,5 +11,6 @@
     poetry
     _pkgs.poethepoet
     pyright
+    ruff
   ];
 }
