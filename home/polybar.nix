@@ -7,7 +7,7 @@
   in {
     enable = true;
     script = let
-      dependencies = with pkgs; [polybar coreutils-full gnugrep dbus i3-gaps dunst bluez kmod alacritty upower];
+      dependencies = with pkgs; [polybar coreutils-full gnugrep dbus i3-gaps dunst bluez kmod alacritty upower gawk];
     in ''
       (
         export PATH=${pkgs.lib.makeBinPath dependencies}
