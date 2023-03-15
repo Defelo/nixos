@@ -1,4 +1,5 @@
 {
+  conf,
   pkgs,
   _pkgs,
   ...
@@ -21,5 +22,9 @@
       protocol = "sparse"
     '';
     target = ".cargo/config.toml";
+  };
+
+  home.sessionVariables = {
+    CARGO_TARGET_DIR = "${conf.home}/.cargo/target";
   };
 }
