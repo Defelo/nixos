@@ -174,6 +174,7 @@
       mnt = "source ${../scripts/mount.sh}";
       tt = "${../scripts/timetracker.sh}";
       beamer = "${../scripts/beamer.sh}";
+      drss = "${../scripts/download_rss.sh}";
       rebuild = "_rebuild && source ~/.zshrc";
       rebuild-test = "_rebuild test && source ~/.zshrc";
       rebuild-boot = "_rebuild boot && source ~/.zshrc";
