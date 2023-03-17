@@ -1,9 +1,4 @@
-{
-  conf,
-  lib,
-  pkgs,
-  ...
-}: {
+{conf, ...}: {
   imports = [
     ./alacritty.nix
     ./calendar.nix
@@ -17,7 +12,7 @@
     ./git.nix
     ./gpg.nix
     ./helix.nix
-    ./libreoffice.nix
+    # ./libreoffice.nix
     # ./lunarvim.nix
     ./nix-index.nix
     ./onboard.nix
@@ -34,7 +29,7 @@
     ./theme.nix
     ./tmux.nix
     ./vifm.nix
-    ./vscodium.nix
+    # ./vscodium.nix
     ./x11.nix
     ./xournalpp.nix
     ./yubikey.nix

@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   _pkgs,
   ...
@@ -51,11 +50,11 @@
     dig
     gh
     imagemagick
-    _pkgs.icat
+    # _pkgs.icat
     _pkgs.termshot
-    exiftool
+    # exiftool
     xxd
-    gnome.file-roller
+    # gnome.file-roller
     borgbackup
     xclip
     ripgrep
