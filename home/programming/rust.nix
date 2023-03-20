@@ -20,6 +20,9 @@
 
       [registries.crates-io]
       protocol = "sparse"
+
+      [profile.dev]
+      opt-level = 1
     '';
     target = ".cargo/config.toml";
   };
