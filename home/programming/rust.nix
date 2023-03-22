@@ -11,6 +11,7 @@
     cargo-expand
     cargo-edit
     cargo-audit
+    cargo-llvm-cov
     _pkgs.sea-orm-cli
   ];
   home.file.cargo = {
