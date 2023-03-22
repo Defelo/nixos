@@ -10,6 +10,7 @@
     bacon
     cargo-expand
     cargo-edit
+    cargo-audit
     _pkgs.sea-orm-cli
   ];
   home.file.cargo = {
