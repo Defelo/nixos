@@ -10,6 +10,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "de";
 
+  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   environment.variables = {
