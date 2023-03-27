@@ -29,11 +29,11 @@
         language-server.command = "${pkgs.nil}/bin/nil";
         formatter.command = "${pkgs.alejandra}/bin/alejandra";
       }
-      {
-        name = "latex";
-        auto-format = true;
-        language-server.command = "${pkgs.texlab}/bin/texlab";
-      }
+      # {
+      #   name = "latex";
+      #   auto-format = true;
+      #   language-server.command = "${pkgs.texlab}/bin/texlab";
+      # }
       {
         name = "bash";
         auto-format = true;
