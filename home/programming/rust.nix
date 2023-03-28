@@ -13,6 +13,7 @@
     cargo-audit
     cargo-llvm-cov
     cargo-msrv
+    cargo-release
     _pkgs.sea-orm-cli
   ];
   home.file.cargo = {
