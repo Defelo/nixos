@@ -21,6 +21,7 @@
       url = "github:cheat/cheatsheets";
       flake = false;
     };
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
   outputs = {
