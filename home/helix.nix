@@ -8,7 +8,10 @@
     languages = [
       {
         name = "rust";
-        config.checkOnSave.command = "clippy";
+        config = {
+          checkOnSave.command = "clippy";
+          cargo.features = "all";
+        };
       }
       {
         name = "python";
