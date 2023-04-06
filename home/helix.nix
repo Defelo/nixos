@@ -59,6 +59,7 @@
           left = ["mode" "spinner"];
           center = ["file-name"];
           right = [
+            "version-control"
             "diagnostics"
             "selections"
             "position"
@@ -69,8 +70,16 @@
           ];
           separator = "|";
         };
-        lsp = {display-messages = true;};
+        lsp = {
+          display-messages = true;
+          display-inlay-hints = true;
+        };
         indent-guides = {render = true;};
+        idle-timeout = 0;
+        bufferline = "always";
+        soft-wrap = {
+          enable = true;
+        };
       };
       keys = {
         normal = {
