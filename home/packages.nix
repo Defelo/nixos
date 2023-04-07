@@ -32,6 +32,7 @@
     playerctl
     wirelesstools
     iw
+    nix-output-monitor
 
     # utils
     htop
