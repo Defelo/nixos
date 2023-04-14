@@ -7,6 +7,7 @@
     (python311.withPackages (p:
       with p; [
         numpy
+        requests
       ]))
     poetry
     _pkgs.poethepoet
