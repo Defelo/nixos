@@ -54,7 +54,7 @@
 
       _rebuild() {
         current=$(realpath /run/current-system)
-        new=$(nix build --keep-going --print-out-paths --no-link ~/nixos#nixosConfigurations.$(cat /proc/sys/kernel/hostname).config.system.build.toplevel) || return $?
+        new=$(${pkgs.nix-output-monitor}/bin/nom build --keep-going --print-out-paths --no-link ~/nixos#nixosConfigurations.$(cat /proc/sys/kernel/hostname).config.system.build.toplevel) || return $?
         if [[ "$new" = "$current" ]]; then
           echo "up to date"
           return 1
