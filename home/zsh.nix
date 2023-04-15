@@ -175,10 +175,10 @@
       tt = "${../scripts/timetracker.sh}";
       beamer = "${../scripts/beamer.sh}";
       drss = "${../scripts/download_rss.sh}";
-      rebuild = "_rebuild && source ~/.zshrc";
-      rebuild-test = "_rebuild test && source ~/.zshrc";
-      rebuild-boot = "_rebuild boot && source ~/.zshrc";
-      update = "_update && source ~/.zshrc";
+      sys-rebuild = "_rebuild && source ~/.zshrc";
+      sys-rebuild-test = "_rebuild test && source ~/.zshrc";
+      sys-rebuild-boot = "_rebuild boot && source ~/.zshrc";
+      sys-update = "_update && source ~/.zshrc";
       # conf = "vim ~/nixos/flake.nix";
       repl = "nix repl -f '<nixpkgs>'";
     };
