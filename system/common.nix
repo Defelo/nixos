@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  boot.tmpOnTmpfs = true;
+  boot.tmp.useTmpfs = true;
 
   time.timeZone = "Europe/Berlin";
 
