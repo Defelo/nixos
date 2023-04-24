@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   networking.hostName = "nitrogen";
 
   networking.networkmanager = {
@@ -8,16 +12,19 @@
     dispatcherScripts = [
       {
         type = "basic";
-        source = with (import ../secrets.nix).nm; let
+        source = let
+          vpn.default = config.sops.secrets."networking/vpn/default".path;
+          vpn.full = config.sops.secrets."networking/vpn/full".path;
+          wifi.trusted = config.sops.secrets."networking/wifi/trusted".path;
           nmcli = "${pkgs.networkmanager}/bin/nmcli";
-          is_trusted = builtins.concatStringsSep " || " (map (x: ''[[ "$CONNECTION_UUID" = "${x}" ]]'') trusted);
+          is_trusted = ''${pkgs.gnugrep}/bin/grep -q "^$CONNECTION_UUID$" ${wifi.trusted}'';
         in
           pkgs.writeText "trusted-networks" ''
             if ${is_trusted}; then
               if [[ "$2" = "up" ]]; then
-                ${nmcli} c up "${vpn.default}";
+                ${nmcli} c up "$(${pkgs.coreutils}/bin/cat ${vpn.default})";
               else
-                ${nmcli} c up "${vpn.full}";
+                ${nmcli} c up "$(${pkgs.coreutils}/bin/cat ${vpn.full})";
               fi
             fi
           '';
@@ -48,12 +55,27 @@
     '';
   };
 
-  environment.etc = with pkgs.lib.attrsets;
-    mapAttrs'
-    (name: value:
-      nameValuePair ("NetworkManager/system-connections/" + name + ".nmconnection") {
-        text = value;
-        mode = "0400";
-      })
-    (import ../secrets.nix).nm.connections;
+  sops.secrets =
+    builtins.listToAttrs (builtins.map (name: {
+      name = "networking/nm-connection-${name}.nmconnection";
+      value = {
+        format = "binary";
+        sopsFile = ../secrets/nm-connections + "/${name}";
+        path = "/etc/NetworkManager/system-connections/${name}.nmconnection";
+      };
+    }) (builtins.attrNames (builtins.readDir ../secrets/nm-connections)))
+    // {
+      "networking/vpn/default" = {
+        sopsFile = ../secrets/networking.yml;
+        key = "vpn/default";
+      };
+      "networking/vpn/full" = {
+        sopsFile = ../secrets/networking.yml;
+        key = "vpn/full";
+      };
+      "networking/wifi/trusted" = {
+        sopsFile = ../secrets/networking.yml;
+        key = "wifi/trusted";
+      };
+    };
 }

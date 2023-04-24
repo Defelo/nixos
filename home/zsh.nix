@@ -171,6 +171,7 @@
       lsblk = "lsblk -M";
       type = "which";
       j = "just";
+      qmv = "qmv -f destination-only";
       mnt = "source ${../scripts/mount.sh}";
       tt = "${../scripts/timetracker.sh}";
       beamer = "${../scripts/beamer.sh}";

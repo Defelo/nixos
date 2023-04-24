@@ -1,0 +1,8 @@
+keys:
+  - &defelo 61303BBAD7D1BF74EFA44E3BE7FE2087E4380E64
+  - &nitrogen age1v9szwgk0xp383z9fu657kzp60mpxlsg4lm0c73xest7xdrcf4qnqfwlnrd
+creation_rules:
+  - path_regex: secrets/.+$
+    key_groups:
+      - pgp: [ *defelo ]
+        age: [ *nitrogen ]

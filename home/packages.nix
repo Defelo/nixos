@@ -60,6 +60,9 @@
     xclip
     ripgrep
     xdotool
+    age
+    sops
+    renameutils
 
     obsidian
     vlc

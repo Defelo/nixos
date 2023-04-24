@@ -48,6 +48,7 @@ in
       ./networking.nix
       ./power.nix
       ./services.nix
+      ./sops.nix
       # ./steam.nix
       ./users.nix
       ./x11.nix

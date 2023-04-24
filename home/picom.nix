@@ -22,8 +22,8 @@
       };
     in
       pkgs.lib.attrsets.mapAttrsToList (key: value: "${toString value}:class_g = '${key}'") rules;
-    settings = {
-      corner-radius = 4;
-    };
+    # settings = {
+    #   corner-radius = 4;
+    # };
   };
 }
