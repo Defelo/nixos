@@ -30,7 +30,7 @@
     ./theme.nix
     ./tmux.nix
     ./vifm.nix
-    # ./vscodium.nix
+    ./vscodium.nix
     ./x11.nix
     ./xournalpp.nix
     ./yubikey.nix
