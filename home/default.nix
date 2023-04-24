@@ -5,7 +5,7 @@
     ./cheat.nix
     ./direnv.nix
     ./dunst.nix
-    ./emacs.nix
+    # ./emacs.nix
     ./email.nix
     ./fcitx5.nix
     ./flameshot.nix
