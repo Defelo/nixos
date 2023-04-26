@@ -25,6 +25,7 @@
     ./programming
     ./redshift.nix
     ./rofi.nix
+    ./sops.nix
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix
