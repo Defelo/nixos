@@ -1,8 +1,8 @@
 {...}: {
-  services.redshift = with (import ../secrets.nix).location; {
+  services.redshift = {
     enable = true;
     tray = true;
-    inherit latitude longitude;
+    provider = "geoclue2";
     temperature = {
       day = 6500;
       night = 4000;

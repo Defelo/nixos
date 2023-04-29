@@ -45,6 +45,7 @@ in
       ./bluetooth.nix
       ./boot.nix
       ./fonts.nix
+      ./geoclue2.nix
       ./networking.nix
       ./power.nix
       ./services.nix
