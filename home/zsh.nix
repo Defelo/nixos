@@ -1,4 +1,5 @@
 {
+  config,
   conf,
   pkgs,
   _pkgs,
@@ -93,11 +94,13 @@
       }
 
       backup() {
-        BORG_REPO="${conf.borg.repo}" \
-        BORG_PASSCOMMAND="sudo -u $(whoami) ${conf.borg.passcommand}" \
-        HEALTHCHECK="${conf.borg.healthcheck}" \
-        EXCLUDE_SYNCTHING="${toString conf.borg.exclude-syncthing}" \
-        ${../scripts/backup.sh}
+        (
+          export BORG_REPO="$(cat ${config.sops.secrets."borg/${conf.hostname}/borg_repo".path})"
+          export BORG_PASSCOMMAND="sudo -u $(whoami) $(cat ${config.sops.secrets."borg/${conf.hostname}/borg_passcommand".path})"
+          export HEALTHCHECK="$(cat ${config.sops.secrets."borg/${conf.hostname}/healthcheck".path})"
+          export EXCLUDE_SYNCTHING="$(cat ${config.sops.secrets."borg/${conf.hostname}/exclude_syncthing".path})"
+          ${../scripts/backup.sh}
+        )
       }
 
       latex() {
@@ -183,5 +186,11 @@
       # conf = "vim ~/nixos/flake.nix";
       repl = "nix repl -f '<nixpkgs>'";
     };
+  };
+  sops.secrets = {
+    "borg/${conf.hostname}/borg_repo" = {};
+    "borg/${conf.hostname}/borg_passcommand" = {};
+    "borg/${conf.hostname}/healthcheck" = {};
+    "borg/${conf.hostname}/exclude_syncthing" = {};
   };
 }
