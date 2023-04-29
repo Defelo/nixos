@@ -12,7 +12,12 @@
     font.name = "Cantarell";
     font.size = 12;
     font.package = pkgs.cantarell-fonts;
-    gtk3.bookmarks = map (f: "file://${f}") ((import ../secrets.nix).gtk.bookmarks conf.home);
+  };
+
+  sops.secrets."gtk/bookmarks" = {
+    format = "binary";
+    sopsFile = ../secrets/gtk/bookmarks;
+    path = "${conf.home}/.config/gtk-3.0/bookmarks";
   };
 
   home.pointerCursor = {
