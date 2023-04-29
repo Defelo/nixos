@@ -65,17 +65,8 @@
       };
     }) (builtins.attrNames (builtins.readDir ../secrets/nm-connections)))
     // {
-      "networking/vpn/default" = {
-        sopsFile = ../secrets/networking.yml;
-        key = "vpn/default";
-      };
-      "networking/vpn/full" = {
-        sopsFile = ../secrets/networking.yml;
-        key = "vpn/full";
-      };
-      "networking/wifi/trusted" = {
-        sopsFile = ../secrets/networking.yml;
-        key = "wifi/trusted";
-      };
+      "networking/vpn/default" = {};
+      "networking/vpn/full" = {};
+      "networking/wifi/trusted" = {};
     };
 }
