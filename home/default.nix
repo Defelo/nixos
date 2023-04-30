@@ -1,12 +1,10 @@
 {conf, ...}: {
   imports = [
     ./alacritty.nix
-    ./calendar.nix
     ./cheat.nix
     ./direnv.nix
     ./dunst.nix
     # ./emacs.nix
-    ./email.nix
     ./fcitx5.nix
     ./flameshot.nix
     ./fzf.nix
@@ -29,6 +27,7 @@
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix
+    ./thunderbird
     ./tmux.nix
     ./vifm.nix
     ./vscodium.nix
@@ -47,6 +46,8 @@
     EDITOR = "hx";
     VISUAL = "hx";
   };
+
+  systemd.user.startServices = "sd-switch";
 
   home.stateVersion = "22.11";
 }
