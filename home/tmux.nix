@@ -20,6 +20,11 @@
 
       set-option -g detach-on-destroy off
 
+      # open new panes in same directory
+      bind '"' split-window -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+      bind c new-window -c "#{pane_current_path}"
+
       # switch panes using Alt+vimarrow without prefix
       bind -n M-h select-pane -L
       bind -n M-l select-pane -R
