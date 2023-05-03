@@ -1,9 +1,10 @@
 {
+  conf,
   config,
   pkgs,
   ...
 }: {
-  networking.hostName = "nitrogen";
+  networking.hostName = conf.hostname;
 
   networking.networkmanager = {
     enable = true;
