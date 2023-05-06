@@ -11,6 +11,7 @@
     cargo-expand
     cargo-edit
     cargo-audit
+    cargo-hack
     cargo-llvm-cov
     cargo-msrv
     cargo-release
