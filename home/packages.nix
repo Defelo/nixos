@@ -59,6 +59,7 @@
     borgbackup
     xclip
     ripgrep
+    sd
     xdotool
     age
     sops
