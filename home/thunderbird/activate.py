@@ -20,9 +20,9 @@ for acc in config["email"]["accounts"]:
 
     out[f"mail.account.account_{id}.identities"] = f"id_{id}"
     out[f"mail.account.account_{id}.server"] = f"server_{id}"
-    out[f"mail.account.account_{id}.fullName"] = acc["realName"]
-    out[f"mail.account.account_{id}.useremail"] = acc["address"]
-    out[f"mail.account.account_{id}.valid"] = True
+    out[f"mail.identity.id_{id}.fullName"] = acc["realName"]
+    out[f"mail.identity.id_{id}.useremail"] = acc["address"]
+    out[f"mail.identity.id_{id}.valid"] = True
 
     if acc.get("primary"):
         out["mail.accountmanager.defaultaccount"] = f"account_{id}"
