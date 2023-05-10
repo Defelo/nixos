@@ -38,6 +38,14 @@ for acc in config["email"]["accounts"]:
         out[f"mail.identity.id_{id}.protectSubject"] = False
         out[f"mail.identity.id_{id}.sign_mail"] = True
 
+    if acc["address"].endswith("@gmail.com"):
+        imap = acc.setdefault("imap", {})
+        imap.setdefault("host", "imap.gmail.com")
+        imap.setdefault("port", 993)
+        smtp = acc.setdefault("smtp", {})
+        smtp.setdefault("host", "smtp.gmail.com")
+        smtp.setdefault("port", 587)
+
     if imap := acc.get("imap"):
         out[f"mail.server.server_{id}.directory"] = f".thunderbird/default/ImapMail/{id}"
         out[f"mail.server.server_{id}.directory-rel"] = f"[ProfD]ImapMail/{id}"
@@ -45,7 +53,7 @@ for acc in config["email"]["accounts"]:
         out[f"mail.server.server_{id}.login_at_startup"] = True
         out[f"mail.server.server_{id}.name"] = acc["address"]
         out[f"mail.server.server_{id}.port"] = imap.get("port", 143)
-        out[f"mail.server.server_{id}.socketType"] = 2
+        out[f"mail.server.server_{id}.socketType"] = 3 if imap.get("port") == 993 else 2
         out[f"mail.server.server_{id}.type"] = "imap"
         out[f"mail.server.server_{id}.userName"] = acc["userName"]
 
