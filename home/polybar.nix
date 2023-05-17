@@ -98,6 +98,7 @@
           "light"
           "volume"
           "webcam"
+          "plug"
           "battery"
           "btpower"
           "network-wired"
@@ -208,6 +209,25 @@
         exec = ''"lsmod | grep -q uvcvideo && echo "" || echo %{u#000}%{-u}%{F#999}"'';
         click-left = ''"alacritty -e /run/wrappers/bin/sudo modprobe $(lsmod | grep -q uvcvideo && echo -r) uvcvideo"'';
         format-underline = acolor;
+        interval = 10;
+      };
+      "module/plug" = let
+        script = pkgs.writeShellScript "plug.sh" ''
+          p=$(${pkgs.upower}/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{print $2}' | head -c -2)
+          state=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk '{print $2}')
+          if [[ "$state" != "charging" ]] && [[ $p -lt 30 ]]; then
+            echo "%{F#0f0}"
+            polybar-msg action plug module_show > /dev/null
+          elif [[ "$state" = "charging" ]] && [[ $p -ge 70 ]]; then
+            echo "%{F#f00}"
+            polybar-msg action plug module_show > /dev/null
+          else
+            polybar-msg action plug module_hide > /dev/null
+          fi
+        '';
+      in {
+        type = "custom/script";
+        exec = "${pkgs.bash}/bin/bash ${script}";
         interval = 10;
       };
       "module/battery" = {
