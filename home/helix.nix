@@ -8,6 +8,7 @@
     languages = [
       {
         name = "rust";
+        language-server.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         config = {
           checkOnSave.command = "clippy";
           cargo.features = "all";
