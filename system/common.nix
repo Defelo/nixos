@@ -36,6 +36,14 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes" "repl-flake"];
       trusted-users = ["root" "@wheel"];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://sandkasten.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "sandkasten.cachix.org-1:Pa7qfdlx7bZkko+ojaaEG9pyziZkaru9v4TfcioqNZw="
+      ];
     };
     registry = {
       nixpkgs = {
