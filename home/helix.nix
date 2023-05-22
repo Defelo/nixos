@@ -5,7 +5,7 @@
 }: {
   programs.helix = {
     enable = true;
-    languages = [
+    languages.language = [
       {
         name = "rust";
         language-server.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
