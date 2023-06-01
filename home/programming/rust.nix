@@ -19,7 +19,7 @@
   home.file.cargo = {
     text = ''
       [target.x86_64-unknown-linux-gnu]
-      linker = "${pkgs.clang_14}/bin/clang"
+      linker = "${pkgs.clang_16}/bin/clang"
       rustflags = ["-C", "link-arg=--ld-path=${pkgs.mold}/bin/mold"]
 
       [registries.crates-io]
