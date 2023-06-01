@@ -64,6 +64,7 @@
     age
     sops
     renameutils
+    bc
 
     obsidian
     vlc
