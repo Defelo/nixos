@@ -65,6 +65,7 @@
     sops
     renameutils
     bc
+    comma
 
     obsidian
     vlc
