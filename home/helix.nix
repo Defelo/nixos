@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   helix,
   ...
 }: {
@@ -16,7 +15,7 @@
         };
       };
       pyright = {
-        command = "${pkgs-stable.pyright}/bin/pyright-langserver";
+        command = "${pkgs.pyright}/bin/pyright-langserver";
         args = ["--stdio"];
         config = {};
       };
