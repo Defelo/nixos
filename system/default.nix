@@ -1,37 +1,25 @@
 {
   conf,
   nixpkgs,
-  nixpkgs-stable,
-  # nixpkgs-small,
-  # nixpkgs-fork,
   home-manager,
   ...
 } @ inputs: let
   inherit (conf) system;
   pkgs = import ./unfree.nix {inherit nixpkgs system;};
-  pkgs-stable = import ./unfree.nix {
-    inherit system;
-    nixpkgs = nixpkgs-stable;
-  };
-  # pkgs-small = import ./unfree.nix {
-  #   inherit system;
-  #   nixpkgs = nixpkgs-small;
-  # };
-  # pkgs-fork = import ./unfree.nix {
-  #   inherit system;
-  #   nixpkgs = nixpkgs-fork;
-  # };
+  extra-pkgs = pkgs.lib.mapAttrs' (k: v: {
+    name = pkgs.lib.removePrefix "nix" k;
+    value = import ./unfree.nix {
+      inherit system;
+      nixpkgs = v;
+    };
+  }) (pkgs.lib.filterAttrs (k: _: pkgs.lib.hasPrefix "nixpkgs-" k) inputs);
   specialArgs =
     inputs
+    // extra-pkgs
     // {
-      inherit pkgs-stable;
-      # inherit pkgs-small pkgs-fork;
       _pkgs = import ../pkgs (inputs
-        // {
-          inherit pkgs pkgs-stable;
-          # inherit pkgs-small;
-          # inherit pkgs-fork;
-        });
+        // extra-pkgs
+        // {inherit pkgs;});
     };
 in
   nixpkgs.lib.nixosSystem rec {
