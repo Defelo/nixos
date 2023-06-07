@@ -1,36 +1,45 @@
 {
   pkgs,
   pkgs-stable,
+  helix,
   ...
 }: {
   programs.helix = {
     enable = true;
-    languages.language = [
-      {
-        name = "rust";
-        language-server.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+    package = helix.packages.${pkgs.system}.default;
+    languages.language-server = {
+      rust-analyzer = {
+        command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         config = {
           checkOnSave.command = "clippy";
           cargo.features = "all";
         };
-      }
+      };
+      pyright = {
+        command = "${pkgs-stable.pyright}/bin/pyright-langserver";
+        args = ["--stdio"];
+        config = {};
+      };
+      nil.command = "${pkgs.nil}/bin/nil";
+      bash-language-server = {
+        command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
+        args = ["start"];
+      };
+    };
+    languages.language = [
       {
         name = "python";
         auto-format = true;
-        language-server = {
-          command = "${pkgs-stable.pyright}/bin/pyright-langserver";
-          args = ["--stdio"];
-        };
+        language-servers = [{name = "pyright";}];
         formatter = {
           command = "/bin/sh";
           args = ["-c" "${pkgs.isort}/bin/isort - | ${pkgs.black}/bin/black -q -l 120 -C -"];
         };
-        config = {};
       }
       {
         name = "nix";
         auto-format = true;
-        language-server.command = "${pkgs.nil}/bin/nil";
+        language-servers = [{name = "nil";}];
         formatter.command = "${pkgs.alejandra}/bin/alejandra";
       }
       # {
@@ -41,10 +50,6 @@
       {
         name = "bash";
         auto-format = true;
-        language-server = {
-          command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
-          args = ["start"];
-        };
       }
     ];
     settings = {

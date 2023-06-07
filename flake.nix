@@ -23,6 +23,7 @@
       flake = false;
     };
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    helix.url = "github:pascalkuthe/helix/inline-diagnostics";
   };
 
   outputs = {
