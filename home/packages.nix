@@ -66,6 +66,8 @@
     renameutils
     bc
     comma
+    nvd
+    nix-tree
 
     obsidian
     vlc
