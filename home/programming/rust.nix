@@ -2,10 +2,11 @@
   conf,
   pkgs,
   _pkgs,
+  cargo-clif-nix,
   ...
 }: {
   home.packages = with pkgs; [
-    rustup
+    cargo-clif-nix.packages.${pkgs.system}.default
     bacon
     cargo-expand
     cargo-edit
