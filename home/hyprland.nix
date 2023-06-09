@@ -50,7 +50,7 @@
 
       bind=SUPER,w,togglegroup,
       bind=SUPER,n,changegroupactive,b
-      bind=SUPER,o,changegroupactive,f
+      bind=SUPER,p,changegroupactive,f
 
       bind=SUPER,Tab,workspace,previous
 
