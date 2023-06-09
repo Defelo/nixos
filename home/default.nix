@@ -32,6 +32,7 @@
     ./tmux.nix
     ./vifm.nix
     ./vscodium.nix
+    ./waybar.nix
     ./x11.nix
     ./xournalpp.nix
     ./yubikey.nix

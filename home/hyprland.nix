@@ -6,6 +6,7 @@
   imports = [hyprland.homeManagerModules.default];
   wayland.windowManager.hyprland = {
     enable = true;
+    systemdIntegration = true;
     extraConfig = ''
       exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
       monitor=eDP-1,1920x1080@60,0x0,1
