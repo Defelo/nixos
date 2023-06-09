@@ -23,12 +23,7 @@
     };
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     helix.url = "github:pascalkuthe/helix/inline-diagnostics";
-    fenix.url = "github:nix-community/fenix";
-    cargo-clif-nix = {
-      url = "github:Defelo/cargo-clif-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.fenix.follows = "fenix";
-    };
+    cargo-clif-nix.url = "github:Defelo/cargo-clif-nix";
   };
 
   outputs = {

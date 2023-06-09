@@ -8,7 +8,6 @@
     package = helix.packages.${pkgs.system}.default;
     languages.language-server = {
       rust-analyzer = {
-        command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         config = {
           checkOnSave.command = "clippy";
           cargo.features = "all";
