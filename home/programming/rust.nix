@@ -31,6 +31,19 @@
     '';
     target = ".cargo/config.toml";
   };
+  home.file.rustfmt = {
+    text = ''
+      format_code_in_doc_comments = true
+      format_macro_bodies = true
+      format_macro_matchers = true
+      format_strings = true
+      group_imports = "StdExternalCrate"
+      imports_granularity = "Crate"
+      unstable_features = true
+      wrap_comments = true
+    '';
+    target = ".config/rustfmt/rustfmt.toml";
+  };
 
   home.sessionVariables = {
     CARGO_TARGET_DIR = "${conf.home}/.cargo/target";
