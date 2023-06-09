@@ -11,6 +11,7 @@
 
     layout = "de";
     xkbVariant = "nodeadkeys";
+    xkbOptions = "ctrl:swapcaps";
 
     libinput = {
       enable = true;

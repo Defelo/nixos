@@ -17,8 +17,6 @@ in rec {
 
   lock-command = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 4 pixel";
 
-  borg = (import ../secrets.nix).borg.nitrogen;
-
   hardware-configuration = {
     config,
     lib,

@@ -1,38 +1,30 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    nixpkgs-fork.url = "github:Defelo/nixpkgs/nixos-unstable";
+    # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
+    # nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    sops-nix.url = "github:Mic92/sops-nix";
     flake-utils.url = "github:numtide/flake-utils";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lunarvim = {
-      url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
-      flake = false;
-    };
+    # lunarvim = {
+    #   url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
+    #   flake = false;
+    # };
     cheatsheets = {
       url = "github:cheat/cheatsheets";
       flake = false;
     };
-    icat = {
-      url = "github:atextor/icat";
-      flake = false;
-    };
-    exa = {
-      url = "github:ogham/exa";
-      flake = false;
-    };
-    termshot = {
-      url = "github:homeport/termshot";
-      flake = false;
-    };
+    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    helix.url = "github:pascalkuthe/helix/inline-diagnostics";
+    cargo-clif-nix.url = "github:Defelo/cargo-clif-nix";
   };
 
   outputs = {

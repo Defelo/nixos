@@ -1,14 +1,17 @@
-{...} @ inputs: {
+{config, ...}: {
   programs.ssh = {
     enable = true;
     serverAliveInterval = 20;
     extraConfig = ''
       TCPKeepAlive no
     '';
-    matchBlocks = builtins.listToAttrs (map (host: {
-        name = host.name;
-        value = builtins.removeAttrs host ["name"];
-      })
-      ((import ../secrets.nix).ssh inputs));
+    includes = [config.sops.secrets."ssh/hosts".path];
+  };
+
+  sops.secrets = {
+    "ssh/hosts" = {
+      format = "binary";
+      sopsFile = ../secrets/ssh/hosts;
+    };
   };
 }

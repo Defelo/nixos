@@ -12,7 +12,10 @@
   boot.loader.timeout = 2;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernel.sysctl."kernel.sysrq" = 1;
+  boot.kernel.sysctl = {
+    "kernel.sysrq" = 1;
+    "vm.swappiness" = 1;
+  };
 
   boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
 

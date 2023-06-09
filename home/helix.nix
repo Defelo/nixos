@@ -1,42 +1,53 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  helix,
+  ...
+}: {
   programs.helix = {
     enable = true;
-    languages = [
-      {
-        name = "rust";
-        config.checkOnSave.command = "clippy";
-      }
+    package = helix.packages.${pkgs.system}.default;
+    languages.language-server = {
+      rust-analyzer = {
+        config = {
+          checkOnSave.command = "clippy";
+          cargo.features = "all";
+        };
+      };
+      pyright = {
+        command = "${pkgs.pyright}/bin/pyright-langserver";
+        args = ["--stdio"];
+        config = {};
+      };
+      nil.command = "${pkgs.nil}/bin/nil";
+      bash-language-server = {
+        command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
+        args = ["start"];
+      };
+    };
+    languages.language = [
       {
         name = "python";
         auto-format = true;
-        language-server = {
-          command = "${pkgs.pyright}/bin/pyright-langserver";
-          args = ["--stdio"];
-        };
+        language-servers = [{name = "pyright";}];
         formatter = {
           command = "/bin/sh";
           args = ["-c" "${pkgs.isort}/bin/isort - | ${pkgs.black}/bin/black -q -l 120 -C -"];
         };
-        config = {};
       }
       {
         name = "nix";
         auto-format = true;
-        language-server.command = "${pkgs.nil}/bin/nil";
+        language-servers = [{name = "nil";}];
         formatter.command = "${pkgs.alejandra}/bin/alejandra";
       }
-      {
-        name = "latex";
-        auto-format = true;
-        language-server.command = "${pkgs.texlab}/bin/texlab";
-      }
+      # {
+      #   name = "latex";
+      #   auto-format = true;
+      #   language-server.command = "${pkgs.texlab}/bin/texlab";
+      # }
       {
         name = "bash";
         auto-format = true;
-        language-server = {
-          command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
-          args = ["start"];
-        };
       }
     ];
     settings = {
@@ -55,6 +66,7 @@
           left = ["mode" "spinner"];
           center = ["file-name"];
           right = [
+            "version-control"
             "diagnostics"
             "selections"
             "position"
@@ -65,8 +77,16 @@
           ];
           separator = "|";
         };
-        lsp = {display-messages = true;};
+        lsp = {
+          display-messages = true;
+          display-inlay-hints = true;
+        };
         indent-guides = {render = true;};
+        idle-timeout = 0;
+        bufferline = "always";
+        soft-wrap = {
+          enable = true;
+        };
       };
       keys = {
         normal = {

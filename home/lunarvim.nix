@@ -3,21 +3,6 @@
   lunarvim,
   ...
 }: {
-  home.packages = with pkgs; [
-    ripgrep
-    gnumake
-    gcc
-    xclip
-
-    # language servers
-    pyright # python
-    rust-analyzer # rust
-    rnix-lsp # nix
-
-    # formatters
-    alejandra # nix
-  ];
-
   home.file = {
     lvim = {
       source = lunarvim;

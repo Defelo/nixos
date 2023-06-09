@@ -7,7 +7,7 @@
   in {
     enable = true;
     script = let
-      dependencies = with pkgs; [polybar coreutils-full gnugrep dbus i3-gaps dunst bluez kmod alacritty upower];
+      dependencies = with pkgs; [polybar coreutils-full gnugrep dbus i3-gaps dunst bluez kmod alacritty upower gawk];
     in ''
       (
         export PATH=${pkgs.lib.makeBinPath dependencies}
@@ -89,6 +89,7 @@
         modules-left = modules ["workspaces" "window" "scratch"];
         modules-center = modules [];
         modules-right = modules [
+          "yk"
           "screenshot"
           "mem"
           "swap"
@@ -97,6 +98,7 @@
           "light"
           "volume"
           "webcam"
+          "plug"
           "battery"
           "btpower"
           "network-wired"
@@ -140,23 +142,22 @@
         interval = 1;
         format-underline = acolor;
       };
-      # "module/yk" =
-      #   let
-      #     script = builtins.toFile "yktd.py" ''
-      #       import socket, os
-      #       s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-      #       s.connect(f"/run/user/{os.getuid()}/yubikey-touch-detector.socket")
-      #       def update(touch):
-      #         print(""*touch, flush=True)
-      #         os.system(f"polybar-msg action yk module_{['hide','show'][touch]} > /dev/null")
-      #       update(False)
-      #       while True: update(s.recv(5).decode().endswith("1"))
-      #     ''; in
-      #   {
-      #     type = "custom/script";
-      #     exec = "${pkgs.python311}/bin/python ${script}";
-      #     tail = true;
-      #   };
+      "module/yk" = let
+        script = builtins.toFile "yktd.py" ''
+          import socket, os
+          s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+          s.connect(f"/run/user/{os.getuid()}/yubikey-touch-detector.socket")
+          def update(touch):
+            print(""*touch, flush=True)
+            os.system(f"polybar-msg action yk module_{['hide','show'][touch]} > /dev/null")
+          update(False)
+          while True: update(s.recv(5).decode().endswith("1"))
+        '';
+      in {
+        type = "custom/script";
+        exec = "${pkgs.python311}/bin/python ${script}";
+        tail = true;
+      };
       "module/screenshot" = {
         type = "custom/text";
         content = "";
@@ -206,8 +207,27 @@
       "module/webcam" = {
         type = "custom/script";
         exec = ''"lsmod | grep -q uvcvideo && echo "" || echo %{u#000}%{-u}%{F#999}"'';
-        click-left = ''"alacritty -e sudo modprobe $(lsmod | grep -q uvcvideo && echo -r) uvcvideo"'';
+        click-left = ''"alacritty -e /run/wrappers/bin/sudo modprobe $(lsmod | grep -q uvcvideo && echo -r) uvcvideo"'';
         format-underline = acolor;
+        interval = 10;
+      };
+      "module/plug" = let
+        script = pkgs.writeShellScript "plug.sh" ''
+          p=$(${pkgs.upower}/bin/upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{print $2}' | head -c -2)
+          state=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk '{print $2}')
+          if [[ "$state" != "charging" ]] && [[ $p -lt 30 ]]; then
+            echo "%{F#0f0}"
+            polybar-msg action plug module_show > /dev/null
+          elif [[ "$state" = "charging" ]] && [[ $p -ge 70 ]]; then
+            echo "%{F#f00}"
+            polybar-msg action plug module_show > /dev/null
+          else
+            polybar-msg action plug module_hide > /dev/null
+          fi
+        '';
+      in {
+        type = "custom/script";
+        exec = "${pkgs.bash}/bin/bash ${script}";
         interval = 10;
       };
       "module/battery" = {

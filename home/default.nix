@@ -1,17 +1,10 @@
-{
-  conf,
-  lib,
-  pkgs,
-  hyprland,
-  ...
-}: {
+{conf, ...}: {
   imports = [
     ./alacritty.nix
-    ./calendar.nix
     ./cheat.nix
     ./direnv.nix
     ./dunst.nix
-    ./email.nix
+    # ./emacs.nix
     ./fcitx5.nix
     ./flameshot.nix
     ./fzf.nix
@@ -19,8 +12,8 @@
     ./gpg.nix
     ./helix.nix
     ./hyprland.nix
-    ./libreoffice.nix
-    ./lunarvim.nix
+    # ./libreoffice.nix
+    # ./lunarvim.nix
     ./nix-index.nix
     ./onboard.nix
     ./packages.nix
@@ -31,14 +24,17 @@
     ./programming
     ./redshift.nix
     ./rofi.nix
+    ./sops.nix
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix
+    ./thunderbird
     ./tmux.nix
     ./vifm.nix
     ./vscodium.nix
     ./x11.nix
     ./xournalpp.nix
+    ./yubikey.nix
     ./zsh.nix
   ];
 
@@ -51,6 +47,8 @@
     EDITOR = "hx";
     VISUAL = "hx";
   };
+
+  systemd.user.startServices = "sd-switch";
 
   home.stateVersion = "22.11";
 }

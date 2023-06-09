@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   _pkgs,
   ...
@@ -7,6 +6,7 @@
   home.packages = with pkgs; [
     # programming
     gcc
+    gnumake
     git
     git-crypt
     just
@@ -32,6 +32,7 @@
     playerctl
     wirelesstools
     iw
+    nix-output-monitor
 
     # utils
     htop
@@ -50,16 +51,29 @@
     dig
     gh
     imagemagick
-    _pkgs.icat
+    # _pkgs.icat
     _pkgs.termshot
-    exiftool
+    # exiftool
     xxd
-    gnome.file-roller
+    # gnome.file-roller
     borgbackup
+    xclip
+    ripgrep
+    sd
+    xdotool
+    age
+    sops
+    renameutils
+    bc
+    comma
+    nvd
+    nix-tree
 
     obsidian
     vlc
     texlive.combined.scheme-full
     okular
+    anki-bin
+    spotify
   ];
 }

@@ -16,6 +16,10 @@
     };
   };
 
+  virtualisation.podman = {
+    enable = true;
+  };
+
   services.pcscd.enable = true;
 
   programs.ssh.startAgent = false;

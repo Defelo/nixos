@@ -1,4 +1,5 @@
 {
+  config,
   conf,
   pkgs,
   _pkgs,
@@ -10,6 +11,7 @@
     enableSyntaxHighlighting = true;
     defaultKeymap = "viins";
     autocd = true;
+    history.share = false;
     initExtra = ''
       # p10k instant prompt
       P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
@@ -28,7 +30,7 @@
 
       mkcd() { mkdir -p "$1"; cd "$1" }
 
-      temp() { cd $(mktemp -d) }
+      temp() { (d=$(mktemp -d); cd "$d"; zsh && rm -rf "$d") }
       deltemp() {
         d=$(pwd)
         [[ $(echo $d | cut -d/ -f2) != "tmp" ]] && return
@@ -53,7 +55,7 @@
 
       _rebuild() {
         current=$(realpath /run/current-system)
-        new=$(nix build --keep-going --print-out-paths --no-link ~/nixos#nixosConfigurations.$(cat /proc/sys/kernel/hostname).config.system.build.toplevel) || return $?
+        new=$(${pkgs.nix-output-monitor}/bin/nom build --keep-going --print-out-paths --no-link ~/nixos#nixosConfigurations.$(cat /proc/sys/kernel/hostname).config.system.build.toplevel) || return $?
         if [[ "$new" = "$current" ]]; then
           echo "up to date"
           return 1
@@ -92,11 +94,13 @@
       }
 
       backup() {
-        BORG_REPO="${conf.borg.repo}" \
-        BORG_PASSCOMMAND="sudo -u $(whoami) ${conf.borg.passcommand}" \
-        HEALTHCHECK="${conf.borg.healthcheck}" \
-        EXCLUDE_SYNCTHING="${toString conf.borg.exclude-syncthing}" \
-        ${../scripts/backup.sh}
+        (
+          export BORG_REPO="$(cat ${config.sops.secrets."borg/${conf.hostname}/borg_repo".path})"
+          export BORG_PASSCOMMAND="sudo -u $(whoami) $(cat ${config.sops.secrets."borg/${conf.hostname}/borg_passcommand".path})"
+          export HEALTHCHECK="$(cat ${config.sops.secrets."borg/${conf.hostname}/healthcheck".path})"
+          export EXCLUDE_SYNCTHING="$(cat ${config.sops.secrets."borg/${conf.hostname}/exclude_syncthing".path})"
+          ${../scripts/backup.sh}
+        )
       }
 
       latex() {
@@ -122,7 +126,21 @@
         rm -rf "$dir"
       }
 
-      ${pkgs.neofetch}/bin/neofetch
+      conf() {
+        tmux new -d -s nixos -c ~/nixos hx flake.nix && tmux split -h -t nixos -c ~/nixos -d -l '50%'
+        if [[ -n "$TMUX" ]]; then
+          tmux switch-client -t nixos
+        else
+          tmux a -t nixos
+        fi
+      }
+
+      mitm() {
+        ${pkgs.mitmproxy}/bin/mitmweb -q &
+        pid=$!
+        ${pkgs.proxychains}/bin/proxychains4 -f ${builtins.toFile "proxychains.conf" "quiet_mode\n[ProxyList]\nhttp 127.0.0.1 8080"} zsh
+        kill $pid
+      }
     '';
     plugins = [
       {
@@ -138,7 +156,7 @@
       tre = "ls -alT";
       vim = "nvim";
       vi = "nvim";
-      c = ''printf "\033c"; ${pkgs.neofetch}/bin/neofetch'';
+      c = "clear";
       h = "cd;c";
       grep = "grep --color=auto";
       f = "cd $(pwd -P)";
@@ -156,15 +174,23 @@
       lsblk = "lsblk -M";
       type = "which";
       j = "just";
+      qmv = "qmv -f destination-only";
       mnt = "source ${../scripts/mount.sh}";
       tt = "${../scripts/timetracker.sh}";
       beamer = "${../scripts/beamer.sh}";
-      rebuild = "_rebuild && source ~/.zshrc";
-      rebuild-test = "_rebuild test && source ~/.zshrc";
-      rebuild-boot = "_rebuild boot && source ~/.zshrc";
-      update = "_update && source ~/.zshrc";
-      conf = "vim ~/nixos/flake.nix";
+      drss = "${../scripts/download_rss.sh}";
+      sys-rebuild = "_rebuild && source ~/.zshrc";
+      sys-rebuild-test = "_rebuild test && source ~/.zshrc";
+      sys-rebuild-boot = "_rebuild boot && source ~/.zshrc";
+      sys-update = "_update && source ~/.zshrc";
+      # conf = "vim ~/nixos/flake.nix";
       repl = "nix repl -f '<nixpkgs>'";
     };
+  };
+  sops.secrets = {
+    "borg/${conf.hostname}/borg_repo" = {};
+    "borg/${conf.hostname}/borg_passcommand" = {};
+    "borg/${conf.hostname}/healthcheck" = {};
+    "borg/${conf.hostname}/exclude_syncthing" = {};
   };
 }
