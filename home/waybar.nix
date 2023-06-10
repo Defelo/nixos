@@ -105,7 +105,7 @@
           format-bluetooth = "{icon} {volume}% {format_source}";
           format-bluetooth-muted = "  {format_source}";
           format-icons = ["" "" "" "" "" "" ""];
-          format-source = "{volume}% ";
+          format-source = " {volume}%";
           format-source-muted = "";
         };
       };
