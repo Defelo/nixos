@@ -25,7 +25,6 @@
     slack
 
     # system
-    arandr
     wireguard-tools
     pulsemixer
     pavucontrol
@@ -57,10 +56,8 @@
     xxd
     # gnome.file-roller
     borgbackup
-    xclip
     ripgrep
     sd
-    xdotool
     age
     sops
     renameutils
