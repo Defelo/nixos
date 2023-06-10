@@ -15,7 +15,15 @@ in rec {
 
   ykfde = false;
 
-  lock-command = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 4 pixel";
+  lock-command = builtins.concatStringsSep " " [
+    "${pkgs.swaylock-effects}/bin/swaylock"
+    "--screenshots"
+    "--clock"
+    "--submit-on-touch"
+    "--show-failed-attempts"
+    "--effect-pixelate 8"
+    "--fade-in 0.5"
+  ];
 
   hardware-configuration = {
     config,
