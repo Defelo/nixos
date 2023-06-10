@@ -138,7 +138,7 @@
       <attribute name="tool" type="string" value="selectRegion"/>
     </data>
     <data name="stylus2">
-      <attribute name="tool" type="string" value="none"/>
+      <attribute name="tool" type="string" value="selectRegion"/>
     </data>
     <data name="touch">
       <attribute name="device" type="string" value=""/>
