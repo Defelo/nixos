@@ -12,6 +12,9 @@
     font.name = "Cantarell";
     font.size = 12;
     font.package = pkgs.cantarell-fonts;
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
   };
 
   sops.secrets."gtk/bookmarks" = {
