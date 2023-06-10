@@ -1,24 +1,29 @@
 {
+  pkgs,
   conf,
   lib,
   ...
 }: let
   mod = "Mod4";
-  ws0 = "0 ";
-  ws1 = "1 ";
-  ws2 = "2 ";
-  ws3 = "3 ";
-  ws4 = "4 ";
-  ws5 = "5 ";
-  ws6 = "6 ";
-  ws7 = "7 ";
-  ws8 = "8 ";
-  ws9 = "9 ";
-  ws10 = "10 ";
-  ws42 = "42 ";
+  ws0 = "0";
+  ws1 = "1";
+  ws2 = "2";
+  ws3 = "3";
+  ws4 = "4";
+  ws5 = "5";
+  ws6 = "6";
+  ws7 = "7";
+  ws8 = "8";
+  ws9 = "9";
+  ws10 = "10";
+  ws42 = "42";
   ws1337 = "1337";
-  ws_obsidian = "+ ";
+  ws_obsidian = "+";
 in {
+  home.packages = with pkgs; [
+    wl-clipboard
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
 
@@ -253,10 +258,10 @@ in {
             command = "border none";
             criteria.app_id = ".*";
           }
-          {
-            command = "opacity 0.9";
-            criteria.app_id = ".*";
-          }
+          # {
+          #   command = "opacity 0.9";
+          #   criteria.app_id = ".*";
+          # }
         ];
       };
     };
