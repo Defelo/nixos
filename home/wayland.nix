@@ -140,7 +140,7 @@ in {
         "${mod}+Ctrl+M" = let
           cmd = pkgs.writeShellScript "rofipass-wrapped.sh" ''
             export PASSWORD_STORE_DIR=${pkgs.lib.escapeShellArg config.programs.password-store.settings.PASSWORD_STORE_DIR}
-            export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wl-clipboard rofi-wayland dunst]))}:$PATH
+            export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wl-clipboard rofi-wayland dunst clipman]))}:$PATH
             exec -a rofipass.sh ${../scripts/rofipass.sh} "$@"
           '';
         in "exec ${cmd}";
@@ -177,6 +177,8 @@ in {
         "${mod}+Shift+comma" = "exec dunstctl close-all";
         "${mod}+Shift+period" = "exec dunstctl history-pop";
         "${mod}+period" = "exec dunstctl context";
+
+        "${mod}+m" = "exec ${pkgs.clipman}/bin/clipman pick -t rofi";
 
         "${mod}+Shift+minus" = "move scratchpad";
         "${mod}+minus" = "scratchpad show";
@@ -275,4 +277,6 @@ in {
       };
     };
   };
+
+  services.clipman.enable = true;
 }
