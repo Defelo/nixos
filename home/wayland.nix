@@ -2,6 +2,7 @@
   pkgs,
   conf,
   lib,
+  config,
   ...
 }: let
   mod = "Mod4";
@@ -136,7 +137,13 @@ in {
 
         "${mod}+Shift+y" = "exec ${conf.lock-command}";
 
-        "${mod}+Ctrl+M" = "exec ${../scripts/rofipass.sh}";
+        "${mod}+Ctrl+M" = let
+          cmd = pkgs.writeShellScript "rofipass-wrapped.sh" ''
+            export PASSWORD_STORE_DIR=${pkgs.lib.escapeShellArg config.programs.password-store.settings.PASSWORD_STORE_DIR}
+            export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wtype rofi-wayland]))}:$PATH
+            exec -a rofipass.sh ${../scripts/rofipass.sh} "$@"
+          '';
+        in "exec ${cmd}";
         "${mod}+P" = "exec alacritty -e python";
         "${mod}+Shift+P" = "exec alacritty -e pulsemixer";
 
