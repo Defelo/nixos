@@ -15,6 +15,10 @@
 
   hardware.opengl.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    qt5.qtwayland
+  ];
+
   services.greetd = {
     enable = true;
     settings = {

@@ -39,6 +39,9 @@ in {
       # Fix for some Java AWT applications (e.g. Android Studio),
       # use this if they aren't displayed properly:
       export _JAVA_AWT_WM_NONREPARENTING=1
+
+      export XDG_CURRENT_DESKTOP=sway
+      export XDG_SESSION_DESKTOP=sway
     '';
 
     config = {
@@ -136,7 +139,6 @@ in {
         "${mod}+Ctrl+M" = "exec ${../scripts/rofipass.sh}";
         "${mod}+P" = "exec alacritty -e python";
         "${mod}+Shift+P" = "exec alacritty -e pulsemixer";
-        "${mod}+numbersign" = "exec alacritty -e sh -c \"tmux new -d -s nixos -c ~/nixos hx flake.nix && tmux split -h -t nixos -c ~/nixos -d -l '50%' && false || tmux a -t nixos\"";
 
         # "${mod}+odiaeresis" = "exec systemctl --user status picom && systemctl --user stop picom || systemctl --user start picom";
 
@@ -161,7 +163,7 @@ in {
         "Shift+XF86MonBrightnessUp" = "exec light -A 1";
         "Shift+XF86MonBrightnessDown" = "exec light -U 1";
 
-        "Print" = "exec flameshot gui";
+        "${mod}+numbersign" = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - -o - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
 
         "${mod}+KP_Add" = "exec dunstctl set-paused toggle";
         "Pause" = "exec dunstctl close";
