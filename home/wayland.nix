@@ -140,7 +140,7 @@ in {
         "${mod}+Ctrl+M" = let
           cmd = pkgs.writeShellScript "rofipass-wrapped.sh" ''
             export PASSWORD_STORE_DIR=${pkgs.lib.escapeShellArg config.programs.password-store.settings.PASSWORD_STORE_DIR}
-            export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wtype rofi-wayland]))}:$PATH
+            export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wl-clipboard rofi-wayland dunst]))}:$PATH
             exec -a rofipass.sh ${../scripts/rofipass.sh} "$@"
           '';
         in "exec ${cmd}";

@@ -4,5 +4,8 @@ shopt -s globstar
 
 cd $PASSWORD_STORE_DIR
 if x=$((for f in $(find * -type f -name '*.gpg'); do echo "${f%.gpg}"; done) | rofi -dmenu -no-custom -matching fuzzy); then
-    pass show "$x" | head -1 | wtype -
+    pass show "$x" | head -1 | wl-copy -n
+    dunstify -t 5000 'Password copied to clipboard'
+    sleep 5
+    wl-copy -c
 fi
