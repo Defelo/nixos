@@ -173,10 +173,10 @@ in {
         "${mod}+numbersign" = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - -o - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
 
         "${mod}+KP_Add" = "exec dunstctl set-paused toggle";
-        "Pause" = "exec dunstctl close";
-        "Shift+Pause" = "exec dunstctl close-all";
-        "Ctrl+Break" = "exec dunstctl history-pop";
-        "Mod1+Pause" = "exec dunstctl context";
+        "${mod}+comma" = "exec dunstctl close";
+        "${mod}+Shift+comma" = "exec dunstctl close-all";
+        "${mod}+Shift+period" = "exec dunstctl history-pop";
+        "${mod}+period" = "exec dunstctl context";
 
         "${mod}+Shift+minus" = "move scratchpad";
         "${mod}+minus" = "scratchpad show";
