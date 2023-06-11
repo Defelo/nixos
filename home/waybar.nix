@@ -15,10 +15,12 @@
           "custom/yk"
           "custom/screenshot"
           "memory"
+          "memory#swap"
           "cpu"
           "custom/dunst"
           "backlight"
           "pulseaudio"
+          "pulseaudio#mic"
           "custom/webcam"
           "battery"
           "network"
@@ -56,7 +58,7 @@
         };
 
         "tray" = {
-          spacing = 10;
+          spacing = 8;
         };
 
         "backlight" = {
@@ -64,10 +66,11 @@
         };
 
         "battery" = {
-          format = "{icon} {capacity}% ({time})";
-          format-charging = "󰂄 {capacity}% ({time})";
+          format = "{icon} {capacity}%{time}";
+          format-charging = "󰂄 {capacity}%{time}";
           format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           format-plugged = "󰚥 {capacity}%";
+          format-time = " ({H}:{m})";
           states = {
             critical = 15;
             warning = 30;
@@ -88,7 +91,11 @@
 
         "memory" = {
           interval = 2;
-          format = "󰍛 {avail}GB / {swapUsed}GB";
+          format = "󰍛 {avail} GB";
+        };
+        "memory#swap" = {
+          interval = 2;
+          format = "󰍛 {swapUsed} GB";
         };
 
         "network" = {
@@ -99,11 +106,18 @@
         };
 
         "pulseaudio" = {
-          format = "{icon} {volume}% {format_source}";
-          format-muted = "󰖁 {format_source}";
-          format-bluetooth = "{icon}󰂯 {volume}% {format_source}";
-          format-bluetooth-muted = "󰖁 󰂯 {format_source}";
+          format = "{icon} {volume}%";
+          format-muted = "󰖁";
+          format-bluetooth = "{icon}󰂯 {volume}%";
+          format-bluetooth-muted = "󰖁 󰂯";
           format-icons = ["󰕿" "󰖀" "󰕾"];
+        };
+
+        "pulseaudio#mic" = {
+          format = "{format_source}";
+          format-muted = "{format_source}";
+          format-bluetooth = "{format_source}";
+          format-bluetooth-muted = "{format_source}";
           format-source = "󰍬 {volume}%";
           format-source-muted = "󰍭";
         };
@@ -219,7 +233,7 @@
           box-shadow: inset 0 -2px #f1c40f;
       }
 
-      #pulseaudio.muted {
+      #pulseaudio.muted:not(.mic), #pulseaudio.mic.source-muted {
           box-shadow: inset 0 -2px #880;
       }
 
