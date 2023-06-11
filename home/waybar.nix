@@ -31,7 +31,7 @@
           format = "{name}  {icon}";
           format-icons = {
             "0" = "";
-            "1" = "";
+            "1" = "󰖟";
             "2" = "";
             "3" = "";
             "4" = "";
@@ -60,15 +60,14 @@
         };
 
         "backlight" = {
-          format = "{icon} {percent}%";
-          format-icons = ["" "" "" "" "" "" "" "" ""];
+          format = "󰌵 {percent}%";
         };
 
         "battery" = {
           format = "{icon} {capacity}% ({time})";
-          format-charging = " {capacity}% ({time})";
-          format-icons = ["" "" "" "" ""];
-          format-plugged = " {capacity}%";
+          format-charging = "󰂄 {capacity}% ({time})";
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          format-plugged = "󰚥 {capacity}%";
           states = {
             critical = 15;
             warning = 30;
@@ -77,36 +76,36 @@
 
         "clock" = {
           interval = 1;
-          format = "{: %Y-%m-%d  %H:%M:%S}";
+          format = "{:󰃭 %Y-%m-%d 󰥔 %H:%M:%S}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
         "cpu" = {
           interval = 2;
-          format = " {usage}%";
+          format = "󰘚 {usage}%";
           tooltip = false;
         };
 
         "memory" = {
           interval = 2;
-          format = " {avail}GB / {swapUsed}GB";
+          format = "󰍛 {avail}GB / {swapUsed}GB";
         };
 
         "network" = {
           interval = 2;
-          format-disconnected = " Disconnected";
+          format-disconnected = "󰀦 Disconnected";
           format-ethernet = " {bandwidthTotalBytes} ({ipaddr})";
           format-wifi = " {essid} {signalStrength}% {bandwidthTotalBytes} ({ipaddr})";
         };
 
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";
-          format-muted = " {format_source}";
-          format-bluetooth = "{icon} {volume}% {format_source}";
-          format-bluetooth-muted = "  {format_source}";
-          format-icons = ["" "" "" "" "" "" ""];
-          format-source = " {volume}%";
-          format-source-muted = "";
+          format-muted = "󰖁 {format_source}";
+          format-bluetooth = "{icon}󰂯 {volume}% {format_source}";
+          format-bluetooth-muted = "󰖁 󰂯 {format_source}";
+          format-icons = ["󰕿" "󰖀" "󰕾"];
+          format-source = "󰍬 {volume}%";
+          format-source-muted = "󰍭";
         };
       };
     };
@@ -114,7 +113,7 @@
     style = ''
       * {
           /* `otf-font-awesome` is required to be installed for icons */
-          font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+          font-family: MesloLGS NF;
           font-size: 12px;
       }
 
