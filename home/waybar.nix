@@ -108,7 +108,7 @@
         "pulseaudio" = {
           format = "{icon} {volume}%";
           format-muted = "󰖁";
-          format-bluetooth = "{icon}󰂯 {volume}%";
+          format-bluetooth = "{icon} 󰂯 {volume}%";
           format-bluetooth-muted = "󰖁 󰂯";
           format-icons = ["󰕿" "󰖀" "󰕾"];
         };
