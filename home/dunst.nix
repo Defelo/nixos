@@ -1,7 +1,9 @@
 {pkgs, ...}: {
   services.dunst = {
     enable = true;
-    settings = {
+    settings = let
+      transparency = "DD";
+    in {
       global = {
         follow = "mouse";
         width = 300;
@@ -12,13 +14,12 @@
         notification_limit = 0;
 
         indicate_hidden = true;
-        transparency = 20;
         separator_height = 2;
         padding = 6;
         horizontal_padding = 6;
         text_icon_padding = 0;
         frame_width = 3;
-        frame_color = "#8EC07C";
+        frame_color = "#8EC07C${transparency}";
         sort = true;
         idle_threshold = 0;
 
@@ -55,21 +56,21 @@
       };
 
       urgency_low = {
-        background = "#191311";
-        foreground = "#3B7C87";
-        frame_color = "#3B7C87";
+        background = "#191311${transparency}";
+        foreground = "#3B7C87${transparency}";
+        frame_color = "#3B7C87${transparency}";
         timeout = 10;
       };
       urgency_normal = {
-        background = "#191311";
-        foreground = "#5B8234";
-        frame_color = "#5B8234";
+        background = "#191311${transparency}";
+        foreground = "#5B8234${transparency}";
+        frame_color = "#5B8234${transparency}";
         timeout = 10;
       };
       urgency_critical = {
-        background = "#191311";
-        foreground = "#B7472A";
-        frame_color = "#B7472A";
+        background = "#191311${transparency}";
+        foreground = "#B7472A${transparency}";
+        frame_color = "#B7472A${transparency}";
         timeout = 0;
       };
     };
