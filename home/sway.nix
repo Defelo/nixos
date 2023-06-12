@@ -201,7 +201,7 @@ in {
         ${ws5} = [];
         ${ws6} = [];
         ${ws7} = [{app_id = "^thunderbird$";}];
-        ${ws8} = [{class = "^discord$";} {app_id = "^Element$";} {class = "^Slack$";}];
+        ${ws8} = [{class = "^discord$";} {class = "^Element$";} {class = "^Slack$";}];
         ${ws9} = [{app_id = "^org.telegram.desktop$";}];
         ${ws10} = [];
         ${ws42} = [];

@@ -19,7 +19,7 @@
 
     # communication
     discord-canary
-    element-desktop-wayland
+    element-desktop
     tdesktop
     signal-desktop
     slack
