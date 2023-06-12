@@ -46,6 +46,14 @@
           return-type = "json";
         };
 
+        "custom/screenshot" = {
+          format = "";
+          on-click = pkgs.writeShellScript "screenshot.sh" ''
+            export PATH=${pkgs.lib.makeBinPath (with pkgs; [coreutils grim slurp wl-clipboard])}:$PATH
+            grim -g "$(slurp)" - | wl-copy -t image/png
+          '';
+        };
+
         "sway/workspaces" = {
           disable-scroll = true;
           format = "{name}{icon}";
@@ -218,6 +226,11 @@
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-direction: alternate;
+      }
+
+      #custom-screenshot {
+        padding: 0 5px;
+        box-shadow: inset 0 -2px #fc5;
       }
 
       #window,
