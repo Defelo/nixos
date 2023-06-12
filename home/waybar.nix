@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -27,6 +27,24 @@
           "clock"
           "tray"
         ];
+
+        "custom/yk" = let
+          script = builtins.toFile "yktd.py" ''
+            import json, socket, os
+            s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+            s.connect(f"/run/user/{os.getuid()}/yubikey-touch-detector.socket")
+            def update(touch):
+              print(json.dumps({
+                "text": "",
+                "tooltip": "YubiKey is waiting for a touch",
+              } if touch else {}), flush=True)
+            update(False)
+            while True: update(s.recv(5).decode().endswith("1"))
+          '';
+        in {
+          exec = "${pkgs.python311}/bin/python ${script}";
+          return-type = "json";
+        };
 
         "sway/workspaces" = {
           disable-scroll = true;
@@ -182,6 +200,24 @@
           padding: 0 2px;
           margin: 0 4px;
           color: #ffffff;
+      }
+
+      @keyframes yk-blink {
+        to {
+          border: 2px solid transparent;
+        }
+      }
+
+      #custom-yk {
+        border: 2px solid #0f0;
+        padding: 0 6px;
+        margin: 0 4px;
+        color: #fff;
+        animation-name: yk-blink;
+        animation-duration: 0.375s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-direction: alternate;
       }
 
       #window,
