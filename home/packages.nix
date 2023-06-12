@@ -32,6 +32,8 @@
     wirelesstools
     iw
     nix-output-monitor
+    wl-clipboard
+    xdg-utils
 
     # utils
     htop

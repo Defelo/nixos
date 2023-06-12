@@ -2,6 +2,7 @@
   imports = [
     ./alacritty.nix
     ./cheat.nix
+    ./clipman.nix
     ./direnv.nix
     ./dunst.nix
     # ./emacs.nix
@@ -23,6 +24,7 @@
     ./rofi.nix
     ./sops.nix
     ./ssh.nix
+    ./sway.nix
     ./syncthing.nix
     ./theme.nix
     ./thunderbird
@@ -30,7 +32,6 @@
     ./vifm.nix
     ./vscodium.nix
     ./waybar.nix
-    ./wayland.nix
     ./xournalpp.nix
     ./yubikey.nix
     ./zsh.nix
