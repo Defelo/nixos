@@ -129,7 +129,7 @@ in {
         "${mod}+Shift+acute" = "move container to workspace ${ws1337}";
         "${mod}+Shift+plus" = "move container to workspace ${ws_obsidian}";
 
-        "${mod}+Return" = "exec alacritty";
+        "${mod}+Return" = "exec alacritty --class=floating_term";
         "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
 
         "${mod}+Shift+y" = "exec ${conf.lock-command}";
@@ -141,8 +141,8 @@ in {
             exec -a rofipass.sh ${../scripts/rofipass.sh} "$@"
           '';
         in "exec ${cmd}";
-        "${mod}+P" = "exec alacritty -e python";
-        "${mod}+Shift+P" = "exec alacritty -e pulsemixer";
+        "${mod}+P" = "exec alacritty --class=floating_term -e python";
+        "${mod}+Shift+P" = "exec alacritty --class=floating_term -e pulsemixer";
 
         # "${mod}+odiaeresis" = "exec systemctl --user status picom && systemctl --user stop picom || systemctl --user start picom";
 
@@ -265,6 +265,10 @@ in {
           {
             command = "border none";
             criteria.app_id = ".*";
+          }
+          {
+            command = "floating true";
+            criteria.app_id = "floating_term";
           }
           # {
           #   command = "opacity 0.9";
