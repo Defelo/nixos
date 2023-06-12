@@ -24,6 +24,7 @@ in {
   home.packages = with pkgs; [
     wl-clipboard
     clipman
+    xdg-utils
   ];
 
   wayland.windowManager.sway = {
