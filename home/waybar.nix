@@ -199,14 +199,18 @@
 
       #battery {
           box-shadow: inset 0 -2px #c00;
+          background: none;
       }
 
       #battery.charging, #battery.plugged {
           box-shadow: inset 0 -2px #26A65B;
       }
 
+      #battery.warning:not(.charging) {
+          background: #850;
+      }
       #battery.critical:not(.charging) {
-          background-color: #f53c3c;
+          background: #810;
       }
 
       #cpu {
