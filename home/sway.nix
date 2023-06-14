@@ -55,6 +55,7 @@ in {
       };
       output = {
         "*" = {
+          inherit (conf.sway.output) scale;
           bg = "${../wallpapers/default.png} fill";
         };
       };
