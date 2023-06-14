@@ -37,18 +37,13 @@
       packages.pkgs = import ./pkgs (inputs // {inherit pkgs;});
     }))
     // {
-      nixosConfigurations = let
-        hosts = [
-          ./hosts/nitrogen.nix
-          ./hosts/neon.nix
-        ];
-      in
-        builtins.listToAttrs (map (host: let
-            conf = import host inputs;
-          in {
-            name = conf.hostname;
-            value = import ./system (inputs // {inherit conf;});
-          })
-          hosts);
+      nixosConfigurations = builtins.mapAttrs (
+        host: _: let
+          conf = import ./hosts/${host} inputs;
+        in
+          if conf.hostname != host
+          then builtins.abort "Host name ${conf.hostname} != directory name ${host}"
+          else import ./system (inputs // {inherit conf;})
+      ) (builtins.readDir ./hosts);
     };
 }
