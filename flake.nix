@@ -38,7 +38,10 @@
     }))
     // {
       nixosConfigurations = let
-        hosts = [./hosts/nitrogen.nix];
+        hosts = [
+          ./hosts/nitrogen.nix
+          ./hosts/neon.nix
+        ];
       in
         builtins.listToAttrs (map (host: let
             conf = import host inputs;
