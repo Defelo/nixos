@@ -15,7 +15,7 @@ in rec {
 
   ykfde = false;
 
-  sway.output.scale = "1.2";
+  sway.output.scale = "1.25";
 
   lock-command = builtins.concatStringsSep " " [
     "${pkgs.swaylock-effects}/bin/swaylock"
