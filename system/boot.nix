@@ -2,6 +2,7 @@
   conf,
   config,
   lib,
+  pkgs,
   ...
 }: {
   boot.loader.grub.enable = true;
@@ -17,6 +18,7 @@
     "vm.swappiness" = 1;
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
 
   # boot.plymouth.enable = true;
