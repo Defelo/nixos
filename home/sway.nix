@@ -152,6 +152,7 @@ in {
         "XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05+";
         "XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05-";
         "XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle";
         "Shift+XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SOURCE@ 0.05+";
         "Shift+XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SOURCE@ 0.05-";
         "Shift+XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle";
