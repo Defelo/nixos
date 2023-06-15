@@ -177,6 +177,7 @@ in {
         "${mod}+period" = "exec dunstctl context";
 
         "${mod}+m" = "exec ${pkgs.clipman}/bin/clipman pick -t rofi";
+        "${mod}+Shift+m" = "exec ${pkgs.clipman}/bin/clipman clear -t rofi";
 
         "${mod}+Shift+minus" = "move scratchpad";
         "${mod}+minus" = "scratchpad show";
