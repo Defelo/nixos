@@ -39,6 +39,8 @@ in {
 
       export XDG_CURRENT_DESKTOP=sway
       export XDG_SESSION_DESKTOP=sway
+
+      export NIXOS_OZONE_WL=1
     '';
 
     config = {
@@ -198,17 +200,17 @@ in {
         ${ws0} = [];
         ${ws1} = [{app_id = "^brave-browser$";}];
         ${ws2} = [];
-        ${ws3} = [{class = "^jetbrains-.+$";}];
+        ${ws3} = [];
         ${ws4} = [];
         ${ws5} = [];
         ${ws6} = [];
         ${ws7} = [{app_id = "^thunderbird$";}];
-        ${ws8} = [{class = "^discord$";} {class = "^Element$";} {class = "^Slack$";}];
+        ${ws8} = [{app_id = "^discord$";} {app_id = "^Element$";} {app_id = "^Slack$";}];
         ${ws9} = [{app_id = "^org.telegram.desktop$";}];
         ${ws10} = [];
         ${ws42} = [];
         ${ws1337} = [];
-        ${ws_obsidian} = [{class = "^obsidian$";}];
+        ${ws_obsidian} = [{app_id = "^obsidian$";}];
       };
       bars = [];
       colors = let
