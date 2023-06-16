@@ -25,7 +25,6 @@
     slack
 
     # system
-    arandr
     wireguard-tools
     pulsemixer
     pavucontrol
@@ -33,6 +32,8 @@
     wirelesstools
     iw
     nix-output-monitor
+    wl-clipboard
+    xdg-utils
 
     # utils
     htop
@@ -57,10 +58,8 @@
     xxd
     # gnome.file-roller
     borgbackup
-    xclip
     ripgrep
     sd
-    xdotool
     age
     sops
     renameutils

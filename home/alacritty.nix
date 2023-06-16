@@ -13,7 +13,7 @@
         bold.family = "MesloLGS NF";
         italic.family = "MesloLGS NF";
         bold_italic.family = "MesloLGS NF";
-        size = 7;
+        size = 10;
       };
     };
   };

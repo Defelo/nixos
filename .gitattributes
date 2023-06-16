@@ -1,1 +1,1 @@
-secrets/** diff=sopsdiffer
+**/secrets/** diff=sopsdiffer

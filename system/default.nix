@@ -40,7 +40,7 @@ in
       ./sops.nix
       # ./steam.nix
       ./users.nix
-      ./x11.nix
+      ./wayland.nix
       ./xbanish.nix
       ./zram.nix
 

@@ -1,8 +1,17 @@
 keys:
   - &defelo 61303BBAD7D1BF74EFA44E3BE7FE2087E4380E64
   - &nitrogen age1v9szwgk0xp383z9fu657kzp60mpxlsg4lm0c73xest7xdrcf4qnqfwlnrd
+  - &neon age12qr4rxqrrr59fa9fqtvk0jtf9hsynv3jf5xgjj3fdczujrz65paqh6qc8g
 creation_rules:
-  - path_regex: secrets/.+$
+  - path_regex: hosts/nitrogen/secrets/.+$
     key_groups:
       - pgp: [ *defelo ]
         age: [ *nitrogen ]
+  - path_regex: hosts/neon/secrets/.+$
+    key_groups:
+      - pgp: [ *defelo ]
+        age: [ *neon ]
+  - path_regex: secrets/.+$
+    key_groups:
+      - pgp: [ *defelo ]
+        age: [ *nitrogen, *neon ]

@@ -56,15 +56,17 @@
     '';
   };
 
-  sops.secrets =
+  sops.secrets = let
+    dir = ../hosts/${conf.hostname}/secrets/nm-connections;
+  in
     builtins.listToAttrs (builtins.map (name: {
       name = "networking/nm-connection-${name}.nmconnection";
       value = {
         format = "binary";
-        sopsFile = ../secrets/nm-connections + "/${name}";
+        sopsFile = /${dir}/${name};
         path = "/etc/NetworkManager/system-connections/${name}.nmconnection";
       };
-    }) (builtins.attrNames (builtins.readDir ../secrets/nm-connections)))
+    }) (builtins.attrNames (builtins.readDir dir)))
     // {
       "networking/vpn/default" = {};
       "networking/vpn/full" = {};

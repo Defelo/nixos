@@ -3,19 +3,29 @@
   pkgs = import nixpkgs {inherit system;};
 in rec {
   inherit system;
-  hostname = "nitrogen";
+  hostname = "neon";
   uid = 1000;
   user = "felix";
   home = "/home/${user}";
 
   partitions = {
-    boot = "/dev/disk/by-uuid/3476-D46E";
-    crypt = "/dev/disk/by-uuid/bcedff9c-e5a0-4a07-84b2-1fa454aeab7f";
+    boot = "/dev/disk/by-uuid/A28F-4707";
+    crypt = "/dev/disk/by-uuid/b74a3f01-cba6-4912-bb38-14221a136cd0";
   };
 
   ykfde = false;
 
-  lock-command = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 4 pixel";
+  sway.output.scale = "1.25";
+
+  lock-command = builtins.concatStringsSep " " [
+    "${pkgs.swaylock-effects}/bin/swaylock"
+    "--screenshots"
+    "--clock"
+    "--submit-on-touch"
+    "--show-failed-attempts"
+    "--effect-pixelate 8"
+    "--fade-in 0.5"
+  ];
 
   hardware-configuration = {
     config,
@@ -26,8 +36,8 @@ in rec {
   }: {
     imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-    boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
-    boot.initrd.kernelModules = [];
+    boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];
+    boot.initrd.kernelModules = ["dm-snapshot"];
     boot.kernelModules = ["kvm-intel"];
     boot.extraModulePackages = [];
 
@@ -41,17 +51,6 @@ in rec {
       fsType = "vfat";
     };
 
-    fileSystems."/mnt/arch" = {
-      device = "/dev/mapper/arch";
-      fsType = "ext4";
-      encrypted = {
-        enable = true;
-        blkDev = "/dev/disk/by-uuid/189f0f8c-336a-4029-9a46-f894f0022b58";
-        keyFile = "/mnt-root/root/.arch.key";
-        label = "arch";
-      };
-    };
-
     swapDevices = [
       {
         device = "/dev/nixos/swap";
@@ -60,7 +59,7 @@ in rec {
     ];
 
     networking.useDHCP = lib.mkDefault true;
-    # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
+    # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
     nixpkgs.hostPlatform = lib.mkDefault system;
     powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

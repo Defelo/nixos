@@ -13,7 +13,6 @@
     cargo-audit
     cargo-hack
     cargo-llvm-cov
-    cargo-msrv
     cargo-release
     _pkgs.sea-orm-cli
   ];
