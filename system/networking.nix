@@ -17,16 +17,18 @@
           vpn.default = config.sops.secrets."networking/vpn/default".path;
           vpn.full = config.sops.secrets."networking/vpn/full".path;
           wifi.trusted = config.sops.secrets."networking/wifi/trusted".path;
-          nmcli = "${pkgs.networkmanager}/bin/nmcli";
-          is_trusted = ''${pkgs.gnugrep}/bin/grep -q "^$CONNECTION_UUID$" ${wifi.trusted}'';
         in
           pkgs.writeText "trusted-networks" ''
-            if ${is_trusted}; then
-              if [[ "$2" = "up" ]]; then
-                ${nmcli} c up "$(${pkgs.coreutils}/bin/cat ${vpn.default})";
-              else
-                ${nmcli} c up "$(${pkgs.coreutils}/bin/cat ${vpn.full})";
-              fi
+            export PATH=${pkgs.lib.makeBinPath (with pkgs; [coreutils gnugrep networkmanager])}
+
+            if [[ "$1" = "vpn" ]]; then
+              exit
+            fi
+
+            if nmcli --fields=UUID c s --active | tail +2 | cut -d' ' -f1 | sort | comm -12 - <(sort ${wifi.trusted}) | grep -q .; then
+              nmcli c up "$(cat ${vpn.default})";
+            else
+              nmcli c up "$(cat ${vpn.full})";
             fi
           '';
       }
