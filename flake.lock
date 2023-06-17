@@ -23,11 +23,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1686959372,
-        "narHash": "sha256-uUcSofTRsiF9uzZWC106fwl9T7i5lYSzIRY96dJhxuM=",
+        "lastModified": 1686961404,
+        "narHash": "sha256-/eLGJTBmCHNlDg5r/eBGTK800GwH4o46fST+hitudiI=",
         "owner": "Defelo",
         "repo": "cargo-clif-nix",
-        "rev": "0251d660caa69dee73cf8437884f3cbc3d1305ed",
+        "rev": "a7414577f406e7e8ee3ebb40aa512c5b5783d132",
         "type": "github"
       },
       "original": {
