@@ -85,108 +85,111 @@ in {
       ];
 
       modifier = mod;
-      keybindings = lib.mkOptionDefault {
-        "${mod}+h" = "focus left";
-        "${mod}+j" = "focus down";
-        "${mod}+k" = "focus up";
-        "${mod}+l" = "focus right";
+      keybindings = let
+        alacritty = "alacritty $(swaymsg -t get_tree -r | jq '.nodes[].nodes[]|select(.focused)' | grep -q . || echo --class=floating_term)";
+      in
+        lib.mkOptionDefault {
+          "${mod}+h" = "focus left";
+          "${mod}+j" = "focus down";
+          "${mod}+k" = "focus up";
+          "${mod}+l" = "focus right";
 
-        "${mod}+Shift+h" = "move left";
-        "${mod}+Shift+j" = "move down";
-        "${mod}+Shift+k" = "move up";
-        "${mod}+Shift+l" = "move right";
+          "${mod}+Shift+h" = "move left";
+          "${mod}+Shift+j" = "move down";
+          "${mod}+Shift+k" = "move up";
+          "${mod}+Shift+l" = "move right";
 
-        "${mod}+a" = "focus parent";
-        "${mod}+c" = "focus child";
+          "${mod}+a" = "focus parent";
+          "${mod}+c" = "focus child";
 
-        "${mod}+n" = "split h";
-        "${mod}+v" = "split v";
+          "${mod}+n" = "split h";
+          "${mod}+v" = "split v";
 
-        "${mod}+Tab" = "workspace back_and_forth";
+          "${mod}+Tab" = "workspace back_and_forth";
 
-        "${mod}+asciicircum" = "workspace ${ws0}";
-        "${mod}+1" = "workspace ${ws1}";
-        "${mod}+2" = "workspace ${ws2}";
-        "${mod}+3" = "workspace ${ws3}";
-        "${mod}+4" = "workspace ${ws4}";
-        "${mod}+5" = "workspace ${ws5}";
-        "${mod}+6" = "workspace ${ws6}";
-        "${mod}+7" = "workspace ${ws7}";
-        "${mod}+8" = "workspace ${ws8}";
-        "${mod}+9" = "workspace ${ws9}";
-        "${mod}+0" = "workspace ${ws10}";
-        "${mod}+ssharp" = "workspace ${ws42}";
-        "${mod}+acute" = "workspace ${ws1337}";
-        "${mod}+plus" = "workspace ${ws_obsidian}";
+          "${mod}+asciicircum" = "workspace ${ws0}";
+          "${mod}+1" = "workspace ${ws1}";
+          "${mod}+2" = "workspace ${ws2}";
+          "${mod}+3" = "workspace ${ws3}";
+          "${mod}+4" = "workspace ${ws4}";
+          "${mod}+5" = "workspace ${ws5}";
+          "${mod}+6" = "workspace ${ws6}";
+          "${mod}+7" = "workspace ${ws7}";
+          "${mod}+8" = "workspace ${ws8}";
+          "${mod}+9" = "workspace ${ws9}";
+          "${mod}+0" = "workspace ${ws10}";
+          "${mod}+ssharp" = "workspace ${ws42}";
+          "${mod}+acute" = "workspace ${ws1337}";
+          "${mod}+plus" = "workspace ${ws_obsidian}";
 
-        "${mod}+Shift+asciicircum" = "move container to workspace ${ws0}";
-        "${mod}+Shift+1" = "move container to workspace ${ws1}";
-        "${mod}+Shift+2" = "move container to workspace ${ws2}";
-        "${mod}+Shift+3" = "move container to workspace ${ws3}";
-        "${mod}+Shift+4" = "move container to workspace ${ws4}";
-        "${mod}+Shift+5" = "move container to workspace ${ws5}";
-        "${mod}+Shift+6" = "move container to workspace ${ws6}";
-        "${mod}+Shift+7" = "move container to workspace ${ws7}";
-        "${mod}+Shift+8" = "move container to workspace ${ws8}";
-        "${mod}+Shift+9" = "move container to workspace ${ws9}";
-        "${mod}+Shift+0" = "move container to workspace ${ws10}";
-        "${mod}+Shift+ssharp" = "move container to workspace ${ws42}";
-        "${mod}+Shift+acute" = "move container to workspace ${ws1337}";
-        "${mod}+Shift+plus" = "move container to workspace ${ws_obsidian}";
+          "${mod}+Shift+asciicircum" = "move container to workspace ${ws0}";
+          "${mod}+Shift+1" = "move container to workspace ${ws1}";
+          "${mod}+Shift+2" = "move container to workspace ${ws2}";
+          "${mod}+Shift+3" = "move container to workspace ${ws3}";
+          "${mod}+Shift+4" = "move container to workspace ${ws4}";
+          "${mod}+Shift+5" = "move container to workspace ${ws5}";
+          "${mod}+Shift+6" = "move container to workspace ${ws6}";
+          "${mod}+Shift+7" = "move container to workspace ${ws7}";
+          "${mod}+Shift+8" = "move container to workspace ${ws8}";
+          "${mod}+Shift+9" = "move container to workspace ${ws9}";
+          "${mod}+Shift+0" = "move container to workspace ${ws10}";
+          "${mod}+Shift+ssharp" = "move container to workspace ${ws42}";
+          "${mod}+Shift+acute" = "move container to workspace ${ws1337}";
+          "${mod}+Shift+plus" = "move container to workspace ${ws_obsidian}";
 
-        "${mod}+Return" = "exec alacritty --class=floating_term";
-        "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
+          "${mod}+Return" = "exec ${alacritty}";
+          "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
 
-        "${mod}+Shift+y" = "exec ${conf.lock-command}";
+          "${mod}+Shift+y" = "exec ${conf.lock-command}";
 
-        "${mod}+Ctrl+M" = let
-          cmd = pkgs.writeShellScript "rofipass-wrapped.sh" ''
-            export PASSWORD_STORE_DIR=${pkgs.lib.escapeShellArg config.programs.password-store.settings.PASSWORD_STORE_DIR}
-            export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wl-clipboard rofi-wayland dunst clipman]))}:$PATH
-            exec -a rofipass.sh ${../scripts/rofipass.sh} "$@"
-          '';
-        in "exec ${cmd}";
-        "${mod}+P" = "exec alacritty --class=floating_term -e python";
-        "${mod}+Shift+P" = "exec alacritty --class=floating_term -e pulsemixer";
+          "${mod}+Ctrl+M" = let
+            cmd = pkgs.writeShellScript "rofipass-wrapped.sh" ''
+              export PASSWORD_STORE_DIR=${pkgs.lib.escapeShellArg config.programs.password-store.settings.PASSWORD_STORE_DIR}
+              export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wl-clipboard rofi-wayland dunst clipman]))}:$PATH
+              exec -a rofipass.sh ${../scripts/rofipass.sh} "$@"
+            '';
+          in "exec ${cmd}";
+          "${mod}+P" = "exec ${alacritty} -e python";
+          "${mod}+Shift+P" = "exec ${alacritty} -e pulsemixer";
 
-        # "${mod}+odiaeresis" = "exec systemctl --user status picom && systemctl --user stop picom || systemctl --user start picom";
+          # "${mod}+odiaeresis" = "exec systemctl --user status picom && systemctl --user stop picom || systemctl --user start picom";
 
-        "XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05+";
-        "XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05-";
-        "XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioMicMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle";
-        "Shift+XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SOURCE@ 0.05+";
-        "Shift+XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SOURCE@ 0.05-";
-        "Shift+XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle";
+          "XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05+";
+          "XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05-";
+          "XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioMicMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle";
+          "Shift+XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SOURCE@ 0.05+";
+          "Shift+XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SOURCE@ 0.05-";
+          "Shift+XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle";
 
-        "XF86AudioPlay" = "exec playerctl play-pause";
-        "Next" = "exec playerctl play-pause";
-        "XF86AudioStop" = "exec playerctl stop";
-        "Prior" = "exec playerctl stop";
-        "XF86AudioNext" = "exec playerctl next";
-        "End" = "exec playerctl next";
-        "XF86AudioPrev" = "exec playerctl previous";
-        "Home" = "exec playerctl previous";
+          "XF86AudioPlay" = "exec playerctl play-pause";
+          "Next" = "exec playerctl play-pause";
+          "XF86AudioStop" = "exec playerctl stop";
+          "Prior" = "exec playerctl stop";
+          "XF86AudioNext" = "exec playerctl next";
+          "End" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
+          "Home" = "exec playerctl previous";
 
-        "XF86MonBrightnessUp" = "exec light -A 5";
-        "XF86MonBrightnessDown" = "exec light -U 5";
-        "Shift+XF86MonBrightnessUp" = "exec light -A 1";
-        "Shift+XF86MonBrightnessDown" = "exec light -U 1";
+          "XF86MonBrightnessUp" = "exec light -A 5";
+          "XF86MonBrightnessDown" = "exec light -U 5";
+          "Shift+XF86MonBrightnessUp" = "exec light -A 1";
+          "Shift+XF86MonBrightnessDown" = "exec light -U 1";
 
-        "${mod}+numbersign" = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - -o - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
+          "${mod}+numbersign" = ''exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - -o - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png'';
 
-        "${mod}+KP_Add" = "exec dunstctl set-paused toggle";
-        "${mod}+comma" = "exec dunstctl close";
-        "${mod}+Shift+comma" = "exec dunstctl close-all";
-        "${mod}+Shift+period" = "exec dunstctl history-pop";
-        "${mod}+period" = "exec dunstctl context";
+          "${mod}+KP_Add" = "exec dunstctl set-paused toggle";
+          "${mod}+comma" = "exec dunstctl close";
+          "${mod}+Shift+comma" = "exec dunstctl close-all";
+          "${mod}+Shift+period" = "exec dunstctl history-pop";
+          "${mod}+period" = "exec dunstctl context";
 
-        "${mod}+m" = "exec ${pkgs.clipman}/bin/clipman pick -t rofi";
-        "${mod}+Shift+m" = "exec ${pkgs.clipman}/bin/clipman clear -t rofi";
+          "${mod}+m" = "exec ${pkgs.clipman}/bin/clipman pick -t rofi";
+          "${mod}+Shift+m" = "exec ${pkgs.clipman}/bin/clipman clear -t rofi";
 
-        "${mod}+Shift+minus" = "move scratchpad";
-        "${mod}+minus" = "scratchpad show";
-      };
+          "${mod}+Shift+minus" = "move scratchpad";
+          "${mod}+minus" = "scratchpad show";
+        };
       modes = {
         resize = {
           h = "resize shrink width 10 px or 10 ppt";
