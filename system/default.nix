@@ -26,6 +26,7 @@ in
     inherit system pkgs specialArgs;
     modules = [
       ./common.nix
+      conf.extraConfig
       conf.hardware-configuration
 
       ./audio.nix
@@ -42,7 +43,6 @@ in
       ./users.nix
       ./wayland.nix
       ./xbanish.nix
-      ./zram.nix
 
       home-manager.nixosModules.home-manager
       {

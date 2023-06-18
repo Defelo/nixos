@@ -27,6 +27,8 @@ in rec {
     "--fade-in 0.5"
   ];
 
+  extraConfig = {};
+
   hardware-configuration = {
     config,
     lib,

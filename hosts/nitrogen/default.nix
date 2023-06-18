@@ -27,6 +27,12 @@ in rec {
     "--fade-in 0.5"
   ];
 
+  extraConfig = {
+    imports = [
+      ../../system/zram.nix
+    ];
+  };
+
   hardware-configuration = {
     config,
     lib,
