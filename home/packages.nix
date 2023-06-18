@@ -16,6 +16,9 @@
 
     # browsers
     brave
+    (tor-browser-bundle-bin.override {
+      useHardenedMalloc = false;
+    })
 
     # communication
     discord-canary
