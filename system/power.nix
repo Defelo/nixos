@@ -5,13 +5,12 @@
   powerManagement.powertop.enable = true;
   services.tlp.enable = true;
   services.logind = {
-    # lidSwitch = "suspend-then-hibernate";
-    lidSwitch = "suspend";
+    lidSwitch = "suspend-then-hibernate";
     extraConfig = ''
       HandlePowerKey=hibernate
     '';
   };
-  # systemd.sleep.extraConfig = ''
-  #   HibernateDelaySec=30m
-  # '';
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=60m
+  '';
 }
