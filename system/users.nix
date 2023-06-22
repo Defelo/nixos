@@ -3,7 +3,7 @@
     ${conf.user} = {
       isNormalUser = true;
       uid = conf.uid;
-      extraGroups = ["wheel" "docker" "networkmanager" "video"];
+      extraGroups = ["wheel" "docker" "networkmanager" "video" "libvirtd"];
     };
   };
 

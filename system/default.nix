@@ -41,6 +41,7 @@ in
       ./sops.nix
       # ./steam.nix
       ./users.nix
+      ./virt.nix
       ./wayland.nix
       ./xbanish.nix
 

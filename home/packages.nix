@@ -37,6 +37,7 @@
     nix-output-monitor
     wl-clipboard
     xdg-utils
+    virt-manager
 
     # utils
     htop
