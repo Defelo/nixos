@@ -81,7 +81,7 @@ in {
         {command = "element-desktop";}
         {command = "telegram-desktop";}
         {command = "obsidian";}
-        {command = "alacritty";}
+        {command = "alacritty -e tmux";}
       ];
 
       modifier = mod;
