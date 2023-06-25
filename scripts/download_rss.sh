@@ -16,6 +16,7 @@ declare -A urls=(
     ["x3"]="http://www.ndr.de/fernsehen/sendungen/extra_3/video-podcast/extradrei196_version-hq.xml"
     ["hs"]="https://mediathekviewweb.de/feed?query=heute-show%20!ZDF&future=false"
     ["zmr"]="https://mediathekviewweb.de/feed?query=zdf%20magazin%20royale%20!ZDF&future=false"
+    ["m"]="https://mediathekviewweb.de/feed?query=!zdf%20wir%20sind%20die%20meiers&future=false"
 )
 
 download_from_rss "${urls[$1]}" "$1" ${2:-0}
