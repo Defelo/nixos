@@ -15,7 +15,7 @@ fi
 
 echo "Creating backup $name"
 sudo --preserve-env="SSH_AUTH_SOCK,BORG_REPO,BORG_PASSCOMMAND" \
-    borg create --stats --progress --compression lz4 \
+    borg create --stats --progress --compression lzma,5 \
     --exclude '**/*cache*' \
     --exclude '**/*Cache*' \
     --exclude '/home/*/.npm' \
@@ -25,7 +25,6 @@ sudo --preserve-env="SSH_AUTH_SOCK,BORG_REPO,BORG_PASSCOMMAND" \
     --exclude '/home/*/.rustup' \
     --exclude '/home/*/.nuget' \
     --exclude '/home/*/.cargo' \
-    --exclude '/home/*/Downloads' \
     --exclude '/home/*/.local/share/JetBrains/Toolbox/apps' \
     --exclude '/home/*/.local/share/JetBrains/Toolbox/download' \
     --exclude '/home/*/.local/pipx/venvs' \
