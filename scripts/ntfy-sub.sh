@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-while read line; do
+while read -r line; do
 	message=$(jq -r .message <<< "$line")
 	if ! title=$(jq -e -r .title <<< "$line"); then
 		title="$message"
