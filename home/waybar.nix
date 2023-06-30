@@ -1,11 +1,6 @@
-{
-  pkgs,
-  pkgs-small,
-  ...
-}: {
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
-    package = pkgs-small.waybar;
     systemd.enable = true;
     settings = {
       main = {
