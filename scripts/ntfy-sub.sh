@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-while read -r line; do
+handle() {
+	line="$1"
 	message=$(jq -r .message <<< "$line")
 	if ! title=$(jq -e -r .title <<< "$line"); then
 		title="$message"
@@ -28,4 +29,8 @@ while read -r line; do
 	if url=$(jq -e --arg id "$id" -r '.actions//[]|.[]|select(.id==$id)|.url' <<< "$line"); then
 		xdg-open "$url"
 	fi
+}
+
+while read -r line; do
+	handle "$line" &
 done < <(ntfy sub -C -c "$1")
