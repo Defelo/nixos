@@ -22,10 +22,10 @@ while read -r line; do
 		[[ "$action" = "view" ]] || continue
 		label=$(jq -r .label <<< "$act")
 		actions+=("-A" "$id,$label")
-	done < <(jq -c '.actions[]' <<< "$line")
+	done < <(jq -c '.actions//[]|.[]' <<< "$line")
 
 	id=$(dunstify "${actions[@]}" -u $prio "$title" "$message")
-	if url=$(jq -e --arg id "$id" -r '.actions[]|select(.id==$id)|.url' <<< "$line"); then
+	if url=$(jq -e --arg id "$id" -r '.actions//[]|.[]|select(.id==$id)|.url' <<< "$line"); then
 		xdg-open "$url"
 	fi
 done < <(ntfy sub -C -c "$1")
