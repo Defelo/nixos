@@ -7,7 +7,6 @@
     ./dunst.nix
     # ./emacs.nix
     ./fcitx5.nix
-    ./flameshot.nix
     ./fzf.nix
     ./gammastep.nix
     ./git.nix
