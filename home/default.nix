@@ -16,7 +16,6 @@
     # ./lunarvim.nix
     ./nix-index.nix
     ./ntfy.nix
-    ./onboard.nix
     ./packages.nix
     ./pass.nix
     ./playerctld.nix
