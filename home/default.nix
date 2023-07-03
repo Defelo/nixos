@@ -13,7 +13,6 @@
     ./gpg.nix
     ./helix.nix
     # ./libreoffice.nix
-    # ./lunarvim.nix
     ./nix-index.nix
     ./ntfy.nix
     ./packages.nix
