@@ -9,6 +9,7 @@
     ./fcitx5.nix
     ./flameshot.nix
     ./fzf.nix
+    ./gammastep.nix
     ./git.nix
     ./gpg.nix
     ./helix.nix
@@ -21,7 +22,6 @@
     ./pass.nix
     ./playerctld.nix
     ./programming
-    ./redshift.nix
     ./rofi.nix
     ./sops.nix
     ./ssh.nix
