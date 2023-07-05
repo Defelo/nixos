@@ -135,6 +135,15 @@
         fi
       }
 
+      s() {
+        tmux new -d -c ~ -s "$1"
+        if [[ -n "$TMUX" ]]; then
+          tmux switch-client -t "$1"
+        else
+          tmux a -t "$1"
+        fi
+      }
+
       mitm() {
         ${pkgs.mitmproxy}/bin/mitmweb -q &
         pid=$!
