@@ -80,5 +80,6 @@
     okular
     anki-bin
     spotify
+    rnote
   ];
 }
