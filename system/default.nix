@@ -43,7 +43,6 @@ in
       ./users.nix
       ./virt.nix
       ./wayland.nix
-      ./xbanish.nix
 
       home-manager.nixosModules.home-manager
       {
