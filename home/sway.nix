@@ -80,7 +80,6 @@ in {
         {command = "discordcanary";}
         {command = "element-desktop";}
         {command = "telegram-desktop";}
-        {command = "signal-desktop";}
         {command = "obsidian";}
         {command = "alacritty -e tmux";}
       ];
