@@ -22,7 +22,9 @@
 
     # communication
     discord-canary
-    element-desktop
+    (element-desktop.override {
+      electron = electron_24;
+    })
     tdesktop
     signal-desktop
     slack
