@@ -3,11 +3,11 @@
     "cargo-clif": {
       "flake": false,
       "locked": {
-        "lastModified": 1689173243,
-        "narHash": "sha256-sAXY/6klMEwYQDjTCb//MR/voAKsfVsFdL5Zj7TeXUo=",
+        "lastModified": 1689188607,
+        "narHash": "sha256-Lj0PjKJqpoEL052RG9IQSE0NKwi+000iWATpmqqnuEg=",
         "owner": "bjorn3",
         "repo": "rustc_codegen_cranelift",
-        "rev": "8b9187dfecbd0b4ebbc670ae3ede66e87aa7c2e0",
+        "rev": "aa6916bd0132af447367e7f6a137b317118ecd3a",
         "type": "github"
       },
       "original": {
@@ -23,11 +23,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1689176562,
-        "narHash": "sha256-R9k86hzP3sE+HLPi9KhmjWvkPWX+8RJY6uNw8TAaZ5c=",
+        "lastModified": 1689199734,
+        "narHash": "sha256-+EoJgw4rMmruIosW3E5jXE1dn8Emn6DvvxsjOXiEKy8=",
         "owner": "Defelo",
         "repo": "cargo-clif-nix",
-        "rev": "ced37a54c6b30153b4585aada5fb6367021127d1",
+        "rev": "c120aaee7c042388c8555a5188312ea45c837f51",
         "type": "github"
       },
       "original": {
@@ -419,11 +419,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1689160739,
-        "narHash": "sha256-16f4JmXP9kvlcLPmlfXCwON2wyxEbZ2GQP8MM9XAzjA=",
+        "lastModified": 1689197365,
+        "narHash": "sha256-+pQ/rCrQRYWkOpHIU2vHZIpl5XGDoi+So7ESaCy5a5w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cad52aa1825058284a9b33ff4e42ce8adff1ac8b",
+        "rev": "928351703f4071520619a8f76da3c69c8a88e00a",
         "type": "github"
       },
       "original": {
