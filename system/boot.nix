@@ -19,6 +19,11 @@
   };
 
   boot.supportedFilesystems = ["ntfs"];
+  boot.loader.grub.extraEntries = ''
+    menuentry "NixOS Live ISO" {
+      configfile (hd0,gpt6)/EFI/boot/grub.cfg
+    }
+  '';
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
