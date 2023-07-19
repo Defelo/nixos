@@ -21,7 +21,8 @@
   boot.supportedFilesystems = ["ntfs"];
   boot.loader.grub.extraEntries = ''
     menuentry "NixOS Live ISO" {
-      configfile (hd0,gpt6)/EFI/boot/grub.cfg
+      set root=(hd0,gpt6)
+      chainloader /EFI/boot/bootx64.efi
     }
   '';
 
