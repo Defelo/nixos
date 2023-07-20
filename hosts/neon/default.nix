@@ -43,6 +43,11 @@ in rec {
     boot.kernelModules = ["kvm-intel"];
     boot.extraModulePackages = [];
 
+    # https://forums.lenovo.com/t5/Ubuntu/Yoga-7i-sound-card-issue-on-Linux/m-p/5183746?page=1#5807792
+    boot.extraModprobeConfig = ''
+      options snd-sof-intel-hda-common hda_model=alc287-yoga9-bass-spk-pin
+    '';
+
     fileSystems."/" = {
       device = "/dev/nixos/root";
       fsType = "ext4";
