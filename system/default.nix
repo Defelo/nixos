@@ -33,6 +33,7 @@ in
       ./backlight.nix
       ./bluetooth.nix
       ./boot.nix
+      ./borg.nix
       ./fonts.nix
       ./geoclue2.nix
       ./networking.nix

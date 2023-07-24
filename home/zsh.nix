@@ -1,6 +1,4 @@
 {
-  config,
-  conf,
   pkgs,
   _pkgs,
   ...
@@ -84,16 +82,6 @@
       jupyter_export(){
         base=$(basename "$1" .ipynb)
         jupyter nbconvert "$1" --to pdf --output "''${base}.pdf"
-      }
-
-      backup() {
-        (
-          export BORG_REPO="$(cat ${config.sops.secrets."borg/${conf.hostname}/borg_repo".path})"
-          export BORG_PASSCOMMAND="sudo -u $(whoami) $(cat ${config.sops.secrets."borg/${conf.hostname}/borg_passcommand".path})"
-          export HEALTHCHECK="$(cat ${config.sops.secrets."borg/${conf.hostname}/healthcheck".path})"
-          export EXCLUDE_SYNCTHING="$(cat ${config.sops.secrets."borg/${conf.hostname}/exclude_syncthing".path})"
-          ${../scripts/backup.sh}
-        )
       }
 
       latex() {
@@ -184,12 +172,7 @@
       sys-rebuild = "_rebuild && source /etc/zshrc && source ~/.zshrc";
       sys-update = "_update && source /etc/zshrc && source ~/.zshrc";
       repl = "nix repl -f '<nixpkgs>'";
+      backup = "sudo systemctl start borgbackup-job-data.service && sudo journalctl -fu borgbackup-job-data.service";
     };
-  };
-  sops.secrets = {
-    "borg/${conf.hostname}/borg_repo" = {};
-    "borg/${conf.hostname}/borg_passcommand" = {};
-    "borg/${conf.hostname}/healthcheck" = {};
-    "borg/${conf.hostname}/exclude_syncthing" = {};
   };
 }

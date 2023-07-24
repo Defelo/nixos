@@ -17,6 +17,8 @@ in rec {
 
   sway.output.scale = "1.25";
 
+  borg.excludeSyncthing = false;
+
   lock-command = builtins.concatStringsSep " " [
     "${pkgs.swaylock-effects}/bin/swaylock"
     "--screenshots"
