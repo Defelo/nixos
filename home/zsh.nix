@@ -54,13 +54,6 @@
       }
 
       _rebuild() {
-        current=$(realpath /run/current-system)
-        new=$(${pkgs.nix-output-monitor}/bin/nom build --keep-going --print-out-paths --no-link ~/nixos#nixosConfigurations.$(cat /proc/sys/kernel/hostname).config.system.build.toplevel) || return $?
-        if [[ "$new" = "$current" ]]; then
-          echo "up to date"
-          return 1
-        fi
-        ${pkgs.nvd}/bin/nvd diff $current $new
         sudo nixos-rebuild "''${1:-switch}" --flake ~/nixos
       }
 
@@ -188,11 +181,8 @@
       tt = "${../scripts/timetracker.sh}";
       beamer = "${../scripts/beamer.sh}";
       drss = "${../scripts/download_rss.sh}";
-      sys-rebuild = "_rebuild && source ~/.zshrc";
-      sys-rebuild-test = "_rebuild test && source ~/.zshrc";
-      sys-rebuild-boot = "_rebuild boot && source ~/.zshrc";
-      sys-update = "_update && source ~/.zshrc";
-      # conf = "vim ~/nixos/flake.nix";
+      sys-rebuild = "_rebuild && source /etc/zshrc && source ~/.zshrc";
+      sys-update = "_update && source /etc/zshrc && source ~/.zshrc";
       repl = "nix repl -f '<nixpkgs>'";
     };
   };

@@ -57,5 +57,15 @@
     };
   };
 
+  system.activationScripts.nvd-diff = ''
+    if old_system=$(readlink /run/current-system); then
+      ${pkgs.nvd}/bin/nvd --color=always --nix-bin-dir=/run/current-system/sw/bin/ diff $old_system $systemConfig
+    fi
+    if [[ -e /run/booted-system ]] && ! ${pkgs.diffutils}/bin/diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) <(readlink $systemConfig/{initrd,kernel,kernel-modules}); then
+      echo -e "\033[1m==> REBOOT REQUIRED! \033[0m"
+    fi
+  '';
+  environment.shellAliases.needrestart = "sh -c 'diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) <(readlink /run/current-system/{initrd,kernel,kernel-modules})'";
+
   system.stateVersion = "22.11";
 }
