@@ -28,7 +28,7 @@ in {
       ./pass.nix
       ./playerctld.nix
       ./programming
-      ./rofi.nix
+      ./rofi
       ./sops.nix
       ./ssh.nix
       ./sway.nix
