@@ -8,7 +8,7 @@ let
     ./helix
     ./nix-index.nix
     ./tmux.nix
-    ./zsh.nix
+    ./zsh
   ];
 in {
   user =
@@ -39,6 +39,7 @@ in {
       ./waybar.nix
       ./xournalpp.nix
       ./yubikey.nix
+      ./zsh/full.nix
     ];
 
   root = common;

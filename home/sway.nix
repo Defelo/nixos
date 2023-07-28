@@ -146,7 +146,7 @@ in {
             cmd = pkgs.writeShellScript "rofipass-wrapped.sh" ''
               export PASSWORD_STORE_DIR=${pkgs.lib.escapeShellArg config.programs.password-store.settings.PASSWORD_STORE_DIR}
               export PATH=${pkgs.lib.escapeShellArg (pkgs.lib.makeBinPath (with pkgs; [pass wl-clipboard rofi-wayland dunst clipman]))}:$PATH
-              exec -a rofipass.sh ${../scripts/rofipass.sh} "$@"
+              exec -a rofipass.sh ${./scripts/rofipass.sh} "$@"
             '';
           in "exec ${cmd}";
           "${mod}+P" = "exec ${alacritty} -e python";

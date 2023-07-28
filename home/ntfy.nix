@@ -8,7 +8,7 @@
     Install.WantedBy = ["default.target"];
     Unit.After = ["sops-nix.service" "dunst.service"];
     Service = {
-      ExecStart = "${pkgs.bash}/bin/bash ${../scripts/ntfy-sub.sh} ${config.sops.secrets.ntfy.path}";
+      ExecStart = "${pkgs.bash}/bin/bash ${./scripts/ntfy-sub.sh} ${config.sops.secrets.ntfy.path}";
       Environment = "PATH=${pkgs.lib.makeBinPath (with pkgs; [coreutils jq dunst xdg-utils ntfy-sh])}";
     };
   };
