@@ -14,13 +14,34 @@
   users.defaultUserShell = pkgs.zsh;
 
   environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
+    EDITOR = "hx";
+    VISUAL = "hx";
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
+    age
+    comma
+    dig
+    duf
+    file
+    htop
+    iw
+    jq
+    ncdu
+    nix-tree
+    nvd
+    ranger
+    renameutils
+    ripgrep
+    sd
+    sops
+    unp
     wget
+    wireguard-tools
+    wirelesstools
+    xxd
+    yq
+    zip
   ];
 
   environment.pathsToLink = ["/share/zsh"];

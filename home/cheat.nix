@@ -7,7 +7,7 @@
   home.file.cheat = {
     target = ".config/cheat/conf.yml";
     text = builtins.toJSON {
-      editor = "nvim";
+      editor = "hx";
       colorize = true;
       style = "monokai";
       formatter = "terminal256";

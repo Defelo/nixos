@@ -144,8 +144,6 @@
       ls = "${_pkgs.exa}/bin/exa -g --git --group-directories-first";
       l = "ls -aal";
       tre = "ls -alT";
-      vim = "nvim";
-      vi = "nvim";
       c = "clear";
       h = "cd;c";
       grep = "grep --color=auto";

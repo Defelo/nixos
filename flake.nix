@@ -13,10 +13,6 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # lunarvim = {
-    #   url = "github:lunarvim/lunarvim/release-1.2/neovim-0.8";
-    #   flake = false;
-    # };
     cheatsheets = {
       url = "github:cheat/cheatsheets";
       flake = false;

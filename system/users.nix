@@ -7,13 +7,20 @@
     };
   };
 
-  home-manager.users = {
+  home-manager.users = let
+    hm = import ../home;
+  in {
     ${conf.user} = {
-      imports = [../home];
+      imports = hm.user;
+      home.username = conf.user;
+      home.homeDirectory = conf.home;
+    };
+    root = {
+      imports = hm.root;
+      home.username = "root";
+      home.homeDirectory = "/root";
     };
   };
-
-  # services.getty.autologinUser = user;
 
   # security.sudo.wheelNeedsPassword = false;
   security.pam.yubico = {
