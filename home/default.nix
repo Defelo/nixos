@@ -37,7 +37,7 @@ in {
       ./thunderbird
       ./vscodium.nix
       ./waybar.nix
-      ./xournalpp.nix
+      ./xournalpp
       ./yubikey.nix
       ./zsh/full.nix
     ];
