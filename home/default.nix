@@ -27,7 +27,6 @@
     ./theme.nix
     ./thunderbird
     ./tmux.nix
-    ./vifm.nix
     ./vscodium.nix
     ./waybar.nix
     ./xournalpp.nix

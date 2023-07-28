@@ -73,6 +73,7 @@
     comma
     nvd
     nix-tree
+    ranger
 
     obsidian
     vlc
