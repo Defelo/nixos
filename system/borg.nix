@@ -7,9 +7,9 @@
 }: let
   name = config.networking.hostName;
   repo = "ssh://borg@pve.defelo.de/~/${name}";
-  passCommand = "cat ${config.sops.secrets."borg/${name}/encryption_key".path}";
+  passCommand = "cat ${config.sops.secrets."encryption_key".path}";
   environment = {
-    BORG_RSH = "ssh -i ${config.sops.secrets."borg/${name}/ssh_key".path}";
+    BORG_RSH = "ssh -i ${config.sops.secrets."ssh_key".path}";
     BORG_REPO = repo;
     BORG_PASSCOMMAND = passCommand;
     BORG_RELOCATED_REPO_ACCESS_IS_OK = "1";
@@ -55,8 +55,10 @@ in {
 
   environment.shellAliases.setup-borg = builtins.foldl' (acc: var: "${acc} ${var}=${lib.escapeShellArg environment.${var}}") "export" (builtins.attrNames environment);
 
-  sops.secrets = {
-    "borg/${name}/ssh_key" = {};
-    "borg/${name}/encryption_key" = {};
+  sops.secrets = let
+    s.sopsFile = ../hosts/${name}/secrets/borg.yml;
+  in {
+    "ssh_key" = s;
+    "encryption_key" = s;
   };
 }
