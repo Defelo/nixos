@@ -1,12 +1,11 @@
 {
   pkgs,
-  _pkgs,
   lib,
   ...
 }: let
   aliases = {
     "." = "source";
-    ls = "${_pkgs.exa}/bin/exa -g --git --group-directories-first";
+    ls = "${pkgs.exa}/bin/exa -g --git --group-directories-first";
     l = "ls -aal";
     tre = "ls -alT";
     c = "clear";

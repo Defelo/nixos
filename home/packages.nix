@@ -1,8 +1,4 @@
-{
-  pkgs,
-  _pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # programming
     gcc
@@ -43,8 +39,8 @@
     pwgen
     gh
     imagemagick
-    # _pkgs.icat
-    _pkgs.termshot
+    # icat
+    termshot
     # exiftool
     # gnome.file-roller
     bc

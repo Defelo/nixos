@@ -1,8 +1,4 @@
-{
-  pkgs,
-  _pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     (python311.withPackages (p:
       with p; [
@@ -10,7 +6,7 @@
         requests
       ]))
     poetry
-    _pkgs.poethepoet
+    poethepoet
     pyright
     ruff
   ];

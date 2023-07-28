@@ -1,7 +1,6 @@
 {
   conf,
   pkgs,
-  _pkgs,
   cargo-clif-nix,
   ...
 }: {
@@ -14,7 +13,7 @@
     cargo-hack
     cargo-llvm-cov
     cargo-release
-    _pkgs.sea-orm-cli
+    sea-orm-cli
   ];
   home.file.cargo = {
     text = ''

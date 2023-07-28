@@ -1,6 +1,5 @@
 {
   pkgs,
-  _pkgs,
   lib,
   ...
 }: let
@@ -33,7 +32,7 @@
 
     shot = ''
       file=$(mktemp --suffix .png)
-      ${_pkgs.termshot}/bin/termshot -f $file $TERMSHOT_FLAGS -- "$@" \
+      ${pkgs.termshot}/bin/termshot -f $file $TERMSHOT_FLAGS -- "$@" \
         && ${pkgs.imagemagick}/bin/convert $file -crop 0x0+81+191 -crop -113-140 $file \
         && ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png -i $file \
         && ${pkgs.gnome.eog}/bin/eog $file

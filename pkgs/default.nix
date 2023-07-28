@@ -1,9 +1,9 @@
-{pkgs, ...} @ inputs: let
-  inp = pkgs // inputs;
-in {
-  exa = import ./exa.nix inp;
-  icat = import ./icat.nix inp;
-  termshot = import ./termshot.nix inp;
-  sea-orm-cli = import ./sea-orm-cli.nix inp;
-  poethepoet = import ./poethepoet.nix inp;
-}
+{
+  pkgs,
+  inputs,
+}:
+builtins.listToAttrs (map (f: {
+    name = pkgs.lib.removeSuffix ".nix" f;
+    value = pkgs.lib.callPackageWith (pkgs // inputs) ./${f} {};
+  })
+  (builtins.filter (f: f != "default.nix") (builtins.attrNames (builtins.readDir ./.))))

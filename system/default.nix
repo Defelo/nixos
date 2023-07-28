@@ -5,22 +5,20 @@
   ...
 } @ inputs: let
   inherit (conf) system;
-  pkgs = import ./unfree.nix {inherit nixpkgs system;};
-  extra-pkgs = pkgs.lib.mapAttrs' (k: v: {
-    name = pkgs.lib.removePrefix "nix" k;
-    value = import ./unfree.nix {
-      inherit system;
-      nixpkgs = v;
+
+  importNixpkgs = src:
+    import ./nixpkgs.nix {
+      inherit system inputs;
+      nixpkgs = src;
     };
-  }) (pkgs.lib.filterAttrs (k: _: pkgs.lib.hasPrefix "nixpkgs-" k) inputs);
-  specialArgs =
-    inputs
-    // extra-pkgs
-    // {
-      _pkgs = import ../pkgs (inputs
-        // extra-pkgs
-        // {inherit pkgs;});
-    };
+  pkgs = importNixpkgs nixpkgs;
+  extra-pkgs = with pkgs.lib;
+    mapAttrs' (k: v: {
+      name = removePrefix "nix" k;
+      value = importNixpkgs v;
+    }) (filterAttrs (k: _: hasPrefix "nixpkgs-" k) inputs);
+
+  specialArgs = inputs // extra-pkgs;
 in
   nixpkgs.lib.nixosSystem rec {
     inherit system pkgs specialArgs;

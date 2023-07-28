@@ -8,7 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix.url = "github:Mic92/sops-nix";
-    flake-utils.url = "github:numtide/flake-utils";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,24 +20,15 @@
     cargo-clif-nix.url = "github:Defelo/cargo-clif-nix";
   };
 
-  outputs = {
-    nixpkgs,
-    flake-utils,
-    ...
-  } @ inputs:
-    (flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {inherit system;};
-    in {
-      packages.pkgs = import ./pkgs (inputs // {inherit pkgs;});
-    }))
-    // {
-      nixosConfigurations = builtins.mapAttrs (
-        host: _: let
-          conf = import ./hosts/${host} inputs;
-        in
-          if conf.hostname != host
-          then builtins.abort "Host name ${conf.hostname} != directory name ${host}"
-          else import ./system (inputs // {inherit conf;})
-      ) (builtins.readDir ./hosts);
-    };
+  outputs = {nixpkgs, ...} @ inputs: let
+    hosts = builtins.attrNames (builtins.readDir ./hosts);
+    importHostConf = host: import ./hosts/${host} inputs // {hostname = host;};
+    mkNixOSConfig = host: import ./system (inputs // {conf = importHostConf host;});
+  in {
+    nixosConfigurations = builtins.listToAttrs (map (host: {
+        name = host;
+        value = mkNixOSConfig host;
+      })
+      hosts);
+  };
 }

@@ -23,6 +23,7 @@
     comma
     dig
     duf
+    exa
     file
     htop
     iw

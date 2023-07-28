@@ -1,9 +1,5 @@
-{nixpkgs, ...}: let
+{...}: rec {
   system = "x86_64-linux";
-  pkgs = import nixpkgs {inherit system;};
-in rec {
-  inherit system;
-  hostname = "nitrogen";
   uid = 1000;
   user = "felix";
   home = "/home/${user}";
@@ -18,16 +14,6 @@ in rec {
   sway.output.scale = "1.0";
 
   borg.excludeSyncthing = true;
-
-  lock-command = builtins.concatStringsSep " " [
-    "${pkgs.swaylock-effects}/bin/swaylock"
-    "--screenshots"
-    "--clock"
-    "--submit-on-touch"
-    "--show-failed-attempts"
-    "--effect-pixelate 8"
-    "--fade-in 0.5"
-  ];
 
   extraConfig = {
     imports = [

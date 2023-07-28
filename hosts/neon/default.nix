@@ -1,9 +1,5 @@
-{nixpkgs, ...}: let
+{...}: rec {
   system = "x86_64-linux";
-  pkgs = import nixpkgs {inherit system;};
-in rec {
-  inherit system;
-  hostname = "neon";
   uid = 1000;
   user = "felix";
   home = "/home/${user}";
@@ -13,21 +9,9 @@ in rec {
     crypt = "/dev/disk/by-uuid/b74a3f01-cba6-4912-bb38-14221a136cd0";
   };
 
-  ykfde = false;
-
   sway.output.scale = "1.25";
 
   borg.excludeSyncthing = false;
-
-  lock-command = builtins.concatStringsSep " " [
-    "${pkgs.swaylock-effects}/bin/swaylock"
-    "--screenshots"
-    "--clock"
-    "--submit-on-touch"
-    "--show-failed-attempts"
-    "--effect-pixelate 8"
-    "--fade-in 0.5"
-  ];
 
   extraConfig = {};
 

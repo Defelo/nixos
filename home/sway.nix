@@ -20,6 +20,16 @@
   ws42 = "42";
   ws1337 = "1337";
   ws_obsidian = "+";
+
+  lock-command = builtins.concatStringsSep " " [
+    "${pkgs.swaylock-effects}/bin/swaylock"
+    "--screenshots"
+    "--clock"
+    "--submit-on-touch"
+    "--show-failed-attempts"
+    "--effect-pixelate 8"
+    "--fade-in 0.5"
+  ];
 in {
   wayland.windowManager.sway = {
     enable = true;
@@ -74,7 +84,7 @@ in {
           command = "systemctl --user restart waybar";
           always = true;
         }
-        {command = "${pkgs.xss-lock}/bin/xss-lock --transfer-sleep-lock -- ${conf.lock-command}";}
+        {command = "${pkgs.xss-lock}/bin/xss-lock --transfer-sleep-lock -- ${lock-command}";}
         {command = "brave";}
         {command = "thunderbird";}
         {command = "discordcanary";}
@@ -140,7 +150,7 @@ in {
           "${mod}+Return" = "exec ${alacritty}";
           "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
 
-          "${mod}+Shift+y" = "exec ${conf.lock-command}";
+          "${mod}+Shift+y" = "exec ${lock-command}";
 
           "${mod}+Ctrl+M" = let
             cmd = pkgs.writeShellScript "rofipass-wrapped.sh" ''
