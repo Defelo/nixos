@@ -5,7 +5,6 @@
     ./clipman.nix
     ./direnv.nix
     ./dunst.nix
-    # ./emacs.nix
     ./fcitx5.nix
     ./fzf.nix
     ./gammastep.nix
