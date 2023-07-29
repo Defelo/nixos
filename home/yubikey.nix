@@ -1,4 +1,10 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    yubikey-manager
+    yubikey-manager-qt
+    yubioath-flutter
+  ];
+
   systemd.user = let
     yktd = pkgs.yubikey-touch-detector;
   in {
