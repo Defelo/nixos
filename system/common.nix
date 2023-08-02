@@ -55,6 +55,7 @@
       options = "--delete-older-than 3d";
     };
     settings = {
+      keep-outputs = true;
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes" "repl-flake"];
       trusted-users = ["root" "@wheel"];
