@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix.url = "github:Mic92/sops-nix";
+    impermanence.url = "github:nix-community/impermanence";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";

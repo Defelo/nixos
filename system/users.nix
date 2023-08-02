@@ -1,9 +1,15 @@
-{conf, ...}: {
+{
+  conf,
+  config,
+  ...
+}: {
+  users.mutableUsers = false;
   users.users = {
     ${conf.user} = {
       isNormalUser = true;
       uid = conf.uid;
       extraGroups = ["wheel" "docker" "networkmanager" "video" "libvirtd"];
+      passwordFile = config.sops.secrets."users/${conf.user}/hashedPassword".path;
     };
   };
 
@@ -27,4 +33,6 @@
     enable = true;
     mode = "challenge-response";
   };
+
+  sops.secrets."users/${conf.user}/hashedPassword".neededForUsers = true;
 }

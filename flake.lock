@@ -270,6 +270,21 @@
         "type": "github"
       }
     },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1690797372,
+        "narHash": "sha256-GImz19e33SeVcIvBB7NnhbJSbTpFFmNtWLh7Z85Y188=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "e3a7acd113903269a1b5c8b527e84ce7ee859851",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "mk-naked-shell": {
       "flake": false,
       "locked": {
@@ -509,6 +524,7 @@
         "cheatsheets": "cheatsheets",
         "helix": "helix",
         "home-manager": "home-manager",
+        "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_4",
         "sops-nix": "sops-nix"
