@@ -35,6 +35,7 @@ in
       ./fonts.nix
       ./geoclue2.nix
       ./networking.nix
+      ./persistence.nix
       ./power.nix
       ./services.nix
       ./sops.nix

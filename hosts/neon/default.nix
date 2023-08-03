@@ -1,4 +1,4 @@
-{impermanence, ...}: rec {
+{...}: rec {
   system = "x86_64-linux";
   uid = 1000;
   user = "felix";
@@ -13,58 +13,7 @@
 
   borg.excludeSyncthing = false;
 
-  extraConfig = {
-    imports = [impermanence.nixosModule];
-
-    environment.persistence."/persistent" = {
-      hideMounts = true;
-      directories = [
-        "/etc/NetworkManager/system-connections"
-        "/root/.cache/nix"
-        "/var/lib/bluetooth"
-        "/var/lib/nixos"
-        "/var/lib/systemd/backlight"
-        "/var/lib/systemd/timers"
-        "/var/log"
-      ];
-      files = [
-        "/etc/machine-id"
-      ];
-
-      users.${user} = {
-        directories = [
-          ".cache/nix"
-          ".cache/spotify"
-          ".cargo"
-          ".config/BraveSoftware"
-          ".config/Element"
-          ".config/Signal Beta"
-          ".config/Signal"
-          ".config/Slack"
-          ".config/dconf"
-          ".config/discordcanary"
-          ".config/fcitx5"
-          ".config/gh"
-          ".config/obsidian"
-          ".config/spotify"
-          ".config/syncthing"
-          ".gnupg"
-          ".local/share/TelegramDesktop"
-          ".local/share/direnv/allow"
-          ".local/state/wireplumber"
-          ".password-store"
-          ".ssh"
-          ".thunderbird"
-          ".timetracker"
-          ".yubico"
-
-          "nixos"
-          "Persistent"
-        ];
-        files = [];
-      };
-    };
-  };
+  extraConfig = {};
 
   hardware-configuration = {
     config,
