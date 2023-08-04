@@ -1,8 +1,6 @@
 {
-  conf,
   config,
   lib,
-  pkgs,
   ...
 }: let
   name = config.networking.hostName;
@@ -17,30 +15,17 @@
 in {
   services.borgbackup.jobs.data = {
     inherit repo environment;
-    paths = ["/home"];
+    paths = ["/persistent/data"];
     patterns = [
-      "- **/*cache*"
-      "- **/*Cache*"
-      "- /home/*/.npm"
-      "- /home/*/.wine"
-      "- /home/*/.konan"
-      "- /home/*/.thunderbird"
-      "- /home/*/.rustup"
-      "- /home/*/.nuget"
-      "- /home/*/.cargo"
-      "- /home/*/.local/share/JetBrains/Toolbox/apps"
-      "- /home/*/.local/share/JetBrains/Toolbox/download"
-      "- /home/*/.local/pipx/venvs"
       "- **/node_modules"
-      "- **/target"
-      "- **/target-tarpaulin"
       "- **/.venv"
     ];
-    preHook = lib.mkIf conf.borg.excludeSyncthing ''
-      for path in $(${pkgs.yq}/bin/xq -r '.configuration.folder[]|select(.paused=="false")|."@path"' /home/*/.config/syncthing/config.xml); do
-        extraCreateArgs="$extraCreateArgs --exclude $path"
-      done
-    '';
+    # TODO
+    # preHook = lib.mkIf conf.borg.excludeSyncthing ''
+    #   for path in $(${pkgs.yq}/bin/xq -r '.configuration.folder[]|select(.paused=="false")|."@path"' /home/*/.config/syncthing/config.xml); do
+    #     extraCreateArgs="$extraCreateArgs --exclude $path"
+    #   done
+    # '';
     startAt = [];
     prune.keep = {
       daily = 4;
