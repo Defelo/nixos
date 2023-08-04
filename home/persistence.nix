@@ -12,6 +12,7 @@
 
       "nixos"
       "Persistent"
+      "Downloads"
     ];
     files = [];
   };
