@@ -5,21 +5,30 @@
 }: {
   imports = [impermanence.nixosModule];
 
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent/data" = {
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"
-      "/root/.cache/nix"
       "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/systemd/backlight"
-      "/var/lib/systemd/timers"
       "/var/log"
     ];
     files = [
       "/etc/machine-id"
     ];
 
-    users.${conf.user} = import ../home/persistence.nix;
+    users.${conf.user} = (import ../home/persistence.nix).data;
+  };
+
+  environment.persistence."/persistent/cache" = {
+    hideMounts = true;
+    directories = [
+      "/root/.cache/nix"
+      "/var/lib/nixos"
+      "/var/lib/systemd/backlight"
+      "/var/lib/systemd/timers"
+    ];
+    files = [];
+
+    users.${conf.user} = (import ../home/persistence.nix).cache;
   };
 }

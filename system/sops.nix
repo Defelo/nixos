@@ -2,6 +2,6 @@
   imports = [sops-nix.nixosModules.sops];
   sops = {
     defaultSopsFile = ../secrets/default.yml;
-    age.keyFile = "/persistent/root/.config/sops/age/keys.txt";
+    age.keyFile = "/persistent/data/root/.config/sops/age/keys.txt";
   };
 }

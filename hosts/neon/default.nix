@@ -41,8 +41,20 @@
         options = ["defaults" "size=4G" "mode=755"];
       };
 
-      "/persistent" = {
-        device = "/dev/nixos/root";
+      "/nix" = {
+        device = "/dev/nixos/nix";
+        fsType = "ext4";
+        neededForBoot = true;
+      };
+
+      "/persistent/data" = {
+        device = "/dev/nixos/data";
+        fsType = "ext4";
+        neededForBoot = true;
+      };
+
+      "/persistent/cache" = {
+        device = "/dev/nixos/cache";
         fsType = "ext4";
         neededForBoot = true;
       };
@@ -50,11 +62,6 @@
       "/boot" = {
         device = partitions.boot;
         fsType = "vfat";
-      };
-
-      "/nix" = {
-        device = "/persistent/nix";
-        options = ["bind"];
       };
     };
 
