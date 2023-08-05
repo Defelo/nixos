@@ -22,8 +22,29 @@
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
+    inherit (nixpkgs) lib;
+
+    defaultConfig = rec {
+      uid = 1000;
+      user = "felix";
+      home = "/home/${user}";
+
+      sway.output.scale = "1.0";
+
+      borg.excludeSyncthing = false;
+
+      tmpfsSize = "4G";
+
+      extraConfig = {};
+    };
+
     hosts = builtins.attrNames (builtins.readDir ./hosts);
-    importHostConf = host: import ./hosts/${host} inputs // {hostname = host;};
+    importHostConf = host:
+      lib.recursiveUpdate defaultConfig (import ./hosts/${host} inputs
+        // {
+          hostname = host;
+          hardware-configuration = ./hosts/${host}/hardware-configuration.nix;
+        });
     mkNixOSConfig = host: import ./system (inputs // {conf = importHostConf host;});
   in {
     nixosConfigurations = builtins.listToAttrs (map (host: {

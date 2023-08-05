@@ -17,18 +17,9 @@
   };
 
   boot.supportedFilesystems = ["ntfs"];
-  boot.loader.grub.extraEntries = ''
-    menuentry "NixOS Live ISO" {
-      set root=(hd0,gpt6)
-      chainloader /EFI/boot/bootx64.efi
-    }
-  '';
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
-
-  # boot.plymouth.enable = true;
-  # boot.plymouth.theme = "breeze";
 
   boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
   boot.initrd.luks.devices.root = {
