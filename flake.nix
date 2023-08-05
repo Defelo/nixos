@@ -35,6 +35,15 @@
 
       tmpfsSize = "4G";
 
+      networking = {
+        vpn.default = "72ab4eb3-3c9a-42c9-adeb-9f4730d540e6";
+        vpn.full = "bb1d4d42-dedb-4598-8b81-d2147b3197ab";
+        wifi.trusted = [
+          "fad97450-a66a-44f9-894b-19d578ba6265"
+          "9a3a989a-c30b-4b2c-be19-28094e503bf2"
+        ];
+      };
+
       extraConfig = {};
     };
 
