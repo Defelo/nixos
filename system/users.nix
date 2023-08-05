@@ -9,7 +9,7 @@
       isNormalUser = true;
       uid = conf.uid;
       extraGroups = ["wheel" "docker" "networkmanager" "video" "libvirtd"];
-      passwordFile = config.sops.secrets."users/${conf.user}/hashedPassword".path;
+      passwordFile = config.sops.secrets."user/hashedPassword".path;
     };
   };
 
@@ -34,5 +34,8 @@
     mode = "challenge-response";
   };
 
-  sops.secrets."users/${conf.user}/hashedPassword".neededForUsers = true;
+  sops.secrets."user/hashedPassword" = {
+    sopsFile = ../hosts/${config.networking.hostName}/secrets/default.yml;
+    neededForUsers = true;
+  };
 }
