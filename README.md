@@ -108,7 +108,7 @@ My NixOS configuration
     ```
 20. Remove the temporary LVM volume:
     ```bash
-    lvremove nixos/tmp
+    sudo lvremove nixos/tmp
     ```
 21. Add the new host's age key to global secrets:
     ```bash
@@ -116,5 +116,8 @@ My NixOS configuration
     ```
 22. Setup yubico-pam:
     ```bash
-    nix shell nixpkgs#yubico-pam --command ykpamcfg -2 -v
+    sudo mkdir /persistent/cache/yubico-pam -m 777
+    nix shell nixpkgs#yubico-pam --command ykpamcfg -2 -v -p /persistent/cache/yubico-pam
+    sudo chown -R root:root /persistent/cache/yubico-pam
+    sudo chmod 700 /persistent/cache/yubico-pam
     ```

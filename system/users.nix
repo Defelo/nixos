@@ -32,6 +32,7 @@
   security.pam.yubico = {
     enable = true;
     mode = "challenge-response";
+    challengeResponsePath = "/persistent/cache/yubico-pam";
   };
 
   sops.secrets."user/hashedPassword" = {

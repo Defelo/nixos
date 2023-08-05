@@ -34,7 +34,6 @@
       ".local/share/direnv/allow"
       ".local/state/wireplumber"
       ".thunderbird"
-      ".yubico"
     ];
     files = [];
   };
