@@ -23,6 +23,18 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     inherit (nixpkgs) lib;
+    defaultSystems = [
+      "aarch64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+      "x86_64-linux"
+    ];
+    eachDefaultSystem = f:
+      builtins.listToAttrs (map (system: {
+          name = system;
+          value = f system;
+        })
+        defaultSystems);
 
     defaultConfig = rec {
       uid = 1000;
@@ -61,5 +73,11 @@
         value = mkNixOSConfig host;
       })
       hosts);
+    packages = eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+      in
+        import ./scripts.nix pkgs
+    );
   };
 }
