@@ -52,16 +52,16 @@ My NixOS configuration
 12. Adjust the configuration in `/mnt/etc/nixos/configuration.nix`:
     ```nix
     {
-    nix.settings.experimental-features = ["nix-command" "flakes"];
-    boot.initrd.luks.devices.root = {
-      device = "LUKS_PARTITION";
-      preLVM = true;
-    };
-    networking.hostName = "HOSTNAME";
-    environment.systemPackages = with pkgs; [
-      vim
-      git
-    ];
+      nix.settings.experimental-features = ["nix-command" "flakes"];
+      boot.initrd.luks.devices.root = {
+        device = "LUKS_PARTITION";
+        preLVM = true;
+      };
+      networking.hostName = "HOSTNAME";
+      environment.systemPackages = with pkgs; [
+        vim
+        git
+      ];
     }
     ```
 13. Install the temporary system and reboot:
