@@ -77,7 +77,7 @@
       system: let
         pkgs = import nixpkgs {inherit system;};
       in
-        import ./scripts.nix pkgs
+        import ./scripts pkgs
     );
   };
 }
