@@ -80,6 +80,10 @@
     };
   };
 
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
+
   system.activationScripts.nvd-diff = ''
     if old_system=$(readlink /run/current-system); then
       ${pkgs.nvd}/bin/nvd --color=always --nix-bin-dir=/run/current-system/sw/bin/ diff $old_system $systemConfig
