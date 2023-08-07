@@ -22,6 +22,9 @@
     signal-desktop
     slack
 
+    # games
+    prismlauncher
+
     # system
     pulsemixer
     pavucontrol
