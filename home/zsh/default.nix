@@ -26,6 +26,8 @@
     j = "just";
     qmv = "qmv -f destination-only";
     repl = "nix repl -f '<nixpkgs>'";
+    da = "direnv allow";
+    de = "direnv edit .";
   };
   functions = {
     d = "dirs -v | tac";

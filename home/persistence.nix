@@ -33,7 +33,6 @@
       ".config/spotify"
       ".local/share/PrismLauncher"
       ".local/share/TelegramDesktop"
-      ".local/share/direnv/allow"
       ".local/state/wireplumber"
       ".thunderbird"
     ];
