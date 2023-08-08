@@ -2,7 +2,17 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    settings = {
+    settings = let
+      mkDisk = name: path: {
+        inherit path;
+        interval = 5;
+        format = "${name} {percentage_used}%";
+        states = {
+          critical = 90;
+          warning = 80;
+        };
+      };
+    in {
       main = {
         layer = "top";
         position = "top";
@@ -16,6 +26,10 @@
           "custom/screenshot"
           "memory"
           "memory#swap"
+          "disk"
+          "disk#nix"
+          "disk#data"
+          "disk#cache"
           "cpu"
           "custom/dunst"
           "backlight"
@@ -123,6 +137,11 @@
           interval = 2;
           format = "󰍛 {swapUsed} GB";
         };
+
+        "disk" = mkDisk "/" "/";
+        "disk#nix" = mkDisk "/nix" "/nix";
+        "disk#data" = mkDisk "data" "/persistent/data";
+        "disk#cache" = mkDisk "cache" "/persistent/cache";
 
         "network" = {
           interval = 2;
@@ -268,6 +287,16 @@
 
       #memory {
           box-shadow: inset 0 -2px #9b59b6;
+      }
+
+      #disk {
+          box-shadow: inset 0 -2px #6961ff;
+      }
+      #disk.warning {
+          background: #850;
+      }
+      #disk.critical {
+          background: #810;
       }
 
       #backlight {
