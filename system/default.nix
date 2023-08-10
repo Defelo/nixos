@@ -40,7 +40,7 @@ in
       ./power.nix
       ./services.nix
       ./sops.nix
-      # ./steam.nix
+      ./steam.nix
       ./users.nix
       ./virt.nix
       ./wayland.nix

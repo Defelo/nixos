@@ -32,6 +32,7 @@
       ".config/obsidian"
       ".config/spotify"
       ".local/share/PrismLauncher"
+      ".local/share/Steam"
       ".local/share/TelegramDesktop"
       ".local/share/containers"
       ".local/state/wireplumber"
