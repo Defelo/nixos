@@ -35,6 +35,7 @@
       ".local/share/Steam"
       ".local/share/TelegramDesktop"
       ".local/share/containers"
+      ".local/share/waydroid"
       ".local/state/wireplumber"
       ".thunderbird"
     ];
