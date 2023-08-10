@@ -114,10 +114,9 @@ My NixOS configuration
     ```bash
     find secrets -type f -exec sops updatekeys -y {} \;
     ```
-22. Setup yubico-pam:
+22. Setup pam-u2f:
     ```bash
-    sudo mkdir /persistent/cache/yubico-pam -m 777
-    nix shell nixpkgs#yubico-pam --command ykpamcfg -2 -v -p /persistent/cache/yubico-pam
-    sudo chown -R root:root /persistent/cache/yubico-pam
-    sudo chmod 700 /persistent/cache/yubico-pam
+    nix shell nixpkgs#pam_u2f --command pamu2fcfg | sudo tee /persistent/cache/u2f_keys
+    sudo chown root:users /persistent/cache/u2f_keys
+    sudo chmod 640 /persistent/cache/u2f_keys
     ```

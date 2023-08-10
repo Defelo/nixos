@@ -29,10 +29,9 @@
   };
 
   # security.sudo.wheelNeedsPassword = false;
-  security.pam.yubico = {
+  security.pam.u2f = {
     enable = true;
-    mode = "challenge-response";
-    challengeResponsePath = "/persistent/cache/yubico-pam";
+    authFile = "/persistent/cache/u2f_keys";
   };
 
   sops.secrets."user/hashedPassword" = {
