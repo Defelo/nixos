@@ -29,11 +29,11 @@ fs=$(lsblk -f $1 | tail -1 | awk '{print $2}')
 
 case $fs in
     ext4 )
-        sudo mount $1 $2
+        sudo mount -m $1 $2
         ;;
 
     vfat | exfat )
-        sudo mount -o uid=$uid,gid=$gid $1 $2
+        sudo mount -m -o uid=$uid,gid=$gid $1 $2
         ;;
 
     * )
