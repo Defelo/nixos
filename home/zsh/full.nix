@@ -8,7 +8,6 @@
     vlc = "vlc -I ncurses";
     mnt = "source ${../scripts/mount.sh}";
     tt = "${../scripts/timetracker.sh}";
-    beamer = "${../scripts/beamer.sh}";
     drss = "${../scripts/download_rss.sh}";
     sys-rebuild = "_rebuild && source /etc/zshrc && source ~/.zshrc";
     sys-update = "_update && source /etc/zshrc && source ~/.zshrc";
