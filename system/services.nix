@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   # services.printing.enable = true;
 
   # programs.mtr.enable = true;
@@ -25,4 +25,6 @@
   programs.ssh.startAgent = false;
 
   programs.dconf.enable = true;
+
+  services.udev.packages = [pkgs.yubikey-personalization];
 }
