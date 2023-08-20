@@ -1,11 +1,18 @@
 {
   conf,
   pkgs,
-  cargo-clif-nix,
+  fenix,
   ...
 }: {
   home.packages = with pkgs; [
-    cargo-clif-nix.packages.${pkgs.system}.default
+    (
+      with fenix.packages.${pkgs.system};
+        combine [
+          complete.toolchain
+          targets.x86_64-unknown-linux-musl.latest.rust-std
+          targets.wasm32-unknown-unknown.latest.rust-std
+        ]
+    )
     bacon
     cargo-expand
     cargo-edit
