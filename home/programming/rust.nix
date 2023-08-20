@@ -21,6 +21,9 @@
     cargo-llvm-cov
     cargo-release
     sea-orm-cli
+    sqlx-cli
+    trunk
+    cargo-leptos
   ];
   home.file.cargo = {
     text = ''
