@@ -32,6 +32,7 @@ in
       ./bluetooth.nix
       ./boot.nix
       ./borg.nix
+      ./emulation.nix
       ./filesystems.nix
       ./fonts.nix
       ./geoclue2.nix

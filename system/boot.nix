@@ -28,9 +28,4 @@
   };
 
   boot.blacklistedKernelModules = ["uvcvideo" "rtw88_8821ce"];
-
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-    "x86_64-windows"
-  ];
 }
