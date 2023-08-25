@@ -4,7 +4,7 @@
   ...
 }: let
   name = config.networking.hostName;
-  repo = "ssh://borg@pve.defelo.de/~/${name}";
+  repo = "ssh://borg@pve.defelo.de:2022/~/${name}";
   passCommand = "cat ${config.sops.secrets."borg/encryption_key".path}";
   environment = {
     BORG_RSH = "ssh -i ${config.sops.secrets."borg/ssh_key".path}";
