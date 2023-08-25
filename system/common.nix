@@ -53,7 +53,7 @@
     nixPath = ["nixpkgs=${nixpkgs}"];
     gc = {
       automatic = true;
-      dates = "daily";
+      dates = "05:30";
       options = "--delete-older-than 3d";
     };
     settings = {
