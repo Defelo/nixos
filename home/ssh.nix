@@ -2,6 +2,8 @@
   programs.ssh = {
     enable = true;
     serverAliveInterval = 20;
+    controlMaster = "auto";
+    controlPersist = "2h";
     extraConfig = ''
       TCPKeepAlive no
     '';
