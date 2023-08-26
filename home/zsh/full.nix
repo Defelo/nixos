@@ -15,7 +15,7 @@
   };
   functions = {
     _rebuild = ''
-      sudo nixos-rebuild "''${1:-switch}" --flake ~/nixos
+      sudo nixos-rebuild "''${1:-switch}" --flake ~/nixos --log-format internal-json -v |& nom --json
     '';
     _update = ''
       nix flake update --commit-lock-file ~/nixos && _rebuild
