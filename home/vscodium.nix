@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}: {
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -13,7 +9,7 @@
       eamodio.gitlens
       james-yu.latex-workshop
       kamadorueda.alejandra
-      pkgs-stable.vscode-extensions.ms-python.python
+      ms-python.python
       ms-toolsai.jupyter
       ms-toolsai.jupyter-keymap
       ms-toolsai.jupyter-renderers
