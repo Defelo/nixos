@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
   home.packages = with pkgs; [
     # programming
     gcc
@@ -20,7 +24,7 @@
     })
     tdesktop
     signal-desktop
-    slack
+    pkgs-stable.slack
 
     # games
     prismlauncher
