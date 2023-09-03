@@ -11,11 +11,8 @@
       "/etc/NetworkManager/system-connections"
       "/root/.ssh"
       "/var/lib/bluetooth"
-      "/var/log"
     ];
-    files = [
-      "/etc/machine-id"
-    ];
+    files = [];
 
     users.${conf.user} = (import ../home/persistence.nix).data;
   };
@@ -29,8 +26,11 @@
       "/var/lib/systemd/backlight"
       "/var/lib/systemd/timers"
       "/var/lib/waydroid"
+      "/var/log"
     ];
-    files = [];
+    files = [
+      "/etc/machine-id"
+    ];
 
     users.${conf.user} = (import ../home/persistence.nix).cache;
   };
