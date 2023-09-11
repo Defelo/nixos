@@ -25,7 +25,7 @@
     comma
     dig
     duf
-    exa
+    eza
     file
     htop
     iw

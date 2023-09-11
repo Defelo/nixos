@@ -5,7 +5,7 @@
 }: let
   aliases = {
     "." = "source";
-    ls = "${pkgs.exa}/bin/exa -g --git --group-directories-first";
+    ls = "EXA_COLORS='xx=2;37' ${pkgs.eza}/bin/eza -g --git --group-directories-first";
     l = "ls -aal";
     tre = "ls -alT";
     c = "clear";
