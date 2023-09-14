@@ -20,7 +20,7 @@
     # communication
     discord-canary
     (element-desktop.override {
-      electron = electron_24;
+      electron = electron_26;
     })
     tdesktop
     signal-desktop
