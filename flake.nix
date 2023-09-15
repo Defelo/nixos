@@ -17,7 +17,8 @@
       url = "github:cheat/cheatsheets";
       flake = false;
     };
-    helix.url = "github:pascalkuthe/helix/inline-diagnostics";
+    # helix.url = "github:pascalkuthe/helix/inline-diagnostics";
+    helix.url = "github:pinelang/helix-tree-explorer/tree_explore";
     fenix.url = "github:nix-community/fenix";
   };
 
