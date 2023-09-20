@@ -43,7 +43,7 @@
     text = ''
       format_code_in_doc_comments = true
       format_macro_bodies = true
-      format_macro_matchers = true
+      # format_macro_matchers = true
       format_strings = true
       group_imports = "StdExternalCrate"
       imports_granularity = "Crate"
