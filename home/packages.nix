@@ -35,6 +35,7 @@
     wl-clipboard
     xdg-utils
     virt-manager
+    wdisplays
 
     # utils
     neofetch

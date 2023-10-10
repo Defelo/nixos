@@ -41,7 +41,8 @@
       user = "felix";
       home = "/home/${user}";
 
-      sway.output.scale = "1.0";
+      sway.output = {};
+      sway.workspaceOutputAssign = {...}: [];
 
       borg.excludeSyncthing = false;
 

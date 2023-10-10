@@ -67,12 +67,13 @@ in {
           natural_scroll = "enabled";
         };
       };
-      output = {
-        "*" = {
-          inherit (conf.sway.output) scale;
-          bg = "${../wallpapers/nix-snowflake-dark.png} fill";
-        };
-      };
+      output =
+        {
+          "*" = {
+            bg = "${../wallpapers/nix-snowflake-dark.png} fill";
+          };
+        }
+        // conf.sway.output;
       seat = {
         "*" = {
           hide_cursor = "when-typing enable";
@@ -146,6 +147,9 @@ in {
           "${mod}+Shift+ssharp" = "move container to workspace ${ws42}";
           "${mod}+Shift+acute" = "move container to workspace ${ws1337}";
           "${mod}+Shift+plus" = "move container to workspace ${ws_obsidian}";
+
+          "${mod}+Ctrl+j" = "move workspace output left";
+          "${mod}+Ctrl+k" = "move workspace output right";
 
           "${mod}+Return" = "exec ${alacritty}";
           "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
@@ -296,6 +300,7 @@ in {
           # }
         ];
       };
+      workspaceOutputAssign = conf.sway.workspaceOutputAssign {inherit ws0 ws1 ws2 ws3 ws4 ws5 ws6 ws7 ws8 ws9 ws10 ws42 ws1337 ws_obsidian;};
     };
   };
 }

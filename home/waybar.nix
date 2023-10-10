@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  conf,
+  pkgs,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -12,35 +16,11 @@
           warning = 80;
         };
       };
-    in {
-      main = {
+      base = {
         layer = "top";
         position = "top";
         height = 20;
         fixed-center = false;
-
-        modules-left = ["sway/workspaces" "sway/scratchpad"];
-        modules-center = ["sway/window"];
-        modules-right = [
-          "custom/yk"
-          "custom/screenshot"
-          "memory"
-          "memory#swap"
-          "disk"
-          "disk#nix"
-          "disk#data"
-          "disk#cache"
-          "cpu"
-          "custom/dunst"
-          "backlight"
-          "pulseaudio"
-          "pulseaudio#mic"
-          "custom/webcam"
-          "battery"
-          "network"
-          "clock"
-          "tray"
-        ];
 
         "custom/yk" = let
           script = builtins.toFile "yktd.py" ''
@@ -167,6 +147,64 @@
           format-source-muted = "󰍭";
         };
       };
+    in {
+      main =
+        base
+        // {
+          output = conf.waybar.output;
+
+          modules-left = ["sway/workspaces" "sway/scratchpad"];
+          modules-center = ["sway/window"];
+          modules-right = [
+            "custom/yk"
+            "custom/screenshot"
+            "memory"
+            "memory#swap"
+            "disk"
+            "disk#nix"
+            "disk#data"
+            "disk#cache"
+            "cpu"
+            "custom/dunst"
+            "backlight"
+            "pulseaudio"
+            "pulseaudio#mic"
+            "custom/webcam"
+            "battery"
+            "network"
+            "clock"
+            "tray"
+          ];
+        };
+      ext =
+        base
+        // {
+          name = "ext";
+          height = 25;
+          output = conf.waybar.ext-out;
+
+          modules-left = ["sway/workspaces" "sway/scratchpad"];
+          modules-center = [];
+          modules-right = [
+            "custom/yk"
+            "custom/screenshot"
+            "memory"
+            "memory#swap"
+            "disk"
+            "disk#nix"
+            "disk#data"
+            "disk#cache"
+            "cpu"
+            "custom/dunst"
+            "backlight"
+            "pulseaudio"
+            "pulseaudio#mic"
+            "custom/webcam"
+            "battery"
+            "network"
+            "clock"
+          ];
+        };
     };
 
     style = ''
@@ -180,6 +218,10 @@
           color: #ffffff;
           transition-property: box-shadow;
           transition-duration: 0.5s;
+      }
+
+      window#waybar.ext > * {
+        margin-top: 5px;
       }
 
       button {
