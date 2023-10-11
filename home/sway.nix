@@ -66,6 +66,8 @@ in {
           tap = "enabled";
           natural_scroll = "enabled";
         };
+        "type:tablet_tool".map_to_output = conf.sway.touch;
+        "type:touch".map_to_output = conf.sway.touch;
       };
       output =
         {

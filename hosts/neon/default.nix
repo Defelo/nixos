@@ -7,6 +7,7 @@ _: {
   };
 
   sway = {
+    touch = "eDP-1";
     output = {
       "eDP-1" = {
         pos = "1280,0";
