@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "cargo-clif": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696841904,
+        "narHash": "sha256-/ht3ULqs2lME3E8kFn0hYMH4CQAGV/0NJUpm56oo4RU=",
+        "owner": "bjorn3",
+        "repo": "rustc_codegen_cranelift",
+        "rev": "269917bc774ab72ba6d442605751925d3fb801a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bjorn3",
+        "repo": "rustc_codegen_cranelift",
+        "type": "github"
+      }
+    },
+    "cargo-clif-nix": {
+      "inputs": {
+        "cargo-clif": "cargo-clif",
+        "fenix": "fenix",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1697109511,
+        "narHash": "sha256-yK0U8413IX5y12gETZUPf2iHgLcOs3LPhg3oQxwL67E=",
+        "owner": "Defelo",
+        "repo": "cargo-clif-nix",
+        "rev": "f199a9c5a92308a9b1e2d6502244172f5ae0b43c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Defelo",
+        "repo": "cargo-clif-nix",
+        "type": "github"
+      }
+    },
     "cheatsheets": {
       "flake": false,
       "locked": {
@@ -103,7 +139,7 @@
       "inputs": {
         "crane": "crane",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -225,6 +261,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1697054011,
+        "narHash": "sha256-uowS4WURfDAOCp0JmeCTn8fPvqORndNLoFuTd/s4TTg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ea972ba0bc16cfebc7b84fa85e06127bfe20f4bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1690272529,
         "narHash": "sha256-MakzcKXEdv/I4qJUtq/k/eG+rVmyOZLnYNC2w1mB59Y=",
         "owner": "nixos",
@@ -239,7 +291,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1696879762,
         "narHash": "sha256-Ud6bH4DMcYHUDKavNMxAhcIpDGgHMyL/yaDEAVSImQY=",
@@ -255,7 +307,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1696693680,
         "narHash": "sha256-PH0HQTkqyj7DmdPKPwrrXwVURLBqzZs4nqnDw9q8mhg=",
@@ -273,13 +325,13 @@
     },
     "root": {
       "inputs": {
+        "cargo-clif-nix": "cargo-clif-nix",
         "cheatsheets": "cheatsheets",
-        "fenix": "fenix",
         "helix": "helix",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable",
         "sops-nix": "sops-nix"
       }
@@ -328,7 +380,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
