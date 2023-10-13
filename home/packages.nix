@@ -1,6 +1,7 @@
 {
   pkgs,
   pkgs-stable,
+  pkgs-electron,
   ...
 }: {
   home.packages = with pkgs; [
@@ -18,7 +19,7 @@
     # communication
     discord-canary
     (element-desktop.override {
-      electron = electron_26;
+      electron = pkgs-electron.electron_26;
     })
     tdesktop
     signal-desktop
