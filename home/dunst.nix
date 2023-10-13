@@ -26,7 +26,7 @@
         font = "Meslo Nerd Font 11";
         line_height = 3;
         markup = "full";
-        format = "<b>%s</b>\n%b";
+        format = "<b>%s</b>\\n%b";
         alignment = "center";
         vertical_alignment = "top";
         show_age_threshold = 10;
