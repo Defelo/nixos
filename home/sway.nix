@@ -92,7 +92,6 @@ in {
         {command = "thunderbird";}
         {command = "discordcanary";}
         {command = "element-desktop";}
-        {command = "telegram-desktop";}
         {command = "obsidian";}
         {command = "alacritty -e tmux";}
       ];
@@ -227,8 +226,8 @@ in {
         ${ws5} = [];
         ${ws6} = [];
         ${ws7} = [{app_id = "^thunderbird$";}];
-        ${ws8} = [{app_id = "^discord$";} {app_id = "^Element$";} {app_id = "^Slack$";}];
-        ${ws9} = [{app_id = "^org.telegram.desktop$";} {app_id = "^signal$";}];
+        ${ws8} = [{app_id = "^discord$";}];
+        ${ws9} = [{app_id = "^Element$";}];
         ${ws10} = [];
         ${ws42} = [];
         ${ws1337} = [];

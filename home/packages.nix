@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   pkgs-electron,
   ...
 }: {
@@ -21,9 +20,6 @@
     (element-desktop.override {
       electron = pkgs-electron.electron_26;
     })
-    tdesktop
-    signal-desktop
-    pkgs-stable.slack
 
     # games
     prismlauncher
@@ -44,6 +40,7 @@
     gnome.eog
     speedtest-cli
     pwgen
+    xkcdpass
     gh
     imagemagick
     # icat
