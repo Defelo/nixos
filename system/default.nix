@@ -41,6 +41,7 @@ in
       ./persistence.nix
       ./postgres.nix
       ./power.nix
+      ./redis.nix
       ./services.nix
       ./sops.nix
       ./steam.nix
