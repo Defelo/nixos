@@ -39,6 +39,7 @@ in
       ./networking.nix
       ./nix-ld.nix
       ./persistence.nix
+      ./postgres.nix
       ./power.nix
       ./services.nix
       ./sops.nix
