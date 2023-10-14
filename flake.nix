@@ -19,7 +19,7 @@
       flake = false;
     };
     helix.url = "github:helix-editor/helix";
-    cargo-clif-nix.url = "github:Defelo/cargo-clif-nix";
+    fenix.url = "github:nix-community/fenix";
   };
 
   outputs = {nixpkgs, ...} @ inputs: let

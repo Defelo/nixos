@@ -1,41 +1,5 @@
 {
   "nodes": {
-    "cargo-clif": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1696841904,
-        "narHash": "sha256-/ht3ULqs2lME3E8kFn0hYMH4CQAGV/0NJUpm56oo4RU=",
-        "owner": "bjorn3",
-        "repo": "rustc_codegen_cranelift",
-        "rev": "269917bc774ab72ba6d442605751925d3fb801a7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bjorn3",
-        "repo": "rustc_codegen_cranelift",
-        "type": "github"
-      }
-    },
-    "cargo-clif-nix": {
-      "inputs": {
-        "cargo-clif": "cargo-clif",
-        "fenix": "fenix",
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1697185375,
-        "narHash": "sha256-Z4Y60fd98PZBuAutgaAK8W1pdxvcudoSX1mjIENK1cY=",
-        "owner": "Defelo",
-        "repo": "cargo-clif-nix",
-        "rev": "072fc2bdb2642109c3f23812edecf9a7c96a98fb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Defelo",
-        "repo": "cargo-clif-nix",
-        "type": "github"
-      }
-    },
     "cheatsheets": {
       "flake": false,
       "locked": {
@@ -88,11 +52,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1697091737,
-        "narHash": "sha256-NFdGypcUH8O3yRGFmLYY0ziR5hs7R9dg+fwBqZm32Cc=",
+        "lastModified": 1697178193,
+        "narHash": "sha256-LBDLUWlwSDPMA1Ui9wC9YcQEnJL0UP627RoUmtz4TTo=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "6f5c1db382feec02391daf406695a4fc91d44c87",
+        "rev": "ff6c27356cbde594e598e388a32d79ef79cbe1b1",
         "type": "github"
       },
       "original": {
@@ -139,7 +103,7 @@
       "inputs": {
         "crane": "crane",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -261,22 +225,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1697054011,
-        "narHash": "sha256-uowS4WURfDAOCp0JmeCTn8fPvqORndNLoFuTd/s4TTg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ea972ba0bc16cfebc7b84fa85e06127bfe20f4bf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-23.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1690272529,
         "narHash": "sha256-MakzcKXEdv/I4qJUtq/k/eG+rVmyOZLnYNC2w1mB59Y=",
         "owner": "nixos",
@@ -291,7 +239,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1697059129,
         "narHash": "sha256-9NJcFF9CEYPvHJ5ckE8kvINvI84SZZ87PvqMbH6pro0=",
@@ -307,7 +255,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1696693680,
         "narHash": "sha256-PH0HQTkqyj7DmdPKPwrrXwVURLBqzZs4nqnDw9q8mhg=",
@@ -325,13 +273,13 @@
     },
     "root": {
       "inputs": {
-        "cargo-clif-nix": "cargo-clif-nix",
         "cheatsheets": "cheatsheets",
+        "fenix": "fenix",
         "helix": "helix",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-electron": "nixpkgs-electron",
         "sops-nix": "sops-nix"
       }
@@ -339,11 +287,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1697032224,
-        "narHash": "sha256-6qXqJ3aNc3Ckq/6RKARydQsCC5sK0QkzNQhsUiCLNdM=",
+        "lastModified": 1697098808,
+        "narHash": "sha256-OfatUxSwuzYd17IDy9eNOedwioq0dX6mOuiTghKol3s=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "7eec17e6273543d1c535333433ab553df22260db",
+        "rev": "84e1d273439413ab4ca1718db0b574dffba443ce",
         "type": "github"
       },
       "original": {
@@ -380,7 +328,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
