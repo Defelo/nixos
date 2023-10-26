@@ -20,11 +20,12 @@
         file-picker = {hidden = false;};
         statusline = {
           left = ["mode" "spinner"];
-          center = ["file-name"];
+          center = ["file-name" "read-only-indicator" "file-modification-indicator"];
           right = [
             "version-control"
             "diagnostics"
             "selections"
+            "register"
             "position"
             "position-percentage"
             "file-encoding"
