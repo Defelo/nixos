@@ -31,7 +31,7 @@
       ".local/share/PrismLauncher"
       ".local/share/Steam"
       ".local/share/containers"
-      ".local/share/waydroid"
+      # ".local/share/waydroid"
       ".local/state/wireplumber"
       ".thunderbird"
     ];
