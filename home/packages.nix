@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   ...
 }: {
   home.packages = with pkgs; [
@@ -15,7 +16,7 @@
     tor-browser-bundle-bin
 
     # communication
-    discord-canary
+    pkgs-stable.discord-canary
     element-desktop
 
     # games
