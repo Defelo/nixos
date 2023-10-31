@@ -55,5 +55,7 @@
 
   home.sessionVariables = {
     CARGO_TARGET_DIR = "${conf.home}/.cargo/target";
+    CARGO_UNSTABLE_CODEGEN_BACKEND = "true";
+    CARGO_PROFILE_DEV_CODEGEN_BACKEND = "cranelift";
   };
 }
