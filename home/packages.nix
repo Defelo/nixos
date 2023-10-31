@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-electron,
   ...
 }: {
   home.packages = with pkgs; [
@@ -17,9 +16,7 @@
 
     # communication
     discord-canary
-    (element-desktop.override {
-      electron = pkgs-electron.electron_26;
-    })
+    element-desktop
 
     # games
     prismlauncher
