@@ -1,36 +1,32 @@
-{
-  conf,
-  pkgs,
-  ...
-}: {
+{conf, ...}: {
   networking.hostName = conf.hostname;
 
   networking.networkmanager = {
     enable = true;
     wifi.macAddress = "random";
     ethernet.macAddress = "random";
-    dispatcherScripts = [
-      {
-        type = "basic";
-        source = let
-          inherit (conf.networking) vpn;
-          wifi.trusted = builtins.toFile "wifi-trusted" (builtins.foldl' (acc: x: "${acc}${x}\n") "" conf.networking.wifi.trusted);
-        in
-          pkgs.writeText "trusted-networks" ''
-            export PATH=${pkgs.lib.makeBinPath (with pkgs; [coreutils gnugrep networkmanager])}
+    # dispatcherScripts = [
+    #   {
+    #     type = "basic";
+    #     source = let
+    #       inherit (conf.networking) vpn;
+    #       wifi.trusted = builtins.toFile "wifi-trusted" (builtins.foldl' (acc: x: "${acc}${x}\n") "" conf.networking.wifi.trusted);
+    #     in
+    #       pkgs.writeText "trusted-networks" ''
+    #         export PATH=${pkgs.lib.makeBinPath (with pkgs; [coreutils gnugrep networkmanager])}
 
-            if [[ "$1" = "vpn" ]]; then
-              exit
-            fi
+    #         if [[ "$1" = "vpn" ]]; then
+    #           exit
+    #         fi
 
-            if nmcli --fields=UUID c s --active | tail +2 | cut -d' ' -f1 | sort | comm -12 - <(sort ${wifi.trusted}) | grep -q .; then
-              nmcli c up "${vpn.default}";
-            else
-              nmcli c up "${vpn.full}";
-            fi
-          '';
-      }
-    ];
+    #         if nmcli --fields=UUID c s --active | tail +2 | cut -d' ' -f1 | sort | comm -12 - <(sort ${wifi.trusted}) | grep -q .; then
+    #           nmcli c up "${vpn.default}";
+    #         else
+    #           nmcli c up "${vpn.full}";
+    #         fi
+    #       '';
+    #   }
+    # ];
   };
 
   networking.firewall = {
