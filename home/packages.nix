@@ -31,6 +31,7 @@
     xdg-utils
     virt-manager
     wdisplays
+    networkmanagerapplet
 
     # utils
     neofetch
