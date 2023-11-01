@@ -62,5 +62,19 @@
         sopsFile = /${dir}/${name};
         path = "/etc/NetworkManager/system-connections/${name}.nmconnection";
       };
-    }) (builtins.attrNames (builtins.removeAttrs (builtins.readDir dir) [".gitkeep"])));
+    }) (builtins.attrNames (builtins.removeAttrs (builtins.readDir dir) [".gitkeep"])))
+    // {
+      "networking/uni-wifi-keys/client_cert.pem" = {
+        format = "binary";
+        sopsFile = ../hosts/${conf.hostname}/secrets/uni-wifi-keys/client_cert.pem;
+      };
+      "networking/uni-wifi-keys/client_key.pem" = {
+        format = "binary";
+        sopsFile = ../hosts/${conf.hostname}/secrets/uni-wifi-keys/client_key.pem;
+      };
+      "networking/uni-wifi-keys/root_ca.pem" = {
+        format = "binary";
+        sopsFile = ../hosts/${conf.hostname}/secrets/uni-wifi-keys/root_ca.pem;
+      };
+    };
 }
