@@ -19,6 +19,10 @@
         command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
         args = ["start"];
       };
+      uiua = {
+        command = "${pkgs.uiua}/bin/uiua";
+        args = ["lsp"];
+      };
     };
     language = [
       {
@@ -44,6 +48,21 @@
       {
         name = "bash";
         auto-format = true;
+      }
+      {
+        name = "uiua";
+        scope = "source.uiua";
+        injection-regex = "uiua";
+        file-types = ["ua"];
+        roots = [];
+        auto-format = true;
+        comment-token = "#";
+        language-servers = [{name = "uiua";}];
+        indent = {
+          tab-width = 2;
+          unit = "  ";
+        };
+        shebangs = ["uiua"];
       }
     ];
   };
