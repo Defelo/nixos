@@ -30,6 +30,13 @@ pkgs: let
       openssh # ssh-keygen
       gnused # sed
     ];
+    easyroam-setup = with pkgs; [
+      coreutils
+      openssl
+      gnused
+      util-linux # uuidgen
+      pwgen
+    ];
   };
 in
   scripts
