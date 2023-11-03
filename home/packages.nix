@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-stable,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # programming
     gcc
@@ -16,7 +12,7 @@
     tor-browser-bundle-bin
 
     # communication
-    pkgs-stable.discord-canary
+    discord-canary
     element-desktop
 
     # games
