@@ -94,8 +94,7 @@ My NixOS configuration
     ```
 18. Initialize persistent directories:
     ```bash
-    mkdir -p /persistent/data/var/log
-    mkdir -p /persistent/cache/var/lib/nixos
+    mkdir -p /persistent/cache/var/{log,lib/nixos}
 
     mkdir -p /persistent/data/home/felix/.gnupg -m 700
     chown -R 1000:100 /persistent/data/home/felix
