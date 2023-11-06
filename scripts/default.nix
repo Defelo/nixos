@@ -25,6 +25,7 @@ pkgs: let
       util-linux # findmnt, lsblk
       age # age-keygen
       sops
+      gnupg
       pwgen
       mkpasswd
       openssh # ssh-keygen
