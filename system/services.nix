@@ -9,13 +9,6 @@
 
   # services.openssh.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-    daemon.settings = {
-      features.buildkit = true;
-    };
-  };
-
   virtualisation.podman = {
     enable = true;
   };

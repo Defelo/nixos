@@ -40,7 +40,7 @@
       22000 # syncthing
     ];
     allowedUDPPorts = [];
-    trustedInterfaces = ["docker0" "vpn"];
+    trustedInterfaces = ["vpn"];
 
     # disable rpfilter for wireguard
     # if packets are still dropped, they will show up in dmesg
