@@ -9,7 +9,7 @@
       isNormalUser = true;
       uid = conf.uid;
       extraGroups = ["wheel" "docker" "networkmanager" "video" "libvirtd"];
-      passwordFile = config.sops.secrets."user/hashedPassword".path;
+      hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
     };
   };
 
