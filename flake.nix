@@ -69,11 +69,19 @@
         });
     mkNixOSConfig = host: import ./system (inputs // {conf = importHostConf host;});
   in {
-    nixosConfigurations = builtins.listToAttrs (map (host: {
-        name = host;
-        value = mkNixOSConfig host;
-      })
-      hosts);
+    nixosConfigurations = builtins.listToAttrs (lib.flatten (map (host: let
+        config = mkNixOSConfig host;
+      in [
+        {
+          name = host;
+          value = config.full;
+        }
+        {
+          name = "${host}-base";
+          value = config.base;
+        }
+      ])
+      hosts));
     packages = eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {inherit system;};

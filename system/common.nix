@@ -1,4 +1,5 @@
 {
+  conf,
   nixpkgs,
   pkgs,
   ...
@@ -12,13 +13,15 @@
     ${pkgs.buildPackages.ckbcomp}/bin/ckbcomp -layout de -option ctrl:swapcaps -variant nodeadkeys > $out
   '';
 
+  networking.hostName = conf.hostname;
+  networking.networkmanager = {
+    enable = true;
+    wifi.macAddress = "random";
+    ethernet.macAddress = "random";
+  };
+
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-
-  environment.variables = {
-    EDITOR = "hx";
-    VISUAL = "hx";
-  };
 
   environment.systemPackages = with pkgs; [
     age

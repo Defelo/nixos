@@ -19,8 +19,21 @@
     }) (filterAttrs (k: _: hasPrefix "nixpkgs-" k) inputs);
 
   specialArgs = inputs // extra-pkgs;
-in
-  nixpkgs.lib.nixosSystem rec {
+in {
+  base = nixpkgs.lib.nixosSystem {
+    inherit system pkgs specialArgs;
+    modules = [
+      ./common.nix
+      conf.extraConfig
+      conf.hardware-configuration
+
+      ./base.nix
+      ./boot.nix
+      ./filesystems.nix
+    ];
+  };
+
+  full = nixpkgs.lib.nixosSystem {
     inherit system pkgs specialArgs;
     modules = [
       ./common.nix
@@ -33,6 +46,7 @@ in
       ./boot.nix
       ./borg.nix
       ./emulation.nix
+      ./env.nix
       ./filesystems.nix
       ./fonts.nix
       ./geoclue2.nix
@@ -58,4 +72,5 @@ in
         };
       }
     ];
-  }
+  };
+}
