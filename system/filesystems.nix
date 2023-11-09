@@ -15,15 +15,17 @@ in {
     };
 
     "/persistent/data" = {
-      device = "/dev/nixos/data";
-      fsType = "ext4";
+      device = "/dev/nixos/persistent";
+      fsType = "btrfs";
       neededForBoot = true;
+      options = ["compress=zstd" "noatime" "subvol=@data"];
     };
 
     "/persistent/cache" = {
-      device = "/dev/nixos/cache";
-      fsType = "ext4";
+      device = "/dev/nixos/persistent";
+      fsType = "btrfs";
       neededForBoot = true;
+      options = ["compress=zstd" "noatime" "subvol=@cache"];
     };
 
     "/boot" = {
