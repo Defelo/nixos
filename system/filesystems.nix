@@ -10,8 +10,9 @@ in {
 
     "/nix" = {
       device = "/dev/nixos/nix";
-      fsType = "ext4";
+      fsType = "btrfs";
       neededForBoot = true;
+      options = ["compress=zstd" "noatime"];
     };
 
     "/persistent/data" = {

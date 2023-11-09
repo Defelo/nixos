@@ -2,7 +2,10 @@
   services.btrfs.autoScrub = {
     enable = true;
     interval = "Fri 07:00";
-    fileSystems = ["/dev/nixos/persistent"];
+    fileSystems = [
+      "/dev/nixos/persistent"
+      "/nix"
+    ];
   };
 
   services.snapper = {
