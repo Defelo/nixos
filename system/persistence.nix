@@ -21,6 +21,7 @@
     hideMounts = true;
     directories = [
       "/root/.cache/nix"
+      "/var/lib/btrfs"
       "/var/lib/libvirt"
       "/var/lib/nixos"
       "/var/lib/systemd/backlight"

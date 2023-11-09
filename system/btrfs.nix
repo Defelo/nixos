@@ -1,4 +1,10 @@
 {
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "Fri 07:00";
+    fileSystems = ["/dev/nixos/persistent"];
+  };
+
   services.snapper = {
     snapshotInterval = "*:0/5";
     cleanupInterval = "1h";
