@@ -120,8 +120,7 @@
 
         "disk" = mkDisk "/" "/";
         "disk#nix" = mkDisk "/nix" "/nix";
-        "disk#data" = mkDisk "data" "/persistent/data";
-        "disk#cache" = mkDisk "cache" "/persistent/cache";
+        "disk#persistent" = mkDisk "/persistent" "/persistent/data";
 
         "network" = {
           interval = 2;
@@ -162,8 +161,7 @@
             "memory#swap"
             "disk"
             "disk#nix"
-            "disk#data"
-            "disk#cache"
+            "disk#persistent"
             "cpu"
             "custom/dunst"
             "backlight"
@@ -192,8 +190,7 @@
             "memory#swap"
             "disk"
             "disk#nix"
-            "disk#data"
-            "disk#cache"
+            "disk#persistent"
             "cpu"
             "custom/dunst"
             "backlight"
