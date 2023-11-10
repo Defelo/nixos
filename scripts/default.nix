@@ -31,6 +31,9 @@ pkgs: let
       openssh # ssh-keygen
       gnused # sed
     ];
+    setup-host = with pkgs; [
+      coreutils
+    ];
     easyroam-setup = with pkgs; [
       coreutils
       openssl
