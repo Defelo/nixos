@@ -5,7 +5,7 @@ My NixOS configuration
 1. Download the minimal NixOS ISO image from https://nixos.org/download.html#nixos-iso
 2. Boot into the NixOS installer.
 3. Run `sudo su` to obtain root privileges.
-4. If necessary, change the keyboard layout (e.g. `loadkeys de` for german qwertz layout).
+4. If necessary, change the keyboard layout (e.g. `loadkeys de-latin1` for german qwertz layout).
 5. Connect to the internet.
 6. Use `fdisk` or `cfdisk` to create a GPT partition table with the following partitions:
     - `/dev/EFI_PARTITION`: EFI system partition (type: EFI System, size: 512M)
@@ -19,23 +19,26 @@ My NixOS configuration
     ```bash
     pvcreate /dev/mapper/root
     vgcreate nixos /dev/mapper/root
-    lvcreate -L '200G' -n nix nixos    # nix store
-    lvcreate -L '200G' -n data nixos   # persistent user data
-    lvcreate -L '200G' -n cache nixos  # persistent cache
-    lvcreate -L '16G' -n swap nixos    # swap
-    lvcreate -L '4G' -n tmp nixos      # only used for installation
+    lvcreate -L '256G' -n nix nixos          # nix store
+    lvcreate -L '256G' -n persistent nixos   # persistent user data/cache
+    lvcreate -L '16G' -n swap nixos          # swap
     ```
 9. Format and mount LVM volumes:
     ```bash
-    mkfs.ext4 /dev/nixos/tmp
-    mount -m /dev/nixos/tmp /mnt
+    mount -m -t tmpfs -o size=4G,mode=755 tmpfs /mnt
 
-    mkfs.ext4 /dev/nixos/nix
-    mkfs.ext4 /dev/nixos/data
-    mkfs.ext4 /dev/nixos/cache
-    mount -m /dev/nixos/nix /mnt/nix
-    mount -m /dev/nixos/data /mnt/persistent/data
-    mount -m /dev/nixos/cache /mnt/persistent/cache
+    mkfs.btrfs /dev/nixos/nix
+    mount -m -o compress=zstd,noatime /dev/nixos/nix /mnt/nix
+
+    mkfs.btrfs /dev/nixos/persistent
+    mount -m /dev/nixos/persistent /mnt/persistent
+    btrfs subvolume create /mnt/persistent/@data
+    btrfs subvolume create /mnt/persistent/@data/.snapshots
+    btrfs subvolume create /mnt/persistent/@cache
+    btrfs subvolume create /mnt/persistent/@cache/.snapshots
+    umount /mnt/persistent
+    mount -m -o compress=zstd,noatime,subvol=@data /dev/nixos/persistent /mnt/persistent/data
+    mount -m -o compress=zstd,noatime,subvol=@cache /dev/nixos/persistent /mnt/persistent/cache
 
     mkswap /dev/nixos/swap
     swapon /dev/nixos/swap
@@ -45,75 +48,48 @@ My NixOS configuration
     mkfs.fat -F32 /dev/EFI_PARTITION
     mount -m /dev/EFI_PARTITION /mnt/boot
     ```
-11. Generate a temporary NixOS configuration:
+11. Enable flakes on the live system and install git:
     ```bash
-    nixos-generate-config --root /mnt
+    mkdir -p ~/.config/nix/
+    echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
+    nix profile install nixpkgs#git
     ```
-12. Adjust the configuration in `/mnt/etc/nixos/configuration.nix`:
-    ```nix
-    {
-      nix.settings.experimental-features = ["nix-command" "flakes"];
-      boot.initrd.luks.devices.root = {
-        device = "LUKS_PARTITION";
-        preLVM = true;
-      };
-      networking.hostName = "HOSTNAME";
-      environment.systemPackages = with pkgs; [
-        vim
-        git
-      ];
-    }
-    ```
-13. Install the temporary system and reboot:
+12. Clone this repository:
     ```bash
-    nixos-install
-    reboot
-    ```
-14. Clone this repository:
-    ```bash
-    mkdir -p /persistent/data/home/felix
-    cd /persistent/data/home/felix
+    mkdir -p /mnt/persistent/data/home/felix/
+    cd /mnt/persistent/data/home/felix/
     git clone https://github.com/Defelo/nixos.git
     cd nixos
     ```
-15. Create a new host and set the user password:
+13. Create a new host and set the user password:
     ```bash
-    nix run .#new-host
+    nix run .#new-host HOSTNAME
     ```
-16. Add new host to git:
+14. Add new host to git:
     ```bash
     git add --intent-to-add hosts/HOSTNAME
     ```
-17. Install the age private key:
+15. Install the base system and reboot:
     ```bash
-    mkdir -p /persistent/data/root/.config/sops/age/
-    cp -a keys.txt /persistent/data/root/.config/sops/age/
-
-    mkdir -p /persistent/data/home/felix/.config/sops/age/
-    mv keys.txt /persistent/data/home/felix/.config/sops/age/
+    nixos-install --flake .#HOSTNAME-base --no-channel-copy --no-root-passwd
+    reboot
     ```
-18. Initialize persistent directories:
+16. Install age private key and initialize persistent directories:
     ```bash
-    mkdir -p /persistent/cache/var/{log,lib/nixos}
-
-    mkdir -p /persistent/data/home/felix/.gnupg -m 700
-    chown -R 1000:100 /persistent/data/home/felix
+    cd /persistent/data/home/felix/nixos/
+    nix run .#setup-host
     ```
-19. Install the system and reboot:
+17. Install the system and reboot:
     ```bash
     ulimit -n 65536  # increase number of open files limit
     nixos-rebuild boot --flake .
     reboot
     ```
-20. Remove the temporary LVM volume:
-    ```bash
-    sudo lvremove nixos/tmp
-    ```
-21. Add the new host's age key to global secrets:
+18. Add the new host's age key to global secrets:
     ```bash
     find secrets -type f -exec sops updatekeys -y {} \;
     ```
-22. Setup pam-u2f:
+19. Setup pam-u2f:
     ```bash
     nix shell nixpkgs#pam_u2f --command pamu2fcfg | sudo tee /persistent/cache/u2f_keys
     sudo chown root:users /persistent/cache/u2f_keys
