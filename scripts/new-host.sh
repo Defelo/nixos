@@ -32,6 +32,8 @@ _: {
 }
 EOF
 
+gpg --recv-keys 61303BBAD7D1BF74EFA44E3BE7FE2087E4380E64
+
 age-keygen -o keys.txt
 pub=$(age-keygen -y keys.txt)
 sed -i "/^creation_rules:/i\  - &$host $pub" .sops.yaml
