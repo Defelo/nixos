@@ -1,6 +1,7 @@
 {
   conf,
   pkgs,
+  lib,
   ...
 }: {
   programs.waybar = {
@@ -146,63 +147,29 @@
           format-source-muted = "󰍭";
         };
       };
-    in {
-      main =
-        base
-        // {
-          output = conf.waybar.output;
+    in
+      {
+        default =
+          base
+          // {
+            output = lib.mkIf (conf.wayland.outputs.default.name != null) conf.wayland.outputs.default.name;
 
-          modules-left = ["sway/workspaces" "sway/scratchpad"];
-          modules-center = ["sway/window"];
-          modules-right = [
-            "custom/yk"
-            "custom/screenshot"
-            "memory"
-            "memory#swap"
-            "disk"
-            "disk#nix"
-            "disk#persistent"
-            "cpu"
-            "custom/dunst"
-            "backlight"
-            "pulseaudio"
-            "pulseaudio#mic"
-            "custom/webcam"
-            "battery"
-            "network"
-            "clock"
-            "tray"
-          ];
-        };
-      ext =
+            modules-left = ["sway/workspaces" "sway/scratchpad"];
+            modules-center = ["sway/window"];
+            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#nix" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock" "tray"];
+          };
+      }
+      // (builtins.mapAttrs (k: v:
         base
         // {
-          name = "ext";
+          name = k;
           height = 25;
-          output = conf.waybar.ext-out;
+          output = v.name;
 
           modules-left = ["sway/workspaces" "sway/scratchpad"];
           modules-center = [];
-          modules-right = [
-            "custom/yk"
-            "custom/screenshot"
-            "memory"
-            "memory#swap"
-            "disk"
-            "disk#nix"
-            "disk#persistent"
-            "cpu"
-            "custom/dunst"
-            "backlight"
-            "pulseaudio"
-            "pulseaudio#mic"
-            "custom/webcam"
-            "battery"
-            "network"
-            "clock"
-          ];
-        };
-    };
+          modules-right = ["custom/yk" "memory" "memory#swap" "disk" "disk#nix" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock"];
+        }) (builtins.removeAttrs conf.wayland.outputs ["default"]));
 
     style = ''
       * {

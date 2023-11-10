@@ -41,8 +41,14 @@
       user = "felix";
       home = "/home/${user}";
 
-      sway.output = {};
-      sway.workspaceOutputAssign = {...}: [];
+      wayland.outputs.default = {
+        name = null;
+        pos = null;
+        mode = null;
+        scale = null;
+        touch = false;
+        workspaces = null;
+      };
 
       borg.excludeSyncthing = false;
 

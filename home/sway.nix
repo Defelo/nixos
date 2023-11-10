@@ -56,26 +56,41 @@ in {
     '';
 
     config = {
-      input = {
-        "type:keyboard" = {
-          xkb_layout = "de";
-          xkb_variant = "nodeadkeys";
-          xkb_options = "ctrl:swapcaps";
-        };
-        "type:touchpad" = {
-          tap = "enabled";
-          natural_scroll = "enabled";
-        };
-        "type:tablet_tool".map_to_output = conf.sway.touch;
-        "type:touch".map_to_output = conf.sway.touch;
-      };
+      input =
+        {
+          "type:keyboard" = {
+            xkb_layout = "de";
+            xkb_variant = "nodeadkeys";
+            xkb_options = "ctrl:swapcaps";
+          };
+          "type:touchpad" = {
+            tap = "enabled";
+            natural_scroll = "enabled";
+          };
+        }
+        // (
+          let
+            outputs = builtins.filter (k: conf.wayland.outputs.${k}.touch) (builtins.attrNames conf.wayland.outputs);
+          in
+            lib.optionalAttrs (outputs != []) (let
+              output = conf.wayland.outputs.${builtins.head outputs}.name;
+            in {
+              "type:tablet_tool".map_to_output = output;
+              "type:touch".map_to_output = output;
+            })
+        );
       output =
         {
           "*" = {
             bg = "${../wallpapers/nix-snowflake-dark.png} fill";
           };
         }
-        // conf.sway.output;
+        // (builtins.listToAttrs (map (k: let
+          v = conf.wayland.outputs.${k};
+        in {
+          name = v.name;
+          value = {inherit (v) pos mode scale;};
+        }) (builtins.filter (k: conf.wayland.outputs.${k}.name != null) (builtins.attrNames conf.wayland.outputs))));
       seat = {
         "*" = {
           hide_cursor = "when-typing enable";
@@ -301,7 +316,23 @@ in {
           # }
         ];
       };
-      workspaceOutputAssign = conf.sway.workspaceOutputAssign {inherit ws0 ws1 ws2 ws3 ws4 ws5 ws6 ws7 ws8 ws9 ws10 ws42 ws1337 ws_obsidian;};
+      workspaceOutputAssign = let
+        workspaces = [ws0 ws1 ws2 ws3 ws4 ws5 ws6 ws7 ws8 ws9 ws10 ws42 ws1337 ws_obsidian];
+      in
+        lib.flatten (
+          map (v: let
+            ws =
+              if v.workspaces == null
+              then workspaces
+              else v.workspaces;
+          in
+            map (w: {
+              workspace = w;
+              output = v.name;
+            })
+            ws)
+          (builtins.filter (v: v.name != null) (builtins.attrValues conf.wayland.outputs))
+        );
     };
   };
 }

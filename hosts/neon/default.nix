@@ -6,35 +6,23 @@ _: {
     crypt = "/dev/disk/by-uuid/b74a3f01-cba6-4912-bb38-14221a136cd0";
   };
 
-  sway = {
-    touch = "eDP-1";
-    output = {
-      "eDP-1" = {
-        pos = "1280,0";
-        mode = "2560x1600";
-        scale = "1.25";
-      };
-      "HDMI-A-1" = {
-        pos = "0,0";
-        mode = "1280x1024";
-        scale = "1";
-      };
+  wayland.outputs = {
+    default = {
+      name = "eDP-1";
+      pos = "1280,0";
+      mode = "2560x1600";
+      scale = "1.25";
+      touch = true;
+      workspaces = null;
     };
-    workspaceOutputAssign = {ws0, ...} @ ws:
-      [
-        {
-          workspace = ws0;
-          output = "HDMI-A-1";
-        }
-      ]
-      ++ map (v: {
-        workspace = v;
-        output = "eDP-1";
-      }) (builtins.attrValues ws);
-  };
-  waybar = {
-    output = "eDP-1";
-    ext-out = "HDMI-A-1";
+    ext = {
+      name = "HDMI-A-1";
+      pos = "0,0";
+      mode = "1280x1024";
+      scale = "1";
+      touch = false;
+      workspaces = ["0"];
+    };
   };
 
   borg.excludeSyncthing = false;
