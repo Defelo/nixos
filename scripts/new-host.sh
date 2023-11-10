@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-host=${1:-$(cat /proc/sys/kernel/hostname)}
-root="$2"
+if [[ $# -lt 1 ]]; then
+    echo "usage: new-host <hostname> [<root> [<crypt-name>]]"
+    exit 1
+fi
+
+host=$1
+root="${2:-/mnt}"
 crypt="${3:-root}"
 
 mkdir "hosts/$host"
