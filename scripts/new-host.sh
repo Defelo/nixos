@@ -50,5 +50,5 @@ echo -e "  encryption_key: $(pwgen -s 128 1)" >> hosts/$host/secrets/default.yml
 sops -e -i hosts/$host/secrets/default.yml
 rm $f $f.pub
 
-mkdir -p hosts/$host/secrets/nm-connections
-touch hosts/$host/secrets/nm-connections/.gitkeep
+mkdir -p hosts/$host/secrets/{networking,nm-connections}
+touch hosts/$host/secrets/{networking,nm-connections}/.gitkeep

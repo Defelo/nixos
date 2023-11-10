@@ -1,6 +1,7 @@
 {
   conf,
   pkgs,
+  lib,
   ...
 }: {
   networking.networkmanager.dispatcherScripts = [
@@ -50,28 +51,22 @@
   };
 
   sops.secrets = let
-    dir = ../hosts/${conf.hostname}/secrets/nm-connections;
+    connections = ../hosts/${conf.hostname}/secrets/nm-connections;
+    secrets = ../hosts/${conf.hostname}/secrets/networking;
   in
-    builtins.listToAttrs (builtins.map (name: {
-      name = "networking/nm-connection-${name}.nmconnection";
-      value = {
-        format = "binary";
-        sopsFile = /${dir}/${name};
-        path = "/etc/NetworkManager/system-connections/${name}.nmconnection";
-      };
-    }) (builtins.attrNames (builtins.removeAttrs (builtins.readDir dir) [".gitkeep"])))
-    // {
-      "networking/uni-wifi-keys/client_cert.pem" = {
-        format = "binary";
-        sopsFile = ../hosts/${conf.hostname}/secrets/uni-wifi-keys/client_cert.pem;
-      };
-      "networking/uni-wifi-keys/client_key.pem" = {
-        format = "binary";
-        sopsFile = ../hosts/${conf.hostname}/secrets/uni-wifi-keys/client_key.pem;
-      };
-      "networking/uni-wifi-keys/root_ca.pem" = {
-        format = "binary";
-        sopsFile = ../hosts/${conf.hostname}/secrets/uni-wifi-keys/root_ca.pem;
-      };
-    };
+    builtins.listToAttrs (map (name: {
+        name = "networking/nm-connection-${name}.nmconnection";
+        value = {
+          format = "binary";
+          sopsFile = /${connections}/${name};
+          path = "/etc/NetworkManager/system-connections/${name}.nmconnection";
+        };
+      }) (builtins.attrNames (builtins.removeAttrs (builtins.readDir connections) [".gitkeep"]))
+      ++ (map (file: {
+        name = "networking${lib.removePrefix (toString secrets) (toString file)}";
+        value = {
+          format = "binary";
+          sopsFile = file;
+        };
+      }) (lib.remove /${secrets}/.gitkeep (lib.filesystem.listFilesRecursive secrets))));
 }
