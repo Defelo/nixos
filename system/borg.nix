@@ -35,7 +35,7 @@ in {
     encryption.mode = "repokey";
     encryption.passCommand = passCommand;
     compression = "lzma,5";
-    extraCreateArgs = "--stats --checkpoint-interval 600";
+    extraCreateArgs = "--stats --checkpoint-interval 600 --one-file-system";
   };
 
   environment.shellAliases.setup-borg = builtins.foldl' (acc: var: "${acc} ${var}=${lib.escapeShellArg environment.${var}}") "export" (builtins.attrNames environment);
