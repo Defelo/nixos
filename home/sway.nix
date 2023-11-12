@@ -317,13 +317,16 @@ in {
         ];
       };
       workspaceOutputAssign = let
-        workspaces = [ws0 ws1 ws2 ws3 ws4 ws5 ws6 ws7 ws8 ws9 ws10 ws42 ws1337 ws_obsidian];
+        workspaces = [ws2 ws0 ws1 ws3 ws4 ws5 ws6 ws7 ws8 ws9 ws10 ws42 ws1337 ws_obsidian];
+        outputs = builtins.filter (v: v.name != null) (builtins.attrValues conf.wayland.outputs);
+        assigned = lib.flatten (map (v: v.workspaces) (builtins.filter (v: v.workspaces != null) outputs));
+        unassigned = lib.subtractLists assigned workspaces;
       in
         lib.flatten (
           map (v: let
             ws =
               if v.workspaces == null
-              then workspaces
+              then unassigned
               else v.workspaces;
           in
             map (w: {
@@ -331,7 +334,7 @@ in {
               output = v.name;
             })
             ws)
-          (builtins.filter (v: v.name != null) (builtins.attrValues conf.wayland.outputs))
+          outputs
         );
     };
   };
