@@ -34,8 +34,18 @@
       [registries.crates-io]
       protocol = "sparse"
 
+      [build]
+      target-dir = "${conf.home}/.cargo/target"
+
       [profile.dev]
       opt-level = 1
+      codegen-backend = "cranelift"
+
+      [profile.dev.package."httparse"]
+      codegen-backend = "llvm"
+
+      [unstable]
+      codegen-backend = true
     '';
     target = ".cargo/config.toml";
   };
@@ -51,11 +61,5 @@
       wrap_comments = true
     '';
     target = ".config/rustfmt/rustfmt.toml";
-  };
-
-  home.sessionVariables = {
-    CARGO_TARGET_DIR = "${conf.home}/.cargo/target";
-    CARGO_UNSTABLE_CODEGEN_BACKEND = "true";
-    CARGO_PROFILE_DEV_CODEGEN_BACKEND = "cranelift";
   };
 }
