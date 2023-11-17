@@ -9,7 +9,7 @@ _: {
   wayland.outputs = {
     default = {
       name = "eDP-1";
-      pos = "1280,0";
+      pos = "0,0"; # primary output should start at 0,0
       mode = "2560x1600";
       scale = "1.25";
       touch = true;
@@ -17,7 +17,7 @@ _: {
     };
     ext = {
       name = "HDMI-A-1";
-      pos = "0,0";
+      pos = "-1280,0";
       mode = "1280x1024";
       scale = "1";
       touch = false;
