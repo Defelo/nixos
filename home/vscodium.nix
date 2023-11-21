@@ -14,6 +14,7 @@
       ms-toolsai.jupyter-keymap
       ms-toolsai.jupyter-renderers
       rust-lang.rust-analyzer
+      uiua-lang.uiua-vscode
       usernamehw.errorlens
       vscodevim.vim
     ];
