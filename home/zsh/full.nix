@@ -11,7 +11,7 @@
     drss = "${../scripts/download_rss.sh}";
     sys-rebuild = "_rebuild && source /etc/zshrc && source ~/.zshrc";
     sys-update = "_update && source /etc/zshrc && source ~/.zshrc";
-    backup = "sudo systemctl start borgbackup-job-data.service && sudo journalctl -fu borgbackup-job-data.service";
+    backup = "sudo systemctl start btrbk-archive && sudo journalctl -fu btrbk-archive";
   };
   functions = {
     _rebuild = ''

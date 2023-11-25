@@ -45,6 +45,7 @@ in {
       ./bluetooth.nix
       ./boot.nix
       ./borg.nix
+      ./btrbk.nix
       ./btrfs.nix
       ./emulation.nix
       ./env.nix
