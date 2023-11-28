@@ -6,6 +6,7 @@
 }: let
   targets = {
     box = "u360850@u360850.your-storagebox.de:backups";
+    fluorine = "-p2022 root@fluorine.vpn.defelo.de:/mnt/exthdd/backups";
   };
   host = config.networking.hostName;
   withTarget = target: cmd:
