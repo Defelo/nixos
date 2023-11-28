@@ -5,6 +5,7 @@
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
     extensions = with pkgs.vscode-extensions; [
+      angular.ng-template
       bbenoist.nix
       eamodio.gitlens
       james-yu.latex-workshop

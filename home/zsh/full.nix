@@ -75,7 +75,12 @@
 in {
   imports = [./.];
   programs.zsh = {
-    initExtra = builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions);
+    initExtra = ''
+      ${builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions)}
+
+      # Load Angular CLI autocompletion.
+      source <(ng completion script)
+    '';
     shellAliases = aliases;
   };
 }
