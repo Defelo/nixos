@@ -13,7 +13,9 @@
 
     # communication
     discord-canary
-    element-desktop
+    (element-desktop.override {
+      electron = pkgs.electron_27;
+    })
 
     # games
     prismlauncher
