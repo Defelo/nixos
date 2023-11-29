@@ -24,6 +24,7 @@
     sqlx-cli
     trunk
     cargo-leptos
+    cargo-shuttle
   ];
   home.file.cargo = {
     text = ''
@@ -61,5 +62,11 @@
       wrap_comments = true
     '';
     target = ".config/rustfmt/rustfmt.toml";
+  };
+
+  sops.secrets."shuttle/config" = {
+    sopsFile = ../../secrets/shuttle;
+    format = "binary";
+    path = "${conf.home}/.config/shuttle/config.toml";
   };
 }
