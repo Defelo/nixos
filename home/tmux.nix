@@ -9,7 +9,7 @@
     keyMode = "vi";
     prefix = "M-Space";
     resizeAmount = 5;
-    secureSocket = true;
+    secureSocket = false;
     terminal = "tmux-256color";
     plugins = with pkgs.tmuxPlugins; [
       tmux-fzf
