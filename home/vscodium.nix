@@ -35,6 +35,7 @@
       "explorer.confirmDragAndDrop" = false;
       "jupyter.askForKernelRestart" = false;
       "notebook.output.textLineLimit" = 50;
+      "[uiua]"."editor.fontSize" = 18;
     };
     keybindings = [
       {
