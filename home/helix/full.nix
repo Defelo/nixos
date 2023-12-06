@@ -23,6 +23,10 @@
         command = "${pkgs.uiua}/bin/uiua";
         args = ["lsp"];
       };
+      haskell = {
+        command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+        args = ["lsp"];
+      };
     };
     language = [
       {
@@ -63,6 +67,15 @@
           unit = "  ";
         };
         shebangs = ["uiua"];
+      }
+      {
+        name = "haskell";
+        auto-format = true;
+        language-servers = [{name = "haskell";}];
+        formatter = {
+          command = "${pkgs.ormolu}/bin/ormolu";
+          args = ["--no-cabal"];
+        };
       }
     ];
   };
