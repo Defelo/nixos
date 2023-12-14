@@ -46,7 +46,9 @@
     # gnome.file-roller
     bc
 
-    obsidian
+    (obsidian.override {
+      electron = pkgs.electron_27;
+    })
     vlc
     texlive.combined.scheme-full
     okular
