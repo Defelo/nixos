@@ -13,9 +13,7 @@
 
     # communication
     discord-canary
-    (element-desktop.override {
-      electron = pkgs.electron_27;
-    })
+    element-desktop
 
     # games
     prismlauncher
@@ -46,9 +44,7 @@
     # gnome.file-roller
     bc
 
-    (obsidian.override {
-      electron = pkgs.electron_27;
-    })
+    # obsidian
     vlc
     texlive.combined.scheme-full
     okular
