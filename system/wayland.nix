@@ -8,6 +8,7 @@
   security.pam.services.swaylock = {};
 
   services.dbus.enable = true;
+  services.dbus.packages = [pkgs.gcr];
   xdg.portal = {
     enable = true;
     wlr.enable = true;
