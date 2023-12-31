@@ -28,6 +28,8 @@
     repl = "nix repl -f '<nixpkgs>'";
     da = "direnv allow";
     de = "direnv edit .";
+    dr = "direnv reload";
+    db = "direnv block";
     duff = "duf /persistent/* /nix /";
   };
   functions = {
