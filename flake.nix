@@ -19,6 +19,7 @@
     };
     helix.url = "github:pascalkuthe/helix/inline-diagnostics";
     fenix.url = "github:nix-community/fenix";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
