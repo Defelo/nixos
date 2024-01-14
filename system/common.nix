@@ -101,5 +101,5 @@
   '';
   environment.shellAliases.needrestart = "sh -c 'diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) <(readlink /run/current-system/{initrd,kernel,kernel-modules})'";
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.11";
 }
