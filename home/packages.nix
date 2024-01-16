@@ -51,5 +51,6 @@
     anki-bin
     spotify
     rnote
+    zotero_7
   ];
 }
