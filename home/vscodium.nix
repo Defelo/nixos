@@ -30,6 +30,7 @@ in {
       orta.vscode-jest
       redhat.vscode-yaml
       rust-lang.rust-analyzer
+      streetsidesoftware.code-spell-checker
       uiua-lang.uiua-vscode
       usernamehw.errorlens
       vscodevim.vim
