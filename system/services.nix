@@ -1,4 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-old,
+  ...
+}: {
+  imports = [
+    ./pcscd.nix
+  ];
+
   # services.printing.enable = true;
 
   # programs.mtr.enable = true;
@@ -14,6 +22,7 @@
   };
 
   services.pcscd.enable = true;
+  services.pcscd.package = pkgs-old.pcscliteWithPolkit;
 
   programs.ssh.startAgent = false;
 

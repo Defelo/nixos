@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
+{
+  pkgs,
+  pkgs-old,
+  ...
+}: {
+  home.packages = with pkgs-old; [
     yubikey-manager
     yubikey-manager-qt
     yubioath-flutter
