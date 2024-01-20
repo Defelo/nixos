@@ -10,10 +10,12 @@
       ".password-store"
       ".ssh"
       ".timetracker"
+      ".zotero"
 
       "nixos"
       "Persistent"
       "Downloads"
+      "Zotero"
     ];
     files = [];
   };
@@ -22,6 +24,7 @@
     directories = [
       ".cache/nix"
       ".cache/spotify"
+      ".cache/zotero"
       ".cargo"
       ".config/BraveSoftware"
       ".config/Element"
