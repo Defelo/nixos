@@ -7,6 +7,7 @@
         config = {
           checkOnSave.command = "clippy";
           cargo.features = "all";
+          cargo.unsetTest = [];
         };
       };
       pyright = {
