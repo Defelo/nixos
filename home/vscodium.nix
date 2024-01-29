@@ -19,6 +19,7 @@ in {
       esbenp.prettier-vscode
       github.copilot
       github.copilot-chat
+      hediet.vscode-drawio
       infinity1207.angular2-switcher
       james-yu.latex-workshop
       kamadorueda.alejandra
@@ -52,6 +53,7 @@ in {
       "explorer.confirmDragAndDrop" = false;
       "jupyter.askForKernelRestart" = false;
       "notebook.output.textLineLimit" = 50;
+      "hediet.vscode-drawio.theme" = "Kennedy";
       "[uiua]"."editor.fontSize" = 18;
       "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
       "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
