@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-old,
   lib,
   ...
 }: let
@@ -67,7 +66,7 @@
     '';
 
     mitm = ''
-      ${pkgs-old.mitmproxy}/bin/mitmweb -q &
+      ${pkgs.mitmproxy}/bin/mitmweb -q &
       pid=$!
       ${pkgs.proxychains}/bin/proxychains4 -f ${builtins.toFile "proxychains.conf" "quiet_mode\n[ProxyList]\nhttp 127.0.0.1 8080"} zsh
       kill $pid
