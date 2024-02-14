@@ -7,6 +7,7 @@
       ".config/syncthing"
       ".gnupg"
       ".local/share/PrismLauncher/instances"
+      ".local/share/zoxide"
       ".password-store"
       ".ssh"
       ".timetracker"

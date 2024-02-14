@@ -8,6 +8,7 @@ let
     ./helix
     ./nix-index.nix
     ./tmux.nix
+    ./zoxide.nix
     ./zsh
   ];
 in {
