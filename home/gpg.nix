@@ -4,7 +4,7 @@
     settings.trust-model = "tofu+pgp";
     scdaemonSettings = {
       disable-ccid = true;
-      pcsc-driver = "${pkgs.pcsclite.out}/lib/libpcsclite.so.1";
+      pcsc-driver = "${pkgs.pcsclite.lib}/lib/libpcsclite.so.1";
       card-timeout = "1";
       reader-port = "Yubico YubiKey";
     };
