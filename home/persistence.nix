@@ -15,7 +15,6 @@
 
       "nixos"
       "Persistent"
-      "Downloads"
       "Zotero"
     ];
     files = [];
@@ -38,6 +37,7 @@
       # ".local/share/waydroid"
       ".local/state/wireplumber"
       ".thunderbird"
+      "Downloads"
     ];
     files = [];
   };
