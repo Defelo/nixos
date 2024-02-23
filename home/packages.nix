@@ -44,7 +44,7 @@
     # gnome.file-roller
     bc
 
-    # obsidian
+    obsidian
     vlc
     texlive.combined.scheme-full
     okular

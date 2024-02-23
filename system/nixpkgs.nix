@@ -32,6 +32,16 @@ import nixpkgs {
           };
         });
       });
+
+      obsidian =
+        (prev.obsidian.overrideAttrs ({src, ...}: rec {
+          version = "1.5.8";
+          src = prev.fetchurl {
+            url = "https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}.tar.gz";
+            hash = "sha256-oc2iA2E3ac/uUNv6unzfac5meHqQzmzDVl/M9jNpS/M=";
+          };
+        }))
+        .override {electron = prev.electron_28;};
     })
   ];
 }
