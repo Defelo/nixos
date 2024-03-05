@@ -179,6 +179,7 @@ in {
               exec -a rofipass.sh ${./scripts/rofipass.sh} "$@"
             '';
           in "exec ${cmd}";
+          "${mod}+I" = "exec ${alacritty} -e nix repl -f '<nixpkgs>'";
           "${mod}+P" = "exec ${alacritty} -e python";
           "${mod}+Shift+P" = "exec ${alacritty} -e pulsemixer";
 
