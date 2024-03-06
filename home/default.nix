@@ -25,6 +25,7 @@ in {
       ./helix/full.nix
       # ./libreoffice.nix
       ./ntfy.nix
+      ./nushell
       ./packages.nix
       ./pass.nix
       ./playerctld.nix
