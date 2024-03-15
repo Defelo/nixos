@@ -27,6 +27,10 @@
     xdg-utils
     virt-manager
     wdisplays
+    slurp
+    grim
+    swappy
+    wl-mirror
     networkmanagerapplet
 
     # utils
