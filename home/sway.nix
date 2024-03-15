@@ -184,6 +184,8 @@ in {
           "${mod}+Shift+P" = "exec ${alacritty} -e pulsemixer";
 
           # "${mod}+odiaeresis" = "exec systemctl --user status picom && systemctl --user stop picom || systemctl --user start picom";
+          "${mod}+odiaeresis" = ''exec ${pkgs.wl-mirror}/bin/wl-mirror -r "$(${pkgs.slurp}/bin/slurp)"'';
+          "${mod}+Shift+odiaeresis" = ''exec ${pkgs.wl-mirror}/bin/wl-mirror "$(swaymsg -t get_outputs -r | ${pkgs.jq}/bin/jq -r '.[] | select(.focused) | .name')"'';
 
           "XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05+";
           "XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume -l 1.0 @DEFAULT_SINK@ 0.05-";
