@@ -22,20 +22,13 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     inherit (nixpkgs) lib;
-    defaultSystems = [
-      "aarch64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-      "x86_64-linux"
-    ];
-    eachDefaultSystem = f:
-      builtins.listToAttrs (map (system: {
-          name = system;
-          value = f system;
-        })
-        defaultSystems);
+    eachDefaultSystem = lib.genAttrs lib.systems.flakeExposed;
 
     defaultConfig = rec {
       uid = 1000;
@@ -89,11 +82,20 @@
         }
       ])
       hosts));
+
     packages = eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {inherit system;};
       in
         import ./scripts pkgs
     );
+
+    hydraJobs = {
+      packages = lib.filterAttrs (system: _: builtins.elem system ["x86_64-linux"]) self.packages;
+      nixosConfigurations = lib.pipe self.nixosConfigurations [
+        (lib.flip builtins.removeAttrs ["nitrogen" "nitrogen-base"])
+        (builtins.mapAttrs (_: host: host.config.system.build.toplevel))
+      ];
+    };
   };
 }
