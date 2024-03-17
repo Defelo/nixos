@@ -69,10 +69,12 @@
       substituters = [
         "https://nix-community.cachix.org"
         "https://sandkasten.cachix.org"
+        "https://cache.defelo.de"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "sandkasten.cachix.org-1:Pa7qfdlx7bZkko+ojaaEG9pyziZkaru9v4TfcioqNZw="
+        "cache.defelo.de:0ThSxBXOuVf8hdT0iQsmuXgzfTrPcZxz4QfnwyNoYjE="
       ];
     };
     registry = {
