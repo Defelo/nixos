@@ -90,12 +90,23 @@
         import ./scripts pkgs
     );
 
-    hydraJobs = {
-      packages = lib.filterAttrs (system: _: builtins.elem system ["x86_64-linux"]) self.packages;
-      nixosConfigurations = lib.pipe self.nixosConfigurations [
-        (lib.flip builtins.removeAttrs ["nitrogen" "nitrogen-base"])
-        (builtins.mapAttrs (_: host: host.config.system.build.toplevel))
-      ];
-    };
+    hydraJobs = let
+      hydraPkgs = import nixpkgs {system = "x86_64-linux";};
+
+      jobs = {
+        packages = lib.filterAttrs (system: _: builtins.elem system ["x86_64-linux"]) self.packages;
+        nixosConfigurations = lib.pipe self.nixosConfigurations [
+          (lib.flip builtins.removeAttrs ["nitrogen" "nitrogen-base"])
+          (builtins.mapAttrs (_: host: host.config.system.build.toplevel))
+        ];
+      };
+    in
+      jobs
+      // {
+        all = hydraPkgs.releaseTools.aggregate {
+          name = "all";
+          constituents = lib.collect lib.isDerivation jobs;
+        };
+      };
   };
 }
