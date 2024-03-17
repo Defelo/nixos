@@ -100,7 +100,7 @@
 
         "clock" = {
           interval = 1;
-          format = "{:󰃭 %Y-%m-%d 󰥔 %H:%M:%S}";
+          format = "󰃭 {:%Y-%m-%d 󰥔 %H:%M:%S}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
