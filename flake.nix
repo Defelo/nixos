@@ -54,6 +54,7 @@
         wifi.trusted = [
           "fad97450-a66a-44f9-894b-19d578ba6265"
           "9a3a989a-c30b-4b2c-be19-28094e503bf2"
+          "ffb7f072-ae29-3ade-9b4f-29eec0ff1324"
         ];
       };
 
