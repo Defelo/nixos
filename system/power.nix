@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   services.upower = {
     enable = true;
   };
@@ -14,4 +14,8 @@
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=120m
   '';
+
+  environment.systemPackages = with pkgs; [
+    powertop
+  ];
 }
