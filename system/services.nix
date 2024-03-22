@@ -10,4 +10,6 @@
   programs.dconf.enable = true;
 
   services.udev.packages = [pkgs.yubikey-personalization];
+
+  programs.mtr.enable = true;
 }
