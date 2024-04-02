@@ -1,4 +1,5 @@
 {
+  system-config,
   pkgs,
   lib,
   ...
@@ -13,9 +14,12 @@
     sys-update = "_update && source /etc/zshrc && source ~/.zshrc";
     backup = "sudo systemctl start btrbk-archive && sudo journalctl -fu btrbk-archive";
   };
+
+  impure = system-config.system.replaceRuntimeDependencies != [];
+
   functions = {
     _rebuild = ''
-      sudo nixos-rebuild "''${1:-switch}" --flake ~/nixos --log-format internal-json -v |& nom --json
+      sudo nixos-rebuild "''${1:-switch}" --flake ~/nixos ${lib.optionalString impure "--impure"} --log-format internal-json -v |& nom --json
     '';
     _update = ''
       nix flake update --commit-lock-file ~/nixos && _rebuild

@@ -66,13 +66,13 @@ in {
       ./wayland.nix
 
       home-manager.nixosModules.home-manager
-      {
+      ({config, ...}: {
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
-          extraSpecialArgs = specialArgs;
+          extraSpecialArgs = specialArgs // {system-config = config;};
         };
-      }
+      })
     ];
   };
 }
