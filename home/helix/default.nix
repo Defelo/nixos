@@ -54,11 +54,13 @@
           "C-j" = "jump_view_down";
           "C-k" = "jump_view_up";
           "C-l" = "jump_view_right";
+          "ö" = "goto_word";
         };
         select = {
           "0" = "goto_line_start";
           "$" = "goto_line_end";
           "G" = "goto_last_line";
+          "ö" = "extend_to_word";
         };
         insert = {
           "C-space" = "completion";
