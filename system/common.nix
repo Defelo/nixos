@@ -2,16 +2,8 @@
   conf,
   nixpkgs,
   pkgs,
-  pkgs-stable,
   ...
 }: {
-  system.replaceRuntimeDependencies = [
-    {
-      original = pkgs.xz;
-      replacement = pkgs-stable.xz;
-    }
-  ];
-
   boot.tmp.useTmpfs = true;
 
   time.timeZone = "Europe/Berlin";
