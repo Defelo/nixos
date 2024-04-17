@@ -113,7 +113,7 @@ in {
 
       modifier = mod;
       keybindings = let
-        alacritty = "alacritty $(swaymsg -t get_tree -r | jq '.nodes[].nodes[]|select(.focused)' | grep -q . || echo --class=floating_term)";
+        alacritty = cmd: "exec tmux new -d -- ${cmd} && tmux set-option detach-on-destroy on && alacritty $(swaymsg -t get_tree -r | jq '.nodes[].nodes[]|select(.focused)' | grep -q . || echo --class=floating_term) -e tmux a";
       in
         lib.mkOptionDefault {
           "${mod}+h" = "focus left";
@@ -167,7 +167,7 @@ in {
           "${mod}+Ctrl+j" = "move workspace output left";
           "${mod}+Ctrl+k" = "move workspace output right";
 
-          "${mod}+Return" = "exec ${alacritty}";
+          "${mod}+Return" = alacritty "";
           "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
 
           "${mod}+Shift+y" = "exec ${lock-command}";
@@ -179,9 +179,9 @@ in {
               exec -a rofipass.sh ${./scripts/rofipass.sh} "$@"
             '';
           in "exec ${cmd}";
-          "${mod}+I" = "exec ${alacritty} -e nix repl -f '<nixpkgs>'";
-          "${mod}+P" = "exec ${alacritty} -e python";
-          "${mod}+Shift+P" = "exec ${alacritty} -e pulsemixer";
+          "${mod}+I" = alacritty "nix repl -f '<nixpkgs>'";
+          "${mod}+P" = alacritty "python";
+          "${mod}+Shift+P" = alacritty "pulsemixer";
 
           # "${mod}+odiaeresis" = "exec systemctl --user status picom && systemctl --user stop picom || systemctl --user start picom";
           "${mod}+odiaeresis" = ''exec ${pkgs.wl-mirror}/bin/wl-mirror -r "$(${pkgs.slurp}/bin/slurp)"'';
