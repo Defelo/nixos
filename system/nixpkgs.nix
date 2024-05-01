@@ -13,7 +13,6 @@ import nixpkgs {
       "steam-original"
       "steam-run"
       "spotify"
-      "vmware-workstation"
     ];
   overlays = [
     (final: prev:
