@@ -2,6 +2,7 @@
   conf,
   nixpkgs,
   pkgs,
+  lib,
   ...
 }: {
   boot.tmp.useTmpfs = true;
@@ -66,7 +67,7 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes" "repl-flake"];
       trusted-users = ["root" "@wheel"];
-      substituters = [
+      substituters = lib.mkAfter [
         "https://nix-community.cachix.org"
         "https://sandkasten.cachix.org"
         "https://cache.defelo.de"
