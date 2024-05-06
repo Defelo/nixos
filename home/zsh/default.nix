@@ -63,6 +63,12 @@
         tmux a -t "$1"
       fi
     '';
+
+    load = ''
+      set -o allexport
+      source "$1"
+      set +o allexport
+    '';
   };
 in {
   programs.zsh = {
