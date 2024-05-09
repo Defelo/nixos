@@ -113,7 +113,7 @@ in {
 
       modifier = mod;
       keybindings = let
-        alacritty = cmd: "exec tmux new -d -- ${cmd} && tmux set-option detach-on-destroy on && alacritty $(swaymsg -t get_tree -r | jq '.nodes[].nodes[]|select(.focused)' | grep -q . || echo --class=floating_term) -e tmux a";
+        alacritty = cmd: "exec alacritty $(swaymsg -t get_tree -r | jq '.nodes[].nodes[]|select(.focused)' | grep -q . || echo --class=floating_term) -e sh -c \"tmux new -d -- ${cmd} && tmux set-option detach-on-destroy on && exec tmux a\"";
       in
         lib.mkOptionDefault {
           "${mod}+h" = "focus left";
