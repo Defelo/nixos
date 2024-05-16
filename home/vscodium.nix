@@ -35,6 +35,7 @@ in {
       uiua-lang.uiua-vscode
       usernamehw.errorlens
       vscodevim.vim
+      vue.volar
       xabikos.javascriptsnippets
     ];
     userSettings = {
