@@ -221,6 +221,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-rtl8821ce": {
+      "locked": {
+        "lastModified": 1715880144,
+        "narHash": "sha256-jxwPmoLgm3i0UiDNqYQSu5FX78xUF5EUXzeoNzsy2RA=",
+        "owner": "Defelo",
+        "repo": "nixpkgs",
+        "rev": "624949c981f9ca50980409e5afe20c85c66d1a4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Defelo",
+        "ref": "rtl8821ce",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1715458492,
@@ -311,6 +327,7 @@
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-rtl8821ce": "nixpkgs-rtl8821ce",
         "sops-nix": "sops-nix"
       }
     },

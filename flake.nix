@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-rtl8821ce.url = "github:Defelo/nixpkgs/rtl8821ce";
     # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     # nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     home-manager = {
