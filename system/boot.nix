@@ -1,7 +1,7 @@
 {
   conf,
   config,
-  pkgs-rtl8821ce,
+  pkgs,
   ...
 }: {
   boot.loader.grub.enable = true;
@@ -18,7 +18,7 @@
 
   boot.supportedFilesystems = ["ntfs"];
 
-  boot.kernelPackages = pkgs-rtl8821ce.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
 
   boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
