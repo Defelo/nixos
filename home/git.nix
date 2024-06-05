@@ -13,6 +13,7 @@
       p = "pull --prune --rebase --autostash";
     };
     extraConfig = {
+      diff.algorithm = "histogram";
       diff.submodule = "log";
       diff.sopsdiffer.textconv = let
         conf = builtins.toFile "sops.yaml" (builtins.toJSON {
