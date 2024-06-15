@@ -17,7 +17,7 @@
       };
       nil.command = "${pkgs.nil}/bin/nil";
       bash-language-server = {
-        command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
+        command = "${pkgs.bash-language-server}/bin/bash-language-server";
         args = ["start"];
       };
       uiua = {
