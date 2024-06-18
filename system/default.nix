@@ -42,9 +42,9 @@ in {
 
       ./audio.nix
       ./backlight.nix
+      ./backup.nix
       ./bluetooth.nix
       ./boot.nix
-      ./borg.nix
       ./btrbk.nix
       ./btrfs.nix
       ./emulation.nix

@@ -8,7 +8,7 @@
     ${conf.user} = {
       isNormalUser = true;
       uid = conf.uid;
-      extraGroups = ["wheel" "networkmanager" "video" "libvirtd"];
+      extraGroups = ["wheel" "networkmanager" "video" "libvirtd" "restic"];
       hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
     };
   };
