@@ -7,6 +7,7 @@
   targets = {
     pve = "rest:https://backup.pve.defelo.de";
     home = "rest:https://backup.home.defelo.de";
+    box = "sftp://u360850-sub3@u360850.your-storagebox.de:23";
   };
 
   hostname = config.networking.hostName;
@@ -53,12 +54,16 @@
   };
 
   backupConfigs =
-    lib.mapAttrsToList (target: repo: {
+    lib.mapAttrsToList (target: repo: let
+      isRest = lib.hasPrefix "rest:" repo;
+      isSftp = lib.hasPrefix "sftp:" repo;
+    in {
       services.restic.backups.${target} = {
         timerConfig = null;
         repository = "${repo}/${hostname}";
-        environmentFile = config.sops.templates."backup/${target}".path;
+        environmentFile = lib.mkIf isRest config.sops.templates."backup/${target}".path;
         passwordFile = config.sops.secrets."backup/${target}/repository-password".path;
+        extraOptions = lib.optional isSftp "sftp.args='-i ${config.sops.secrets."backup/${target}/ssh-key".path}'";
 
         initialize = true;
         paths = ["/persistent/data/.snapshots/backup"];
@@ -77,18 +82,26 @@
             group = "restic";
             mode = "0440";
           };
-        in {
-          "backup/${target}/repository-password" = s;
-          "backup/${target}/rest-password" = s;
-        };
-        templates."backup/${target}" = {
-          content = ''
-            RESTIC_REST_USERNAME=${hostname}
-            RESTIC_REST_PASSWORD=${config.sops.placeholder."backup/${target}/rest-password"}
-          '';
-          owner = "root";
-          group = "restic";
-          mode = "0440";
+        in
+          {
+            "backup/${target}/repository-password" = s;
+          }
+          // (lib.optionalAttrs isRest {
+            "backup/${target}/rest-password" = s;
+          })
+          // (lib.optionalAttrs isSftp {
+            "backup/${target}/ssh-key" = {inherit (s) sopsFile;};
+          });
+        templates = lib.optionalAttrs isRest {
+          "backup/${target}" = {
+            content = ''
+              RESTIC_REST_USERNAME=${hostname}
+              RESTIC_REST_PASSWORD=${config.sops.placeholder."backup/${target}/rest-password"}
+            '';
+            owner = "root";
+            group = "restic";
+            mode = "0440";
+          };
         };
       };
     })

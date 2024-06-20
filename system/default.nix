@@ -58,6 +58,7 @@ in {
       ./power.nix
       ./services.nix
       ./sops.nix
+      ./ssh.nix
       ./steam.nix
       ./users.nix
       ./virt.nix
