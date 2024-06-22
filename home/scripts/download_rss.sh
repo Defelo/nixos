@@ -19,6 +19,7 @@ declare -A urls=(
     ["zmr"]="https://mediathekviewweb.de/feed?query=zdf%20magazin%20royale%20!ZDF&future=$future"
     ["m"]="https://mediathekviewweb.de/feed?query=!zdf%20wir%20sind%20die%20meiers&future=$future"
     ["zcs"]="https://mediathekviewweb.de/feed?query=!zdf%20zdf%20comedy%20sommer&future=$future"
+    ["anstalt"]="https://mediathekviewweb.de/feed?query=!zdf%20die%20anstalt&future=$future"
 )
 
 download_from_rss "${urls[$1]}" "$1" ${2:-0}
