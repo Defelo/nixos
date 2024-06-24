@@ -6,6 +6,7 @@
       ".config/gh"
       ".config/syncthing"
       ".gnupg"
+      ".local/share/Paradox Interactive"
       ".local/share/PrismLauncher/instances"
       ".local/share/zoxide"
       ".password-store"
