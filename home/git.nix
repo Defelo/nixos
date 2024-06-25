@@ -12,7 +12,13 @@
       l = "log --graph";
       p = "pull --prune --rebase --autostash";
     };
+    ignores = [
+      ".direnv"
+      ".devenv"
+      "result"
+    ];
     extraConfig = {
+      init.defaultBranch = "main";
       diff.algorithm = "histogram";
       diff.submodule = "log";
       diff.sopsdiffer.textconv = let
