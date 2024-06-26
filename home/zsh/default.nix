@@ -69,6 +69,11 @@
       source "$1"
       set +o allexport
     '';
+
+    is_btrfs_subvolume = ''
+      local dir=''${1:-.}
+      [[ "$(stat -f --format=%T $dir)" = "btrfs" ]] && [[ "$(stat --format=%i $dir)" =~ ^(2|256)$ ]]
+    '';
   };
 in {
   programs.zsh = {
