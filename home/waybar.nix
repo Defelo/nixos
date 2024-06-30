@@ -49,6 +49,37 @@
           '';
         };
 
+        "custom/dunst" = {
+          exec = pkgs.writeShellScript "dunst-is-paused" ''
+            export PATH=${lib.makeBinPath (with pkgs; [coreutils dunst dbus])}
+
+            set -euo pipefail
+
+            readonly ENABLED=''
+            readonly DISABLED=''
+            dbus-monitor path='/org/freedesktop/Notifications',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged' --profile |
+              while read -r _; do
+                PAUSED="$(dunstctl is-paused)"
+                if [ "$PAUSED" == 'false' ]; then
+                  CLASS="enabled"
+                  TEXT="$ENABLED"
+                else
+                  CLASS="disabled"
+                  TEXT="$DISABLED"
+                  COUNT="$(dunstctl count waiting)"
+                  if [ "$COUNT" != '0' ]; then
+                    TEXT="$DISABLED ($COUNT)"
+                  fi
+                fi
+                printf '{"text": "%s", "class": "%s"}\n' "$TEXT" "$CLASS"
+              done
+          '';
+          return-type = "json";
+          on-click = pkgs.writeShellScript "dunst-toggle-paused.sh" ''
+            dunstctl set-paused toggle
+          '';
+        };
+
         "sway/workspaces" = {
           disable-scroll = true;
           format = "{name}{icon}";
@@ -220,6 +251,7 @@
       #memory,
       #disk,
       #temperature,
+      #custom-dunst,
       #backlight,
       #network,
       #pulseaudio,
@@ -303,6 +335,13 @@
       }
       #disk.critical {
           background: #810;
+      }
+
+      #custom-dunst.enabled {
+        box-shadow: inset 0 -2px #0a7;
+      }
+      #custom-dunst.disabled {
+        box-shadow: inset 0 -2px #e00;
       }
 
       #backlight {
