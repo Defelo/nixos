@@ -78,11 +78,15 @@
 in {
   imports = [./.];
   programs.zsh = {
-    initExtra = ''
+    initExtra = let
+      ng-completion = pkgs.runCommand "ng-completion" {} ''
+        SHELL=zsh ${pkgs.nodePackages."@angular/cli"}/bin/ng completion script > $out
+      '';
+    in ''
       ${builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions)}
 
       # Load Angular CLI autocompletion.
-      source <(ng completion script)
+      source ${ng-completion}
     '';
     shellAliases = aliases;
   };
