@@ -23,6 +23,7 @@ in {
       ./git.nix
       ./gpg.nix
       ./helix/full.nix
+      ./hyfetch.nix
       ./libreoffice.nix
       ./ntfy.nix
       ./packages.nix

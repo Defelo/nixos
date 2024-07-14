@@ -12,6 +12,7 @@
     drss = "${../scripts/download_rss.sh}";
     sys-rebuild = "_rebuild && source /etc/zshrc && source ~/.zshrc";
     sys-update = "_update && source /etc/zshrc && source ~/.zshrc";
+    c = lib.mkForce "clear; is_split || hyfetch";
   };
 
   impure = system-config.system.replaceRuntimeDependencies != [];
@@ -74,6 +75,10 @@
       ${pkgs.proxychains}/bin/proxychains4 -f ${builtins.toFile "proxychains.conf" "quiet_mode\n[ProxyList]\nhttp 127.0.0.1 8080"} zsh
       kill $pid
     '';
+
+    is_split = ''
+      [[ "$TERM" =~ ^tmux ]] && [[ $(tmux list-panes | wc -l) -gt 1 ]]
+    '';
   };
 in {
   imports = [./.];
@@ -87,6 +92,8 @@ in {
 
       # Load Angular CLI autocompletion.
       source ${ng-completion}
+
+      is_split || hyfetch
     '';
     shellAliases = aliases;
   };

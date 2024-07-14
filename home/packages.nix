@@ -34,7 +34,6 @@
     networkmanagerapplet
 
     # utils
-    neofetch
     feh
     gnome.eog
     speedtest-cli
