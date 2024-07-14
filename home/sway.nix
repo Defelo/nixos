@@ -217,6 +217,8 @@ in {
           "${mod}+Shift+period" = "exec dunstctl history-pop";
           "${mod}+period" = "exec dunstctl context";
 
+          "${mod}+Shift+KP_Add" = "exec bash -c \"swaymsg seat '*' hide_cursor when-typing $(f=$XDG_RUNTIME_DIR/sway_disable_hide_cursor; if [[ -e $f ]]; then rm $f; echo enable; else touch $f; echo disable; fi)\"";
+
           "${mod}+m" = "exec ${pkgs.clipman}/bin/clipman pick -t rofi";
           "${mod}+Shift+m" = "exec ${pkgs.clipman}/bin/clipman clear -t rofi";
 
