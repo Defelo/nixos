@@ -44,6 +44,10 @@
         soft-wrap = {
           enable = true;
         };
+        inline-diagnostics = {
+          cursor-line = "hint";
+          other-lines = "warning";
+        };
       };
       keys = {
         normal = {
