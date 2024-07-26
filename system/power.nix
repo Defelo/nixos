@@ -14,6 +14,14 @@
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=120m
   '';
+  systemd.services.powertop.postStart = ''
+    cd /sys/bus/usb/devices
+    for f in *; do
+      if [[ -e "$f/product" ]] && [[ "$(cat $f/product)" = "USB OPTICAL MOUSE " ]]; then
+        echo on > "$f/power/control"
+      fi
+    done
+  '';
 
   environment.systemPackages = with pkgs; [
     powertop
