@@ -10,6 +10,5 @@
     nodejs
     nodePackages."@angular/cli"
     nodePackages.live-server
-    hurl
   ];
 }
