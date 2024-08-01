@@ -168,6 +168,7 @@ in {
           "${mod}+Ctrl+k" = "move workspace output right";
 
           "${mod}+Return" = alacritty "";
+          "${mod}+Shift+Return" = "exec alacritty";
           "${mod}+d" = ''exec "rofi -combi-modi drun,ssh,run -modi combi -show combi -show-icons"'';
 
           "${mod}+Shift+y" = "exec ${lock-command}";
