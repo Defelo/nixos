@@ -11,9 +11,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings.LC_TIME = "en_GB.UTF-8";
-  console.keyMap = pkgs.runCommand "xkb-console-keymap" {preferLocalBuild = true;} ''
-    ${pkgs.buildPackages.ckbcomp}/bin/ckbcomp -layout de -option ctrl:swapcaps -variant nodeadkeys > $out
-  '';
+  console.keyMap = "de-latin1";
 
   networking.hostName = conf.hostname;
   networking.networkmanager = {

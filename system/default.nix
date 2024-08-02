@@ -52,6 +52,7 @@ in {
       ./filesystems.nix
       ./fonts.nix
       ./geoclue2.nix
+      ./kanata.nix
       ./networking.nix
       ./nix-ld.nix
       ./persistence.nix

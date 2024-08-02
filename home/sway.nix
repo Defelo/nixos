@@ -61,7 +61,6 @@ in {
           "type:keyboard" = {
             xkb_layout = "de";
             xkb_variant = "nodeadkeys";
-            xkb_options = "ctrl:swapcaps";
           };
           "type:touchpad" = {
             tap = "enabled";
