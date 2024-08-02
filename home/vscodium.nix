@@ -26,7 +26,7 @@ in {
       ms-python.python
       ms-toolsai.jupyter
       ms-toolsai.jupyter-keymap
-      ms-toolsai.jupyter-renderers
+      # ms-toolsai.jupyter-renderers
       ms-vsliveshare.vsliveshare
       orta.vscode-jest
       redhat.vscode-yaml
