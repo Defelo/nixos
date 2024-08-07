@@ -64,6 +64,8 @@
     target = ".config/rustfmt/rustfmt.toml";
   };
 
+  programs.zsh.shellAliases.rl = "CARGO_PROFILE_DEV_CODEGEN_BACKEND=llvm";
+
   sops.secrets."shuttle/config" = {
     sopsFile = ../../secrets/shuttle;
     format = "binary";
