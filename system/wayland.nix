@@ -15,7 +15,7 @@
     config.common.default = "*";
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   environment.systemPackages = with pkgs; [
     qt5.qtwayland

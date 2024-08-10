@@ -35,7 +35,7 @@
 
     # utils
     feh
-    gnome.eog
+    eog
     speedtest-cli
     pwgen
     xkcdpass

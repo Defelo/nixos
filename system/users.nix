@@ -31,7 +31,7 @@
   # security.sudo.wheelNeedsPassword = false;
   security.pam.u2f = {
     enable = true;
-    authFile = "/persistent/cache/u2f_keys";
+    settings.authfile = "/persistent/cache/u2f_keys";
   };
 
   sops.secrets."user/hashedPassword" = {
