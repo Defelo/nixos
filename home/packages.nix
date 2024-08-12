@@ -14,6 +14,7 @@
     # communication
     discord-canary
     element-desktop
+    signal-desktop
 
     # games
     prismlauncher

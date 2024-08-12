@@ -5,6 +5,7 @@
       ".config/fcitx5"
       ".config/gh"
       ".config/syncthing"
+      ".config/Signal"
       ".gnupg"
       ".local/share/Paradox Interactive"
       ".local/share/PrismLauncher/instances"
