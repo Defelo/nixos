@@ -26,7 +26,7 @@
   environment.systemPackages = with pkgs; [
     age
     comma
-    compsize
+    # compsize
     dig
     duf
     eza
