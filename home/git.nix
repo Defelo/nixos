@@ -19,6 +19,7 @@
     ];
     extraConfig = {
       init.defaultBranch = "main";
+      push.default = "upstream";
       diff.algorithm = "histogram";
       diff.submodule = "log";
       diff.sopsdiffer.textconv = let
