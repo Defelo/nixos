@@ -31,6 +31,7 @@
     dr = "direnv reload";
     db = "direnv block";
     duff = "duf /persistent/* /nix /";
+    mksv = "btrfs subvolume create";
   };
   functions = {
     d = "dirs -v | tac";
