@@ -1,5 +1,6 @@
 {
   conf,
+  config,
   nixpkgs,
   pkgs,
   lib,
@@ -88,6 +89,8 @@
     };
   };
 
+  environment.sessionVariables.NIX_USER_CONF_FILES = config.sops.templates."nix".path;
+
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
   '';
@@ -103,4 +106,14 @@
   environment.shellAliases.needrestart = "sh -c 'diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) <(readlink /run/current-system/{initrd,kernel,kernel-modules})'";
 
   system.stateVersion = "23.11";
+
+  sops = {
+    secrets."nix/tokens/github".sopsFile = ../secrets/nix.yml;
+    templates."nix" = {
+      content = ''
+        access-tokens = github.com=${config.sops.placeholder."nix/tokens/github"}
+      '';
+      mode = "444";
+    };
+  };
 }
