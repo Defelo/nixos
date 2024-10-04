@@ -15,7 +15,7 @@
     c = lib.mkForce "clear; is_split || hyfetch";
   };
 
-  impure = system-config.system.replaceRuntimeDependencies != [];
+  impure = system-config.system.replaceDependencies.replacements != [];
 
   functions = {
     _rebuild = ''
