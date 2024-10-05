@@ -16,6 +16,7 @@
       ".direnv"
       ".devenv"
       "result"
+      "result-*"
     ];
     extraConfig = {
       init.defaultBranch = "main";
