@@ -32,12 +32,5 @@ _: {
     boot.extraModprobeConfig = ''
       options snd-sof-intel-hda-common hda_model=alc287-yoga9-bass-spk-pin
     '';
-
-    boot.loader.grub.extraEntries = ''
-      menuentry "NixOS Live ISO" {
-        set root=(hd0,gpt6)
-        chainloader /EFI/boot/bootx64.efi
-      }
-    '';
   };
 }
