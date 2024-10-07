@@ -25,64 +25,62 @@
   outputs = {
     self,
     nixpkgs,
+    home-manager,
     ...
   } @ inputs: let
     inherit (nixpkgs) lib;
-    eachDefaultSystem = lib.genAttrs lib.systems.flakeExposed;
 
-    defaultConfig = rec {
-      uid = 1000;
-      user = "felix";
-      home = "/home/${user}";
+    eachDefaultSystem = lib.genAttrs [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
 
-      wayland.outputs.default = {
-        name = null;
-        pos = null;
-        mode = null;
-        scale = null;
-        touch = false;
-        workspaces = null;
-      };
+    importNixpkgs = system: nixpkgs: let
+      config.allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+          "discord-canary"
+          "obsidian"
+          "steam"
+          "steam-original"
+          "steam-run"
+          "spotify"
+        ];
+    in
+      import nixpkgs {inherit system config;};
 
-      borg.excludeSyncthing = false;
+    extra-pkgs = system:
+      lib.pipe inputs [
+        (lib.filterAttrs (k: _: lib.hasPrefix "nixpkgs-" k))
+        (lib.mapAttrs' (k: v: {
+          name = lib.removePrefix "nix" k;
+          value = importNixpkgs system v;
+        }))
+      ];
 
-      tmpfsSize = "4G";
+    getSystemFromHardwareConfiguration = hostName: let
+      f = import ./hosts/${hostName}/hardware-configuration.nix;
+      args = builtins.functionArgs f // {lib.mkDefault = lib.id;};
+    in
+      (f args).nixpkgs.hostPlatform;
 
-      networking = {
-        vpn.default = "72ab4eb3-3c9a-42c9-adeb-9f4730d540e6";
-        vpn.full = "bb1d4d42-dedb-4598-8b81-d2147b3197ab";
-        wifi.trusted = [
-          "fad97450-a66a-44f9-894b-19d578ba6265"
-          "9a3a989a-c30b-4b2c-be19-28094e503bf2"
-          "ffb7f072-ae29-3ade-9b4f-29eec0ff1324"
+    mkHost = name: system:
+      lib.nixosSystem {
+        inherit system;
+        pkgs = importNixpkgs system nixpkgs;
+        specialArgs = inputs // (extra-pkgs system);
+        modules = [
+          ./hosts/${name}
+          ./hosts/${name}/hardware-configuration.nix
+          ./system
+          {networking.hostName = name;}
         ];
       };
-
-      extraConfig = {};
-    };
-
-    hosts = builtins.attrNames (builtins.readDir ./hosts);
-    importHostConf = host:
-      lib.recursiveUpdate defaultConfig (import ./hosts/${host} inputs
-        // {
-          hostname = host;
-          hardware-configuration = ./hosts/${host}/hardware-configuration.nix;
-        });
-    mkNixOSConfig = host: import ./system (inputs // {conf = importHostConf host;});
   in {
-    nixosConfigurations = builtins.listToAttrs (lib.flatten (map (host: let
-        config = mkNixOSConfig host;
-      in [
-        {
-          name = host;
-          value = config.full;
-        }
-        {
-          name = "${host}-base";
-          value = config.base;
-        }
-      ])
-      hosts));
+    nixosConfigurations = lib.pipe ./hosts [
+      builtins.readDir
+      (lib.filterAttrs (_: type: type == "directory"))
+      (builtins.mapAttrs (name: _: mkHost name (getSystemFromHardwareConfiguration name)))
+    ];
 
     packages = eachDefaultSystem (
       system: let
@@ -90,24 +88,5 @@
       in
         import ./scripts pkgs
     );
-
-    hydraJobs = let
-      hydraPkgs = import nixpkgs {system = "x86_64-linux";};
-
-      jobs = {
-        packages = lib.filterAttrs (system: _: builtins.elem system ["x86_64-linux"]) self.packages;
-        nixosConfigurations = lib.pipe self.nixosConfigurations [
-          (lib.flip builtins.removeAttrs ["nitrogen" "nitrogen-base"])
-          (builtins.mapAttrs (_: host: host.config.system.build.toplevel))
-        ];
-      };
-    in
-      jobs
-      // {
-        all = hydraPkgs.releaseTools.aggregate {
-          name = "all";
-          constituents = lib.collect lib.isDerivation jobs;
-        };
-      };
   };
 }

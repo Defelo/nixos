@@ -51,8 +51,8 @@
   };
 
   sops.secrets = let
-    connections = ../hosts/${conf.hostname}/secrets/nm-connections;
-    secrets = ../hosts/${conf.hostname}/secrets/networking;
+    connections = /${conf.networking.secrets}/nm-connections;
+    secrets = /${conf.networking.secrets}/networking;
   in
     builtins.listToAttrs (map (name: {
         name = "networking/nm-connection-${name}.nmconnection";

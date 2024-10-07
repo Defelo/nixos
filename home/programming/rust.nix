@@ -24,7 +24,6 @@
     sqlx-cli
     trunk
     cargo-leptos
-    cargo-shuttle
   ];
   home.file.cargo = {
     text = ''
@@ -36,7 +35,7 @@
       protocol = "sparse"
 
       [build]
-      target-dir = "${conf.home}/.cargo/target"
+      target-dir = "/home/${conf.user}/.cargo/target"
 
       [profile.dev]
       opt-level = 1
@@ -65,10 +64,4 @@
   };
 
   programs.zsh.shellAliases.rl = "CARGO_PROFILE_DEV_CODEGEN_BACKEND=llvm";
-
-  sops.secrets."shuttle/config" = {
-    sopsFile = ../../secrets/shuttle;
-    format = "binary";
-    path = "${conf.home}/.config/shuttle/config.toml";
-  };
 }

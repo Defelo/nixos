@@ -1,78 +1,42 @@
 {
-  conf,
-  nixpkgs,
+  config,
   home-manager,
+  specialArgs,
   ...
-} @ inputs: let
-  inherit (conf) system;
+}: {
+  imports = [
+    ./common.nix
 
-  importNixpkgs = src:
-    import ./nixpkgs.nix {
-      inherit system inputs;
-      nixpkgs = src;
-    };
-  pkgs = importNixpkgs nixpkgs;
-  extra-pkgs = with pkgs.lib;
-    mapAttrs' (k: v: {
-      name = removePrefix "nix" k;
-      value = importNixpkgs v;
-    }) (filterAttrs (k: _: hasPrefix "nixpkgs-" k) inputs);
+    ./audio.nix
+    ./backlight.nix
+    ./backup.nix
+    ./bluetooth.nix
+    ./boot.nix
+    ./btrbk.nix
+    ./btrfs.nix
+    ./emulation.nix
+    ./env.nix
+    ./fonts.nix
+    ./geoclue2.nix
+    ./kanata.nix
+    ./networking.nix
+    ./nix-ld.nix
+    ./persistence.nix
+    ./power.nix
+    ./services.nix
+    ./sops.nix
+    ./ssh.nix
+    ./steam.nix
+    ./users.nix
+    ./virt.nix
+    ./wayland.nix
 
-  specialArgs = inputs // extra-pkgs;
-in {
-  base = nixpkgs.lib.nixosSystem {
-    inherit system pkgs specialArgs;
-    modules = [
-      ./common.nix
-      conf.extraConfig
-      conf.hardware-configuration
+    home-manager.nixosModules.home-manager
+  ];
 
-      ./base.nix
-      ./boot.nix
-      ./filesystems.nix
-    ];
-  };
-
-  full = nixpkgs.lib.nixosSystem {
-    inherit system pkgs specialArgs;
-    modules = [
-      ./common.nix
-      conf.extraConfig
-      conf.hardware-configuration
-
-      ./audio.nix
-      ./backlight.nix
-      ./backup.nix
-      ./bluetooth.nix
-      ./boot.nix
-      ./btrbk.nix
-      ./btrfs.nix
-      ./emulation.nix
-      ./env.nix
-      ./filesystems.nix
-      ./fonts.nix
-      ./geoclue2.nix
-      ./kanata.nix
-      ./networking.nix
-      ./nix-ld.nix
-      ./persistence.nix
-      ./power.nix
-      ./services.nix
-      ./sops.nix
-      ./ssh.nix
-      ./steam.nix
-      ./users.nix
-      ./virt.nix
-      ./wayland.nix
-
-      home-manager.nixosModules.home-manager
-      ({config, ...}: {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          extraSpecialArgs = specialArgs // {system-config = config;};
-        };
-      })
-    ];
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = config._module.args // specialArgs // {system-config = config;};
   };
 }

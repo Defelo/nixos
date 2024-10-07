@@ -1,5 +1,4 @@
 {
-  conf,
   config,
   pkgs,
   ...
@@ -22,10 +21,6 @@
   boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
 
   boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
-  boot.initrd.luks.devices.root = {
-    device = conf.partitions.crypt;
-    preLVM = true;
-  };
 
   boot.blacklistedKernelModules = ["uvcvideo" "rtw88_8821ce"];
 }

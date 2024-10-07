@@ -19,6 +19,6 @@
   sops.secrets.ntfy = {
     sopsFile = ../secrets/ntfy;
     format = "binary";
-    path = "${conf.home}/.config/ntfy/client.yml";
+    path = "/home/${conf.user}/.config/ntfy/client.yml";
   };
 }

@@ -20,7 +20,7 @@
   sops.secrets."gtk/bookmarks" = {
     format = "binary";
     sopsFile = ../secrets/gtk/bookmarks;
-    path = "${conf.home}/.config/gtk-3.0/bookmarks";
+    path = "/home/${conf.user}/.config/gtk-3.0/bookmarks";
   };
 
   home.pointerCursor = {

@@ -7,7 +7,7 @@
   users.users = {
     ${conf.user} = {
       isNormalUser = true;
-      uid = conf.uid;
+      uid = 1000;
       extraGroups = ["wheel" "networkmanager" "video" "libvirtd" "restic"];
       hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
     };
@@ -19,7 +19,7 @@
     ${conf.user} = {
       imports = hm.user;
       home.username = conf.user;
-      home.homeDirectory = conf.home;
+      home.homeDirectory = "/home/${conf.user}";
     };
     root = {
       imports = hm.root;
