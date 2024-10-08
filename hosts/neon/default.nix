@@ -33,10 +33,7 @@
     };
   };
 
-  boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-uuid/b74a3f01-cba6-4912-bb38-14221a136cd0";
-    preLVM = true;
-  };
+  boot.initrd.luks.devices.root.device = "/dev/disk/by-uuid/4500f286-2548-47a5-9432-d24cb032063b";
 
   fileSystems = {
     "/" = {
@@ -46,38 +43,47 @@
     };
 
     "/nix" = {
-      device = "/dev/nixos/nix";
+      device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
       fsType = "btrfs";
       neededForBoot = true;
-      options = ["compress=zstd" "noatime"];
+      options = ["compress=zstd" "noatime" "subvol=@nix"];
     };
 
     "/persistent/data" = {
-      device = "/dev/nixos/persistent";
+      device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
       fsType = "btrfs";
       neededForBoot = true;
       options = ["compress=zstd" "noatime" "subvol=@data"];
     };
 
     "/persistent/cache" = {
-      device = "/dev/nixos/persistent";
+      device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
       fsType = "btrfs";
       neededForBoot = true;
       options = ["compress=zstd" "noatime" "subvol=@cache"];
     };
 
+    "/swap" = {
+      device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = ["noatime" "subvol=@swap"];
+    };
+
     "/boot" = {
-      device = "/dev/disk/by-uuid/A28F-4707";
+      device = "/dev/disk/by-uuid/6B80-B69E";
       fsType = "vfat";
+      options = ["umask=0077"];
     };
   };
 
   swapDevices = [
     {
-      device = "/dev/nixos/swap";
+      device = "/swap/swapfile";
       priority = 0;
     }
   ];
+  boot.kernelParams = ["resume_offset=14754000"];
 
   # https://forums.lenovo.com/t5/Ubuntu/Yoga-7i-sound-card-issue-on-Linux/m-p/5183746?page=1#5807792
   boot.extraModprobeConfig = ''

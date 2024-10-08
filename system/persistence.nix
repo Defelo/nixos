@@ -20,6 +20,7 @@
   environment.persistence."/persistent/cache" = {
     hideMounts = true;
     directories = [
+      "/etc/secureboot"
       "/root/.cache/nix"
       "/var/lib/btrfs"
       "/var/lib/libvirt"

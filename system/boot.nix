@@ -1,14 +1,24 @@
 {
   config,
   pkgs,
+  lanzaboote,
+  lib,
   ...
 }: {
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = false;
+  imports = [
+    lanzaboote.nixosModules.lanzaboote
+  ];
+
+  boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.timeout = 2;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
+
+  environment.systemPackages = with pkgs; [efibootmgr sbctl];
 
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
