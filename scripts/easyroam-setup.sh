@@ -22,7 +22,7 @@ fi
 
 pkpass=$(pwgen -s 32 1)
 openssl pkcs12 -in "$profile" -legacy -nokeys -password pass: | openssl x509 > easyroam_client_cert.pem
-openssl pkcs12 -legacy -in "$profile" -nodes -nocerts -password pass: | openssl rsa -aes256 -out easyroam_client_key.pem -passout pass:$pkpass
+openssl pkcs12 -legacy -in "$profile" -nodes -nocerts -password pass: | openssl rsa -aes256 -out easyroam_client_key.pem -passout "pass:$pkpass"
 openssl pkcs12 -in "$profile" -legacy -cacerts -nokeys -password pass: > easyroam_root_ca.pem
 cn=$(openssl x509 -noout -subject -in easyroam_client_cert.pem -legacy | sed 's/.*CN = \(.*\), C.*/\1/')
 

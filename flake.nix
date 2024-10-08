@@ -88,7 +88,7 @@
 
     packages = eachDefaultSystem (
       system: let
-        pkgs = import nixpkgs {inherit system;};
+        pkgs = importNixpkgs system nixpkgs;
       in
         import ./scripts pkgs
     );
