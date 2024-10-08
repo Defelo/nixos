@@ -83,6 +83,7 @@
       priority = 0;
     }
   ];
+  boot.resumeDevice = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
   boot.kernelParams = ["resume_offset=14754000"];
 
   # https://forums.lenovo.com/t5/Ubuntu/Yoga-7i-sound-card-issue-on-Linux/m-p/5183746?page=1#5807792
