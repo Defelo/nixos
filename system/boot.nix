@@ -13,6 +13,7 @@
   boot.loader.timeout = 2;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";

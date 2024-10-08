@@ -31,6 +31,9 @@
   # security.sudo.wheelNeedsPassword = false;
   security.pam.u2f = {
     enable = true;
+
+    # $ nix shell nixpkgs#pam_u2f --command pamu2fcfg
+    # user=root, group=users, mode=640
     settings.authfile = "/persistent/cache/u2f_keys";
   };
 
