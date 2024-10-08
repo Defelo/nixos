@@ -151,7 +151,6 @@
         };
 
         "disk" = mkDisk "/" "/";
-        "disk#nix" = mkDisk "/nix" "/nix";
         "disk#persistent" = mkDisk "/persistent" "/persistent/data";
 
         "network" = {
@@ -187,7 +186,7 @@
 
             modules-left = ["sway/workspaces" "sway/scratchpad"];
             modules-center = ["sway/window"];
-            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#nix" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock" "tray"];
+            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock" "tray"];
           };
       }
       // (builtins.mapAttrs (k: v:
@@ -199,7 +198,7 @@
 
           modules-left = ["sway/workspaces" "sway/scratchpad"];
           modules-center = [];
-          modules-right = ["custom/yk" "memory" "memory#swap" "disk" "disk#nix" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock"];
+          modules-right = ["custom/yk" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock"];
         }) (builtins.removeAttrs conf.wayland.outputs ["default"]));
 
     style = ''
