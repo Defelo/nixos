@@ -53,6 +53,7 @@
   environment.pathsToLink = ["/share/zsh"];
 
   nix = {
+    package = pkgs.nixVersions.latest;
     nixPath = ["nixpkgs=${nixpkgs}"];
     gc = {
       automatic = true;
@@ -62,7 +63,7 @@
     settings = {
       keep-outputs = true;
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes" "repl-flake"];
+      experimental-features = ["nix-command" "flakes"];
       trusted-users = ["root" "@wheel"];
       substituters = lib.mkAfter [
         "https://nix-community.cachix.org"
