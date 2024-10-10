@@ -22,7 +22,7 @@
       sudo nixos-rebuild "''${1:-switch}" --flake ~/nixos ${lib.optionalString impure "--impure"} --log-format internal-json -v |& nom --json
     '';
     _update = ''
-      nix flake update --commit-lock-file ~/nixos && _rebuild
+      nix flake update --commit-lock-file --flake ~/nixos && _rebuild
     '';
     conf = ''
       tmux new -d -s nixos -c ~/nixos hx flake.nix && tmux split -h -t nixos -c ~/nixos -d -l '50%'
