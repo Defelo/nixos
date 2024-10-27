@@ -7,7 +7,7 @@
     material-icons
     font-awesome_5
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
   ];
   # fonts.fontconfig.defaultFonts = {

@@ -45,6 +45,7 @@
           "discord-canary"
           "obsidian"
           "steam"
+          "steam-unwrapped"
           "steam-original"
           "steam-run"
           "spotify"
