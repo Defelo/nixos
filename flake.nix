@@ -96,12 +96,11 @@
 
     checks = let
       nixosConfigurations =
-        lib.mapAttrs' (name: config: {
-          name = getSystemFromHardwareConfiguration name;
-          value.${name} = config.config.system.build.toplevel;
+        lib.mapAttrsToList (name: config: {
+          ${getSystemFromHardwareConfiguration name}.${name} = config.config.system.build.toplevel;
         })
         self.nixosConfigurations;
     in
-      lib.recursiveUpdate self.packages nixosConfigurations;
+      builtins.foldl' lib.recursiveUpdate {} ([self.packages] ++ nixosConfigurations);
   };
 }
