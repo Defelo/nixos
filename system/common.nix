@@ -104,6 +104,8 @@
   '';
   environment.shellAliases.needrestart = "sh -c 'diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) <(readlink /run/current-system/{initrd,kernel,kernel-modules})'";
 
+  systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
+
   system.stateVersion = "23.11";
 
   sops = {
