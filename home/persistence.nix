@@ -7,6 +7,7 @@
       ".config/syncthing"
       ".config/Signal"
       ".gnupg"
+      ".local/share/Mindustry"
       ".local/share/Paradox Interactive"
       ".local/share/PrismLauncher/instances"
       ".local/share/zoxide"
