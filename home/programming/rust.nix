@@ -14,16 +14,9 @@
         ]
     )
     bacon
-    cargo-expand
-    cargo-edit
     cargo-audit
+    cargo-expand
     cargo-hack
-    cargo-llvm-cov
-    cargo-release
-    sea-orm-cli
-    sqlx-cli
-    trunk
-    cargo-leptos
   ];
   home.file.cargo = {
     text = ''
