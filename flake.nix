@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:Mic92/sops-nix/1666d16426abe79af5c47b7c0efa82fd31bf4c56";
     impermanence.url = "github:nix-community/impermanence";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
