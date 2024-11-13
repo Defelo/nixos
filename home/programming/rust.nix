@@ -34,6 +34,8 @@
       opt-level = 1
       codegen-backend = "cranelift"
 
+      [profile.dev.package."curve25519-dalek"]
+      codegen-backend = "llvm"
       [profile.dev.package."httparse"]
       codegen-backend = "llvm"
 
