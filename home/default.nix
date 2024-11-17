@@ -18,7 +18,7 @@ in {
       ./alacritty.nix
       ./clipman.nix
       ./dunst.nix
-      ./fcitx5.nix
+      # ./fcitx5.nix
       ./gammastep.nix
       ./git.nix
       ./gpg.nix
