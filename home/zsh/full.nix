@@ -24,14 +24,6 @@
     _update = ''
       nix flake update --commit-lock-file --flake ~/nixos && _rebuild
     '';
-    conf = ''
-      tmux new -d -s nixos -c ~/nixos hx flake.nix && tmux split -h -t nixos -c ~/nixos -d -l '50%'
-      if [[ -n "$TMUX" ]]; then
-        tmux switch-client -t nixos
-      else
-        tmux a -t nixos
-      fi
-    '';
 
     shot = ''
       file=$(mktemp --suffix .png)
@@ -41,40 +33,6 @@
         && ${pkgs.eog}/bin/eog $file
     '';
     cshot = ''TERMSHOT_FLAGS="-c" shot "$@";'';
-
-    jupyter_export = ''
-      base=$(basename "$1" .ipynb)
-      jupyter nbconvert "$1" --to pdf --output "''${base}.pdf"
-    '';
-
-    latex = ''
-      dir=$(mktemp -d)
-      pdflatex -output-directory="$dir" "$1" || return $?
-      pdflatex -output-directory="$dir" "$1" || return $?
-      mv "$dir"/*.pdf .
-      rm -rf "$dir"
-    '';
-    latex_preview = ''
-      dir=$(mktemp -d)
-      pdflatex -output-directory="$dir" "$1" || return $?
-      (
-        ${pkgs.inotify-tools}/bin/inotifywait -m -e modify "$1" | \
-          while read; do
-            pdflatex -halt-on-error -output-directory="$dir" "$1"
-          done
-      ) &
-      pid=$!
-      ${pkgs.okular}/bin/okular "$dir"/*.pdf
-      kill $pid
-      rm -rf "$dir"
-    '';
-
-    mitm = ''
-      ${pkgs.mitmproxy}/bin/mitmweb -q &
-      pid=$!
-      ${pkgs.proxychains}/bin/proxychains4 -f ${builtins.toFile "proxychains.conf" "quiet_mode\n[ProxyList]\nhttp 127.0.0.1 8080"} zsh
-      kill $pid
-    '';
 
     is_split = ''
       [[ "$TERM" =~ ^tmux ]] && [[ $(tmux list-panes | wc -l) -gt 1 ]]

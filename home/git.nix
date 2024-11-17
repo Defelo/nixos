@@ -17,6 +17,7 @@
       ".devenv"
       "result"
       "result-*"
+      "repl-result-*"
     ];
     extraConfig = {
       init.defaultBranch = "main";

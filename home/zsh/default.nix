@@ -37,12 +37,6 @@
     d = "dirs -v | tac";
     mkcd = ''mkdir -p "$1"; cd "$1"'';
     temp = ''(d=$(mktemp -d); cd "$d"; zsh && rm -rf "$d")'';
-    deltemp = ''
-      d=$(pwd)
-      [[ $(echo $d | cut -d/ -f2) != "tmp" ]] && return
-      cd
-      rm -rf /tmp/$(echo $d | cut -d/ -f3)
-    '';
 
     skg = ''
       f=$(mktemp -u)
@@ -63,12 +57,6 @@
       else
         tmux a -t "$1"
       fi
-    '';
-
-    load = ''
-      set -o allexport
-      source "$1"
-      set +o allexport
     '';
 
     is_btrfs_subvolume = ''

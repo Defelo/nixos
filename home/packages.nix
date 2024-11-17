@@ -43,10 +43,7 @@
     xkcdpass
     gh
     imagemagick
-    # icat
     termshot
-    # exiftool
-    # gnome.file-roller
     bc
 
     obsidian

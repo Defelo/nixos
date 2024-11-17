@@ -24,6 +24,7 @@
 
   environment.systemPackages = with pkgs; [
     age
+    btdu
     comma
     # compsize
     dig

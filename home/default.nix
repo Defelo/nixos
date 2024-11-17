@@ -24,7 +24,7 @@ in {
       ./gpg.nix
       ./helix/full.nix
       ./hyfetch.nix
-      ./libreoffice.nix
+      # ./libreoffice.nix
       ./ntfy.nix
       ./packages.nix
       ./pass.nix

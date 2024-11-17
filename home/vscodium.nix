@@ -17,21 +17,21 @@ in {
       dbaeumer.vscode-eslint
       eamodio.gitlens
       esbenp.prettier-vscode
-      github.copilot
-      github.copilot-chat
+      # github.copilot
+      # github.copilot-chat
       hediet.vscode-drawio
       infinity1207.angular2-switcher
       james-yu.latex-workshop
       kamadorueda.alejandra
       ms-python.python
-      ms-toolsai.jupyter
-      ms-toolsai.jupyter-keymap
+      # ms-toolsai.jupyter
+      # ms-toolsai.jupyter-keymap
       # ms-toolsai.jupyter-renderers
       ms-vsliveshare.vsliveshare
       orta.vscode-jest
       redhat.vscode-yaml
       rust-lang.rust-analyzer
-      streetsidesoftware.code-spell-checker
+      # streetsidesoftware.code-spell-checker
       uiua-lang.uiua-vscode
       usernamehw.errorlens
       vscodevim.vim
