@@ -6,6 +6,6 @@
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
-    "schedule": ["* 5 * * *"]
+    "schedule": ["* 4 * * *"]
   }
 }
