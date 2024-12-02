@@ -37,6 +37,30 @@
     is_split = ''
       [[ "$TERM" =~ ^tmux ]] && [[ $(tmux list-panes | wc -l) -gt 1 ]]
     '';
+
+    fwatch = ''
+      if [[ $# -eq 0 ]] || [[ "$1" = "--help" ]]; then
+        ${lib.getExe' pkgs.inotify-tools "inotifywait"} --help
+        return
+      fi
+
+      args=()
+      while [[ $# -gt 0 ]]; do
+        if [[ "$1" = "--" ]]; then shift; break; fi
+        args+=("$1")
+        shift
+      done
+
+      while true; do
+        ${lib.getExe' pkgs.inotify-tools "inotifywait"} "''${args[@]}"
+        code=$?
+        if [[ $code -eq 0 ]]; then
+          "$@"
+        else
+          return $code
+        fi
+      done
+    '';
   };
 in {
   imports = [./.];

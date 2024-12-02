@@ -45,6 +45,7 @@
     imagemagick
     termshot
     bc
+    inotify-tools
 
     obsidian
     vlc
