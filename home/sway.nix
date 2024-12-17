@@ -59,8 +59,9 @@ in {
       input =
         {
           "type:keyboard" = {
-            xkb_layout = "de";
-            xkb_variant = "nodeadkeys";
+            xkb_layout = "de,us,epo";
+            xkb_variant = "nodeadkeys,,";
+            xkb_options = "grp:shifts_toggle";
           };
           "type:touchpad" = {
             tap = "enabled";

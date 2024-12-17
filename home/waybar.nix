@@ -176,6 +176,11 @@
           format-source = "󰍬 {volume}%";
           format-source-muted = "󰍭";
         };
+
+        "sway/language" = {
+          format = "{short}";
+          tooltip-format = "{long}";
+        };
       };
     in
       {
@@ -186,7 +191,7 @@
 
             modules-left = ["sway/workspaces" "sway/scratchpad"];
             modules-center = ["sway/window"];
-            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock" "tray"];
+            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "sway/language" "battery" "network" "clock" "tray"];
           };
       }
       // (builtins.mapAttrs (k: v:
@@ -260,7 +265,8 @@
       #mode,
       #idle_inhibitor,
       #scratchpad,
-      #mpd {
+      #mpd,
+      #language {
           padding: 0 2px;
           margin: 0 4px;
           color: #ffffff;
@@ -300,6 +306,10 @@
 
       #clock {
           box-shadow: inset 0 -2px #0a7;
+      }
+
+      #language {
+          box-shadow: inset 0 -2px #07a;
       }
 
       #battery {
