@@ -58,11 +58,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1734331093,
-        "narHash": "sha256-9UrKDtqfLdsmDW4kRG/jSUAWot0jfL4WzcKA4nCvJZM=",
+        "lastModified": 1734417396,
+        "narHash": "sha256-32x1Z+Pz3Jv0cK9EG56cFTKXy/mZ/c+Ikxw+aVfKHp4=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "e39e49f3314f7dd09671094dc640b528ba2b1e4b",
+        "rev": "a18d41b26e998e95a598858fdb86ba22fb5da47d",
         "type": "github"
       },
       "original": {
@@ -208,11 +208,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1734396493,
-        "narHash": "sha256-T4PDrjKnF8lvKoJkVcnLFrX5M8uTsbJbJ/uQnNWKxzs=",
+        "lastModified": 1734491622,
+        "narHash": "sha256-W1a2MVGOJZ7y9UZ8y6wrz+m7CQYsFoZwtqT1rAC8uw4=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "312c64f0c2f696d031582b59cb75bab6bcad9514",
+        "rev": "91a5d407da765a376ba0381f5b59890a14c6dd45",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1734400565,
-        "narHash": "sha256-vfyvUlF1wVVXy/Au3fQpa8NMQbocg/oTgNuPS7MoesA=",
+        "lastModified": 1734486856,
+        "narHash": "sha256-+DI4DiwcS3Zp1OUuEi38Tb5gpVt+c8eDpQHy6MAHPzo=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "c2efba4b42988d8573f914cad6431b5bd614935d",
+        "rev": "94a50a7dc9b4be928f36544d1538c6bae93f6f94",
         "type": "github"
       },
       "original": {
@@ -463,11 +463,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1734287558,
-        "narHash": "sha256-7DBZsPlP/9ZpYk+k6dLFG6SEH848HuGaY7ri/gdye4M=",
+        "lastModified": 1734386068,
+        "narHash": "sha256-Py025JiD9lcPmldB7X1AEjq3WBTS60jZUJRtTDonmaE=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "27e824fad4cb40f9e475757871e7d259d73f20da",
+        "rev": "0a706f7d2ac093985eae317781200689cfd48b78",
         "type": "github"
       },
       "original": {
