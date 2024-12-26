@@ -202,8 +202,8 @@
           output = v.name;
 
           modules-left = ["sway/workspaces" "sway/scratchpad"];
-          modules-center = [];
-          modules-right = ["custom/yk" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "battery" "network" "clock"];
+          modules-center = ["sway/window"];
+          modules-right = ["custom/yk" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "sway/language" "battery" "network" "clock"];
         }) (builtins.removeAttrs conf.wayland.outputs ["default"]));
 
     style = ''
