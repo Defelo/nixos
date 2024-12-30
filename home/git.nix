@@ -11,6 +11,7 @@
     aliases = {
       l = "log --graph";
       p = "pull --prune --rebase --autostash";
+      ai = "add --intent-to-add";
     };
     ignores = [
       ".direnv"
