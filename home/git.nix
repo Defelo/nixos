@@ -23,6 +23,7 @@
     extraConfig = {
       init.defaultBranch = "main";
       push.default = "upstream";
+      rerere.enabled = true;
       diff.algorithm = "histogram";
       diff.submodule = "log";
       diff.sopsdiffer.textconv = let
