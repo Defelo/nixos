@@ -328,8 +328,19 @@
           box-shadow: inset 0 -2px #07a;
       }
 
+      @keyframes github-blink {
+        to {
+          box-shadow: inset 0 -2px #1f1f1f;
+        }
+      }
+
       #custom-github {
-          box-shadow: inset 0 -2px #ff507a;
+        box-shadow: inset 0 -2px #ff507a;
+        animation-name: github-blink;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
       }
 
       #battery {
