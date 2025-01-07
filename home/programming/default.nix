@@ -10,5 +10,7 @@
     nodejs
     nodePackages."@angular/cli"
     nodePackages.live-server
+
+    lean4
   ];
 }
