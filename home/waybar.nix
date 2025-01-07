@@ -49,6 +49,21 @@
           '';
         };
 
+        "custom/github" = {
+          interval = 10;
+          on-click = "${pkgs.xdg-utils}/bin/xdg-open https://github.com/notifications";
+          exec = pkgs.writeShellScript "github-notifications" ''
+            export PATH=${lib.makeBinPath (with pkgs; [coreutils gh])}
+
+            set -euo pipefail
+
+            cnt=$(gh api /notifications -q length)
+            if [[ $cnt -gt 0 ]]; then
+              echo " $cnt"
+            fi
+          '';
+        };
+
         "custom/dunst" = {
           exec = pkgs.writeShellScript "dunst-is-paused" ''
             export PATH=${lib.makeBinPath (with pkgs; [coreutils dunst dbus])}
@@ -191,7 +206,7 @@
 
             modules-left = ["sway/workspaces" "sway/scratchpad"];
             modules-center = ["sway/window"];
-            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "sway/language" "battery" "network" "clock" "tray"];
+            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "custom/github" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "sway/language" "battery" "network" "clock" "tray"];
           };
       }
       // (builtins.mapAttrs (k: v:
@@ -266,6 +281,7 @@
       #idle_inhibitor,
       #scratchpad,
       #mpd,
+      #custom-github,
       #language {
           padding: 0 2px;
           margin: 0 4px;
@@ -310,6 +326,10 @@
 
       #language {
           box-shadow: inset 0 -2px #07a;
+      }
+
+      #custom-github {
+          box-shadow: inset 0 -2px #ff507a;
       }
 
       #battery {
