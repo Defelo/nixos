@@ -105,7 +105,7 @@ in {
         {command = "${pkgs.xss-lock}/bin/xss-lock --transfer-sleep-lock -- ${lock-command}";}
         {command = "brave";}
         {command = "thunderbird";}
-        {command = "discordcanary";}
+        # {command = "discordcanary";}
         {command = "element-desktop";}
         {command = "obsidian";}
         {command = "alacritty -e tmux";}
