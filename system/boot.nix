@@ -16,7 +16,7 @@
   # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/etc/secureboot";
+    pkiBundle = "/var/lib/sbctl";
   };
 
   environment.systemPackages = with pkgs; [efibootmgr sbctl];

@@ -20,11 +20,11 @@
   environment.persistence."/persistent/cache" = {
     hideMounts = true;
     directories = [
-      "/etc/secureboot"
       "/root/.cache/nix"
       "/var/lib/btrfs"
       "/var/lib/libvirt"
       "/var/lib/nixos"
+      "/var/lib/sbctl"
       "/var/lib/systemd/backlight"
       "/var/lib/systemd/timers"
       # "/var/lib/waydroid"

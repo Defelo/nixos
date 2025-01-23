@@ -21,7 +21,7 @@
     fenix.url = "github:nix-community/fenix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
