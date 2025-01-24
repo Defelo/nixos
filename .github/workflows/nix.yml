@@ -1,0 +1,22 @@
+name: nix
+
+on:
+  push:
+    branches: [main, staging, trying]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo mkdir /mnt/nix && sudo mount -m -o bind /mnt/nix /nix
+      - uses: DeterminateSystems/nix-installer-action@v16
+      - run: nix run .#ci
+        env:
+          # atticd-atticadm make-token --sub github --validity 1y --pull nixos --push nixos
+          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}

@@ -92,15 +92,29 @@
         pkgs = importNixpkgs system nixpkgs;
       in
         import ./scripts pkgs
+        // {
+          ci = pkgs.writeShellScriptBin "ci" ''
+            set -ex
+            ${lib.getExe pkgs.attic-client} login default https://attic.defelo.de/ "$ATTIC_TOKEN"
+            ${lib.getExe pkgs.attic-client} use nixos
+            ${lib.getExe pkgs.nix-fast-build} --flake .#packages.${system}.checks --skip-cached --no-nom --attic-cache nixos
+          '';
+          checks = let
+            packages = pkgs.linkFarm "nixos-checks-packages" (lib.removeAttrs self.packages.${system} ["ci" "checks"]);
+            hosts = pkgs.linkFarm "nixos-checks-hosts" (lib.mapAttrs (_: v: v.config.system.build.toplevel) self.nixosConfigurations);
+          in
+            pkgs.linkFarmFromDrvs "nixos-checks" [packages hosts];
+        }
     );
 
     checks = let
+      packages = lib.mapAttrs (_: v: lib.removeAttrs v ["ci" "checks"]) self.packages;
       nixosConfigurations =
         lib.mapAttrsToList (name: config: {
           ${getSystemFromHardwareConfiguration name}.${name} = config.config.system.build.toplevel;
         })
         self.nixosConfigurations;
     in
-      builtins.foldl' lib.recursiveUpdate {} ([self.packages] ++ nixosConfigurations);
+      builtins.foldl' lib.recursiveUpdate {} ([packages] ++ nixosConfigurations);
   };
 }
