@@ -89,9 +89,10 @@
         flake = nixpkgs;
       };
     };
+    extraOptions = ''
+      !include ${config.sops.templates."nix".path}
+    '';
   };
-
-  environment.sessionVariables.NIX_USER_CONF_FILES = config.sops.templates."nix".path;
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
