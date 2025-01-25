@@ -23,6 +23,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   environment.systemPackages = with pkgs; [
+    attic-client
     age
     btdu
     comma
@@ -69,13 +70,14 @@
       substituters = lib.mkAfter [
         "https://nix-community.cachix.org"
         "https://sandkasten.cachix.org"
-        "https://cache.defelo.de"
+        "https://attic.defelo.de/nixos"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "sandkasten.cachix.org-1:Pa7qfdlx7bZkko+ojaaEG9pyziZkaru9v4TfcioqNZw="
-        "cache.defelo.de-1:YZIeM57+wDFImkbiCcZ2GZA1XkxF0d/G1Utb5DmrnIs="
+        "nixos:5Pnh7nNQP4a0E3R850micmqOUXhn6uvP+DsT2FU7vfI="
       ];
+      netrc-file = config.sops.templates."nix-netrc".path;
     };
     registry = {
       nixpkgs = {
@@ -110,12 +112,25 @@
   system.stateVersion = "23.11";
 
   sops = {
-    secrets."nix/tokens/github".sopsFile = ../secrets/nix.yml;
-    templates."nix" = {
-      content = ''
-        access-tokens = github.com=${config.sops.placeholder."nix/tokens/github"}
-      '';
-      mode = "444";
+    secrets = {
+      "nix/tokens/github".sopsFile = ../secrets/nix.yml;
+      # atticd-atticadm make-token --sub nixos --validity 1y --pull nixos
+      "nix/tokens/attic".sopsFile = ../secrets/nix.yml;
+    };
+    templates = {
+      "nix" = {
+        content = ''
+          access-tokens = github.com=${config.sops.placeholder."nix/tokens/github"}
+        '';
+        mode = "444";
+      };
+      "nix-netrc" = {
+        content = ''
+          machine attic.defelo.de
+          password ${config.sops.placeholder."nix/tokens/attic"}
+        '';
+        mode = "444";
+      };
     };
   };
 }
