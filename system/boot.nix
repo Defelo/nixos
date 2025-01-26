@@ -28,7 +28,7 @@
 
   boot.supportedFilesystems = ["ntfs"];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.extraModulePackages = [config.boot.kernelPackages.rtl8821ce];
 
   boot.initrd.kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
