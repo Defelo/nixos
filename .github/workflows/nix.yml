@@ -16,7 +16,10 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo mkdir /mnt/nix && sudo mount -m -o bind /mnt/nix /nix
       - uses: DeterminateSystems/nix-installer-action@v16
-      - run: nix run .#ci
-        env:
+      - uses: ryanccn/attic-action@v0
+        with:
+          endpoint: https://attic.defelo.de/
+          cache: nixos
           # atticd-atticadm make-token --sub github --validity 1y --pull nixos --push nixos
-          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
+          token: ${{ secrets.ATTIC_TOKEN }}
+      - run: nix build -L --keep-going .#checks
