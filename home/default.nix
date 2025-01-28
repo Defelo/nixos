@@ -15,6 +15,7 @@ in {
   user =
     common
     ++ [
+      ./aerc.nix
       ./alacritty.nix
       ./clipman.nix
       ./dunst.nix
