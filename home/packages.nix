@@ -3,7 +3,6 @@
     # programming
     gcc
     gnumake
-    git
     git-crypt
     just
 
