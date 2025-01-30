@@ -4,6 +4,7 @@
     serverAliveInterval = 20;
     controlMaster = "auto";
     controlPersist = "2h";
+    controlPath = "~/.ssh/master-%C-%h";
     extraConfig = ''
       TCPKeepAlive no
     '';
