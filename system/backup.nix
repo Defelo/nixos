@@ -6,7 +6,7 @@
 }: let
   targets = {
     srv = "rest:https://backup.defelo.de";
-    home = "rest:https://backup.home.defelo.de";
+    # home = "rest:https://backup.home.defelo.de";
     box = "sftp://u360850-sub3@u360850.your-storagebox.de:23";
   };
 
