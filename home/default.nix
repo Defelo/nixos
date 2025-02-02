@@ -25,6 +25,7 @@ in {
       ./gpg.nix
       ./helix/full.nix
       ./hyfetch.nix
+      ./iamb.nix
       # ./libreoffice.nix
       ./ntfy.nix
       ./packages.nix

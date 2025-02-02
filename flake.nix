@@ -24,6 +24,7 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    iamb.url = "github:ulyssa/iamb";
   };
 
   outputs = {
@@ -72,7 +73,7 @@
       lib.nixosSystem {
         inherit system;
         pkgs = importNixpkgs system nixpkgs;
-        specialArgs = inputs // (extra-pkgs system);
+        specialArgs = inputs // (extra-pkgs system) // {inherit inputs system;};
         modules = [
           ./hosts/${name}
           ./hosts/${name}/hardware-configuration.nix
