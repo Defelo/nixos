@@ -69,12 +69,10 @@
       trusted-users = ["root" "@wheel"];
       substituters = lib.mkAfter [
         "https://nix-community.cachix.org"
-        "https://sandkasten.cachix.org"
         "https://attic.defelo.de/nixos"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "sandkasten.cachix.org-1:Pa7qfdlx7bZkko+ojaaEG9pyziZkaru9v4TfcioqNZw="
         "nixos:5Pnh7nNQP4a0E3R850micmqOUXhn6uvP+DsT2FU7vfI="
       ];
       netrc-file = config.sops.templates."nix-netrc".path;
