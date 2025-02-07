@@ -3,8 +3,7 @@
     enable = true;
     interval = "Fri 07:00";
     fileSystems = [
-      "/dev/nixos/persistent"
-      "/nix"
+      "/dev/mapper/root"
     ];
   };
 }
