@@ -32,7 +32,12 @@
     grim
     swappy
     wl-mirror
-    networkmanagerapplet
+    (networkmanagerapplet.overrideAttrs (attrs: {
+      postFixup = ''
+        ${attrs.postFixup or ""}
+        rm -r $out/etc/xdg/autostart
+      '';
+    }))
 
     # utils
     feh

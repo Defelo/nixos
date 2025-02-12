@@ -95,35 +95,6 @@
           '';
         };
 
-        "sway/workspaces" = {
-          disable-scroll = true;
-          format = "{name}{icon}";
-          format-icons = {
-            "0" = " ";
-            "1" = " 󰖟";
-            "2" = " ";
-            "3" = " ";
-            "4" = "";
-            "5" = "";
-            "6" = "";
-            "7" = " ";
-            "8" = " ";
-            "9" = " ";
-            "10" = " ";
-            "42" = " ";
-            "1337" = "";
-            "+" = " ";
-          };
-        };
-
-        "sway/scratchpad" = {
-          format = "{icon} {count}";
-          show-empty = false;
-          format-icons = ["" ""];
-          tooltip = true;
-          tooltip-format = "{app}: {title}";
-        };
-
         "tray" = {
           spacing = 8;
         };
@@ -192,9 +163,13 @@
           format-source-muted = "󰍭";
         };
 
-        "sway/language" = {
+        "niri/language" = {
           format = "{short}";
           tooltip-format = "{long}";
+        };
+
+        "niri/window" = {
+          separate-outputs = true;
         };
       };
     in
@@ -204,9 +179,9 @@
           // {
             output = lib.mkIf (conf.wayland.outputs.default.name != null) conf.wayland.outputs.default.name;
 
-            modules-left = ["sway/workspaces" "sway/scratchpad"];
-            modules-center = ["sway/window"];
-            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "custom/github" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "sway/language" "battery" "network" "clock" "tray"];
+            modules-left = ["niri/workspaces"];
+            modules-center = ["niri/window"];
+            modules-right = ["custom/yk" "custom/screenshot" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "custom/github" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "niri/language" "battery" "network" "clock" "tray"];
           };
       }
       // (builtins.mapAttrs (k: v:
@@ -216,9 +191,9 @@
           height = 25;
           output = v.name;
 
-          modules-left = ["sway/workspaces" "sway/scratchpad"];
-          modules-center = ["sway/window"];
-          modules-right = ["custom/yk" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "sway/language" "battery" "network" "clock"];
+          modules-left = ["niri/workspaces"];
+          modules-center = ["niri/window"];
+          modules-right = ["custom/yk" "memory" "memory#swap" "disk" "disk#persistent" "cpu" "custom/dunst" "backlight" "pulseaudio" "pulseaudio#mic" "custom/webcam" "niri/language" "battery" "network" "clock"];
         }) (builtins.removeAttrs conf.wayland.outputs ["default"]));
 
     style = ''

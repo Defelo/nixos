@@ -11,5 +11,6 @@ in {
     age.keyFile = "/persistent/data/home/${conf.user}/.config/sops/age/keys.txt";
     defaultSymlinkPath = "/run/user/${toString uid}/secrets";
     defaultSecretsMountPoint = "/run/user/${toString uid}/secrets.d";
+    environment.GNUPGHOME = "/dev/null";
   };
 }

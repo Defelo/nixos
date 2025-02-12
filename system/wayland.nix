@@ -1,6 +1,7 @@
 {
   conf,
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -11,7 +12,6 @@
   services.dbus.packages = [pkgs.gcr];
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
     config.common.default = "*";
   };
 
@@ -21,6 +21,13 @@
     qt5.qtwayland
   ];
 
+  programs.niri.enable = true;
+
+  services.gnome.gnome-keyring.enable = false;
+
+  xdg.autostart.enable = lib.mkForce false;
+  services.xserver.desktopManager.runXdgAutostartIfNone = false;
+
   services.greetd = {
     enable = true;
     settings = {
@@ -29,7 +36,7 @@
       in "${pkgs.greetd.greetd}/bin/agreety --cmd ${shell}${shell.shellPath}";
       initial_session = {
         user = conf.user;
-        command = "sway";
+        command = "niri-session";
       };
     };
   };

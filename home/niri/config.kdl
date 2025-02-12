@@ -1,0 +1,188 @@
+environment {
+    SDL_VIDEODRIVER "wayland"
+    QT_QPA_PLATFORM "wayland"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    MOZ_ENABLE_WAYLAND "1"
+    XDG_CURRENT_DESKTOP "niri"
+    XDG_SESSION_DESKTOP "niri"
+    NIXOS_OZONE_WL "1"
+    DISPLAY null
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "de,us,epo"
+            options "grp:shifts_toggle"
+            variant "nodeadkeys,,"
+        }
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    tablet {
+        map-to-output "eDP-1"
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+output "eDP-1" {
+    mode "2560x1600"
+    position x=0 y=0
+    scale 1.25
+}
+
+output "HDMI-A-1" {
+    mode "1280x1024"
+    position x=-1280 y=0
+    scale 1
+}
+
+layout {
+    gaps 0
+
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring { off; }
+
+    border { off; }
+}
+
+spawn-at-startup "@swayidle@" "-w" "before-sleep" @lock-command@
+
+prefer-no-csd
+
+screenshot-path null
+
+binds {
+    Mod+Return { spawn "alacritty" "-e" "sh" "-c" "tmux new -d -- && tmux set-option detach-on-destroy on && exec tmux a"; }
+    Mod+Shift+Return { spawn "alacritty"; }
+
+    Mod+D { spawn "rofi" "-combi-modi" "drun,ssh,run" "-modi" "combi" "-show" "combi" "-show-icons"; }
+    Mod+Shift+Y { spawn @lock-command@; }
+
+    XF86AudioRaiseVolume       { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    XF86AudioLowerVolume       { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    XF86AudioMute              { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute           { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    Shift+XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SOURCE@" "0.05+"; }
+    Shift+XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SOURCE@" "0.05-"; }
+
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioStop { spawn "playerctl" "stop"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+
+    XF86MonBrightnessUp         { spawn "light" "-A" "5"; }
+    XF86MonBrightnessDown       { spawn "light" "-U" "5"; }
+    Shift+XF86MonBrightnessUp   { spawn "light" "-A" "1"; }
+    Shift+XF86MonBrightnessDown { spawn "light" "-U" "1"; }
+
+    Mod+Shift+Q { close-window; }
+
+    Mod+H     { focus-column-or-monitor-left; }
+    Mod+J     { focus-window-or-workspace-down; }
+    Mod+K     { focus-window-or-workspace-up; }
+    Mod+L     { focus-column-or-monitor-right; }
+
+    Mod+Shift+H     { move-column-left-or-to-monitor-left; }
+    Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K     { move-window-up-or-to-workspace-up; }
+    Mod+Shift+L     { move-column-right-or-to-monitor-right; }
+
+    Mod+Ctrl+H     { focus-monitor-left; }
+    Mod+Ctrl+J     { focus-monitor-down; }
+    Mod+Ctrl+K     { focus-monitor-up; }
+    Mod+Ctrl+L     { focus-monitor-right; }
+
+    Mod+Ctrl+Shift+H     { move-column-to-monitor-left; }
+    Mod+Ctrl+Shift+J     { move-column-to-monitor-down; }
+    Mod+Ctrl+Shift+K     { move-column-to-monitor-up; }
+    Mod+Ctrl+Shift+L     { move-column-to-monitor-right; }
+
+    Mod+N       { focus-workspace-down; }
+    Mod+P       { focus-workspace-up; }
+    Mod+Shift+N { move-column-to-workspace-down; }
+    Mod+Shift+P { move-column-to-workspace-up; }
+    Mod+Ctrl+N  { move-workspace-down; }
+    Mod+Ctrl+P  { move-workspace-up; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Ctrl+0 { move-column-to-workspace 10; }
+
+    Mod+Tab { focus-workspace-previous; }
+
+    Mod+I  { consume-or-expel-window-left; }
+    Mod+O { consume-or-expel-window-right; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Plus { set-column-width "+10%"; }
+
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Plus { set-window-height "+10%"; }
+
+    Mod+Space { switch-focus-between-floating-and-tiling; }
+    Mod+Shift+Space { toggle-window-floating; }
+
+    Mod+Numbersign       { screenshot; }
+    Mod+Shift+Numbersign { screenshot-window; }
+    Mod+Ctrl+Numbersign  { screenshot-screen; }
+
+    Mod+KP_Add       { spawn "dunstctl" "set-paused" "toggle"; }
+    Mod+Comma        { spawn "dunstctl" "close"; }
+    Mod+Shift+Comma  { spawn "dunstctl" "close-all"; }
+    Mod+Shift+Period { spawn "dunstctl" "history-pop"; }
+    Mod+Period       { spawn "dunstctl" "context"; }
+
+    Mod+M       { spawn "clipman" "pick" "-t" "rofi"; }
+    Mod+Shift+M { spawn "clipman" "clear" "-t" "rofi"; }
+    Mod+Ctrl+M  { spawn "@rofipass-command@"; }
+
+    Mod+Shift+E { quit; }
+}
+
+cursor {
+    hide-when-typing
+}
+
+hotkey-overlay {
+    skip-at-startup
+}

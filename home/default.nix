@@ -26,6 +26,7 @@ in {
       ./helix/full.nix
       ./hyfetch.nix
       # ./libreoffice.nix
+      ./niri
       ./ntfy.nix
       ./packages.nix
       ./pass.nix
@@ -34,7 +35,6 @@ in {
       ./rofi
       ./sops.nix
       ./ssh.nix
-      ./sway.nix
       ./syncthing.nix
       ./theme.nix
       ./thunderbird
