@@ -22,7 +22,6 @@
 in {
   home.file.".config/niri/config.kdl".source = pkgs.replaceVars ./config.kdl {
     inherit lock-command rofipass-command;
-    swayidle = lib.getExe pkgs.swayidle;
     DEFAULT_AUDIO_SINK = null;
     DEFAULT_AUDIO_SOURCE = null;
   };

@@ -62,8 +62,6 @@ layout {
     border { off; }
 }
 
-spawn-at-startup "@swayidle@" "-w" "before-sleep" @lock-command@
-
 prefer-no-csd
 
 screenshot-path null
