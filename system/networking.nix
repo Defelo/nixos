@@ -3,16 +3,22 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   networking.networkmanager.dispatcherScripts = [
     {
       type = "basic";
-      source = let
-        inherit (conf.networking) vpn;
-        wifi.trusted = builtins.toFile "wifi-trusted" (builtins.foldl' (acc: x: "${acc}${x}\n") "" conf.networking.wifi.trusted);
-      in
+      source =
+        let
+          inherit (conf.networking) vpn;
+          wifi.trusted = builtins.toFile "wifi-trusted" (
+            builtins.foldl' (acc: x: "${acc}${x}\n") "" conf.networking.wifi.trusted
+          );
+        in
         pkgs.writeText "trusted-networks" ''
-          export PATH=${pkgs.lib.makeBinPath (with pkgs; [coreutils gnugrep networkmanager])}
+          export PATH=${
+            pkgs.lib.makeBinPath (lib.attrValues { inherit (pkgs) coreutils gnugrep networkmanager; })
+          }
 
           if [[ -z "$1" ]] || [[ "$1" = "vpn" ]]; then
             exit
@@ -33,8 +39,8 @@
     allowedTCPPorts = [
       22000 # syncthing
     ];
-    allowedUDPPorts = [];
-    trustedInterfaces = ["vpn"];
+    allowedUDPPorts = [ ];
+    trustedInterfaces = [ "vpn" ];
 
     # disable rpfilter for wireguard
     # if packets are still dropped, they will show up in dmesg
@@ -50,23 +56,26 @@
     '';
   };
 
-  sops.secrets = let
-    connections = /${conf.networking.secrets}/nm-connections;
-    secrets = /${conf.networking.secrets}/networking;
-  in
-    builtins.listToAttrs (map (name: {
+  sops.secrets =
+    let
+      connections = /${conf.networking.secrets}/nm-connections;
+      secrets = /${conf.networking.secrets}/networking;
+    in
+    builtins.listToAttrs (
+      map (name: {
         name = "networking/nm-connection-${name}.nmconnection";
         value = {
           format = "binary";
           sopsFile = /${connections}/${name};
           path = "/etc/NetworkManager/system-connections/${name}.nmconnection";
         };
-      }) (builtins.attrNames (builtins.removeAttrs (builtins.readDir connections) [".gitkeep"]))
+      }) (builtins.attrNames (builtins.removeAttrs (builtins.readDir connections) [ ".gitkeep" ]))
       ++ (map (file: {
         name = "networking${lib.removePrefix (toString secrets) (toString file)}";
         value = {
           format = "binary";
           sopsFile = file;
         };
-      }) (lib.remove /${secrets}/.gitkeep (lib.filesystem.listFilesRecursive secrets))));
+      }) (lib.remove /${secrets}/.gitkeep (lib.filesystem.listFilesRecursive secrets)))
+    );
 }

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./nix.nix
     ./python.nix
@@ -6,11 +7,8 @@
     ./uiua.nix
   ];
 
-  home.packages = with pkgs; [
-    nodejs
-    nodePackages."@angular/cli"
-    nodePackages.live-server
-
-    lean4
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs) nodejs lean4;
+    inherit (pkgs.nodePackages) "@angular/cli" live-server;
+  };
 }

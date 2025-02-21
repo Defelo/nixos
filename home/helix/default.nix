@@ -1,8 +1,5 @@
+{ pkgs, helix, ... }:
 {
-  pkgs,
-  helix,
-  ...
-}: {
   programs.helix = {
     enable = true;
     package = helix.packages.${pkgs.system}.default;
@@ -17,10 +14,19 @@
           normal = "block";
           select = "underline";
         };
-        file-picker = {hidden = false;};
+        file-picker = {
+          hidden = false;
+        };
         statusline = {
-          left = ["mode" "spinner"];
-          center = ["file-name" "read-only-indicator" "file-modification-indicator"];
+          left = [
+            "mode"
+            "spinner"
+          ];
+          center = [
+            "file-name"
+            "read-only-indicator"
+            "file-modification-indicator"
+          ];
           right = [
             "version-control"
             "diagnostics"
@@ -38,7 +44,9 @@
           display-messages = true;
           display-inlay-hints = true;
         };
-        indent-guides = {render = true;};
+        indent-guides = {
+          render = true;
+        };
         idle-timeout = 0;
         bufferline = "always";
         soft-wrap = {

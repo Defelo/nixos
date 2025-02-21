@@ -1,4 +1,5 @@
-{conf, ...}: {
+{ conf, ... }:
+{
   programs.password-store = {
     enable = true;
     settings = {

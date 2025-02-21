@@ -3,7 +3,7 @@
 set -e
 
 if [[ $# -lt 1 ]]; then
-  cat << EOF
+  cat <<EOF
 Setup instructions:
   1. Go to https://www.easyroam.de/User/Generate
   2. Select 'Manual options' > 'PKCS12', enter your device name and generate the profile
@@ -15,18 +15,18 @@ fi
 
 profile=$(realpath "$1")
 
-if [[ -n "$2" ]]; then
+if [[ -n $2 ]]; then
   mkdir -p "$2"
   cd "$2"
 fi
 
 pkpass=$(pwgen -s 32 1)
-openssl pkcs12 -in "$profile" -legacy -nokeys -password pass: | openssl x509 > easyroam_client_cert.pem
+openssl pkcs12 -in "$profile" -legacy -nokeys -password pass: | openssl x509 >easyroam_client_cert.pem
 openssl pkcs12 -legacy -in "$profile" -nodes -nocerts -password pass: | openssl rsa -aes256 -out easyroam_client_key.pem -passout "pass:$pkpass"
-openssl pkcs12 -in "$profile" -legacy -cacerts -nokeys -password pass: > easyroam_root_ca.pem
+openssl pkcs12 -in "$profile" -legacy -cacerts -nokeys -password pass: >easyroam_root_ca.pem
 cn=$(openssl x509 -noout -subject -in easyroam_client_cert.pem -legacy | sed 's/.*CN = \(.*\), C.*/\1/')
 
-cat << EOF
+cat <<EOF
 [connection]
 id=easyroam
 uuid=$(uuidgen)

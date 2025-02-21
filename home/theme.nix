@@ -1,8 +1,5 @@
+{ pkgs, conf, ... }:
 {
-  pkgs,
-  conf,
-  ...
-}: {
   gtk = {
     enable = true;
     theme.name = "Adapta-Nokto";

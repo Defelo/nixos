@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -10,8 +11,7 @@
           (pkgs.OVMF.override {
             secureBoot = true;
             tpmSupport = true;
-          })
-          .fd
+          }).fd
         ];
       };
     };

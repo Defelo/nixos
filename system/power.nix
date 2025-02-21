@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.upower = {
     enable = true;
   };
@@ -23,7 +24,5 @@
     done
   '';
 
-  environment.systemPackages = with pkgs; [
-    powertop
-  ];
+  environment.systemPackages = [ pkgs.powertop ];
 }

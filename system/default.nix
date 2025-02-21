@@ -3,7 +3,8 @@
   home-manager,
   specialArgs,
   ...
-}: {
+}:
+{
   imports = [
     ./common.nix
 
@@ -37,6 +38,6 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = config._module.args // specialArgs // {system-config = config;};
+    extraSpecialArgs = config._module.args // specialArgs // { system-config = config; };
   };
 }

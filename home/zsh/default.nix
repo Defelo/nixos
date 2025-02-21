@@ -1,8 +1,5 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{ pkgs, lib, ... }:
+let
   aliases = {
     "." = "source";
     ls = "EXA_COLORS='xx=2;37' ${pkgs.eza}/bin/eza -g --git --group-directories-first";
@@ -64,7 +61,8 @@
       [[ "$(stat -f --format=%T $dir)" = "btrfs" ]] && [[ "$(stat --format=%i $dir)" =~ ^(2|256)$ ]]
     '';
   };
-in {
+in
+{
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;

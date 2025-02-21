@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   targets = {
     srv = "rest:https://backup.defelo.de";
     # home = "rest:https://backup.home.defelo.de";
@@ -12,24 +13,28 @@
 
   hostname = config.networking.hostName;
 
-  scriptConfig = let
-    script = pkgs.writeShellScriptBin "backup" ''
-      if [[ $UID -ne 0 ]]; then
-        exec sudo $0 $@
-      fi
+  scriptConfig =
+    let
+      script = pkgs.writeShellScriptBin "backup" ''
+        if [[ $UID -ne 0 ]]; then
+          exec sudo $0 $@
+        fi
 
-      systemctl start prepare-backup.service
-      journalctl -f${lib.concatMapStrings (target: " -u restic-backups-${target}.service") (builtins.attrNames targets)}
-    '';
-  in {
-    environment.systemPackages = [script];
-  };
+        systemctl start prepare-backup.service
+        journalctl -f${
+          lib.concatMapStrings (target: " -u restic-backups-${target}.service") (builtins.attrNames targets)
+        }
+      '';
+    in
+    {
+      environment.systemPackages = [ script ];
+    };
 
   prepareConfig = {
     systemd.services.prepare-backup = {
       onSuccess = lib.mapAttrsToList (target: _: "restic-backups-${target}.service") targets;
       restartIfChanged = false;
-      path = with pkgs; [coreutils btrfs-progs];
+      path = lib.attrValues { inherit (pkgs) coreutils btrfs-progs; };
       script = ''
         set -e
 
@@ -50,23 +55,27 @@
   };
 
   groupConfig = {
-    users.groups.restic = {};
+    users.groups.restic = { };
   };
 
-  backupConfigs =
-    lib.mapAttrsToList (target: repo: let
+  backupConfigs = lib.mapAttrsToList (
+    target: repo:
+    let
       isRest = lib.hasPrefix "rest:" repo;
       isSftp = lib.hasPrefix "sftp:" repo;
-    in {
+    in
+    {
       services.restic.backups.${target} = {
         timerConfig = null;
         repository = "${repo}/${hostname}";
         environmentFile = lib.mkIf isRest config.sops.templates."backup/${target}".path;
         passwordFile = config.sops.secrets."backup/${target}/repository-password".path;
-        extraOptions = lib.optional isSftp "sftp.args='-i ${config.sops.secrets."backup/${target}/ssh-key".path}'";
+        extraOptions = lib.optional isSftp "sftp.args='-i ${
+          config.sops.secrets."backup/${target}/ssh-key".path
+        }'";
 
         initialize = true;
-        paths = ["/persistent/data/.snapshots/backup"];
+        paths = [ "/persistent/data/.snapshots/backup" ];
         exclude = [
           "node_modules"
           ".venv"
@@ -75,23 +84,20 @@
       };
 
       sops = {
-        secrets = let
-          s = {
-            sopsFile = ../hosts/${hostname}/secrets/default.yml;
-            owner = "root";
-            group = "restic";
-            mode = "0440";
-          };
-        in
+        secrets =
+          let
+            s = {
+              sopsFile = ../hosts/${hostname}/secrets/default.yml;
+              owner = "root";
+              group = "restic";
+              mode = "0440";
+            };
+          in
           {
             "backup/${target}/repository-password" = s;
           }
-          // (lib.optionalAttrs isRest {
-            "backup/${target}/rest-password" = s;
-          })
-          // (lib.optionalAttrs isSftp {
-            "backup/${target}/ssh-key" = {inherit (s) sopsFile;};
-          });
+          // (lib.optionalAttrs isRest { "backup/${target}/rest-password" = s; })
+          // (lib.optionalAttrs isSftp { "backup/${target}/ssh-key" = { inherit (s) sopsFile; }; });
         templates = lib.optionalAttrs isRest {
           "backup/${target}" = {
             content = ''
@@ -104,7 +110,14 @@
           };
         };
       };
-    })
-    targets;
+    }
+  ) targets;
 in
-  lib.mkMerge ([scriptConfig prepareConfig groupConfig] ++ backupConfigs)
+lib.mkMerge (
+  [
+    scriptConfig
+    prepareConfig
+    groupConfig
+  ]
+  ++ backupConfigs
+)

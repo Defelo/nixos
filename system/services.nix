@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   virtualisation.podman = {
     enable = true;
   };
@@ -9,7 +10,7 @@
 
   programs.dconf.enable = true;
 
-  services.udev.packages = [pkgs.yubikey-personalization];
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
   programs.mtr.enable = true;
 }

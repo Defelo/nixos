@@ -3,21 +3,27 @@
   pkgs,
   fenix,
   ...
-}: {
-  home.packages = with pkgs; [
-    (
-      with fenix.packages.${pkgs.system};
-        combine [
-          complete.toolchain
-          targets.x86_64-unknown-linux-musl.latest.rust-std
-          targets.wasm32-unknown-unknown.latest.rust-std
-        ]
-    )
-    bacon
-    cargo-audit
-    cargo-expand
-    cargo-hack
-  ];
+}:
+{
+  home.packages = builtins.attrValues {
+    rust =
+      let
+        inherit (fenix.packages.${pkgs.system}) combine complete targets;
+      in
+      combine [
+        complete.toolchain
+        targets.x86_64-unknown-linux-musl.latest.rust-std
+        targets.wasm32-unknown-unknown.latest.rust-std
+      ];
+
+    inherit (pkgs)
+      bacon
+      cargo-audit
+      cargo-expand
+      cargo-hack
+      ;
+  };
+
   home.file.cargo = {
     text = ''
       [target.x86_64-unknown-linux-gnu]

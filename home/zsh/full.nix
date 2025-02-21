@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   aliases = {
     bt = "bluetoothctl";
     vlc = "vlc -I ncurses";
@@ -15,7 +16,7 @@
     c = lib.mkForce "clear; is_split || hyfetch";
   };
 
-  impure = system-config.system.replaceDependencies.replacements != [];
+  impure = system-config.system.replaceDependencies.replacements != [ ];
 
   functions = {
     _rebuild = ''
@@ -62,21 +63,24 @@
       done
     '';
   };
-in {
-  imports = [./.];
+in
+{
+  imports = [ ./. ];
   programs.zsh = {
-    initExtra = let
-      ng-completion = pkgs.runCommand "ng-completion" {} ''
-        SHELL=zsh ${pkgs.nodePackages."@angular/cli"}/bin/ng completion script > $out
+    initExtra =
+      let
+        ng-completion = pkgs.runCommand "ng-completion" { } ''
+          SHELL=zsh ${pkgs.nodePackages."@angular/cli"}/bin/ng completion script > $out
+        '';
+      in
+      ''
+        ${builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions)}
+
+        # Load Angular CLI autocompletion.
+        source ${ng-completion}
+
+        is_split || hyfetch
       '';
-    in ''
-      ${builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions)}
-
-      # Load Angular CLI autocompletion.
-      source ${ng-completion}
-
-      is_split || hyfetch
-    '';
     shellAliases = aliases;
   };
 }

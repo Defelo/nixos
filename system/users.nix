@@ -1,32 +1,37 @@
+{ conf, config, ... }:
 {
-  conf,
-  config,
-  ...
-}: {
   users.mutableUsers = false;
   users.users = {
     ${conf.user} = {
       isNormalUser = true;
       uid = 1000;
-      extraGroups = ["wheel" "networkmanager" "video" "libvirtd" "restic"];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "video"
+        "libvirtd"
+        "restic"
+      ];
       hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
     };
   };
 
-  home-manager.users = let
-    hm = import ../home;
-  in {
-    ${conf.user} = {
-      imports = hm.user;
-      home.username = conf.user;
-      home.homeDirectory = "/home/${conf.user}";
+  home-manager.users =
+    let
+      hm = import ../home;
+    in
+    {
+      ${conf.user} = {
+        imports = hm.user;
+        home.username = conf.user;
+        home.homeDirectory = "/home/${conf.user}";
+      };
+      root = {
+        imports = hm.root;
+        home.username = "root";
+        home.homeDirectory = "/root";
+      };
     };
-    root = {
-      imports = hm.root;
-      home.username = "root";
-      home.homeDirectory = "/root";
-    };
-  };
 
   # security.sudo.wheelNeedsPassword = false;
   security.pam.u2f = {

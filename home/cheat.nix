@@ -1,9 +1,6 @@
+{ pkgs, cheatsheets, ... }:
 {
-  pkgs,
-  cheatsheets,
-  ...
-}: {
-  home.packages = [pkgs.cheat];
+  home.packages = [ pkgs.cheat ];
   home.file.cheat = {
     target = ".config/cheat/conf.yml";
     text = builtins.toJSON {
@@ -16,7 +13,7 @@
         {
           name = "community";
           path = cheatsheets;
-          tags = ["community"];
+          tags = [ "community" ];
           readonly = true;
         }
       ];

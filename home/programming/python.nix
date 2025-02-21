@@ -1,13 +1,13 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    (python311.withPackages (p:
-      with p; [
-        numpy
-        requests
-      ]))
-    poetry
-    poethepoet
-    pyright
-    ruff
-  ];
+{ pkgs, ... }:
+{
+  home.packages = builtins.attrValues {
+    python = pkgs.python311.withPackages (p: builtins.attrValues { inherit (p) numpy requests; });
+
+    inherit (pkgs)
+      poetry
+      poethepoet
+      pyright
+      ruff
+      ;
+  };
 }

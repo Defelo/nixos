@@ -1,7 +1,10 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # rnix-lsp
-    alejandra
-    nixfmt-rfc-style
-  ];
+{ pkgs, ... }:
+{
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
+      # rnix-lsp
+      alejandra
+      nixfmt-rfc-style
+      ;
+  };
 }

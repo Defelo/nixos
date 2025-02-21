@@ -4,7 +4,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   boot.tmp.useTmpfs = true;
 
   time.timeZone = "Europe/Berlin";
@@ -22,41 +23,43 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  environment.systemPackages = with pkgs; [
-    attic-client
-    age
-    btdu
-    comma
-    # compsize
-    dig
-    duf
-    eza
-    file
-    htop
-    iw
-    jq
-    ncdu
-    nix-tree
-    nvd
-    ranger
-    renameutils
-    ripgrep
-    sd
-    sops
-    unp
-    wget
-    wireguard-tools
-    wirelesstools
-    xxd
-    yq
-    zip
-  ];
+  environment.systemPackages = lib.attrValues {
+    inherit (pkgs)
+      attic-client
+      age
+      btdu
+      comma
+      # compsize
+      dig
+      duf
+      eza
+      file
+      htop
+      iw
+      jq
+      ncdu
+      nix-tree
+      nvd
+      ranger
+      renameutils
+      ripgrep
+      sd
+      sops
+      unp
+      wget
+      wireguard-tools
+      wirelesstools
+      xxd
+      yq
+      zip
+      ;
+  };
 
-  environment.pathsToLink = ["/share/zsh"];
+  environment.pathsToLink = [ "/share/zsh" ];
 
   nix = {
     package = pkgs.nixVersions.latest;
-    nixPath = ["nixpkgs=${nixpkgs}"];
+    nixPath = [ "nixpkgs=${nixpkgs}" ];
     gc = {
       automatic = true;
       dates = "05:30";
@@ -65,8 +68,14 @@
     settings = {
       keep-outputs = true;
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
-      trusted-users = ["root" "@wheel"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       substituters = lib.mkAfter [
         "https://nix-community.cachix.org"
         "https://attic.defelo.de/nixos"
@@ -106,7 +115,7 @@
   '';
   environment.shellAliases.needrestart = "sh -c 'diff <(readlink /run/booted-system/{initrd,kernel,kernel-modules}) <(readlink /run/current-system/{initrd,kernel,kernel-modules})'";
 
-  systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
+  systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 
   system.stateVersion = "23.11";
 

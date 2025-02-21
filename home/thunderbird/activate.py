@@ -47,7 +47,9 @@ for acc in config["email"]["accounts"]:
         smtp.setdefault("port", 587)
 
     if imap := acc.get("imap"):
-        out[f"mail.server.server_{id}.directory"] = f".thunderbird/default/ImapMail/{id}"
+        out[f"mail.server.server_{id}.directory"] = (
+            f".thunderbird/default/ImapMail/{id}"
+        )
         out[f"mail.server.server_{id}.directory-rel"] = f"[ProfD]ImapMail/{id}"
         out[f"mail.server.server_{id}.hostname"] = imap["host"]
         out[f"mail.server.server_{id}.login_at_startup"] = True
@@ -77,11 +79,19 @@ out["mail.smtpservers"] = ",".join(servers)
 
 calendars = []
 for cal in config["calendars"]:
-    id = hashlib.sha256("\n".join([cal["uri"], cal.get("username", ""), cal["name"]]).encode()).hexdigest()
+    id = hashlib.sha256(
+        "\n".join([cal["uri"], cal.get("username", ""), cal["name"]]).encode()
+    ).hexdigest()
     calendars.append(id)
 
     for k, v in (
-        {"type": "caldav", "readOnly": False, "cache.enabled": True, "calendar-main-in-composite": True} | cal
+        {
+            "type": "caldav",
+            "readOnly": False,
+            "cache.enabled": True,
+            "calendar-main-in-composite": True,
+        }
+        | cal
     ).items():
         out[f"calendar.registry.{id}.{k}"] = v
 

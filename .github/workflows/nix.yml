@@ -9,8 +9,14 @@ permissions:
   contents: read
 
 jobs:
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@v16
+      - run: nix fmt -- --ci
+
   checks:
-    name: checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

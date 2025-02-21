@@ -28,7 +28,7 @@
         mode = "1280x1024";
         scale = "1";
         touch = false;
-        workspaces = ["0"];
+        workspaces = [ "0" ];
       };
     };
   };
@@ -39,41 +39,60 @@
     "/" = {
       device = "tmpfs";
       fsType = "tmpfs";
-      options = ["defaults" "size=100%" "mode=755"];
+      options = [
+        "defaults"
+        "size=100%"
+        "mode=755"
+      ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
       fsType = "btrfs";
       neededForBoot = true;
-      options = ["compress=zstd" "noatime" "subvol=@nix"];
+      options = [
+        "compress=zstd"
+        "noatime"
+        "subvol=@nix"
+      ];
     };
 
     "/persistent/data" = {
       device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
       fsType = "btrfs";
       neededForBoot = true;
-      options = ["compress=zstd" "noatime" "subvol=@data"];
+      options = [
+        "compress=zstd"
+        "noatime"
+        "subvol=@data"
+      ];
     };
 
     "/persistent/cache" = {
       device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
       fsType = "btrfs";
       neededForBoot = true;
-      options = ["compress=zstd" "noatime" "subvol=@cache"];
+      options = [
+        "compress=zstd"
+        "noatime"
+        "subvol=@cache"
+      ];
     };
 
     "/swap" = {
       device = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
       fsType = "btrfs";
       neededForBoot = true;
-      options = ["noatime" "subvol=@swap"];
+      options = [
+        "noatime"
+        "subvol=@swap"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/6B80-B69E";
       fsType = "vfat";
-      options = ["umask=0077"];
+      options = [ "umask=0077" ];
     };
   };
 
@@ -84,7 +103,7 @@
     }
   ];
   boot.resumeDevice = "/dev/disk/by-uuid/5ad67c07-d42c-4871-b2ea-f4ea30121666";
-  boot.kernelParams = ["resume_offset=14754000"];
+  boot.kernelParams = [ "resume_offset=14754000" ];
 
   # https://forums.lenovo.com/t5/Ubuntu/Yoga-7i-sound-card-issue-on-Linux/m-p/5183746?page=1#5807792
   boot.extraModprobeConfig = ''

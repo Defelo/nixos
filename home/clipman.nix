@@ -1,12 +1,13 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.clipman];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.clipman ];
 
   # https://github.com/nix-community/home-manager/blob/master/modules/services/clipman.nix
   systemd.user.services.clipman = {
     Unit = {
       Description = "Clipboard management daemon";
-      PartOf = ["graphical-session.target"];
-      After = ["graphical-session.target"];
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
     };
 
     Service = {
@@ -16,6 +17,6 @@
       KillMode = "mixed";
     };
 
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

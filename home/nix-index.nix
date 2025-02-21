@@ -1,7 +1,6 @@
-{nix-index-database, ...}: {
-  imports = [
-    nix-index-database.hmModules.nix-index
-  ];
+{ nix-index-database, ... }:
+{
+  imports = [ nix-index-database.hmModules.nix-index ];
   programs.nix-index = {
     enable = true;
     enableZshIntegration = false;

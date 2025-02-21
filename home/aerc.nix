@@ -1,4 +1,5 @@
-{conf, ...}: {
+{ conf, ... }:
+{
   programs.aerc = {
     enable = true;
     extraConfig = {
@@ -21,7 +22,7 @@
         ".headers" = "colorize";
       };
     };
-    extraBinds = {};
+    extraBinds = { };
   };
 
   sops.secrets."aerc/accounts" = {

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.tmux = {
     enable = true;
     aggressiveResize = true;
@@ -11,10 +12,7 @@
     resizeAmount = 5;
     secureSocket = false;
     terminal = "tmux-256color";
-    plugins = with pkgs.tmuxPlugins; [
-      tmux-fzf
-      onedark-theme
-    ];
+    plugins = builtins.attrValues { inherit (pkgs.tmuxPlugins) tmux-fzf onedark-theme; };
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
 

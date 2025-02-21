@@ -1,9 +1,6 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
-  home.packages = with pkgs; [thunderbird gpgme];
+  home.packages = builtins.attrValues { inherit (pkgs) thunderbird gpgme; };
 
   sops.secrets = {
     "thunderbird" = {
@@ -13,15 +10,19 @@
   };
 
   systemd.user.services.thunderbird-config = {
-    Install.WantedBy = ["default.target"];
-    Unit.After = ["sops-nix.service"];
+    Install.WantedBy = [ "default.target" ];
+    Unit.After = [ "sops-nix.service" ];
     Service = {
-      ExecStart = toString (pkgs.writeShellScript "thunderbird-config.sh" ''
-        ${pkgs.coreutils}/bin/mkdir -p ~/.thunderbird/default
-        ${pkgs.coreutils}/bin/rm -f ~/.thunderbird/default/user.js
-        ${pkgs.python311}/bin/python ${./activate.py} ${config.sops.secrets."thunderbird".path} > ~/.thunderbird/default/user.js
-        ${pkgs.coreutils}/bin/chmod 400 ~/.thunderbird/default/user.js
-      '');
+      ExecStart = toString (
+        pkgs.writeShellScript "thunderbird-config.sh" ''
+          ${pkgs.coreutils}/bin/mkdir -p ~/.thunderbird/default
+          ${pkgs.coreutils}/bin/rm -f ~/.thunderbird/default/user.js
+          ${pkgs.python311}/bin/python ${./activate.py} ${
+            config.sops.secrets."thunderbird".path
+          } > ~/.thunderbird/default/user.js
+          ${pkgs.coreutils}/bin/chmod 400 ~/.thunderbird/default/user.js
+        ''
+      );
       Type = "oneshot";
     };
   };

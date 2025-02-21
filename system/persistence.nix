@@ -1,9 +1,6 @@
+{ conf, impermanence, ... }:
 {
-  conf,
-  impermanence,
-  ...
-}: {
-  imports = [impermanence.nixosModule];
+  imports = [ impermanence.nixosModule ];
 
   environment.persistence."/persistent/data" = {
     hideMounts = true;
@@ -12,7 +9,7 @@
       "/root/.ssh"
       "/var/lib/bluetooth"
     ];
-    files = [];
+    files = [ ];
 
     users.${conf.user} = (import ../home/persistence.nix).data;
   };
@@ -30,9 +27,7 @@
       # "/var/lib/waydroid"
       "/var/log"
     ];
-    files = [
-      "/etc/machine-id"
-    ];
+    files = [ "/etc/machine-id" ];
 
     users.${conf.user} = (import ../home/persistence.nix).cache;
   };

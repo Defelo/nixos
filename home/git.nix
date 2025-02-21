@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -27,11 +28,17 @@
       rerere.enabled = true;
       diff.algorithm = "histogram";
       diff.submodule = "log";
-      diff.sopsdiffer.textconv = let
-        conf = builtins.toFile "sops.yaml" (builtins.toJSON {
-          creation_rules = [{key_groups = [{pgp = ["61303BBAD7D1BF74EFA44E3BE7FE2087E4380E64"];}];}];
-        });
-      in "${pkgs.sops}/bin/sops --config ${conf} -d";
+      diff.sopsdiffer.textconv =
+        let
+          conf = builtins.toFile "sops.yaml" (
+            builtins.toJSON {
+              creation_rules = [
+                { key_groups = [ { pgp = [ "61303BBAD7D1BF74EFA44E3BE7FE2087E4380E64" ]; } ]; }
+              ];
+            }
+          );
+        in
+        "${pkgs.sops}/bin/sops --config ${conf} -d";
       sendemail = {
         smtpserver = "mail.defelo.de";
         smtpuser = "mail@defelo.de";
@@ -39,13 +46,15 @@
         smtpserverport = 465;
         annotate = true;
       };
-      credential."smtp://mail.defelo.de:465".helper = let
-        helper = pkgs.writeShellScript "git-credential-helper" ''
-          [[ "$1" = get ]] || exit 1
-          pw=$(pass email/mail@defelo.de)
-          echo "password=$pw"
-        '';
-      in ''!${helper} "$@"'';
+      credential."smtp://mail.defelo.de:465".helper =
+        let
+          helper = pkgs.writeShellScript "git-credential-helper" ''
+            [[ "$1" = get ]] || exit 1
+            pw=$(pass email/mail@defelo.de)
+            echo "password=$pw"
+          '';
+        in
+        ''!${helper} "$@"'';
     };
   };
 }

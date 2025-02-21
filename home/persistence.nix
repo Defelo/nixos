@@ -20,7 +20,7 @@
       "Persistent"
       "Zotero"
     ];
-    files = [];
+    files = [ ];
   };
 
   cache = {
@@ -42,6 +42,6 @@
       ".thunderbird"
       "Downloads"
     ];
-    files = [];
+    files = [ ];
   };
 }

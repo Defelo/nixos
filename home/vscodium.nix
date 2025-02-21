@@ -1,10 +1,8 @@
-{
-  pkgs,
-  nix-vscode-extensions,
-  ...
-}: let
+{ pkgs, nix-vscode-extensions, ... }:
+let
   extensions = nix-vscode-extensions.extensions.${pkgs.system};
-in {
+in
+{
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -43,9 +41,9 @@ in {
       "editor.wordWrap" = "on";
       "workbench.startupEditor" = "newUntitledFile";
       "files.autoSave" = "afterDelay";
-      "python.autoComplete.extraPaths" = [];
+      "python.autoComplete.extraPaths" = [ ];
       "editor.lineNumbers" = "on";
-      "vim.commandLineModeKeyBindings" = [];
+      "vim.commandLineModeKeyBindings" = [ ];
       "rust-analyzer.checkOnSave.command" = "clippy";
       "files.associations" = {
         "*.toml" = "toml";

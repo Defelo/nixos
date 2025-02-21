@@ -4,9 +4,9 @@ keys:
 creation_rules:
   - path_regex: hosts/neon/secrets/.+$
     key_groups:
-      - pgp: [ *defelo ]
-        age: [ *neon ]
+      - pgp: [*defelo]
+        age: [*neon]
   - path_regex: secrets/.+$
     key_groups:
-      - pgp: [ *defelo ]
-        age: [ *neon ]
+      - pgp: [*defelo]
+        age: [*neon]

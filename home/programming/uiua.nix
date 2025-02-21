@@ -1,5 +1,4 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    uiua
-  ];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.uiua ];
 }
