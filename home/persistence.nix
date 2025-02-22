@@ -42,6 +42,6 @@
       ".thunderbird"
       "Downloads"
     ];
-    files = [ ];
+    files = [ ".local/share/nix/trusted-settings.json" ];
   };
 }
