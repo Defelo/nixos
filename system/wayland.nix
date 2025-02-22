@@ -13,7 +13,7 @@
   services.dbus.packages = [ pkgs.gcr ];
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
+    config.common.default = "gtk";
   };
 
   hardware.graphics.enable = true;
