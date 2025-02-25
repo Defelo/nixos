@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-element, ... }:
 {
   home.packages = builtins.attrValues {
     inherit (pkgs)
@@ -14,7 +14,7 @@
 
       # communication
       discord-canary
-      element-desktop
+      # element-desktop
       signal-desktop
 
       # games
@@ -50,12 +50,13 @@
       obsidian
       vlc
 
-      okular
       anki-bin
       spotify
       rnote
       zotero_7
       ;
+
+    inherit (pkgs-element) element-desktop;
 
     tex = pkgs.texlive.combined.scheme-full;
 
