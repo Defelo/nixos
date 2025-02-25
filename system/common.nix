@@ -85,6 +85,7 @@
         "nixos:5Pnh7nNQP4a0E3R850micmqOUXhn6uvP+DsT2FU7vfI="
       ];
       netrc-file = config.sops.templates."nix-netrc".path;
+      builders-use-substitutes = true;
     };
     registry = {
       nixpkgs = {
