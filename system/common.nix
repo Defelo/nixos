@@ -87,6 +87,24 @@
       netrc-file = config.sops.templates."nix-netrc".path;
       builders-use-substitutes = true;
     };
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
+        supportedFeatures = [
+          "kvm"
+          "nixos-test"
+          "big-parallel"
+        ];
+        protocol = "ssh-ng";
+        sshUser = "root";
+        hostName = "10.42.0.1";
+        maxJobs = 8;
+      }
+    ];
     registry = {
       nixpkgs = {
         from = {
