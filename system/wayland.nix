@@ -13,7 +13,10 @@
   services.dbus.packages = [ pkgs.gcr ];
   xdg.portal = {
     enable = true;
-    config.common.default = "gtk";
+    config.common = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+    };
   };
 
   hardware.graphics.enable = true;
