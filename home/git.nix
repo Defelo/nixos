@@ -26,6 +26,7 @@
       init.defaultBranch = "main";
       push.default = "upstream";
       rerere.enabled = true;
+      merge.conflictStyle = "zdiff3";
       diff.algorithm = "histogram";
       diff.submodule = "log";
       diff.sopsdiffer.textconv =
