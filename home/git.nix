@@ -12,7 +12,7 @@
     };
     aliases = {
       l = "log --graph";
-      p = "pull --prune --rebase --autostash";
+      p = "pull --all --prune --rebase --autostash";
       ai = "add --intent-to-add";
     };
     ignores = [
