@@ -158,10 +158,11 @@ interactive() {
   trap f=0 SIGINT
   first=1
   while [[ $f == 1 ]]; do
-    printf "${new}Current: $(_fmt_delta $(($(_now) - x)))\n$(show) (Ctrl+C to stop) "
+    s=$(show)
+    printf "${new}Current: $(_fmt_delta $(($(_now) - x)))\n$s (Ctrl+C to stop) "
     sleep 1
     if [[ $first == 1 ]]; then
-      new=$(tput dl1 cuu1 dl1 cuu1 dl1 hpa 0)
+      new=$(tput cuu $(echo -e "$s" | wc -l) hpa 0 ed)
       first=0
     fi
   done
