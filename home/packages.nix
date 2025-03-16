@@ -53,7 +53,7 @@
       anki-bin
       spotify
       rnote
-      zotero_7
+      zotero
       ;
 
     inherit (pkgs-element) element-desktop;
