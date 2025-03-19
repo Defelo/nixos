@@ -93,6 +93,8 @@ in
 
       # custom functions
       ${(builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions))}
+
+      command_not_found_handler() { ${lib.getExe pkgs.comma} "$@"; }
     '';
     shellAliases = aliases;
   };
