@@ -7,7 +7,7 @@ environment {
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_DESKTOP "niri"
     NIXOS_OZONE_WL "1"
-    DISPLAY null
+    DISPLAY ":0"
 }
 
 input {
