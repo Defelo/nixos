@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = builtins.attrValues {
-    inherit (pkgs) yubikey-manager yubikey-manager-qt yubioath-flutter;
-  };
+  home.packages = builtins.attrValues { inherit (pkgs) yubikey-manager yubioath-flutter; };
 
   systemd.user =
     let
