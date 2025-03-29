@@ -146,21 +146,6 @@
         }
       );
 
-      checks =
-        let
-          packages = lib.mapAttrs (
-            _: v:
-            lib.removeAttrs v [
-              "ci"
-              "checks"
-            ]
-          ) self.packages;
-          nixosConfigurations = lib.mapAttrsToList (name: config: {
-            ${getSystemFromHardwareConfiguration name}.${name} = config.config.system.build.toplevel;
-          }) self.nixosConfigurations;
-        in
-        builtins.foldl' lib.recursiveUpdate { } ([ packages ] ++ nixosConfigurations);
-
       formatter = eachDefaultSystem (
         system:
         let
