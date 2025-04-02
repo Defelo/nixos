@@ -59,26 +59,7 @@
               "spotify"
             ];
         in
-        import nixpkgs {
-          inherit system config;
-
-          overlays = [
-            (final: prev: {
-              linuxPackages_latest = prev.linuxPackages_latest.extend (
-                lpfinal: lpprev: {
-                  rtl8821ce = lpprev.rtl8821ce.overrideAttrs (attrs: {
-                    patches = attrs.patches or [ ] ++ [
-                      (final.fetchpatch {
-                        url = "https://github.com/tomaspinho/rtl8821ce/commit/1f1809775e686a524c8eb8ebcf5957ed8e697f74.patch";
-                        hash = "sha256-p8lQS98i7lGMiNtmsWMKCLtwbFRJkLImUYCOLCfARTI=";
-                      })
-                    ];
-                  });
-                }
-              );
-            })
-          ];
-        };
+        import nixpkgs { inherit system config; };
 
       extra-pkgs =
         system:
