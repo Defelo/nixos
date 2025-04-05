@@ -60,6 +60,16 @@ let
       local dir=''${1:-.}
       [[ "$(stat -f --format=%T $dir)" = "btrfs" ]] && [[ "$(stat --format=%i $dir)" =~ ^(2|256)$ ]]
     '';
+
+    command_not_found_handler = ''
+      local d="$HOME/.cache/zsh_command_not_found_handler"
+      if ! [[ -f "$d/$1" ]]; then
+        echo -n "command '$1' not found, try comma? " >&2
+        read -q || return
+        mkdir -p "$d" && touch "$d/$1"
+      fi
+      ${lib.getExe pkgs.comma} "$@"
+    '';
   };
 in
 {
@@ -93,8 +103,6 @@ in
 
       # custom functions
       ${(builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions))}
-
-      command_not_found_handler() { ${lib.getExe pkgs.comma} "$@"; }
     '';
     shellAliases = aliases;
   };
