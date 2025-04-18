@@ -29,6 +29,24 @@ let
     db = "direnv block";
     duff = "duf /persistent/* /nix /";
     mksv = "btrfs subvolume create";
+    g = "git";
+    gs = "git status";
+    gl = "git log --graph";
+    gb = "git branch";
+    gg = "git switch";
+    gd = "git diff";
+    gt = "git stash";
+    ga = "git add";
+    gap = "git add -p";
+    gai = "git add --intent-to-add";
+    gx = "git restore";
+    gxp = "git restore -p";
+    gc = "git commit -v";
+    gca = "git commit -v --amend";
+    gr = "git rebase -i --autosquash";
+    gp = "git pull --all --prune --rebase --autostash";
+    gu = "git push";
+    guf = "git push --force-with-lease";
   };
   functions = {
     d = "dirs -v | tac";

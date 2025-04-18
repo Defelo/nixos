@@ -10,11 +10,6 @@
       key = "E7FE2087E4380E64";
       signByDefault = true;
     };
-    aliases = {
-      l = "log --graph";
-      p = "pull --all --prune --rebase --autostash";
-      ai = "add --intent-to-add";
-    };
     ignores = [
       ".direnv"
       ".devenv"
