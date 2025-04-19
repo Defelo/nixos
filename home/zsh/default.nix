@@ -35,6 +35,7 @@ let
     gb = "git branch";
     gg = "git switch";
     gd = "git diff";
+    gds = "git diff --staged";
     gt = "git stash";
     ga = "git add";
     gap = "git add -p";

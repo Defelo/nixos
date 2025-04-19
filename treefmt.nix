@@ -1,5 +1,10 @@
+{ lib, pkgs, ... }:
+
 {
-  settings.global.excludes = [
+  tree-root-file = ".git/config";
+  on-unmatched = "error";
+
+  excludes = [
     # no formatter available
     ".gitattributes"
     "LICENSE"
@@ -13,18 +18,42 @@
     "hosts/*/hardware-configuration.nix"
     "secrets/*"
     "*/secrets/*"
+    "*.lock"
 
     # not text
     "*.jpg"
     "*.png"
   ];
 
-  programs.black.enable = true;
+  formatter.black = {
+    command = lib.getExe pkgs.black;
+    includes = [ "*.py" ];
+    options = [ ];
+  };
 
-  programs.nixfmt.enable = true;
-  programs.nixfmt.strict = true;
+  formatter.nixfmt = {
+    command = lib.getExe pkgs.nixfmt-rfc-style;
+    includes = [ "*.nix" ];
+    options = [ "--strict" ];
+  };
 
-  programs.prettier.enable = true;
+  formatter.prettier = {
+    command = lib.getExe pkgs.nodePackages.prettier;
+    includes = [
+      "*.json"
+      "*.yml"
+      "*.yaml"
+    ];
+    options = [ "--write" ];
+  };
 
-  programs.shfmt.enable = true;
+  formatter.shfmt = {
+    command = lib.getExe pkgs.shfmt;
+    includes = [ "*.sh" ];
+    options = [
+      "--simplify"
+      "--write"
+      "--indent=2"
+    ];
+  };
 }

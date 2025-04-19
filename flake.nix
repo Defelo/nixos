@@ -25,7 +25,6 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs =
@@ -33,7 +32,6 @@
       self,
       nixpkgs,
       home-manager,
-      treefmt-nix,
       ...
     }@inputs:
     let
@@ -131,9 +129,13 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
         in
-        treefmtEval.config.build.wrapper
+        pkgs.treefmt.withConfig {
+          settings = [
+            ./treefmt.nix
+            { _module.args = { inherit pkgs; }; }
+          ];
+        }
       );
     };
 }
