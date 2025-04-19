@@ -31,6 +31,7 @@ let
     mksv = "btrfs subvolume create";
     g = "git";
     gs = "git status";
+    gsh = "git show";
     gl = "git log --graph";
     gb = "git branch";
     gg = "git switch";
