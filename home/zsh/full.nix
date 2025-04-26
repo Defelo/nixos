@@ -67,7 +67,7 @@ in
 {
   imports = [ ./. ];
   programs.zsh = {
-    initExtra =
+    initContent =
       let
         ng-completion = pkgs.runCommand "ng-completion" { } ''
           SHELL=zsh ${pkgs.nodePackages."@angular/cli"}/bin/ng completion script > $out
