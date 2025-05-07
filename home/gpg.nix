@@ -13,7 +13,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
     enableSshSupport = true;
     sshKeys = [ "D2277B1C3C924964972148EF590B9F083697F9A8" ];
     enableExtraSocket = true;
