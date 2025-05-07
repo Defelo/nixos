@@ -39,7 +39,6 @@
       ".local/share/containers"
       # ".local/share/waydroid"
       ".local/state/wireplumber"
-      ".thunderbird"
       "Downloads"
     ];
     files = [ ".local/share/nix/trusted-settings.json" ];

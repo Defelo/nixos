@@ -36,7 +36,6 @@ in
     ./ssh.nix
     ./syncthing.nix
     ./theme.nix
-    ./thunderbird
     ./vscodium.nix
     ./waybar.nix
     ./xournalpp
