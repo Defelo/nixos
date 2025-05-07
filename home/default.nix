@@ -2,7 +2,6 @@ let
   common = [
     ./common.nix
 
-    ./cheat.nix
     ./direnv.nix
     ./fzf.nix
     ./helix
@@ -18,13 +17,11 @@ in
     ./alacritty.nix
     ./clipman.nix
     ./dunst.nix
-    # ./fcitx5.nix
     ./gammastep.nix
     ./git.nix
     ./gpg.nix
     ./helix/full.nix
     ./hyfetch.nix
-    # ./libreoffice.nix
     ./niri
     ./ntfy.nix
     ./packages.nix

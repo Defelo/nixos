@@ -14,10 +14,6 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    cheatsheets = {
-      url = "github:cheat/cheatsheets";
-      flake = false;
-    };
     helix.url = "github:helix-editor/helix";
     fenix.url = "github:nix-community/fenix";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";

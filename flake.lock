@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "cheatsheets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1671300617,
-        "narHash": "sha256-Afv0rPlYTCsyWvYx8UObKs6Me8IOH5Cv5u4fO38J8ns=",
-        "owner": "cheat",
-        "repo": "cheatsheets",
-        "rev": "36bdb99dcfadde210503d8c2dcf94b34ee950e1d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cheat",
-        "repo": "cheatsheets",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1731098351,
@@ -406,7 +390,6 @@
     },
     "root": {
       "inputs": {
-        "cheatsheets": "cheatsheets",
         "fenix": "fenix",
         "helix": "helix",
         "home-manager": "home-manager",

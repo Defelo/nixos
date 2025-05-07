@@ -21,7 +21,6 @@ in
         hediet.vscode-drawio
         infinity1207.angular2-switcher
         james-yu.latex-workshop
-        kamadorueda.alejandra
         leanprover.lean4
         ms-python.python
         # ms-toolsai.jupyter
