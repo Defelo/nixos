@@ -1,4 +1,5 @@
-{ pkgs, pkgs-element, ... }:
+{ pkgs, ... }:
+
 {
   home.packages = builtins.attrValues {
     inherit (pkgs)
@@ -14,7 +15,7 @@
 
       # communication
       discord-canary
-      # element-desktop
+      element-desktop
 
       # games
       prismlauncher
@@ -53,8 +54,6 @@
       rnote
       zotero
       ;
-
-    inherit (pkgs-element) element-desktop;
 
     tex = pkgs.texlive.combined.scheme-full;
 

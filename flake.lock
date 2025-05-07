@@ -265,22 +265,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-element": {
-      "locked": {
-        "lastModified": 1740480827,
-        "narHash": "sha256-t8b1gLtYVIUxjvgxgV8x1viQCa1WVnc9gxSJqMyt0u0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "56b616f7b84ddf156bb42ed2d6dc7c5da174fa07",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "56b616f7b84ddf156bb42ed2d6dc7c5da174fa07",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -398,7 +382,6 @@
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-element": "nixpkgs-element",
         "sops-nix": "sops-nix"
       }
     },
