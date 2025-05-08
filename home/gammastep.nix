@@ -8,7 +8,7 @@
     };
     settings.general = {
       brightness-day = 1.0;
-      brightness-night = 0.7;
+      brightness-night = 1.0;
     };
   };
 }
