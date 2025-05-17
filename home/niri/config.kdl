@@ -160,6 +160,7 @@ binds {
 
     Mod+Space { switch-focus-between-floating-and-tiling; }
     Mod+Shift+Space { toggle-window-floating; }
+    Mod+Ctrl+Space { toggle-overview; }
 
     Mod+Numbersign       { screenshot; }
     Mod+Shift+Numbersign { screenshot-window; }

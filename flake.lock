@@ -246,6 +246,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-niri": {
+      "locked": {
+        "lastModified": 1747490514,
+        "narHash": "sha256-pfWzVF/mh5EQNlzj8cRKwpzDPDUdv8UqtdBKtPQWK5c=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "153ca5726b81713e496a5f47d46d08d87968bfc5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "pull/407974/merge",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -363,6 +379,7 @@
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-niri": "nixpkgs-niri",
         "sops-nix": "sops-nix"
       }
     },
