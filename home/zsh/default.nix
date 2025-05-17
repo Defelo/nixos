@@ -51,6 +51,8 @@ let
     gr = "git rebase -i --autosquash";
     grc = "git rebase --continue";
     gra = "git rebase --abort";
+    gm = "git merge";
+    gcp = "git cherry-pick";
     gp = "git pull --all --prune --rebase --autostash";
     gu = "git push";
     guf = "git push --force-with-lease";
