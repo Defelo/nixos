@@ -7,6 +7,7 @@
   home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
+    PAGER = "less -FRX";
   };
 
   systemd.user.startServices = "sd-switch";

@@ -22,6 +22,7 @@ in
     ./gpg.nix
     ./helix/full.nix
     ./hyfetch.nix
+    ./jujutsu.nix
     ./niri
     ./ntfy.nix
     ./packages.nix
