@@ -135,6 +135,10 @@ in
 
       # custom functions
       ${(builtins.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "${k}() {\n${v}\n}") functions))}
+
+      if [[ -n "$SSH_TTY" ]]; then
+        export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus
+      fi
     '';
     shellAliases = aliases;
   };

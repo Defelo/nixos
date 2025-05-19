@@ -1,19 +1,22 @@
 { conf, config, ... }:
+
 {
   users.mutableUsers = false;
-  users.users = {
-    ${conf.user} = {
-      isNormalUser = true;
-      uid = 1000;
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-        "video"
-        "libvirtd"
-        "restic"
-      ];
-      hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
-    };
+  users.users.${conf.user} = {
+    isNormalUser = true;
+    uid = 1000;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "libvirtd"
+      "restic"
+    ];
+    hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID0+Dd5FL6zKIxkjJaOb+/7fp5YtePkDdGasYESAl0br"
+      "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCqDljgWk+qK1pHdTZdgFgXcMdizAz7OmGR9fx0yROQ6+Ja7zUxnAxOi0ijOk8HLWrZ9xu/TqKPvF29hndCEJtg="
+    ];
   };
 
   home-manager.users =
