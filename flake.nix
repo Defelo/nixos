@@ -1,9 +1,8 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-niri.url = "github:NixOS/nixpkgs/pull/407974/merge";
     # nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
-    # nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,7 +53,7 @@
             ];
 
           overlays = [
-            (final: prev: { inherit (inputs.nixpkgs-niri.legacyPackages.${final.system}) niri; })
+            (final: prev: { inherit (inputs.nixpkgs-small.legacyPackages.${final.system}) niri; })
           ];
         in
         import nixpkgs { inherit system config overlays; };
