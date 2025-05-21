@@ -27,9 +27,13 @@
       };
       git = {
         sign-on-push = true;
+        private-commits = "private()";
       };
       templates = {
         log = "builtin_log_comfortable";
+      };
+      revset-aliases = {
+        "private()" = ''subject(regex:"^(private|wip)(:|$)")'';
       };
     };
   };
