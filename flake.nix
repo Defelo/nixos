@@ -130,7 +130,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         pkgs.treefmt.withConfig {
-          settings = [
+          settings = lib.mkMerge [
             ./treefmt.nix
             { _module.args = { inherit pkgs; }; }
           ];
