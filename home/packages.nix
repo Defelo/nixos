@@ -34,6 +34,7 @@
       grim
       swappy
       wl-mirror
+      wayvnc
 
       # utils
       feh
