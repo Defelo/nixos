@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: sudo mkdir /mnt/nix && sudo mount -m -o bind /mnt/nix /nix
+      - uses: wimpysworld/nothing-but-nix@v5
       - uses: DeterminateSystems/nix-installer-action@v17
       - uses: ryanccn/attic-action@v0
         with:
