@@ -15,7 +15,7 @@
       ui = {
         default-command = [ "log" ];
         show-cryptographic-signatures = true;
-        diff.tool = [
+        diff-formatter = [
           (lib.getExe pkgs.difftastic)
           "--color=always"
           "--background=light"
