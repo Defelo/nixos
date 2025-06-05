@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   programs.git = {
     enable = true;
@@ -6,10 +7,6 @@
     userName = "Defelo";
     userEmail = "mail@defelo.de";
     difftastic.enable = true;
-    signing = {
-      key = "E7FE2087E4380E64";
-      signByDefault = true;
-    };
     ignores = [
       ".direnv"
       ".devenv"
